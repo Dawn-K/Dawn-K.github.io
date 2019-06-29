@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Keep busy living or kepp busy dying">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>Python - Dawn-K</title>
+
+    <link rel="canonical" href="http://localhost:4000/2019/06/28/Python/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">DawnK's Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/about/">About</a>
+                    </li>
+                    
+                    <li>
+                        <a href="/tags/">Tags</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/2019-Python.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/2019-Python.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#Python" title="Python">Python</a>
+                        
+                    </div>
+                    <h1>Python</h1>
+                    
+                    
+                    <h2 class="subheading"> 人生苦短,我用Python</h2>
+                    
+                    <span class="meta">Posted by DawnK on June 28, 2019</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+				<h1 id="python">Python</h1>
+
+<h2 id="再次邂逅">再次邂逅</h2>
+
+<p>和博客系统一样,Python也不是第一次学习了,之前读过<a href="https://www.liaoxuefeng.com/wiki/1016959663602400">廖雪峰的Python3教程</a>,<a href="https://www.runoob.com/python3/python3-tutorial.html">菜鸟教程的Python3</a> ,也写过一个图床脚本(虽然非常简陋).但是一直没有静下心来好好整理.前几天看到了<a href="https://github.com/jackfrued/Python-100-Days">Python-100days</a> ,这个开源教程与其说是教程,不如说是<strong>提纲</strong>(而且后四分之一的内容还没有更新 by 2019.6.27) ,总之不管怎样先让自己做起来吧,从简单的开始,发掘自己喜欢的方向.由于有一些基础,所以在前面的部分我会尽量减少篇幅.</p>
+
+<p>本文档中的开发环境<code class="highlighter-rouge">manjaro Linux  ananconda  Python3.7.1</code></p>
+
+<p>参考资料: <a href="https://docs.python.org/zh-cn/3/tutorial/index.html">Python3官方文档</a>, <a href="https://www.liaoxuefeng.com/wiki/1016959663602400">廖雪峰的Python3教程</a> , <a href="https://www.runoob.com/python3/python3-tutorial.html">菜鸟教程-Python3</a> ,<笨方法学Python3></笨方法学Python3></p>
+
+<h2 id="pyhton简介">Pyhton简介</h2>
+
+<h3 id="版本号变迁">版本号变迁</h3>
+
+<ol>
+  <li>1989年圣诞节：Guido von Rossum开始写Python语言的编译器。</li>
+  <li>1994年1月：Python 1.0正式发布。</li>
+  <li>2000年10月16日：Python 2.0发布</li>
+  <li>2008年12月3日：Python 3.0发布</li>
+  <li>Python 3.7的版本在2018年发布.</li>
+</ol>
+
+<p>Python的版本号分为三段，形如A.B.C。其中A表示大版本号，一般当<strong>整体重写，或出现不向后兼容的改变</strong>时，增加A；B表示<strong>功能更新</strong>，出现新功能时增加B；C表示<strong>小的改动</strong>(如修复了某个Bug)，只要有修改就增加C。</p>
+
+<h3 id="python应用领域">Python应用领域</h3>
+
+<p>目前Python在Web应用开发、云基础设施、DevOps、网络爬虫开发、数据分析挖掘、机器学习等领域都有着广泛的应用，因此也产生了<strong>Web后端开发、数据接口开发、自动化运维、自动化测试、科学计算和可视化、数据分析、量化交易、机器人开发、图像识别和处理</strong>等一系列的职位。</p>
+
+<h3 id="安装">安装</h3>
+
+<p>此处不再详细说明,win和Linux都推荐<a href="https://baike.baidu.com/item/anaconda/20407441?fr=aladdin">anaconda</a>,此包可以控制Python的版本(即可以虚拟出Python环境<strong>,尤其是对于Arch系的滚动更新</strong>方式来说(生产环境改变会很麻烦的,Python包对于版本的要求还是蛮严格的))</p>
+
+<h2 id="开始之前">开始之前</h2>
+
+<ol>
+  <li>Python不需要句末分号</li>
+  <li>Python代码块是靠”:”和缩进体现的,没有C中的{ .. }这种结构</li>
+  <li>Python是弱类型语言,不需要声明类型(有点不习惯)</li>
+  <li>Python不存在”编译”,只有”解释”</li>
+</ol>
+
+<h3 id="缩进">缩进</h3>
+
+<p>Python并没有强制规定缩进的长度,但是约定俗成是4个空格(强烈推荐将tab自动转为4空格),需要保证全文中使用的缩进单位是相同的(要么是空格,要么是tab,不能混用).在同一代码块中,缩进的长度应该保持一致.</p>
+
+<h3 id="注释">注释</h3>
+
+<p>Python使用<code class="highlighter-rouge">#</code> 作为单行注释,根据规范,<code class="highlighter-rouge">#</code> 应该是距离代码行的末端最后一个字符两个空格,且注释的第一个字符应该距离<code class="highlighter-rouge">#</code>有两个空格(强迫症福音),但实际上这些东西都可以用IDE的代码格式化一键修改,无须太过刻意</p>
+
+<h3 id="运行">运行</h3>
+
+<p>Python代码运行有两种方式(推荐使用Pycharm).一种是交互式运行,在命令行中启动Python,然后逐句输入,当场翻译.另一种是提前写好整个程序,然后<code class="highlighter-rouge">python xxx.py</code> 直接运行.(但是我发现在IDE中点”运行”,和手动用命令行执行.py是不完全一样的,具体表现在<strong>getpass()函数中</strong>,之后慢慢摸索)</p>
+
+<h3 id="结构">结构</h3>
+
+<p>Python没有”主函数”这一个概念(但是有函数),Python认为只要不是在任何函数内部,那么在执行此文件时,就可以直接运行.所以非常简单的脚本,是可以一上来直接就写的,<strong>最基本的输入输入函数可以直接调用,无须任何头文件</strong></p>
+
+<h2 id="变量类型">变量类型</h2>
+
+<p>作为弱类型语言,Python其实也拥有变量类型这一概念,不过大多是程序自己推导的.</p>
+
+<h3 id="数字">数字</h3>
+
+<h4 id="整型">整型</h4>
+
+<p>整型：Python中可以处理<strong>任意大小的整数</strong>(在Python3中只有int这一类型用来处理整数)而且支持二进制(如<code class="highlighter-rouge">0b100</code>，换算成十进制<code class="highlighter-rouge">4</code>)、八进制(如<code class="highlighter-rouge">0o100</code>，换算成十进制是<code class="highlighter-rouge">64</code>)、十进制(<code class="highlighter-rouge">100</code>)和十六进制(<code class="highlighter-rouge">0x100</code>，换算成十进制是<code class="highlighter-rouge">256</code>)的表示法。</p>
+
+<h4 id="浮点数">浮点数</h4>
+
+<p>Python3中只有<code class="highlighter-rouge">float</code> 用来存储浮点数.浮点数除了数学写法(如<code class="highlighter-rouge">123.456</code>)之外还支持科学计数法(如<code class="highlighter-rouge">1.23456e2</code>)</p>
+
+<p>实际上还有十进制浮点数<a href="https://docs.python.org/zh-cn/3/library/decimal.html#decimal.Decimal">decimal</a>,这个等用到再搜也不迟</p>
+
+<h4 id="布尔型">布尔型</h4>
+
+<p>布尔型只有<code class="highlighter-rouge">True</code>和<code class="highlighter-rouge">False</code> 两种值,<strong>注意大小写</strong> .在逻辑运算之后就会产生布尔值.比如<code class="highlighter-rouge">3&gt;2</code></p>
+
+<h4 id="复数型">复数型</h4>
+
+<p>形如<code class="highlighter-rouge">3+5j</code> 此处的<code class="highlighter-rouge">j</code>和数学上的<code class="highlighter-rouge">i</code>是相同的含义  ,当然这里的<code class="highlighter-rouge">j</code>也可以大写</p>
+
+<h4 id="常量">常量</h4>
+
+<p>其实Python里面根本没有常量(此处是指类似c里面const的设计),也没有任何机制能够保证一个变量不会被改变.一般情况下,采用全部大写的方式来表示常量.</p>
+
+<h3 id="空值">空值</h3>
+
+<p>空值用None表示,是一个特殊的空值</p>
+
+<h3 id="字符串">字符串</h3>
+
+<p>Python不支持单字符(c中的char) ,即使是单个字符也会用字符串来表示</p>
+
+<p>字符串可以使用<code class="highlighter-rouge">"..."</code> 和<code class="highlighter-rouge">'...'</code> 这两种方式表示.字符串中的特殊字符也可以使用<code class="highlighter-rouge">\</code>来转义.</p>
+
+<p><strong>在Python3中，所有的字符串都是Unicode字符串</strong></p>
+
+<h4 id="原始字符串">原始字符串</h4>
+
+<p>在引号前加<code class="highlighter-rouge">r</code> ,就可以直接完全如实反映字符串引号中的内容.</p>
+
+<p>举例:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="s">'C:</span><span class="err">\</span><span class="s">some</span><span class="se">\n</span><span class="s">ame'</span><span class="p">)</span>  <span class="c1"># here \n means newline!
+</span><span class="n">C</span><span class="p">:</span>\<span class="n">some</span>
+<span class="n">ame</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="s">r'C:\some\name'</span><span class="p">)</span>  <span class="c1"># note the r before the quote
+</span><span class="n">C</span><span class="p">:</span>\<span class="n">some</span>\<span class="n">name</span>
+</code></pre></div></div>
+
+<h4 id="跨行输入">跨行输入</h4>
+
+<p>采用三重引号的方式,<code class="highlighter-rouge">"""..."""</code> 或 <code class="highlighter-rouge">'''...'''</code> 在字符串中间的回车也会如实地被记录(多行字符串也支持前文的原始字符串操作),如果不想包含末尾的回车,可以在对应的行尾加入<code class="highlighter-rouge">\</code> .</p>
+
+<p><strong>三引号让程序员从引号和特殊字符串的泥潭里面解脱出来，自始至终保持一小块字符串的格式是所谓的WYSIWYG（所见即所得）格式的。</strong></p>
+
+<p>举个例子(在.py文件中):</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"""</span><span class="se">\
+</span><span class="s">Usage: thingy [OPTIONS]
+     -h                        Display this usage message
+     -H hostname               Hostname to connect to
+"""</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>输出(<strong>注意最开头的回车并没有被记录</strong>):</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Usage: thingy [OPTIONS]
+     -h                        Display this usage message
+     -H hostname               Hostname to connect to
+</code></pre></div></div>
+
+<p>举个例子(在交互式界面中)</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="s">'''line1
+... line2
+... line3'''</span><span class="p">)</span>
+<span class="n">line1</span>
+<span class="n">line2</span>
+<span class="n">line3</span>
+</code></pre></div></div>
+
+<h4 id="赋值">赋值</h4>
+
+<p>Python3的字符串是<code class="highlighter-rouge">immutable -- 不可变</code>  类型,也就是说</p>
+
+<blockquote>
+  <p>具有固定值的对象。不可变对象包括数字、字符串和元组。这样的对象不能被改变。<strong>如果必须存储一个不同的值，则必须创建新的对象。</strong>它们在需要常量哈希值的地方起着重要作用，例如作为字典中的键。</p>
+</blockquote>
+
+<p>举个例子,</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">a</span> <span class="o">=</span> <span class="s">'xyz'</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+</code></pre></div></div>
+
+<p>这种方式是浅拷贝,b和a指向了同一块内存(当然,Python中没有指针的概念)</p>
+
+<p>我们通过<code class="highlighter-rouge">id()</code>(id函数用来获取对象的内存地址)来验证这个问题</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="c1"># 每次运行结果未必相同,但是id(a)==id(b)是事实
+</span><span class="mi">140491303471680</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="mi">140491303471680</span>
+</code></pre></div></div>
+
+<p>但是如果修改了a, b的值却不会发生改变!</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="s">'1'</span><span class="o">+</span><span class="n">a</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span>
+<span class="s">'1xyz'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span>
+<span class="s">'xyz'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">id</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="mi">140491303471792</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">id</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="mi">140491303471680</span>
+</code></pre></div></div>
+
+<p>正如前文所说,<strong>字符串被修改后,不会在原来的基础上修改,而是会立刻创建一份新的,然后将指针指过去</strong>(这就是Python慢的一个原因是嘛?)</p>
+
+<p><strong>而且Python无法直接修改字符串的某一位字符(当然,利用切片来直接修改某一段也是不行的<code class="highlighter-rouge">word[2:]='C++'</code>是不被允许的</strong> ,只能通过一些替换,转化,切片等手段操作重新创建一个字符串(感觉有些不方便啊)</p>
+
+<h4 id="拼接">拼接</h4>
+
+<p>字符串可以用 <code class="highlighter-rouge">+</code> 进行连接（粘到一起），也可以用 <code class="highlighter-rouge">*</code> 进行重复:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="mi">3</span> <span class="o">*</span> <span class="s">'un'</span> <span class="o">+</span> <span class="s">'ium'</span>
+<span class="s">'unununium'</span>
+</code></pre></div></div>
+
+<p>相邻的两个或多个 <em>字符串字面值</em> （引号引起来的字符）将会自动连接到一起.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="s">'Py'</span> <span class="s">'thon'</span>
+<span class="s">'Python'</span>
+</code></pre></div></div>
+
+<p>但是这种操作仅限于字符串字面量,对于字符串变量和字符串表达式均不可.因此拼接的最通用方法还是使用<code class="highlighter-rouge">+</code>,它均可以进行连接.</p>
+
+<h4 id="索引">索引</h4>
+
+<p><strong>索引和c里面的相似,都是为了获取单个字符(Python将单个字符也看做字符串)都不能越界</strong>,不过Python支持负数下标,负数下标从-1开始.<code class="highlighter-rouge">word[0]==word[-0]</code></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">word</span> <span class="o">=</span> <span class="s">'Python'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># character in position 0
+</span><span class="s">'P'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>  <span class="c1"># character in position 5
+</span><span class="s">'n'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># Python allows negative indexing,It is equivalent to word[len-1]
+</span><span class="s">'n'</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[</span><span class="o">-</span><span class="mi">100</span><span class="p">]</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s">"&lt;stdin&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="nb">IndexError</span><span class="p">:</span> <span class="n">string</span> <span class="n">index</span> <span class="n">out</span> <span class="n">of</span> <span class="nb">range</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[</span><span class="mi">100</span><span class="p">]</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s">"&lt;stdin&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="nb">IndexError</span><span class="p">:</span> <span class="n">string</span> <span class="n">index</span> <span class="n">out</span> <span class="n">of</span> <span class="nb">range</span>
+</code></pre></div></div>
+
+<h4 id="切片">切片</h4>
+
+<p>切片功能是用来获取字符串的.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>  <span class="c1"># characters from position 0 (included) to 2 (excluded)
+</span><span class="s">'Py'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>  <span class="c1"># characters from position 2 (included) to 5 (excluded)
+</span><span class="s">'tho'</span>
+</code></pre></div></div>
+
+<p>注意切片的开始总是被包括在结果中，而结束不被包括.这使得 <code class="highlighter-rouge">s[:i] + s[i:]</code> 总是等于 <code class="highlighter-rouge">s</code></p>
+
+<p>切片起始的默认值是第一个字符,结束的默认值是一直切片到字符串的结尾(可以理解为超尾).而且切片会自动修复越界错误(就是到边界就自动停止了)</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="o">=</span><span class="s">'python'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="s">'ython'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+<span class="s">'yth'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">6</span><span class="p">]</span>
+<span class="s">''</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">7</span><span class="p">]</span>
+<span class="s">''</span>
+</code></pre></div></div>
+
+<h4 id="长度">长度</h4>
+
+<p><code class="highlighter-rouge">len()</code>函数可以返回字符串的长度,类似<code class="highlighter-rouge">c++</code>的<code class="highlighter-rouge">string</code>的<code class="highlighter-rouge">size</code> .</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">word</span><span class="o">=</span><span class="s">'Python'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+<span class="mi">6</span>
+</code></pre></div></div>
+
+
+
+                <hr>
+
+                
+
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/2019/05/28/manjaro-note/" data-toggle="tooltip" data-placement="top" title="manjaro折腾小记">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                </ul>
+
+
+                
+
+                
+
+            </div>
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <hr class="hidden-sm hidden-xs">
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+                            
+        				
+        			</div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+                    
+                        <li><a href="http://huangxuan.me">Hux Blog</a></li>
+                    
+                        <li><a href="http://www.criinal.com">criinal</a></li>
+                    
+                </ul>
+                
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    
+                    
+
+                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
+                    
+                    
+
+
+                    
+                    
+                    <li>
+                        <a target="_blank" href="https://github.com/Dawn-K">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; DawnK's Blog 2019
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> |
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

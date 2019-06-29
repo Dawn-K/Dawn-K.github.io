@@ -10,9 +10,9 @@
     <meta name="keyword"  content="">
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Dawnk's Hello - Dawn-K</title>
+    <title>manjaro折腾小记 - Dawn-K</title>
 
-    <link rel="canonical" href="http://localhost:4000/2019/05/26/DawnkHello/">
+    <link rel="canonical" href="http://localhost:4000/2019/05/28/manjaro-note/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -125,12 +125,12 @@
 
     <!-- Image to hack wechat -->
 <!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
-<!-- <img src="/img/post-bg-unix-linux.jpg" width="0" height="0"> -->
+<!-- <img src="/img/post-bg-2015.jpg" width="0" height="0"> -->
 
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/img/post-bg-unix-linux.jpg')
+        background-image: url('/img/post-bg-2015.jpg')
     }
 </style>
 <header class="intro-header" >
@@ -140,15 +140,15 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                        <a class="tag" href="/tags/#Blog" title="Blog">Blog</a>
+                        <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
                         
                     </div>
-                    <h1>Dawnk's Hello</h1>
+                    <h1>manjaro折腾小记</h1>
                     
                     
-                    <h2 class="subheading">初次见面请多关照</h2>
+                    <h2 class="subheading">Just For Fun</h2>
                     
-                    <span class="meta">Posted by Dawnk on May 26, 2019</span>
+                    <span class="meta">Posted by DawnK on May 28, 2019</span>
                 </div>
             </div>
         </div>
@@ -166,16 +166,185 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-				<h1 id="并非初次的自我介绍">并非初次的自我介绍</h1>
+				<h1 id="manjaro折腾小记">manjaro折腾小记</h1>
 
-<p>不是第一次搭建博客了,上一次用WordPress搭建的博客在服务器到期之后也就自动放弃了,这次采用的github让博客产生了稍微geek一些的感觉</p>
+<p>使用manjaro半年了,中途遇见很多很多问题,在此记录,以备以后查询之用</p>
 
-<p>目前还只是测试阶段,后续考虑域名和服务器的问题,不过我觉得github更稳定一些,也更通用(起码不会宕机吧),域名的话因为经济问题实在是让我有些纠结..纠结</p>
+<h2 id="参考资料">参考资料</h2>
 
-<p>这个博客的建立得到了Hux的开源项目的支持,他的博客给出了详细的配置,其博客我已经放在友情链接里面了.</p>
+<p><a href="https://www.jianshu.com/p/4fce765a306b">GAWEGOR</a></p>
 
-<p>来日方长,我们日后再聊.</p>
+<p><a href="https://blog.csdn.net/weixin_41301508/article/details/81193217">imorta</a></p>
 
+<h2 id="源设置">源设置</h2>
+
+<h3 id="设置官方镜像源coreextracommunitymultilib">设置官方镜像源(core,extra,community,multilib)</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>pacman-mirrors <span class="nt">-i</span> <span class="nt">-c</span> China <span class="nt">-m</span> rank //更新镜像排名,图形化界面,选中前几个即可
+<span class="nb">sudo </span>pacman <span class="nt">-Syy</span> //更新数据源
+</code></pre></div></div>
+
+<h3 id="设置archlinuxcn源">设置archlinuxcn源</h3>
+
+<p>修改 /etc/pacman.conf　　=&gt; 末尾添加</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[archlinuxcn]
+SigLevel = Optional TrustedOnly
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
+</code></pre></div></div>
+
+<h2 id="目录设置">目录设置</h2>
+
+<h3 id="修改home下的目录为英文">修改Home下的目录为英文</h3>
+
+<ol>
+  <li>修改目录映射文件名；</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vim .config/user-dirs.dirs
+</code></pre></div></div>
+
+<p>修改为以下内容：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>XDG_DESKTOP_DIR="$HOME/Desktop"
+XDG_DOWNLOAD_DIR="$HOME/Download"
+XDG_TEMPLATES_DIR="$HOME/Templates"
+XDG_PUBLICSHARE_DIR="$HOME/Public"
+XDG_DOCUMENTS_DIR="$HOME/Documents"
+XDG_MUSIC_DIR="$HOME/Music"
+XDG_PICTURES_DIR="$HOME/Pictures"
+XDG_VIDEOS_DIR="$HOME/Videos"
+</code></pre></div></div>
+
+<ol>
+  <li>将Home目录下的中文目录名改为对应的中文名；</li>
+  <li>重启系统。</li>
+</ol>
+
+<h2 id="软件操作">软件操作</h2>
+
+<p><code class="highlighter-rouge">安装 pacman -S</code>
+<code class="highlighter-rouge">删除 pacman -R</code>
+<code class="highlighter-rouge">移除已安装不需要软件包 pacman -Rs</code>
+<code class="highlighter-rouge">删除一个包,所有依赖 pacman -Rsc</code>
+<code class="highlighter-rouge">升级包 pacman -Syu</code>
+<code class="highlighter-rouge">查询包数据库 pacman -Ss</code>
+<code class="highlighter-rouge">搜索以安装的包 pacman -Qs</code>
+<code class="highlighter-rouge">显示包大量信息 pacman -Si</code>
+<code class="highlighter-rouge">本地安装包 pacman -Qi</code>
+<code class="highlighter-rouge">清理包缓存 pacman -Sc</code></p>
+
+<h2 id="显卡驱动">显卡驱动</h2>
+
+<p><a href="https://mtaoist.xyz/2018/03/19/Bumblebee/">taoist</a></p>
+
+<h3 id="安装bumblebee">安装bumblebee</h3>
+
+<p>Manjaro 提供了强大的硬件检测模块<code class="highlighter-rouge">mhwd</code>,可以很方便的安装各种驱动。</p>
+
+<ul>
+  <li>
+    <p>安装依赖</p>
+
+    <blockquote>
+      <p>sudo pacman -S virtualgl lib32-virtualgl lib32-primus primus</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>安装nvidia闭源驱动与intel驱动混合版bumblebee</p>
+
+    <blockquote>
+      <p>sudo mhwd -f -i pci video-hybrid-intel-nvidia-bumblebee</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>开启自动启动bumblebeed服务</p>
+
+    <blockquote>
+      <p>sudo systemctl enable bumblebeed</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>将用户添加到bumblee组</p>
+
+    <blockquote>
+      <p>sudo gpasswd -a $USER bumblebee</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p>如果一切顺利的话，<strong>重启后就可以在你想运行的程序名前面加<code class="highlighter-rouge">optirun</code>,好使用独立显卡驱动你的应用程序</strong>。如果出现启动无法进入图形界面的问题,本笔记中也有解决方法.</p>
+
+<h3 id="测试性能">测试性能</h3>
+
+<ul>
+  <li>
+    <p>安装测试软件</p>
+
+    <blockquote>
+      <p>sudo pacman -S mesa-demos</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>集显性能</p>
+
+    <blockquote>
+      <p>glxgears -info</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>独显性能</p>
+
+    <blockquote>
+      <p>optirun glxgears -info</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p>可以看到独显带来的提升非常巨大,大概是集成显卡帧数30多倍</p>
+
+<h2 id="输入法">输入法</h2>
+
+<p>我们安装基于fcitx的搜狗输入法</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>pacman <span class="nt">-S</span> fcitx-sogoupinyin
+<span class="nb">sudo </span>pacman <span class="nt">-S</span> fcitx-im         <span class="c"># 全部安装</span>
+<span class="nb">sudo </span>pacman <span class="nt">-S</span> fcitx-configtool <span class="c"># 图形化配置工具</span>
+</code></pre></div></div>
+
+<p>设置中文输入法环境变量，编辑~/.xprofile文件，增加下面几行(如果文件不存在，则新建)</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>exportGTK_IM_MODULE=fcitx
+exportQT_IM_MODULE=fcitx
+exportXMODIFIERS="@im=fcitx"
+</code></pre></div></div>
+
+<p>保存成功后，在终端输入fcitx启动服务后，会增加一个键盘的托盘图标，右击这个图标，打开配置工具，在输入法栏目中增加sogoupinyin输入法。</p>
+
+<p>重启后就能正常使用了。</p>
+
+<p>偶尔输入法崩溃,卸载重装就好了,这个还比较良心.</p>
+
+<h2 id="wps">WPS</h2>
+
+<p>wps算是比较良心的了,目前是最好的office替代品,</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>pacman <span class="nt">-S</span> wps-office
+<span class="nb">sudo </span>pacman <span class="nt">-S</span> ttf-wps-fonts
+</code></pre></div></div>
+
+<p>但是!在显示方面可能会有一些问题,比如在白色底下的字体可能是灰色,导致看不清,所以在使用wps前可以把系统的主题设置成白色的,这样就解决了此问题.</p>
+
+<h2 id="开机卡死问题">开机卡死问题</h2>
+
+<p>编辑 /etc/default/grub,前几行改成这样</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>GRUB_DEFAULT=saved
+GRUB_TIMEOUT=5
+GRUB_DISTRIBUTOR='Manjaro'
+GRUB_CMDLINE_LINUX_DEFAULT="quiet acpi_osi=! acpi_osi='Windows 2009' "
+GRUB_CMDLINE_LINUX="reboot=bios"
+</code></pre></div></div>
 
 
                 <hr>
@@ -186,12 +355,12 @@
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/2015/01/29/hello-2015/" data-toggle="tooltip" data-placement="top" title="Welcome to Hux Blog">&larr; Previous Post</a>
+                        <a href="/2019/05/26/DawnkHello/" data-toggle="tooltip" data-placement="top" title="Dawnk's Hello">&larr; Previous Post</a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/2019/05/28/manjaro-note/" data-toggle="tooltip" data-placement="top" title="manjaro折腾小记">Next Post &rarr;</a>
+                        <a href="/2019/06/28/Python/" data-toggle="tooltip" data-placement="top" title="Python">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
