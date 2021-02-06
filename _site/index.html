@@ -5,35 +5,48 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Keep busy living or kepp busy dying">
-    <meta name="keyword"  content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="From ashes to the empire">
+    <meta name="keywords" content="Dawnk , Dawn-K , dawnk , 黄玄的博客, Dawn-K's Blog, 博客, 个人网站, ACM , 算法竞赛">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Open Graph -->
+    <meta property="og:title"
+        content="Dawn-K's Blog">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:description"
+        content="「From ashes to the empire」">
+    
+    <meta property="og:image" content="https://dawn-k.github.io/img/daze.jpg">
+    <meta property="og:url" content="https://dawn-k.github.io/">
+    <meta property="og:site_name" content="Dawn-K's Blog">
+
+    <title>Dawn-K's Blog</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
     <link rel="shortcut icon" href="/img/favicon.ico">
 
-    <title>Dawn-K</title>
-
-    <link rel="canonical" href="http://localhost:4000/">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://dawn-k.github.io/">
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href=" /css/bootstrap.min.css">
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/hux-blog.min.css">
+    <link rel="stylesheet" href=" /css/hux-blog.min.css">
 
-    <!-- Pygments Github CSS -->
-    <link rel="stylesheet" href="/css/syntax.css">
-
+    <!-- <link rel="stylesheet" href="http://yandex.st/highlightjs/7.1/styles/default.min.css">
+    <script src="http://yandex.st/highlightjs/7.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> -->
     <!-- Custom Fonts -->
     <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Hux change font-awesome CDN to qiniu -->
-    <link href="http://cdn.staticfile.org/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-
-    <!-- Hux Delete, sad but pending in China
-    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
-    css'>
-    -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"
+        type="text/css">
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -42,101 +55,199 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    </script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+        type="text/javascript"></script>
 
     <!-- ga & ba script hoook -->
     <script></script>
 </head>
 
-
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="">
 
     <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">DawnK's Blog</a>
-        </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <!-- Known Issue, found by Hux:
-            <nav>'s height woule be hold on by its content.
-            so, when navbar scale out, the <nav> will cover tags.
-            also mask any touch event of tags, unfortunately.
-        -->
-        <div id="huxblog_navbar">
-            <div class="navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="/">Home</a>
-                    </li>
-                    
-                    <li>
-                        <a href="/about/">About</a>
-                    </li>
-                    
-                    <li>
-                        <a href="/tags/">Tags</a>
-                    </li>
-                    
-                </ul>
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Dawn-K's Blog</a>
             </div>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-</nav>
-<script>
-    // Drop Bootstarp low-performance Navbar
-    // Use customize navbar with high-quality material design animation
-    // in high-perf jank-free CSS3 implementation
-    var $body   = document.body;
-    var $toggle = document.querySelector('.navbar-toggle');
-    var $navbar = document.querySelector('#huxblog_navbar');
-    var $collapse = document.querySelector('.navbar-collapse');
 
-    $toggle.addEventListener('click', handleMagic)
-    function handleMagic(e){
-        if ($navbar.className.indexOf('in') > 0) {
-        // CLOSE
-            $navbar.className = " ";
-            // wait until animation end.
-            setTimeout(function(){
-                // prevent frequently toggle
-                if($navbar.className.indexOf('in') < 0) {
-                    $collapse.style.height = "0px"
-                }
-            },400)
-        }else{
-        // OPEN
-            $collapse.style.height = "auto"
-            $navbar.className += " in";
-        }
-    }
-</script>
-
-
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>DawnK's Blog</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">From ashes to the empire</span>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="huxblog_navbar">
+                <div class="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/archive/">Archive</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li class="search-icon">
+                            <a href="javascript:void(0)">
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
+            <!-- /.navbar-collapse -->
         </div>
+        <!-- /.container -->
+    </nav>
+
+    <script>
+        // Drop Bootstarp low-performance Navbar
+        // Use customize navbar with high-quality material design animation
+        // in high-perf jank-free CSS3 implementation
+        var $body = document.body;
+        var $toggle = document.querySelector('.navbar-toggle');
+        var $navbar = document.querySelector('#huxblog_navbar');
+        var $collapse = document.querySelector('.navbar-collapse');
+
+        var __HuxNav__ = {
+            close: function () {
+                $navbar.className = " ";
+                // wait until animation end.
+                setTimeout(function () {
+                    // prevent frequently toggle
+                    if ($navbar.className.indexOf('in') < 0) {
+                        $collapse.style.height = "0px"
+                    }
+                }, 400)
+            },
+            open: function () {
+                $collapse.style.height = "auto"
+                $navbar.className += " in";
+            }
+        }
+
+        // Bind Event
+        $toggle.addEventListener('click', function (e) {
+            if ($navbar.className.indexOf('in') > 0) {
+                __HuxNav__.close()
+            } else {
+                __HuxNav__.open()
+            }
+        })
+
+        /**
+         * Since Fastclick is used to delegate 'touchstart' globally
+         * to hack 300ms delay in iOS by performing a fake 'click',
+         * Using 'e.stopPropagation' to stop 'touchstart' event from 
+         * $toggle/$collapse will break global delegation.
+         * 
+         * Instead, we use a 'e.target' filter to prevent handler
+         * added to document close HuxNav.  
+         *
+         * Also, we use 'click' instead of 'touchstart' as compromise
+         */
+        document.addEventListener('click', function (e) {
+            if (e.target == $toggle) return;
+            if (e.target.className == 'icon-bar') return;
+            __HuxNav__.close();
+        })
+    </script>
+    <!-- Search -->
+<div class="search-page">
+  <div class="search-icon-close-container">
+    <span class="search-icon-close">
+      <i class="fa fa-chevron-down"></i>
+    </span>
+  </div>
+  <div class="search-main container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <form></form>
+        <input type="text" id="search-input" placeholder="$ grep...">
+        </form>
+        <div id="search-results" class="mini-post-list"></div>
+      </div>
     </div>
+  </div>
+</div>
+
+    <!-- Page Header -->
+
+
+
+
+
+
+
+<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        
+        <div class="site-heading">
+        
+          <h1>Dawn-K's Blog</h1>
+          <span class="subheading">「From ashes to the empire」</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </header>
+
 
 <!-- Main Content -->
 <div class="container">
@@ -144,130 +255,363 @@
         
 
 <!-- USE SIDEBAR -->
-    <!-- Post Container -->
+    <!-- PostList Container -->
     		<div class="
                 col-lg-8 col-lg-offset-1
                 col-md-8 col-md-offset-1
                 col-sm-12
                 col-xs-12
-                post-container
+                postlist-container
             ">
     			
 <div class="post-preview">
-    <a href="/2019/06/28/Python/">
+    <a href="/android/2021/01/24/%E7%BD%91%E7%BB%9C/" target="_blank">
         <h2 class="post-title">
-            Python
+            「android」 网络
         </h2>
-        
-        <h3 class="post-subtitle">
-             人生苦短,我用Python
-        </h3>
-        
-        <div class="post-content-preview">
-            Python
-
-再次邂逅
-
-和博客系统一样,Python也不是第一次学习了,之前读过廖雪峰的Python3教程,菜鸟教程的Python3 ,也写过一个图床脚本(虽然非常简陋).但是一直没有静下心来好好整理.前几天看到了Python-100days ,这个开源教程与其说是教程,不如说是提纲(而且后四分之一的内容还没有更新 by 2019.6.27) ,总之不管怎样先让自己做起来吧,从简单的开始...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by DawnK on June 28, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2019/05/28/manjaro-note/">
-        <h2 class="post-title">
-            manjaro折腾小记
-        </h2>
-        
-        <h3 class="post-subtitle">
-            Just For Fun
-        </h3>
-        
-        <div class="post-content-preview">
-            manjaro折腾小记
-
-使用manjaro半年了,中途遇见很多很多问题,在此记录,以备以后查询之用
-
-参考资料
-
-GAWEGOR
-
-imorta
-
-源设置
-
-设置官方镜像源(core,extra,community,multilib)
-
-sudo pacman-mirrors -i -c China -m rank //更新镜像排名,图形化界面,选中前几个即可
-sudo pacman -S...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by DawnK on May 28, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2019/05/26/DawnkHello/">
-        <h2 class="post-title">
-            Dawnk's Hello
-        </h2>
-        
-        <h3 class="post-subtitle">
-            初次见面请多关照
-        </h3>
-        
-        <div class="post-content-preview">
-            并非初次的自我介绍
-
-不是第一次搭建博客了,上一次用WordPress搭建的博客在服务器到期之后也就自动放弃了,这次采用的github让博客产生了稍微geek一些的感觉
-
-目前还只是测试阶段,后续考虑域名和服务器的问题,不过我觉得github更稳定一些,也更通用(起码不会宕机吧),域名的话因为经济问题实在是让我有些纠结..纠结
-
-这个博客的建立得到了Hux的开源项目的支持,他的博客给出了详细...
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawnk on May 26, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/2015/01/29/hello-2015/">
-        <h2 class="post-title">
-            Welcome to Hux Blog
-        </h2>
-        
-        <h3 class="post-subtitle">
-             "Hello World, Hello Blog"
-        </h3>
         
         <div class="post-content-preview">
             
-  “Yeah It’s on. ”
+            网络
 
+原生http
 
-前言
+界面
 
-Hux 的 Blog 就这么开通了。
-
-跳过废话，直接看技术实现 
-
-2015 年，Hux 总算有个地方可以好好写点东西了。
-
-作为一个程序员， Blog 这种轮子要是挂在大众博客程序上就太没意思了。一是觉得大部分 Blog 服务都太丑，二是觉得不能随便定制不好玩。之前因为太懒没有折腾，结果就一直连个写 Blog 的地儿都没有。
-
-在玩了一...
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+&lt;Button
+    android:id="@+id/send_request"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:tex...
+            
         </div>
     </a>
     <p class="post-meta">
-        Posted by Hux on January 29, 2015
+        Posted by Dawn-K's Blog on January
+        24, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/codenote/2021/01/22/STL%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6/" target="_blank">
+        <h2 class="post-title">
+            「CodeNote」 STL常用组件
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            STL常用组件
+
+[toc]
+
+函数
+
+fill
+
+需要 algorithm
+fill速度和手动for赋值基本相同
+
+1
+2
+3
+4
+// 将a在[2,5)区间赋值为3
+fill(a+2,a+5,3);
+// 相比于memset, 它可以赋值任何数, 也可以对容器使用.
+fill(v.begin(),v.end(),5);
+
+
+黑科技
+
+自定义hash
+
+网上流行的一个简单实现如下
+
+1
+2...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on January
+        22, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/android/2021/01/20/%E5%A4%9A%E5%AA%92%E4%BD%93/" target="_blank">
+        <h2 class="post-title">
+            「android」 多媒体
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            多媒体
+
+[toc]
+
+通知
+
+书上的代码有一点过时, 所调用的方法的参数已经被废弃了.
+如果想在自己手机测试的话一定要在应用的设置中打开此应用的通知提示以及声音开关
+
+首先新建一个按钮, 名为 send_notice
+然后新建一个活动, 名为 NotificationActivity , 里面随便写个 TextView , 作为点击通知后的显示界面
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+1...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on January
+        20, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/java/2021/01/20/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" target="_blank">
+        <h2 class="post-title">
+            「Java」 面向对象
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            面向对象
+
+接口与抽象类的区别
+
+语法区别
+
+1)抽象类可以提供成员方法的实现细节, 而接口中只能存在 public abstract 方法; 
+2)抽象类中的成员变量可以是各种类型的, 而接口中的成员变量只能是 public static final类型的; 
+3)接口中不能含有静态代码块以及静态方法, 而抽象类可以有静态代码块和静态方法; 
+4)一个类只能继承一个抽象类, 而一个类却可以...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on January
+        20, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/android/2021/01/18/MVC/" target="_blank">
+        <h2 class="post-title">
+            「android」 MVC
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            MVC
+
+概述
+
+MVC (Model-View-Controller)：M是指逻辑模型，V是指视图模型，C则是控制器。一个逻辑模型可以对于多种视图模型. 而控制器就是为了保证数据一致. 这个与观察者模式相同.
+
+视图层(View)
+
+视图代表模型包含的数据的可视化。
+
+控制层(Controller)
+
+它控制数据流向模型对象，并在数据变化时更新视图。它使视图与模型分离开。控制业务逻辑的实现...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on January
+        18, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/android/2021/01/17/%E5%86%85%E5%AE%B9%E6%8F%90%E4%BE%9B%E5%99%A8/" target="_blank">
+        <h2 class="post-title">
+            「android」 内容提供器
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            内容提供器
+
+权限
+
+以拨号(之前是打开拨号界面, 此处是指直接拨号)为例分析权限申请和使用的过程.
+
+还是基于Intent, 和之前一样, 给一个按钮增加点击的监听器, 重载onClick, 写入如下内容. 为防止权限被拒绝时程序崩溃, 所以此处需要捕获异常.
+
+1
+2
+3
+4
+5
+6
+7
+8
+try {
+    // DIAL 是 打开拨号界面, CALL 是直接拨号,必须申请权限
+  ...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on January
+        17, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/java/2021/01/16/%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" target="_blank">
+        <h2 class="post-title">
+            「Java」 基础语法
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            基础语法
+
+关键字
+
+final
+
+final 类似cpp中的const, 表示常量.
+
+
+  final修饰类, 表示此类不可被继承
+  final修饰方法, 表示此方法在重载中不可被覆盖(覆盖和重写有什么区别), 且不能修饰构造函数.
+  final修饰成员或者局部变量, 表示此成员是常量, 只能在声明时赋值, 一旦赋值就不可修改.
+
+
+static
+
+static 表示静态, 相当于 ...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on January
+        16, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/android/2021/01/05/%E6%A6%82%E8%A7%88/" target="_blank">
+        <h2 class="post-title">
+            「android」 概览
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            [toc]
+@import “./环境配置.md” 
+@import “./新建活动.md” 
+@import “./内容提供器.md” 
+@import “./多媒体.md”
+
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on January
+        5, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/android/2021/01/04/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" target="_blank">
+        <h2 class="post-title">
+            「android」 环境配置
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            环境配置
+
+[toc]
+
+JDK
+
+先安装好1.8及以上的jdk.
+
+关闭hyper-V
+
+bcdedit /set hypervisorlaunchtype off
+
+
+Android Studio 安装
+
+可通过  jetbrain tools 一键安装. 安装时选择custom, 然后选择存放sdk的位置, 以及已有的jdk的位置, 然后预先安装的包全部勾选. 进行安装.
+
+Hello...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on January
+        4, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/android/2021/01/04/%E6%96%B0%E5%BB%BA%E6%B4%BB%E5%8A%A8/" target="_blank">
+        <h2 class="post-title">
+            「android」 新建活动
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            新建活动
+
+[toc]
+
+初始化
+
+新建一个 ActivetyTest 选择 no activity
+
+在 com.example.activitytest 中新建一个空的活动, 不要勾选 generate Layout File 和 launcher Activity
+
+在 app/src/main/res/ 下新建 layout 文件夹, 在次文件夹下, 新建 layout resour...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on January
+        4, 2021
     </p>
 </div>
 <hr>
@@ -275,6 +619,14 @@ Hux 的 Blog 就这么开通了。
 
 <!-- Pager -->
 
+<ul class="pager">
+    
+    
+    <li class="next">
+        <a href="/page2">Older Posts &rarr;</a>
+    </li>
+    
+</ul>
 
     		</div>
     <!-- Sidebar Container -->
@@ -287,69 +639,114 @@ Hux 的 Blog 就这么开通了。
             ">
                 <!-- Featured Tags -->
                 
-                <section>
-                    <hr class="hidden-sm hidden-xs">
-                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
-                    <div class="tags">
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                            
-                        
-                    </div>
-                </section>
-                
+
+
+<section>
+    
+    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+        
+        
+        
+        
+        
+                <a data-sort="0028" 
+                    href="/archive/?tag=CodeNote"
+                    title="CodeNote"
+                    rel="90">CodeNote</a>
+        
+                <a data-sort="0111" 
+                    href="/archive/?tag=android"
+                    title="android"
+                    rel="7">android</a>
+        
+                <a data-sort="0113" 
+                    href="/archive/?tag=Python"
+                    title="Python"
+                    rel="5">Python</a>
+        
+                <a data-sort="0114" 
+                    href="/archive/?tag=%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B"
+                    title="软件工程"
+                    rel="4">软件工程</a>
+        
+                <a data-sort="0114" 
+                    href="/archive/?tag=vscode%E5%AD%A6%E4%B9%A0"
+                    title="vscode学习"
+                    rel="4">vscode学习</a>
+        
+                <a data-sort="0116" 
+                    href="/archive/?tag=Java"
+                    title="Java"
+                    rel="2">Java</a>
+        
+                <a data-sort="0116" 
+                    href="/archive/?tag=JavaWeb%E5%BC%80%E5%8F%91"
+                    title="JavaWeb开发"
+                    rel="2">JavaWeb开发</a>
+        
+                <a data-sort="0116" 
+                    href="/archive/?tag=Kotlin"
+                    title="Kotlin"
+                    rel="2">Kotlin</a>
+    </div>
+</section>
+
 
                 <!-- Short About -->
                 <section class="visible-md visible-lg">
-                    <hr><h5><a href="/about/">ABOUT ME</a></h5>
-                    <div class="short-about">
-                        
-                            <img src="/img/daze.jpg" />
-                        
-                        
-                            <p>Keep calm and Keep coding</p>
-                        
-                        <!-- SNS Link -->
-                        <ul class="list-inline">
-                            
-                            
-                            
-                            
-                            
-                            
-                            <li>
-                                <a target="_blank" href="https://github.com/Dawn-K">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-circle fa-stack-2x"></i>
-                                        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                    </span>
-                                </a>
-                            </li>
-                            
-                        </ul>
-                    </div>
-                </section>
+  <hr>
+  <h5><a href="/about/">ABOUT ME</a></h5>
+  <div class="short-about">
+    
+    <img src="/img/daze.jpg" />
+    
+    
+    <p>Dawnk 计算机本科生 | 退役ACMer | Vocaloid 爱好者</p>
+    
+    <!-- SNS Link -->
+    
+
+
+<ul class="list-inline">
+
+
+  
+  
+  
+  
+  
+  
+  <li>
+    <a target="_blank" href="https://github.com/Dawn-K">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+</ul>
+  </div>
+</section>
+
                 <!-- Friends Blog -->
                 
-                <hr>
-                <h5>FRIENDS</h5>
-                <ul class="list-inline">
-                    
-                        <li><a href="http://huangxuan.me">Hux Blog</a></li>
-                    
-                        <li><a href="http://www.criinal.com">criinal</a></li>
-                    
-                </ul>
-                
+<hr>
+<h5>FRIENDS</h5>
+<ul class="list-inline">
+  
+  <li><a href="http://www.criinal.com/">Criinal</a></li>
+  
+</ul>
+
     		</div>
         
 	</div>
 </div>
+
 
 
     <!-- Footer -->
@@ -357,35 +754,38 @@ Hux 的 Blog 就这么开通了。
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <ul class="list-inline text-center">
-                    
-                    
-
-                    <!-- add Weibo, Zhihu by Hux, add target = "_blank" to <a> by Hux -->
-                    
-                    
+                <!-- SNS Link -->
+                
 
 
-                    
-                    
-                    <li>
-                        <a target="_blank" href="https://github.com/Dawn-K">
-                            <span class="fa-stack fa-lg">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                            </span>
-                        </a>
-                    </li>
-                    
-                </ul>
+<ul class="list-inline text-center">
+
+
+  
+  
+  
+  
+  
+  
+  <li>
+    <a target="_blank" href="https://github.com/Dawn-K">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+</ul>
+
                 <p class="copyright text-muted">
-                    Copyright &copy; DawnK's Blog 2019
+                    Copyright &copy; Dawn-K's Blog 2021
                     <br>
-                    Theme by <a href="http://huangxuan.me">Hux</a> |
-                    <iframe
-                        style="margin-left: 2px; margin-bottom:-5px;"
-                        frameborder="0" scrolling="0" width="91px" height="20px"
-                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true" >
+                    Powered by <a href="http://huangxuan.me">Hux Blog</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="100px"
+                        height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true">
                     </iframe>
                 </p>
             </div>
@@ -397,32 +797,42 @@ Hux 的 Blog 就这么开通了。
 <script src="/js/jquery.min.js "></script>
 
 <!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
 <script src="/js/bootstrap.min.js "></script>
 
 <!-- Custom Theme JavaScript -->
 <script src="/js/hux-blog.min.js "></script>
 
+<!-- Simple Jekyll Search -->
+<script src="/js/simple-jekyll-search.min.js"></script>
+
+<!-- Service Worker -->
+
+<script src="/js/snackbar.js "></script>
+<script src="/js/sw-registration.js "></script>
+
 
 <!-- async load function -->
 <script>
     function async(u, c) {
-      var d = document, t = 'script',
-          o = d.createElement(t),
-          s = d.getElementsByTagName(t)[0];
-      o.src = u;
-      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
-      s.parentNode.insertBefore(o, s);
+        var d = document, t = 'script',
+            o = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
     }
 </script>
 
-<!-- 
-     Because of the native support for backtick-style fenced code blocks 
-     right within the Markdown is landed in Github Pages, 
-     From V1.6, There is no need for Highlight.js, 
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
      so Huxblog drops it officially.
 
-     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
-     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
 -->
 <!--
     <script>
@@ -434,25 +844,16 @@ Hux 的 Blog 就这么开通了。
 -->
 
 
-<!-- jquery.tagcloud.js -->
-<script>
-    // only load tagcloud.js in tag.html
-    if($('#tag_cloud').length !== 0){
-        async("/js/jquery.tagcloud.js",function(){
-            $.fn.tagcloud.defaults = {
-                //size: {start: 1, end: 1, unit: 'em'},
-                color: {start: '#bbbbee', end: '#0085a1'},
-            };
-            $('#tag_cloud a').tagcloud();
-        })
-    }
-</script>
+
+
+
+
 
 <!--fastClick.js -->
 <script>
-    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function () {
         var $nav = document.querySelector("nav");
-        if($nav) FastClick.attach($nav);
+        if ($nav) FastClick.attach($nav);
     })
 </script>
 
@@ -464,6 +865,129 @@ Hux 的 Blog 就这么开通了。
 <!-- Baidu Tongji -->
 
 
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        // interop with multilangual 
+        if ('' == 'true') {
+            _containerSelector = 'div.post-container.active'
+        } else {
+            _containerSelector = 'div.post-container'
+        }
+
+        // init
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        // clean
+        $(selector).html('')
+
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+<!-- Multi-Lingual -->
+
+
+<!-- Simple Jekyll Search -->
+<script>
+    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
+    function htmlDecode(input) {
+        var e = document.createElement('textarea');
+        e.innerHTML = input;
+        // handle case of empty input
+        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+    }
+
+    SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('search-results'),
+        json: '/search.json',
+        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
+        noResultsText: 'No results',
+        limit: 50,
+        fuzzy: false,
+        // a hack to get escaped subtitle unescaped. for some reason, 
+        // post.subtitle w/o escape filter nuke entire search.
+        templateMiddleware: function (prop, value, template) {
+            if (prop === 'subtitle' || prop === 'title') {
+                if (value.indexOf("code")) {
+                    return htmlDecode(value);
+                } else {
+                    return value;
+                }
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        var $searchPage = $('.search-page');
+        var $searchOpen = $('.search-icon');
+        var $searchClose = $('.search-icon-close');
+        var $searchInput = $('#search-input');
+        var $body = $('body');
+
+        $searchOpen.on('click', function (e) {
+            e.preventDefault();
+            $searchPage.toggleClass('search-active');
+            var prevClasses = $body.attr('class') || '';
+            setTimeout(function () {
+                $body.addClass('no-scroll');
+            }, 400)
+
+            if ($searchPage.hasClass('search-active')) {
+                $searchClose.on('click', function (e) {
+                    e.preventDefault();
+                    $searchPage.removeClass('search-active');
+                    $body.attr('class', prevClasses);  // from closure 
+                });
+                $searchInput.focus();
+            }
+        });
+    });
+</script>
 
 
 <!-- Image to hack wechat -->

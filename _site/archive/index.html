@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="From ashes to the empire">
+    <meta name="keywords" content="Dawnk , Dawn-K , dawnk , 黄玄的博客, Dawn-K's Blog, 博客, 个人网站, ACM , 算法竞赛">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Open Graph -->
+    <meta property="og:title"
+        content="Archive - Dawn-K's Blog">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:description"
+        content="『今朝踉跄亦是前』">
+    
+    <meta property="og:image" content="https://dawn-k.github.io/img/daze.jpg">
+    <meta property="og:url" content="https://dawn-k.github.io/archive/">
+    <meta property="og:site_name" content="Dawn-K's Blog">
+
+    <title>Archive - Dawn-K's Blog</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://dawn-k.github.io/archive/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href=" /css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href=" /css/hux-blog.min.css">
+
+    <!-- <link rel="stylesheet" href="http://yandex.st/highlightjs/7.1/styles/default.min.css">
+    <script src="http://yandex.st/highlightjs/7.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> -->
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"
+        type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    </script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+        type="text/javascript"></script>
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Dawn-K's Blog</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="huxblog_navbar">
+                <div class="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/archive/">Archive</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li class="search-icon">
+                            <a href="javascript:void(0)">
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <script>
+        // Drop Bootstarp low-performance Navbar
+        // Use customize navbar with high-quality material design animation
+        // in high-perf jank-free CSS3 implementation
+        var $body = document.body;
+        var $toggle = document.querySelector('.navbar-toggle');
+        var $navbar = document.querySelector('#huxblog_navbar');
+        var $collapse = document.querySelector('.navbar-collapse');
+
+        var __HuxNav__ = {
+            close: function () {
+                $navbar.className = " ";
+                // wait until animation end.
+                setTimeout(function () {
+                    // prevent frequently toggle
+                    if ($navbar.className.indexOf('in') < 0) {
+                        $collapse.style.height = "0px"
+                    }
+                }, 400)
+            },
+            open: function () {
+                $collapse.style.height = "auto"
+                $navbar.className += " in";
+            }
+        }
+
+        // Bind Event
+        $toggle.addEventListener('click', function (e) {
+            if ($navbar.className.indexOf('in') > 0) {
+                __HuxNav__.close()
+            } else {
+                __HuxNav__.open()
+            }
+        })
+
+        /**
+         * Since Fastclick is used to delegate 'touchstart' globally
+         * to hack 300ms delay in iOS by performing a fake 'click',
+         * Using 'e.stopPropagation' to stop 'touchstart' event from 
+         * $toggle/$collapse will break global delegation.
+         * 
+         * Instead, we use a 'e.target' filter to prevent handler
+         * added to document close HuxNav.  
+         *
+         * Also, we use 'click' instead of 'touchstart' as compromise
+         */
+        document.addEventListener('click', function (e) {
+            if (e.target == $toggle) return;
+            if (e.target.className == 'icon-bar') return;
+            __HuxNav__.close();
+        })
+    </script>
+    <!-- Search -->
+<div class="search-page">
+  <div class="search-icon-close-container">
+    <span class="search-icon-close">
+      <i class="fa fa-chevron-down"></i>
+    </span>
+  </div>
+  <div class="search-main container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <form></form>
+        <input type="text" id="search-input" placeholder="$ grep...">
+        </form>
+        <div id="search-results" class="mini-post-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- 
+Credits: this page shamelessly borrowed a lot from:
+https://github.com/kitian616/jekyll-TeXt-theme
+-->
+<!-- Page Header -->
+
+
+
+
+
+
+
+<header class="intro-header" style="background-image: url('/img/tag-bg.jpg')">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        
+        <div class="site-heading" id="tag-heading">
+        
+          <h1>Archive</h1>
+          <span class="subheading">『今朝踉跄亦是前』</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<!-- Main Content -->
+<div class="container">
+	<div class="row">
+		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			<!-- Tags (as filter) -->
+			<div id='tag_cloud' class="tags tags-sup js-tags">
+				<a class="tag-button--all" data-encode="">
+					Show All
+					<sup>118</sup>
+				</a>
+
+				
+        
+				
+				
+				
+				<a data-sort="0028"
+					data-encode="CodeNote"
+					class="tag-button"
+					title="CodeNote" rel="90">
+					CodeNote
+					<sup>90</sup>
+				</a>
+				
+				<a data-sort="0111"
+					data-encode="android"
+					class="tag-button"
+					title="android" rel="7">
+					android
+					<sup>7</sup>
+				</a>
+				
+				<a data-sort="0113"
+					data-encode="Python"
+					class="tag-button"
+					title="Python" rel="5">
+					Python
+					<sup>5</sup>
+				</a>
+				
+				<a data-sort="0114"
+					data-encode="%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B"
+					class="tag-button"
+					title="软件工程" rel="4">
+					软件工程
+					<sup>4</sup>
+				</a>
+				
+				<a data-sort="0114"
+					data-encode="vscode%E5%AD%A6%E4%B9%A0"
+					class="tag-button"
+					title="vscode学习" rel="4">
+					vscode学习
+					<sup>4</sup>
+				</a>
+				
+				<a data-sort="0116"
+					data-encode="Java"
+					class="tag-button"
+					title="Java" rel="2">
+					Java
+					<sup>2</sup>
+				</a>
+				
+				<a data-sort="0116"
+					data-encode="JavaWeb%E5%BC%80%E5%8F%91"
+					class="tag-button"
+					title="JavaWeb开发" rel="2">
+					JavaWeb开发
+					<sup>2</sup>
+				</a>
+				
+				<a data-sort="0116"
+					data-encode="Kotlin"
+					class="tag-button"
+					title="Kotlin" rel="2">
+					Kotlin
+					<sup>2</sup>
+				</a>
+				
+				<a data-sort="0117"
+					data-encode="%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0"
+					class="tag-button"
+					title="深度学习" rel="1">
+					深度学习
+					<sup>1</sup>
+				</a>
+				
+				<a data-sort="0117"
+					data-encode="Linux"
+					class="tag-button"
+					title="Linux" rel="1">
+					Linux
+					<sup>1</sup>
+				</a>
+			</div>
+
+            <!-- Article List -->
+			<div class="mini-post-list js-result d-none"><section>
+				<span class="fa listing-seperator">
+					<span class="tag-text">2021</span>
+				</span><div class="post-preview item" data-tags="android">
+				    <a href="/android/2021/01/24/%E7%BD%91%E7%BB%9C/">
+				        <h2 class="post-title">
+                            「android」 网络
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2021/01/22/STL%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6/">
+				        <h2 class="post-title">
+                            「CodeNote」 STL常用组件
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="Java">
+				    <a href="/java/2021/01/20/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">
+				        <h2 class="post-title">
+                            「Java」 面向对象
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="android">
+				    <a href="/android/2021/01/20/%E5%A4%9A%E5%AA%92%E4%BD%93/">
+				        <h2 class="post-title">
+                            「android」 多媒体
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="android">
+				    <a href="/android/2021/01/18/MVC/">
+				        <h2 class="post-title">
+                            「android」 MVC
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="android">
+				    <a href="/android/2021/01/17/%E5%86%85%E5%AE%B9%E6%8F%90%E4%BE%9B%E5%99%A8/">
+				        <h2 class="post-title">
+                            「android」 内容提供器
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="Java">
+				    <a href="/java/2021/01/16/%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">
+				        <h2 class="post-title">
+                            「Java」 基础语法
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="android">
+				    <a href="/android/2021/01/05/%E6%A6%82%E8%A7%88/">
+				        <h2 class="post-title">
+                            「android」 概览
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="android">
+				    <a href="/android/2021/01/04/%E6%96%B0%E5%BB%BA%E6%B4%BB%E5%8A%A8/">
+				        <h2 class="post-title">
+                            「android」 新建活动
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="android">
+				    <a href="/android/2021/01/04/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
+				        <h2 class="post-title">
+                            「android」 环境配置
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="vscode%E5%AD%A6%E4%B9%A0">
+				    <a href="/vscode%E5%AD%A6%E4%B9%A0/2021/01/03/remote/">
+				        <h2 class="post-title">
+                            「vscode学习」 remote
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div></section><section>
+				<span class="fa listing-seperator">
+					<span class="tag-text">2020</span>
+				</span><div class="post-preview item" data-tags="vscode%E5%AD%A6%E4%B9%A0">
+				    <a href="/vscode%E5%AD%A6%E4%B9%A0/2020/12/30/vim/">
+				        <h2 class="post-title">
+                            「vscode学习」 vim
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="vscode%E5%AD%A6%E4%B9%A0">
+				    <a href="/vscode%E5%AD%A6%E4%B9%A0/2020/12/29/markdown/">
+				        <h2 class="post-title">
+                            「vscode学习」 markdown
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="vscode%E5%AD%A6%E4%B9%A0">
+				    <a href="/vscode%E5%AD%A6%E4%B9%A0/2020/12/29/vimium/">
+				        <h2 class="post-title">
+                            「vscode学习」 vimium
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="Linux">
+				    <a href="/linux/2020/12/01/debian%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/">
+				        <h2 class="post-title">
+                            「Linux」 debian的安装与配置
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="Kotlin">
+				    <a href="/kotlin/2020/06/27/Kotlin%E4%B8%8EAndroidSDK%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
+				        <h2 class="post-title">
+                            「Kotlin」 Kotlin与AndroidSDK环境配置
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="Kotlin">
+				    <a href="/kotlin/2020/06/27/Kotlin%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/">
+				        <h2 class="post-title">
+                            「Kotlin」 Kotlin基础语法
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2020/06/26/HDU1171(01%E8%83%8C%E5%8C%85%E6%88%96%E6%AF%8D%E5%87%BD%E6%95%B0)/">
+				        <h2 class="post-title">
+                            「CodeNote」 HDU1171(01背包或母函数)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2020/06/26/%E7%89%9B%E5%AE%A2%E5%B0%8F%E7%99%BD25%E9%A2%98%E8%A7%A3/">
+				        <h2 class="post-title">
+                            「CodeNote」 牛客小白25题解
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2020/06/26/%E6%AF%8D%E5%87%BD%E6%95%B0/">
+				        <h2 class="post-title">
+                            「CodeNote」 母函数
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="JavaWeb%E5%BC%80%E5%8F%91">
+				    <a href="/javaweb%E5%BC%80%E5%8F%91/2020/06/07/JavaWeb%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">
+				        <h2 class="post-title">
+                            「JavaWeb开发」 JavaWeb环境配置
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="JavaWeb%E5%BC%80%E5%8F%91">
+				    <a href="/javaweb%E5%BC%80%E5%8F%91/2020/06/07/JavaWeb%E5%BC%80%E5%8F%91/">
+				        <h2 class="post-title">
+                            「JavaWeb开发」 JavaWeb开发
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B">
+				    <a href="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/2020/05/27/%E4%BB%A3%E7%A0%81%E5%A4%A7%E5%85%A82_%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">
+				        <h2 class="post-title">
+                            「软件工程」 代码大全2_阅读笔记
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="Python">
+				    <a href="/python/2020/05/20/NLP%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+				        <h2 class="post-title">
+                            「Python」 NLP基础概念学习笔记
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="Python">
+				    <a href="/python/2020/05/20/Py%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+				        <h2 class="post-title">
+                            「Python」 Py正则表达式学习笔记
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="Python">
+				    <a href="/python/2020/05/20/Py%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+				        <h2 class="post-title">
+                            「Python」 Py字符串学习笔记
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="Python">
+				    <a href="/python/2020/05/20/Pytorch%E7%AC%94%E8%AE%B0/">
+				        <h2 class="post-title">
+                            「Python」 Pytorch笔记
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="Python">
+				    <a href="/python/2020/05/20/Python%E8%AF%AD%E6%B3%95%E8%A1%A5%E5%85%85/">
+				        <h2 class="post-title">
+                            「Python」 Python语法补充
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0">
+				    <a href="/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/2020/05/06/tf%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85/">
+				        <h2 class="post-title">
+                            「深度学习」 tf环境安装
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B">
+				    <a href="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/2020/05/05/UML%E6%B4%BB%E5%8A%A8%E5%9B%BE/">
+				        <h2 class="post-title">
+                            「软件工程」 UML活动图
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B">
+				    <a href="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/2020/05/04/UML%E7%94%A8%E4%BE%8B%E5%9B%BE/">
+				        <h2 class="post-title">
+                            「软件工程」 UML用例图
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B">
+				    <a href="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/2020/05/03/UML%E7%B1%BB%E5%9B%BE/">
+				        <h2 class="post-title">
+                            「软件工程」 UML类图
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2020/04/25/ACW224(%E4%BA%8C%E5%88%86+%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84)/">
+				        <h2 class="post-title">
+                            「CodeNote」 ACW224(二分+树状数组)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2020/04/23/%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85%E8%AE%A1%E6%95%B0/">
+				        <h2 class="post-title">
+                            「CodeNote」 完全背包计数
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2020/04/23/n%E7%9A%84m%E5%88%92%E5%88%86/">
+				        <h2 class="post-title">
+                            「CodeNote」 n的m划分
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2020/04/23/cf1197D(%E5%8D%9A%E5%BC%88+%E7%A7%BB%E5%8A%A8%E6%A3%8B%E5%AD%90)/">
+				        <h2 class="post-title">
+                            「CodeNote」 cf1197D(博弈+移动棋子)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2020/04/23/CF743C(%E6%80%9D%E7%BB%B4)/">
+				        <h2 class="post-title">
+                            「CodeNote」 CF743C(思维)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2020/04/23/CF538B(%E7%AE%80%E5%8D%95%E6%A8%A1%E6%8B%9F)/">
+				        <h2 class="post-title">
+                            「CodeNote」 CF538B(简单模拟)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2020/04/10/%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7/">
+				        <h2 class="post-title">
+                            「CodeNote」 运算符优先级
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2020/04/08/yxcDP%E5%88%86%E6%9E%90/">
+				        <h2 class="post-title">
+                            「CodeNote」 yxcDP分析
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div></section><section>
+				<span class="fa listing-seperator">
+					<span class="tag-text">2019</span>
+				</span><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/11/10/CF1165D(%E7%BA%A6%E6%95%B0)/">
+				        <h2 class="post-title">
+                            「CodeNote」 CF1165D(约数)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/11/10/CF1165E(%E8%B4%A1%E7%8C%AE)/">
+				        <h2 class="post-title">
+                            「CodeNote」 CF1165E(贡献)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/11/07/%E5%8F%8D%E5%90%91%E6%8B%93%E6%89%91/">
+				        <h2 class="post-title">
+                            「CodeNote」 反向拓扑
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/11/05/%E7%89%9B%E5%AE%A2135D(%E9%98%B6%E4%B9%98%E6%9C%AB%E5%B0%BE0)/">
+				        <h2 class="post-title">
+                            「CodeNote」 牛客135D(阶乘末尾0)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/11/05/CF1200D(%E6%A8%A1%E6%8B%9F)/">
+				        <h2 class="post-title">
+                            「CodeNote」 CF1200D(模拟)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/11/05/CF1166C(%E6%80%9D%E7%BB%B4+%E4%BA%8C%E5%88%86+%E6%95%B0%E5%AD%A6)/">
+				        <h2 class="post-title">
+                            「CodeNote」 CF1166C(思维+二分+数学)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/11/01/CF1244D(%E6%80%9D%E7%BB%B4+%E6%A0%91)/">
+				        <h2 class="post-title">
+                            「CodeNote」 CF1244D(思维+树)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/10/26/CF1248E(%E6%A8%A1%E6%8B%9F+STL)/">
+				        <h2 class="post-title">
+                            「CodeNote」 CF1248E(模拟+STL)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/10/25/CF1238D1(%E6%80%9D%E7%BB%B4+%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D)/">
+				        <h2 class="post-title">
+                            「CodeNote」 CF1238D1(思维+括号匹配)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/10/25/CF1239A(%E6%80%9D%E7%BB%B4+%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91)/">
+				        <h2 class="post-title">
+                            「CodeNote」 CF1239A(思维+斐波那契)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/10/24/CF1249D1(%E6%80%9D%E7%BB%B4+set+%E7%BA%BF%E6%AE%B5%E8%A6%86%E7%9B%96)/">
+				        <h2 class="post-title">
+                            「CodeNote」 CF1249D1(思维+set+线段覆盖)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/10/24/CF1249E(%E6%80%9D%E7%BB%B4+dp)/">
+				        <h2 class="post-title">
+                            「CodeNote」 CF1249E(思维+dp)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/10/23/HDU1045(%E4%BA%8C%E5%88%86%E5%9B%BE%E5%8C%B9%E9%85%8D+%E8%A1%8C%E5%88%97%E7%BC%A9%E7%82%B9%E5%BB%BA%E5%9B%BE)/">
+				        <h2 class="post-title">
+                            「CodeNote」 HDU1045(二分图匹配+行列缩点建图)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/10/22/HDU1281(%E4%BA%8C%E5%88%86%E5%9B%BE%E5%8C%B9%E9%85%8D+%E8%A1%8C%E5%88%97%E5%BB%BA%E5%9B%BE)/">
+				        <h2 class="post-title">
+                            「CodeNote」 HDU1281(二分图匹配+行列建图)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/10/22/%E7%BD%91%E7%BB%9C%E6%B5%81%E5%85%A5%E9%97%A8/">
+				        <h2 class="post-title">
+                            「CodeNote」 网络流入门
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/10/22/JAVA%E9%AB%98%E7%B2%BE%E5%BA%A6%E6%B5%AE%E7%82%B9%E6%95%B0/">
+				        <h2 class="post-title">
+                            「CodeNote」 JAVA高精度浮点数
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/10/07/%E4%BA%8C%E5%88%86%E5%9B%BE%E5%8C%B9%E9%85%8D/">
+				        <h2 class="post-title">
+                            「CodeNote」 二分图匹配
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/10/05/tarjan%E6%B1%82LCA/">
+				        <h2 class="post-title">
+                            「CodeNote」 tarjan求LCA
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/10/02/%E5%80%8D%E5%A2%9E%E6%B1%82LCA/">
+				        <h2 class="post-title">
+                            「CodeNote」 倍增求LCA
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/10/01/%E5%8F%8C%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/">
+				        <h2 class="post-title">
+                            「CodeNote」 双连通分量
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/09/26/%E6%AC%A1%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/">
+				        <h2 class="post-title">
+                            「CodeNote」 次小生成树
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/09/22/JAVA%E7%AE%80%E5%8D%95%E8%AF%AD%E6%B3%95/">
+				        <h2 class="post-title">
+                            「CodeNote」 JAVA简单语法
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/09/17/19%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1%E7%AC%AC%E5%9B%9B%E5%9C%BAC(%E6%9E%9A%E4%B8%BE+%E5%89%8D%E7%BC%80%E5%92%8C+%E5%8D%95%E8%B0%83%E6%A0%88)/">
+				        <h2 class="post-title">
+                            「CodeNote」 19牛客多校第四场C(枚举+前缀和+单调栈)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/09/17/19%E7%89%9B%E5%AE%A2%E7%AC%AC%E5%9B%9B%E5%9C%BAD(%E6%95%B0%E5%AD%A6+%E6%80%9D%E7%BB%B4)/">
+				        <h2 class="post-title">
+                            「CodeNote」 19牛客第四场D(数学+思维)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/09/14/%E7%BA%BF%E6%80%A7%E5%9F%BA/">
+				        <h2 class="post-title">
+                            「CodeNote」 线性基
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/19/__int128/">
+				        <h2 class="post-title">
+                            「CodeNote」 __int128
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/09/%E4%BB%8EKMP%E5%88%B0AC%E8%87%AA%E5%8A%A8%E6%9C%BA/">
+				        <h2 class="post-title">
+                            「CodeNote」 从KMP到AC自动机
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/07/K%E7%9F%AD%E8%B7%AF/">
+				        <h2 class="post-title">
+                            「CodeNote」 K短路
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/%E9%A9%AC%E6%8B%89%E8%BD%A6%E7%AE%97%E6%B3%95/">
+				        <h2 class="post-title">
+                            「CodeNote」 马拉车算法
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/%E9%9A%8F%E6%89%8B%E8%AE%B0/">
+				        <h2 class="post-title">
+                            「CodeNote」 随手记
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/%E9%93%BE%E5%BC%8F%E5%89%8D%E5%90%91%E6%98%9F/">
+				        <h2 class="post-title">
+                            「CodeNote」 链式前向星
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/%E8%AE%AD%E7%BB%83%E8%81%94%E7%9B%9F%E7%AC%AC%E4%B8%80%E5%9C%BA/">
+				        <h2 class="post-title">
+                            「CodeNote」 训练联盟第一场
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/">
+				        <h2 class="post-title">
+                            「CodeNote」 计算几何
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/%E8%83%8C%E5%8C%85%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/">
+				        <h2 class="post-title">
+                            「CodeNote」 背包学习心得
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/%E6%B5%AE%E7%82%B9%E8%AF%AF%E5%B7%AE/">
+				        <h2 class="post-title">
+                            「CodeNote」 浮点误差
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/">
+				        <h2 class="post-title">
+                            「CodeNote」 树的直径
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/">
+				        <h2 class="post-title">
+                            「CodeNote」 树状数组
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/%E6%9E%81%E5%A4%A7%E5%9B%A2(%E6%9C%80%E5%A4%A7%E5%AE%8C%E5%85%A8%E5%AD%90%E5%9B%BE)/">
+				        <h2 class="post-title">
+                            「CodeNote」 极大团(最大完全子图)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/%E6%97%A5%E6%9C%9F%E8%AE%A1%E7%AE%97/">
+				        <h2 class="post-title">
+                            「CodeNote」 日期计算
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/%E6%96%AF%E7%89%B9%E6%9E%97%E5%85%AC%E5%BC%8F/">
+				        <h2 class="post-title">
+                            「CodeNote」 斯特林公式
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/%E6%95%B0%E8%AE%BA%E5%88%9D%E6%8E%A2/">
+				        <h2 class="post-title">
+                            「CodeNote」 数论初探
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+				        <h2 class="post-title">
+                            「CodeNote」 数据结构
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/%E6%95%B0%E4%BD%8Ddp/">
+				        <h2 class="post-title">
+                            「CodeNote」 数位dp
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/%E5%B9%B6%E6%9F%A5%E9%9B%86%E8%BF%9B%E9%98%B6/">
+				        <h2 class="post-title">
+                            「CodeNote」 并查集进阶
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/%E5%B7%AE%E5%88%86%E4%B8%8E%E5%89%8D%E7%BC%80%E5%92%8C/">
+				        <h2 class="post-title">
+                            「CodeNote」 差分与前缀和
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/%E5%8D%A1%E7%89%B9%E5%85%B0%E6%95%B0/">
+				        <h2 class="post-title">
+                            「CodeNote」 卡特兰数
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/%E5%8D%95%E8%B0%83%E6%A0%88%E4%B8%8E%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/">
+				        <h2 class="post-title">
+                            「CodeNote」 单调栈与单调队列
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/%E5%8C%BA%E9%97%B4%E7%AC%ACk%E5%A4%A7/">
+				        <h2 class="post-title">
+                            「CodeNote」 区间第k大
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/%E5%88%86%E5%B1%82%E6%9C%80%E7%9F%AD%E8%B7%AF/">
+				        <h2 class="post-title">
+                            「CodeNote」 分层最短路
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/%E4%BA%8C%E5%8F%89%E6%A0%91%E9%80%92%E5%BD%92%E5%BA%94%E7%94%A8/">
+				        <h2 class="post-title">
+                            「CodeNote」 二叉树递归应用
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/%E4%BA%8C%E5%8F%89%E6%A0%91%E6%9E%84%E9%80%A0/">
+				        <h2 class="post-title">
+                            「CodeNote」 二叉树构造
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/%E8%A1%A5%E9%A2%98-%E5%A4%A7%E6%AF%9B%E6%95%B0%E8%9A%82%E8%9A%81/">
+				        <h2 class="post-title">
+                            「CodeNote」 【补题】大毛数蚂蚁
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A4%8D%E4%B9%A0-%E4%BA%8C%E5%8F%89%E6%A0%91/">
+				        <h2 class="post-title">
+                            「CodeNote」 [数据结构复习]二叉树
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/Trie%E6%A0%91/">
+				        <h2 class="post-title">
+                            「CodeNote」 Trie树
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/SparseTable%E9%97%AE%E9%A2%98/">
+				        <h2 class="post-title">
+                            「CodeNote」 SparseTable问题
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/SPFA/">
+				        <h2 class="post-title">
+                            「CodeNote」 SPFA
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/POJ1651(Multiplication-Puzzle)(%E5%8C%BA%E9%97%B4dp)/">
+				        <h2 class="post-title">
+                            「CodeNote」 POJ1651(Multiplication Puzzle)(区间dp)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/N%E6%95%B0%E7%A0%81%E9%97%AE%E9%A2%98/">
+				        <h2 class="post-title">
+                            「CodeNote」 N数码问题
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/MR%E7%B4%A0%E6%80%A7%E6%8E%A2%E6%B5%8B/">
+				        <h2 class="post-title">
+                            「CodeNote」 MR素性探测
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/HDU3466/">
+				        <h2 class="post-title">
+                            「CodeNote」 HDU3466
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/HDU2546(01%E8%83%8C%E5%8C%85)/">
+				        <h2 class="post-title">
+                            「CodeNote」 HDU2546(01背包)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/CF455A(%E7%AE%80%E5%8D%95dp)/">
+				        <h2 class="post-title">
+                            「CodeNote」 CF455A(简单dp)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/CF1186C(%E6%80%9D%E7%BB%B4+%E4%BD%8D%E8%BF%90%E7%AE%97)/">
+				        <h2 class="post-title">
+                            「CodeNote」 CF1186C(思维+位运算)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/CF1138B(%E6%95%B0%E5%AD%A6+%E6%9A%B4%E5%8A%9B)/">
+				        <h2 class="post-title">
+                            「CodeNote」 CF1138B(数学+暴力)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/CF1034A(%E6%95%B0%E8%AE%BA)/">
+				        <h2 class="post-title">
+                            「CodeNote」 CF1034A(数论)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/CF1029C(%E8%B4%AA%E5%BF%83)/">
+				        <h2 class="post-title">
+                            「CodeNote」 CF1029C(贪心)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/CF1027D(dfs+%E5%9B%BE%E8%AE%BA)/">
+				        <h2 class="post-title">
+                            「CodeNote」 CF1027D(dfs+图论)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/CF1020C(%E6%9E%9A%E4%B8%BE+%E8%B4%AA%E5%BF%83)/">
+				        <h2 class="post-title">
+                            「CodeNote」 CF1020C(枚举+贪心)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/CF-%E5%88%B7%E9%A2%98%E4%B9%8B%E8%B7%AF/">
+				        <h2 class="post-title">
+                            「CodeNote」 CF 刷题之路
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/ACW97(%E7%BA%A6%E6%95%B0%E5%92%8C+%E5%88%86%E6%B2%BB)/">
+				        <h2 class="post-title">
+                            「CodeNote」 ACW97(约数和+分治)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/ACW96(DP+%E6%95%B0%E5%AD%A6)/">
+				        <h2 class="post-title">
+                            「CodeNote」 ACW96(DP+数学)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/ACW95(%E7%8A%B6%E5%8E%8B+%E6%90%9C%E7%B4%A2)/">
+				        <h2 class="post-title">
+                            「CodeNote」 ACW95(状压+搜索)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/ACW105(%E5%9D%87%E5%88%86%E7%BA%B8%E7%89%8C+%E6%80%9D%E7%BB%B4)/">
+				        <h2 class="post-title">
+                            「CodeNote」 ACW105(均分纸牌+思维)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/ACW104(%E6%95%B0%E5%AD%A6)/">
+				        <h2 class="post-title">
+                            「CodeNote」 ACW104(数学)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/ACW102(%E4%BA%8C%E5%88%86+%E6%80%9D%E7%BB%B4)/">
+				        <h2 class="post-title">
+                            「CodeNote」 ACW102(二分+思维)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/ACW101(%E5%B7%AE%E5%88%86+%E6%80%9D%E7%BB%B4)/">
+				        <h2 class="post-title">
+                            「CodeNote」 ACW101(差分+思维)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/ACW100(%E5%B7%AE%E5%88%86+%E6%80%9D%E7%BB%B4)/">
+				        <h2 class="post-title">
+                            「CodeNote」 ACW100(差分+思维)
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div><div class="post-preview item" data-tags="CodeNote">
+				    <a href="/codenote/2019/08/06/2018%E5%A4%9A%E6%A0%A11/">
+				        <h2 class="post-title">
+                            「CodeNote」 2018多校1
+				        </h2>
+				        
+				    </a>
+					<hr>
+				</div></section>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- SNS Link -->
+                
+
+
+<ul class="list-inline text-center">
+
+
+  
+  
+  
+  
+  
+  
+  <li>
+    <a target="_blank" href="https://github.com/Dawn-K">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+                <p class="copyright text-muted">
+                    Copyright &copy; Dawn-K's Blog 2021
+                    <br>
+                    Powered by <a href="http://huangxuan.me">Hux Blog</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="100px"
+                        height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Simple Jekyll Search -->
+<script src="/js/simple-jekyll-search.min.js"></script>
+
+<!-- Service Worker -->
+
+<script src="/js/snackbar.js "></script>
+<script src="/js/sw-registration.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+        var d = document, t = 'script',
+            o = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+
+
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    async('/js/jquery.tagcloud.js', function () {
+        $.fn.tagcloud.defaults = {
+            //size: {start: 1, end: 1, unit: 'em'},
+            color: { start: '#bbbbee', end: '#2f93b4' },
+        };
+        $('#tag_cloud a').tagcloud();
+    })
+</script>
+<script src='/js/archive.js '></script>
+
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function () {
+        var $nav = document.querySelector("nav");
+        if ($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        // interop with multilangual 
+        if ('' == 'true') {
+            _containerSelector = 'div.post-container.active'
+        } else {
+            _containerSelector = 'div.post-container'
+        }
+
+        // init
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        // clean
+        $(selector).html('')
+
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+<!-- Multi-Lingual -->
+
+
+<!-- Simple Jekyll Search -->
+<script>
+    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
+    function htmlDecode(input) {
+        var e = document.createElement('textarea');
+        e.innerHTML = input;
+        // handle case of empty input
+        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+    }
+
+    SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('search-results'),
+        json: '/search.json',
+        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
+        noResultsText: 'No results',
+        limit: 50,
+        fuzzy: false,
+        // a hack to get escaped subtitle unescaped. for some reason, 
+        // post.subtitle w/o escape filter nuke entire search.
+        templateMiddleware: function (prop, value, template) {
+            if (prop === 'subtitle' || prop === 'title') {
+                if (value.indexOf("code")) {
+                    return htmlDecode(value);
+                } else {
+                    return value;
+                }
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        var $searchPage = $('.search-page');
+        var $searchOpen = $('.search-icon');
+        var $searchClose = $('.search-icon-close');
+        var $searchInput = $('#search-input');
+        var $body = $('body');
+
+        $searchOpen.on('click', function (e) {
+            e.preventDefault();
+            $searchPage.toggleClass('search-active');
+            var prevClasses = $body.attr('class') || '';
+            setTimeout(function () {
+                $body.addClass('no-scroll');
+            }, 400)
+
+            if ($searchPage.hasClass('search-active')) {
+                $searchClose.on('click', function (e) {
+                    e.preventDefault();
+                    $searchPage.removeClass('search-active');
+                    $body.attr('class', prevClasses);  // from closure 
+                });
+                $searchInput.focus();
+            }
+        });
+    });
+</script>
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

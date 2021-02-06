@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="From ashes to the empire">
+    <meta name="keywords" content="Dawnk , Dawn-K , dawnk , 黄玄的博客, Dawn-K's Blog, 博客, 个人网站, ACM , 算法竞赛">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Open Graph -->
+    <meta property="og:title"
+        content="Dawn-K's Blog">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:description"
+        content="「From ashes to the empire」">
+    
+    <meta property="og:image" content="https://dawn-k.github.io/img/daze.jpg">
+    <meta property="og:url" content="https://dawn-k.github.io/page8/">
+    <meta property="og:site_name" content="Dawn-K's Blog">
+
+    <title>Dawn-K's Blog</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://dawn-k.github.io/page8/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href=" /css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href=" /css/hux-blog.min.css">
+
+    <!-- <link rel="stylesheet" href="http://yandex.st/highlightjs/7.1/styles/default.min.css">
+    <script src="http://yandex.st/highlightjs/7.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> -->
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"
+        type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    </script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+        type="text/javascript"></script>
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Dawn-K's Blog</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="huxblog_navbar">
+                <div class="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/archive/">Archive</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li class="search-icon">
+                            <a href="javascript:void(0)">
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <script>
+        // Drop Bootstarp low-performance Navbar
+        // Use customize navbar with high-quality material design animation
+        // in high-perf jank-free CSS3 implementation
+        var $body = document.body;
+        var $toggle = document.querySelector('.navbar-toggle');
+        var $navbar = document.querySelector('#huxblog_navbar');
+        var $collapse = document.querySelector('.navbar-collapse');
+
+        var __HuxNav__ = {
+            close: function () {
+                $navbar.className = " ";
+                // wait until animation end.
+                setTimeout(function () {
+                    // prevent frequently toggle
+                    if ($navbar.className.indexOf('in') < 0) {
+                        $collapse.style.height = "0px"
+                    }
+                }, 400)
+            },
+            open: function () {
+                $collapse.style.height = "auto"
+                $navbar.className += " in";
+            }
+        }
+
+        // Bind Event
+        $toggle.addEventListener('click', function (e) {
+            if ($navbar.className.indexOf('in') > 0) {
+                __HuxNav__.close()
+            } else {
+                __HuxNav__.open()
+            }
+        })
+
+        /**
+         * Since Fastclick is used to delegate 'touchstart' globally
+         * to hack 300ms delay in iOS by performing a fake 'click',
+         * Using 'e.stopPropagation' to stop 'touchstart' event from 
+         * $toggle/$collapse will break global delegation.
+         * 
+         * Instead, we use a 'e.target' filter to prevent handler
+         * added to document close HuxNav.  
+         *
+         * Also, we use 'click' instead of 'touchstart' as compromise
+         */
+        document.addEventListener('click', function (e) {
+            if (e.target == $toggle) return;
+            if (e.target.className == 'icon-bar') return;
+            __HuxNav__.close();
+        })
+    </script>
+    <!-- Search -->
+<div class="search-page">
+  <div class="search-icon-close-container">
+    <span class="search-icon-close">
+      <i class="fa fa-chevron-down"></i>
+    </span>
+  </div>
+  <div class="search-main container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <form></form>
+        <input type="text" id="search-input" placeholder="$ grep...">
+        </form>
+        <div id="search-results" class="mini-post-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Page Header -->
+
+
+
+
+
+
+
+<header class="intro-header" style="background-image: url('/img/home-bg.jpg')">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        
+        <div class="site-heading">
+        
+          <h1>Dawn-K's Blog</h1>
+          <span class="subheading">「From ashes to the empire」</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<!-- Main Content -->
+<div class="container">
+	<div class="row">
+        
+
+<!-- USE SIDEBAR -->
+    <!-- PostList Container -->
+    		<div class="
+                col-lg-8 col-lg-offset-1
+                col-md-8 col-md-offset-1
+                col-sm-12
+                col-xs-12
+                postlist-container
+            ">
+    			
+<div class="post-preview">
+    <a href="/codenote/2019/08/06/%E9%93%BE%E5%BC%8F%E5%89%8D%E5%90%91%E6%98%9F/" target="_blank">
+        <h2 class="post-title">
+            「CodeNote」 链式前向星
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            链式前向星
+
+介绍
+
+链式前向星是一种用于存图的数据结构,比较适用于存稀疏图.其综合了邻接表,邻接矩阵的优缺点,然后在前向星的基础上进行改进.
+
+时间复杂度,空间复杂度,查询复杂度都是O(m)
+
+初始化
+
+1
+2
+3
+4
+void CFSInit() { // 链式前向星初始化
+    cnt = 1; // 其实这里是0也无所谓
+    memset(head, 0, sizeof(hea...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on August
+        6, 2019
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/codenote/2019/08/06/%E8%AE%AD%E7%BB%83%E8%81%94%E7%9B%9F%E7%AC%AC%E4%B8%80%E5%9C%BA/" target="_blank">
+        <h2 class="post-title">
+            「CodeNote」 训练联盟第一场
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            训练联盟 第一场
+
+
+  日拱一卒,功不唐捐
+
+
+A. 图像压缩四叉树
+
+题目描述
+
+四叉树把大量坐标数据压缩包存在内存空间中，它总是将给定空间分割成4个，然后以递归形式标识，故得名四叉树。其最著名的应用是对黑白图像的压缩。
+
+四叉树会用字符串的形式对 2^N * 2 ^N的黑白图像进行如下压缩。
+
+- 如果所有像素是黑色，无论图像大小是多少，四叉树压缩的结构都是b；
+
+- 图像所有像素是白...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on August
+        6, 2019
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/codenote/2019/08/06/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/" target="_blank">
+        <h2 class="post-title">
+            「CodeNote」 计算几何
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            计算几何
+
+矩阵交
+
+判断两个矩阵交及矩阵相交面积
+
+给出两个矩形(每个矩形给出左上角坐标和右下角坐标),快速判断两个矩形有没有相交(此处指重合面积大于0)
+
+判断方法(图有点小,凑活着看)
+
+
+
+我们假设矩形 a ((x1,y1),(x2,y2)) , b ((x1',y1'),(x2',y2'))
+
+则判断矩形相交的条件为 max(x1,x1') &lt; min(x2,x2') &am...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on August
+        6, 2019
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/codenote/2019/08/06/%E8%83%8C%E5%8C%85%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/" target="_blank">
+        <h2 class="post-title">
+            「CodeNote」 背包学习心得
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            动态规划初步
+
+[TOC]
+
+动态规划认知
+
+
+
+​	在问题满足最优性原理之后，用动态规划解决问题的核心就在于填表，表填写完毕，最优解也就找到。
+
+01 背包
+
+
+
+问题
+
+有n件物品和一个容量为m的背包，放入第ｉ件物品所需要的空间为ｗi，第ｉ件物品的价值为vｉ，问背包可以放入物品的最大价值为多少？
+
+
+  
+    此问题不可用贪心算法，贪心法得到的往往不是最优解。
+    直接暴力穷举n...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on August
+        6, 2019
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/codenote/2019/08/06/%E6%B5%AE%E7%82%B9%E8%AF%AF%E5%B7%AE/" target="_blank">
+        <h2 class="post-title">
+            「CodeNote」 浮点误差
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            浮点误差
+
+参考博客-韬光养晦
+
+综述
+
+由于计算机存储格式限制,浮点数是存在误差的,这一点在计算几何中尤为突出,以下来探讨这个问题.
+
+浮点数的精度
+
+
+  
+    
+       
+      占字节数
+      数值范围
+      十进制精度位数
+    
+  
+  
+    
+      float
+      4
+      -3.4e-38～3.4e38
+      6~7...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on August
+        6, 2019
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/codenote/2019/08/06/%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/" target="_blank">
+        <h2 class="post-title">
+            「CodeNote」 树的直径
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            树的直径
+
+概念
+
+给定一棵树,树中每个边都有权值,树中两点之间的距离定义为连接两点的路径边权和.树中最远的两点之间的距离称之为树的直径,也就是树的最长链(偶尔也指代为一条路径).
+
+树的直径有两种求法,都是O(n)的.一种是基于树形dp(之后再补上).一种是基于搜索.
+
+搜索
+
+我们随便找一个节点作为根(之前如果有根就不用换).进行一次搜索,找到距离根最远的节点p,然后再将p作为起点,寻找...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on August
+        6, 2019
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/codenote/2019/08/06/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/" target="_blank">
+        <h2 class="post-title">
+            「CodeNote」 树状数组
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            树状数组
+
+
+  十年岐路，空负曲江花
+
+
+介绍
+
+参考资料
+
+树状数组就是以数组的形式来模拟树,在代码很简洁的情况下,能起到部分代替线段树的效果.而且此算法常数较小,空间开销也很小,是一个非常轻量级的数据结构.
+
+思想
+
+
+
+图中黑色的是原数组,红色的是树状数组.我们发现树状数组的空间开销是O(n)的.我们以八个元素(从1开始记数会比较方便)求和为例.假设原数组是a[],树状数组是c[] ...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on August
+        6, 2019
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/codenote/2019/08/06/%E6%9E%81%E5%A4%A7%E5%9B%A2(%E6%9C%80%E5%A4%A7%E5%AE%8C%E5%85%A8%E5%AD%90%E5%9B%BE)/" target="_blank">
+        <h2 class="post-title">
+            「CodeNote」 极大团(最大完全子图)
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            极大团
+
+介绍
+
+描述：团就是最大完全子图。(极大团)
+
+给定无向图G=(V,E)。如果U包含于V，且对任意u，v属于U且有(u，v)属于E，则称U是G的完全子图。
+
+G的完全子图U是G的团当且仅当U不包含在G的更大的完全子图中，即U就是最大完全子图。
+
+G的最大团是指G中所含顶点数最多的团。
+
+
+  最大团： V中取K个顶点，两点间相互连接
+
+
+
+  最大独立集： V中取K个顶点，两点间不...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on August
+        6, 2019
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/codenote/2019/08/06/%E6%97%A5%E6%9C%9F%E8%AE%A1%E7%AE%97/" target="_blank">
+        <h2 class="post-title">
+            「CodeNote」 日期计算
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            日期计算
+
+介绍
+
+日期计算问题就是给出一个合法日期，计算此日期是星期几。这个涉及到一些历法和数学的知识，但是有很好用的公式可以使用。
+
+蔡勒公式
+
+1582年10月4日之后：w=y1+(y1/4)+(c/4)-2*c+(26*(m+1)/10)+d-1;
+
+1582年10月4日以及之前：w=y1+y/4+c/4-2*c+13*(m+1)/5+d+2;
+
+输出：(w%7+7)%7     （...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on August
+        6, 2019
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/codenote/2019/08/06/%E6%96%AF%E7%89%B9%E6%9E%97%E5%85%AC%E5%BC%8F/" target="_blank">
+        <h2 class="post-title">
+            「CodeNote」 斯特林公式
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            斯特林公式
+
+简介
+
+斯特林公式的常见表示形式
+
+
+
+显而易见,这个公式主要是用来求近似的阶乘的值的,在竞赛中往往只采用第一个形式,其精确度已经足够用来求阶乘位数了.
+
+lg(n!)=lg(2πn)/2+n∗(lg(n)−lg(e))  这个公式就是图中第一个式子左右同时求对数得到的.
+
+不难发现,[10^x,10^(x+1) )之间囊括了所有长度为x+1的数,而lg(m*10^x)=x+l...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on August
+        6, 2019
+    </p>
+</div>
+<hr>
+
+
+<!-- Pager -->
+
+<ul class="pager">
+    
+    <li class="previous">
+        <a href="/page7">&larr; Newer Posts</a>
+    </li>
+    
+    
+    <li class="next">
+        <a href="/page9">Older Posts &rarr;</a>
+    </li>
+    
+</ul>
+
+    		</div>
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-3 col-lg-offset-0
+                col-md-3 col-md-offset-0
+                col-sm-12
+                col-xs-12
+                sidebar-container
+            ">
+                <!-- Featured Tags -->
+                
+
+
+<section>
+    
+    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+        
+        
+        
+        
+        
+                <a data-sort="0028" 
+                    href="/archive/?tag=CodeNote"
+                    title="CodeNote"
+                    rel="90">CodeNote</a>
+        
+                <a data-sort="0111" 
+                    href="/archive/?tag=android"
+                    title="android"
+                    rel="7">android</a>
+        
+                <a data-sort="0113" 
+                    href="/archive/?tag=Python"
+                    title="Python"
+                    rel="5">Python</a>
+        
+                <a data-sort="0114" 
+                    href="/archive/?tag=%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B"
+                    title="软件工程"
+                    rel="4">软件工程</a>
+        
+                <a data-sort="0114" 
+                    href="/archive/?tag=vscode%E5%AD%A6%E4%B9%A0"
+                    title="vscode学习"
+                    rel="4">vscode学习</a>
+        
+                <a data-sort="0116" 
+                    href="/archive/?tag=Java"
+                    title="Java"
+                    rel="2">Java</a>
+        
+                <a data-sort="0116" 
+                    href="/archive/?tag=JavaWeb%E5%BC%80%E5%8F%91"
+                    title="JavaWeb开发"
+                    rel="2">JavaWeb开发</a>
+        
+                <a data-sort="0116" 
+                    href="/archive/?tag=Kotlin"
+                    title="Kotlin"
+                    rel="2">Kotlin</a>
+    </div>
+</section>
+
+
+                <!-- Short About -->
+                <section class="visible-md visible-lg">
+  <hr>
+  <h5><a href="/about/">ABOUT ME</a></h5>
+  <div class="short-about">
+    
+    <img src="/img/daze.jpg" />
+    
+    
+    <p>Dawnk 计算机本科生 | 退役ACMer | Vocaloid 爱好者</p>
+    
+    <!-- SNS Link -->
+    
+
+
+<ul class="list-inline">
+
+
+  
+  
+  
+  
+  
+  
+  <li>
+    <a target="_blank" href="https://github.com/Dawn-K">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+</ul>
+  </div>
+</section>
+
+                <!-- Friends Blog -->
+                
+<hr>
+<h5>FRIENDS</h5>
+<ul class="list-inline">
+  
+  <li><a href="http://www.criinal.com/">Criinal</a></li>
+  
+</ul>
+
+    		</div>
+        
+	</div>
+</div>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- SNS Link -->
+                
+
+
+<ul class="list-inline text-center">
+
+
+  
+  
+  
+  
+  
+  
+  <li>
+    <a target="_blank" href="https://github.com/Dawn-K">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+                <p class="copyright text-muted">
+                    Copyright &copy; Dawn-K's Blog 2021
+                    <br>
+                    Powered by <a href="http://huangxuan.me">Hux Blog</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="100px"
+                        height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Simple Jekyll Search -->
+<script src="/js/simple-jekyll-search.min.js"></script>
+
+<!-- Service Worker -->
+
+<script src="/js/snackbar.js "></script>
+<script src="/js/sw-registration.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+        var d = document, t = 'script',
+            o = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+
+
+
+
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function () {
+        var $nav = document.querySelector("nav");
+        if ($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        // interop with multilangual 
+        if ('' == 'true') {
+            _containerSelector = 'div.post-container.active'
+        } else {
+            _containerSelector = 'div.post-container'
+        }
+
+        // init
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        // clean
+        $(selector).html('')
+
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+<!-- Multi-Lingual -->
+
+
+<!-- Simple Jekyll Search -->
+<script>
+    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
+    function htmlDecode(input) {
+        var e = document.createElement('textarea');
+        e.innerHTML = input;
+        // handle case of empty input
+        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+    }
+
+    SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('search-results'),
+        json: '/search.json',
+        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
+        noResultsText: 'No results',
+        limit: 50,
+        fuzzy: false,
+        // a hack to get escaped subtitle unescaped. for some reason, 
+        // post.subtitle w/o escape filter nuke entire search.
+        templateMiddleware: function (prop, value, template) {
+            if (prop === 'subtitle' || prop === 'title') {
+                if (value.indexOf("code")) {
+                    return htmlDecode(value);
+                } else {
+                    return value;
+                }
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        var $searchPage = $('.search-page');
+        var $searchOpen = $('.search-icon');
+        var $searchClose = $('.search-icon-close');
+        var $searchInput = $('#search-input');
+        var $body = $('body');
+
+        $searchOpen.on('click', function (e) {
+            e.preventDefault();
+            $searchPage.toggleClass('search-active');
+            var prevClasses = $body.attr('class') || '';
+            setTimeout(function () {
+                $body.addClass('no-scroll');
+            }, 400)
+
+            if ($searchPage.hasClass('search-active')) {
+                $searchClose.on('click', function (e) {
+                    e.preventDefault();
+                    $searchPage.removeClass('search-active');
+                    $body.attr('class', prevClasses);  // from closure 
+                });
+                $searchInput.focus();
+            }
+        });
+    });
+</script>
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
