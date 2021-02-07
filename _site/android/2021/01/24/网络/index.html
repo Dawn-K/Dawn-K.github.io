@@ -148,6 +148,14 @@
                         
                         
                         
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                         <li class="search-icon">
                             <a href="javascript:void(0)">
                                 <i class="fa fa-search"></i>
@@ -334,159 +342,86 @@
 
 <p>在界面上显示获得的报文</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-</pre></td><td class="rouge-code"><pre><span class="nc">TextView</span> <span class="n">responseText</span><span class="o">;</span>
-<span class="nd">@Override</span>
-<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="nc">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
-    <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
-    <span class="n">setContentView</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_main</span><span class="o">);</span>
-    <span class="nc">Button</span> <span class="n">sendRequest</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Button</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">send_request</span><span class="o">);</span>
-    <span class="n">responseText</span> <span class="o">=</span> <span class="o">(</span><span class="nc">TextView</span><span class="o">)</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">response_text</span><span class="o">);</span>
-    <span class="n">sendRequest</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
-<span class="o">}</span>
-<span class="kd">private</span> <span class="kt">void</span> <span class="nf">showResponse</span><span class="o">(</span><span class="kd">final</span> <span class="nc">String</span> <span class="n">response_text</span><span class="o">)</span> <span class="o">{</span>
-    <span class="c1">// 必须在主进程中才能修改UI</span>
-    <span class="n">runOnUiThread</span><span class="o">(</span><span class="k">new</span> <span class="nc">Runnable</span><span class="o">()</span> <span class="o">{</span>
-        <span class="nd">@Override</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-            <span class="n">responseText</span><span class="o">.</span><span class="na">setText</span><span class="o">(</span><span class="n">response_text</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">});</span>
-<span class="o">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+<pre><code class="language-JAVA">TextView responseText;
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    Button sendRequest = (Button) findViewById(R.id.send_request);
+    responseText = (TextView) findViewById(R.id.response_text);
+    sendRequest.setOnClickListener(this);
+}
+private void showResponse(final String response_text) {
+    // 必须在主进程中才能修改UI
+    runOnUiThread(new Runnable() {
+        @Override
+        public void run() {
+            responseText.setText(response_text);
+        }
+    });
+}
+</code></pre>
 
 <h3 id="连接http">连接http</h3>
 
 <p>测试原生的Http连接方式</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-</pre></td><td class="rouge-code"><pre>
-<span class="kt">void</span> <span class="nf">sendRequestWithHttpURLConnection</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="k">new</span> <span class="nc">Runnable</span><span class="o">()</span> <span class="o">{</span>
-        <span class="nd">@Override</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-            <span class="nc">HttpURLConnection</span> <span class="n">connection</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-            <span class="nc">BufferedReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-            <span class="k">try</span> <span class="o">{</span>
-                <span class="c1">// 建立连接</span>
-                <span class="no">URL</span> <span class="n">url</span> <span class="o">=</span> <span class="k">new</span> <span class="no">URL</span><span class="o">(</span><span class="s">"https://dawn-k.github.io"</span><span class="o">);</span>
-                <span class="n">connection</span> <span class="o">=</span> <span class="o">(</span><span class="nc">HttpURLConnection</span><span class="o">)</span> <span class="n">url</span><span class="o">.</span><span class="na">openConnection</span><span class="o">();</span>
-                <span class="n">connection</span><span class="o">.</span><span class="na">setRequestMethod</span><span class="o">(</span><span class="s">"GET"</span><span class="o">);</span>
-                <span class="n">connection</span><span class="o">.</span><span class="na">setConnectTimeout</span><span class="o">(</span><span class="mi">8000</span><span class="o">);</span>
-                <span class="n">connection</span><span class="o">.</span><span class="na">setReadTimeout</span><span class="o">(</span><span class="mi">8000</span><span class="o">);</span>
+<pre><code class="language-JAVA">
+void sendRequestWithHttpURLConnection() {
+    new Thread(new Runnable() {
+        @Override
+        public void run() {
+            HttpURLConnection connection = null;
+            BufferedReader reader = null;
+            try {
+                // 建立连接
+                URL url = new URL("https://dawn-k.github.io");
+                connection = (HttpURLConnection) url.openConnection();
+                connection.setRequestMethod("GET");
+                connection.setConnectTimeout(8000);
+                connection.setReadTimeout(8000);
 
-                <span class="c1">// 获取服务返回的流</span>
-                <span class="nc">InputStream</span> <span class="n">in</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">();</span>
-                <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">InputStreamReader</span><span class="o">(</span><span class="n">in</span><span class="o">));</span>
+                // 获取服务返回的流
+                InputStream in = connection.getInputStream();
+                reader = new BufferedReader(new InputStreamReader(in));
 
-                <span class="c1">// 拼接成 response</span>
-                <span class="nc">StringBuilder</span> <span class="n">response</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuilder</span><span class="o">();</span>
-                <span class="nc">String</span> <span class="n">line</span><span class="o">;</span>
-                <span class="k">while</span> <span class="o">((</span><span class="n">line</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">readLine</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="n">response</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">line</span><span class="o">);</span>
-                <span class="o">}</span>
-                <span class="c1">// 在界面上显示出来</span>
-                <span class="n">showResponse</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
-            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-            <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
-                <span class="k">if</span> <span class="o">(</span><span class="n">reader</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="k">try</span> <span class="o">{</span>
-                        <span class="n">reader</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
-                    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-                        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-                    <span class="o">}</span>
-                <span class="o">}</span>
-                <span class="k">if</span> <span class="o">(</span><span class="n">connection</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="n">connection</span><span class="o">.</span><span class="na">disconnect</span><span class="o">();</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-    <span class="o">}).</span><span class="na">start</span><span class="o">();</span>
-    <span class="c1">// 上面一行很容易漏下,一定要注意</span>
-<span class="o">}</span>
-<span class="c1">// 注册监听器</span>
-<span class="nd">@Override</span>
-<span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="nc">View</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">switch</span> <span class="o">(</span><span class="n">v</span><span class="o">.</span><span class="na">getId</span><span class="o">())</span> <span class="o">{</span>
-        <span class="k">case</span> <span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">send_request</span><span class="o">:</span>
-            <span class="n">sendRequestWithHttpURLConnection</span><span class="o">();</span>
-            <span class="k">break</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
+                // 拼接成 response
+                StringBuilder response = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+                // 在界面上显示出来
+                showResponse(response.toString());
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (reader != null) {
+                    try {
+                        reader.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (connection != null) {
+                    connection.disconnect();
+                }
+            }
+        }
+    }).start();
+    // 上面一行很容易漏下,一定要注意
+}
+// 注册监听器
+@Override
+public void onClick(View v) {
+    switch (v.getId()) {
+        case R.id.send_request:
+            sendRequestWithHttpURLConnection();
+            break;
+    }
+}
 
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre>
 
 <h3 id="权限">权限</h3>
 
@@ -501,49 +436,28 @@
 <p>OkHttp 是一个通用的流行的开源库.
 界面和 showResponse 我们采用和上文一样的方式.</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-</pre></td><td class="rouge-code"><pre><span class="kt">void</span> <span class="nf">testOKHttp</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="k">new</span> <span class="nc">Runnable</span><span class="o">()</span> <span class="o">{</span>
-        <span class="nd">@Override</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-            <span class="k">try</span> <span class="o">{</span>
-                <span class="c1">// 构建GET方法的请求</span>
-                <span class="nc">Request</span> <span class="n">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Request</span><span class="o">.</span><span class="na">Builder</span><span class="o">()</span>
-                        <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://www.baidu.com"</span><span class="o">)</span>
-                        <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-                <span class="c1">// 发起请求</span>
-                <span class="nc">OkHttpClient</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">OkHttpClient</span><span class="o">();</span>
-                <span class="nc">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">newCall</span><span class="o">(</span><span class="n">request</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
-                <span class="nc">String</span> <span class="n">responseData</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">body</span><span class="o">().</span><span class="na">string</span><span class="o">();</span>
-                <span class="c1">// 显示数据</span>
-                <span class="n">showResponse</span><span class="o">(</span><span class="n">responseData</span><span class="o">);</span>
-            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-    <span class="o">}).</span><span class="na">start</span><span class="o">();</span>
-<span class="o">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+<pre><code class="language-JAVA">void testOKHttp() {
+    new Thread(new Runnable() {
+        @Override
+        public void run() {
+            try {
+                // 构建GET方法的请求
+                Request request = new Request.Builder()
+                        .url("http://www.baidu.com")
+                        .build();
+                // 发起请求
+                OkHttpClient client = new OkHttpClient();
+                Response response = client.newCall(request).execute();
+                String responseData = response.body().string();
+                // 显示数据
+                showResponse(responseData);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }).start();
+}
+</code></pre>
 
 <p>最后修改 onClick 方法中点击按钮对应的函数为 testOKHttp</p>
 
@@ -551,27 +465,17 @@
 
 <p>post请求需要修改如下.</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-</pre></td><td class="rouge-code"><pre><span class="c1">// 构建一个请求体(也就是想传的参数)</span>
-<span class="nc">RequestBody</span> <span class="n">requestBody</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FormBody</span><span class="o">.</span><span class="na">Builder</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"username"</span><span class="o">,</span> <span class="s">"admin"</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"password"</span><span class="o">,</span> <span class="s">"123456"</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-<span class="c1">// 发起post请求</span>
-<span class="nc">Request</span> <span class="n">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Request</span><span class="o">.</span><span class="na">Builder</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://www.baidu.com"</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="n">requestBody</span><span class="o">)</span>
-        <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+<pre><code class="language-JAVA">// 构建一个请求体(也就是想传的参数)
+RequestBody requestBody = new FormBody.Builder()
+        .add("username", "admin")
+        .add("password", "123456")
+        .build();
+// 发起post请求
+Request request = new Request.Builder()
+        .url("http://www.baidu.com")
+        .post(requestBody)
+        .build();
+</code></pre>
 
 <p>剩下的部分和之前的一样</p>
 
@@ -636,131 +540,69 @@ ServerRoot "${SRVROOT}"
 
 <p>原生的解决方式, 直接用 XmlPullParser</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-</pre></td><td class="rouge-code"><pre><span class="kt">void</span> <span class="nf">testOKHttp</span><span class="o">()</span> <span class="o">{</span>
-    <span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="k">new</span> <span class="nc">Runnable</span><span class="o">()</span> <span class="o">{</span>
-        <span class="nd">@Override</span>
-        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-            <span class="k">try</span> <span class="o">{</span>
-                <span class="c1">// 宿主机测试时用 127.0.0.1</span>
-                <span class="c1">// 对于手机来说,宿主机就是 10.0.2.2</span>
-                <span class="nc">Request</span> <span class="n">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Request</span><span class="o">.</span><span class="na">Builder</span><span class="o">()</span>
-                        <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="s">"http://10.0.2.2/get_data.xml"</span><span class="o">)</span>
-                        <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-                <span class="nc">OkHttpClient</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">OkHttpClient</span><span class="o">();</span>
-                <span class="nc">Response</span> <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="na">newCall</span><span class="o">(</span><span class="n">request</span><span class="o">).</span><span class="na">execute</span><span class="o">();</span>
-                <span class="nc">String</span> <span class="n">responseData</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">body</span><span class="o">().</span><span class="na">string</span><span class="o">();</span>
-                <span class="n">parseXMLWithPull</span><span class="o">(</span><span class="n">responseData</span><span class="o">);</span>
-            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-    <span class="o">}).</span><span class="na">start</span><span class="o">();</span>
-<span class="o">}</span>
-<span class="kd">private</span> <span class="kt">void</span> <span class="nf">parseXMLWithPull</span><span class="o">(</span><span class="nc">String</span> <span class="n">xmlData</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">try</span> <span class="o">{</span>
-        <span class="nc">XmlPullParserFactory</span> <span class="n">factory</span> <span class="o">=</span> <span class="nc">XmlPullParserFactory</span><span class="o">.</span><span class="na">newInstance</span><span class="o">();</span>
-        <span class="nc">XmlPullParser</span> <span class="n">xmlPullParser</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="na">newPullParser</span><span class="o">();</span>
-        <span class="n">xmlPullParser</span><span class="o">.</span><span class="na">setInput</span><span class="o">(</span><span class="k">new</span> <span class="nc">StringReader</span><span class="o">(</span><span class="n">xmlData</span><span class="o">));</span>
-        <span class="kt">int</span> <span class="n">eventType</span> <span class="o">=</span> <span class="n">xmlPullParser</span><span class="o">.</span><span class="na">getEventType</span><span class="o">();</span>
-        <span class="nc">String</span> <span class="n">id</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
-        <span class="nc">String</span> <span class="n">name</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
-        <span class="nc">String</span> <span class="n">version</span> <span class="o">=</span> <span class="s">""</span><span class="o">;</span>
-        <span class="c1">// 一直循环到文件结尾</span>
-        <span class="k">while</span> <span class="o">(</span><span class="n">eventType</span> <span class="o">!=</span> <span class="nc">XmlPullParser</span><span class="o">.</span><span class="na">END_DOCUMENT</span><span class="o">)</span> <span class="o">{</span>
-            <span class="c1">// 当前元素的名字(比如 &lt;app&gt; 1 &lt;/app&gt;这种)</span>
-            <span class="nc">String</span> <span class="n">nodeName</span> <span class="o">=</span> <span class="n">xmlPullParser</span><span class="o">.</span><span class="na">getName</span><span class="o">();</span>
-            <span class="c1">// 判断类型</span>
-            <span class="k">switch</span> <span class="o">(</span><span class="n">eventType</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">case</span> <span class="nc">XmlPullParser</span><span class="o">.</span><span class="na">START_TAG</span><span class="o">:</span>
-                    <span class="c1">// 对于相应的类型,将下一个元素存入字符串(因为当前的还是标签)</span>
-                    <span class="k">if</span> <span class="o">(</span><span class="s">"id"</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">nodeName</span><span class="o">))</span> <span class="o">{</span>
-                        <span class="n">id</span> <span class="o">=</span> <span class="n">xmlPullParser</span><span class="o">.</span><span class="na">nextText</span><span class="o">();</span>
-                    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="s">"name"</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">nodeName</span><span class="o">))</span> <span class="o">{</span>
-                        <span class="n">name</span> <span class="o">=</span> <span class="n">xmlPullParser</span><span class="o">.</span><span class="na">nextText</span><span class="o">();</span>
-                    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="s">"version"</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">nodeName</span><span class="o">))</span> <span class="o">{</span>
-                        <span class="n">version</span> <span class="o">=</span> <span class="n">xmlPullParser</span><span class="o">.</span><span class="na">nextText</span><span class="o">();</span>
-                    <span class="o">}</span>
-                    <span class="k">break</span><span class="o">;</span>
-                <span class="k">case</span> <span class="nc">XmlPullParser</span><span class="o">.</span><span class="na">END_TAG</span><span class="o">:</span>
-                    <span class="k">if</span> <span class="o">(</span><span class="s">"app"</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">nodeName</span><span class="o">))</span> <span class="o">{</span>
-                        <span class="nc">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">"MainActivity"</span><span class="o">,</span> <span class="s">"id is "</span> <span class="o">+</span> <span class="n">id</span><span class="o">);</span>
-                        <span class="nc">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">"MainActivity"</span><span class="o">,</span> <span class="s">"name is "</span> <span class="o">+</span> <span class="n">name</span><span class="o">);</span>
-                        <span class="nc">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">"MainActivity"</span><span class="o">,</span> <span class="s">"version is "</span> <span class="o">+</span> <span class="n">version</span><span class="o">);</span>
-                    <span class="o">}</span>
-                    <span class="k">break</span><span class="o">;</span>
-                <span class="k">default</span><span class="o">:</span>
-                    <span class="k">break</span><span class="o">;</span>
-            <span class="o">}</span>
-            <span class="n">eventType</span> <span class="o">=</span> <span class="n">xmlPullParser</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
-        <span class="o">}</span>
+<pre><code class="language-JAVA">void testOKHttp() {
+    new Thread(new Runnable() {
+        @Override
+        public void run() {
+            try {
+                // 宿主机测试时用 127.0.0.1
+                // 对于手机来说,宿主机就是 10.0.2.2
+                Request request = new Request.Builder()
+                        .url("http://10.0.2.2/get_data.xml")
+                        .build();
+                OkHttpClient client = new OkHttpClient();
+                Response response = client.newCall(request).execute();
+                String responseData = response.body().string();
+                parseXMLWithPull(responseData);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }).start();
+}
+private void parseXMLWithPull(String xmlData) {
+    try {
+        XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+        XmlPullParser xmlPullParser = factory.newPullParser();
+        xmlPullParser.setInput(new StringReader(xmlData));
+        int eventType = xmlPullParser.getEventType();
+        String id = "";
+        String name = "";
+        String version = "";
+        // 一直循环到文件结尾
+        while (eventType != XmlPullParser.END_DOCUMENT) {
+            // 当前元素的名字(比如 &lt;app&gt; 1 &lt;/app&gt;这种)
+            String nodeName = xmlPullParser.getName();
+            // 判断类型
+            switch (eventType) {
+                case XmlPullParser.START_TAG:
+                    // 对于相应的类型,将下一个元素存入字符串(因为当前的还是标签)
+                    if ("id".equals(nodeName)) {
+                        id = xmlPullParser.nextText();
+                    } else if ("name".equals(nodeName)) {
+                        name = xmlPullParser.nextText();
+                    } else if ("version".equals(nodeName)) {
+                        version = xmlPullParser.nextText();
+                    }
+                    break;
+                case XmlPullParser.END_TAG:
+                    if ("app".equals(nodeName)) {
+                        Log.d("MainActivity", "id is " + id);
+                        Log.d("MainActivity", "name is " + name);
+                        Log.d("MainActivity", "version is " + version);
+                    }
+                    break;
+                default:
+                    break;
+            }
+            eventType = xmlPullParser.next();
+        }
 
-    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+</code></pre>
 
 <p>书上还提到了一种 SAX方法, 此处不再赘述.</p>
 
@@ -788,51 +630,32 @@ ServerRoot "${SRVROOT}"
 
 <h3 id="jsonobject">JSONObject</h3>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-</pre></td><td class="rouge-code"><pre><span class="kd">private</span> <span class="kt">void</span> <span class="nf">parseJSONWithJSONObject</span><span class="o">(</span><span class="nc">String</span> <span class="n">jsonData</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">try</span> <span class="o">{</span>
-        <span class="nc">JSONArray</span> <span class="n">jsonArray</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JSONArray</span><span class="o">(</span><span class="n">jsonData</span><span class="o">);</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">jsonArray</span><span class="o">.</span><span class="na">length</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-            <span class="nc">JSONObject</span> <span class="n">jsonObject</span> <span class="o">=</span> <span class="n">jsonArray</span><span class="o">.</span><span class="na">getJSONObject</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
-            <span class="nc">String</span> <span class="n">id</span> <span class="o">=</span> <span class="n">jsonObject</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"id"</span><span class="o">);</span>
-            <span class="nc">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">"MainActivity"</span><span class="o">,</span> <span class="s">"id is "</span> <span class="o">+</span> <span class="n">id</span><span class="o">);</span>
-            <span class="nc">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">jsonObject</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"name"</span><span class="o">);</span>
-            <span class="nc">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">"MainActivity"</span><span class="o">,</span> <span class="s">"name is "</span> <span class="o">+</span> <span class="n">name</span><span class="o">);</span>
-            <span class="nc">String</span> <span class="n">version</span> <span class="o">=</span> <span class="n">jsonObject</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="s">"version"</span><span class="o">);</span>
-            <span class="nc">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">"MainActivity"</span><span class="o">,</span> <span class="s">"version is "</span> <span class="o">+</span> <span class="n">version</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+<pre><code class="language-JAVA">private void parseJSONWithJSONObject(String jsonData) {
+    try {
+        JSONArray jsonArray = new JSONArray(jsonData);
+        for (int i = 0; i &lt; jsonArray.length(); i++) {
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
+            String id = jsonObject.getString("id");
+            Log.d("MainActivity", "id is " + id);
+            String name = jsonObject.getString("name");
+            Log.d("MainActivity", "name is " + name);
+            String version = jsonObject.getString("version");
+            Log.d("MainActivity", "version is " + version);
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
+</code></pre>
 
 <h3 id="gson">GSON</h3>
 
 <p>新建 app类, 此处略去 getter 和 setter</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-</pre></td><td class="rouge-code"><pre><span class="kd">class</span> <span class="nc">App</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="nc">String</span> <span class="n">id</span><span class="o">,</span> <span class="n">name</span><span class="o">,</span> <span class="n">version</span><span class="o">;</span>
-<span class="o">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+<pre><code class="language-JAVA">class App {
+    private String id, name, version;
+}
+</code></pre>
 
 <p>然后添加依赖</p>
 
@@ -842,163 +665,53 @@ ServerRoot "${SRVROOT}"
 
 <p>最后编写解析函数</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-</pre></td><td class="rouge-code"><pre><span class="kd">private</span> <span class="kt">void</span> <span class="nf">parseJSONWithGSON</span><span class="o">(</span><span class="nc">String</span> <span class="n">jsonData</span><span class="o">)</span> <span class="o">{</span>
-    <span class="nc">Gson</span> <span class="n">gson</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Gson</span><span class="o">();</span>
-    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">App</span><span class="o">&gt;</span> <span class="n">appList</span> <span class="o">=</span> <span class="n">gson</span><span class="o">.</span><span class="na">fromJson</span><span class="o">(</span><span class="n">jsonData</span><span class="o">,</span> <span class="k">new</span> <span class="nc">TypeToken</span><span class="o">&lt;</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">App</span><span class="o">&gt;&gt;()</span> <span class="o">{</span>
-    <span class="o">}.</span><span class="na">getType</span><span class="o">());</span>
-    <span class="k">for</span> <span class="o">(</span><span class="nc">App</span> <span class="n">app</span> <span class="o">:</span> <span class="n">appList</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">"MainActivity"</span><span class="o">,</span> <span class="s">"id is "</span> <span class="o">+</span> <span class="n">app</span><span class="o">.</span><span class="na">getId</span><span class="o">());</span>
-        <span class="nc">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">"MainActivity"</span><span class="o">,</span> <span class="s">"name is "</span> <span class="o">+</span> <span class="n">app</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
-        <span class="nc">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">"MainActivity"</span><span class="o">,</span> <span class="s">"version is "</span> <span class="o">+</span> <span class="n">app</span><span class="o">.</span><span class="na">getVersion</span><span class="o">());</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+<pre><code class="language-JAVA">private void parseJSONWithGSON(String jsonData) {
+    Gson gson = new Gson();
+    List&lt;App&gt; appList = gson.fromJson(jsonData, new TypeToken&lt;List&lt;App&gt;&gt;() {
+    }.getType());
+    for (App app : appList) {
+        Log.d("MainActivity", "id is " + app.getId());
+        Log.d("MainActivity", "name is " + app.getName());
+        Log.d("MainActivity", "version is " + app.getVersion());
+    }
+}
+</code></pre>
 
 <h2 id="httputil">HttpUtil</h2>
 
 <p>创建一个通用的工具类, 进行封装
 先创建一个接口类</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-</pre></td><td class="rouge-code"><pre><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">HttpCallbackListener</span> <span class="o">{</span>
-    <span class="kt">void</span> <span class="nf">onFinish</span><span class="o">(</span><span class="nc">String</span> <span class="n">response</span><span class="o">);</span>
+<pre><code class="language-JAVA">public interface HttpCallbackListener {
+    void onFinish(String response);
 
-    <span class="kt">void</span> <span class="nf">onError</span><span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">);</span>
-<span class="o">}</span>
-</pre></td></tr></tbody></table></code></pre></div></div>
+    void onError(Exception e);
+}
+</code></pre>
 
 <p>再创建  HttpUtil (其实若是只使用里面的 OkHttp, 然后把原生的删掉的话就不需要上面的接口类了)</p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-61
-62
-63
-64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84
-85
-86
-87
-88
-89
-90
-91
-92
-93
-94
-95
-</pre></td><td class="rouge-code"><pre>
-<span class="kn">import</span> <span class="nn">android.content.pm.PackageManager</span><span class="o">;</span>
+<pre><code class="language-JAVA">
+import android.content.pm.PackageManager;
 
-<span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.io.InputStream</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.net.HttpURLConnection</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.net.URL</span><span class="o">;</span>
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
-<span class="kn">import</span> <span class="nn">okhttp3.Call</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">okhttp3.FormBody</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">okhttp3.MediaType</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">okhttp3.OkHttpClient</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">okhttp3.Request</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">okhttp3.RequestBody</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">okhttp3.Response</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">okio.BufferedSink</span><span class="o">;</span>
+import okhttp3.Call;
+import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okio.BufferedSink;
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">HttpUtil</span> <span class="o">{</span>
-    <span class="cm">/*
+public class HttpUtil {
+    /*
 使用方法:
 HttpUtil.sendHttpRequest("http://www.baidu.com", new okhttp3.Callback() {
     @Override
@@ -1013,41 +726,41 @@ HttpUtil.sendHttpRequest("http://www.baidu.com", new okhttp3.Callback() {
         String responseData = response.body().string();
     }
 });
- */</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">sendHttpRequest</span><span class="o">(</span><span class="kd">final</span> <span class="nc">String</span> <span class="n">address</span><span class="o">,</span> <span class="kd">final</span> <span class="nc">HttpCallbackListener</span> <span class="n">listener</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="k">new</span> <span class="nc">Runnable</span><span class="o">()</span> <span class="o">{</span>
-            <span class="nd">@Override</span>
-            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
-                <span class="nc">HttpURLConnection</span> <span class="n">connection</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-                <span class="k">try</span> <span class="o">{</span>
-                    <span class="no">URL</span> <span class="n">url</span> <span class="o">=</span> <span class="k">new</span> <span class="no">URL</span><span class="o">(</span><span class="n">address</span><span class="o">);</span>
-                    <span class="n">connection</span> <span class="o">=</span> <span class="o">(</span><span class="nc">HttpURLConnection</span><span class="o">)</span> <span class="n">url</span><span class="o">.</span><span class="na">openConnection</span><span class="o">();</span>
-                    <span class="n">connection</span><span class="o">.</span><span class="na">setRequestMethod</span><span class="o">(</span><span class="s">"GET"</span><span class="o">);</span>
-                    <span class="n">connection</span><span class="o">.</span><span class="na">setConnectTimeout</span><span class="o">(</span><span class="mi">8000</span><span class="o">);</span>
-                    <span class="n">connection</span><span class="o">.</span><span class="na">setReadTimeout</span><span class="o">(</span><span class="mi">8000</span><span class="o">);</span>
-                    <span class="n">connection</span><span class="o">.</span><span class="na">setDoInput</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
-                    <span class="n">connection</span><span class="o">.</span><span class="na">setDoOutput</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
-                    <span class="nc">InputStream</span> <span class="n">in</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">();</span>
-                    <span class="nc">BufferedReader</span> <span class="n">reader</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">InputStreamReader</span><span class="o">(</span><span class="n">in</span><span class="o">));</span>
-                    <span class="nc">StringBuilder</span> <span class="n">response</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuilder</span><span class="o">();</span>
-                    <span class="nc">String</span> <span class="n">line</span><span class="o">;</span>
-                    <span class="k">while</span> <span class="o">((</span><span class="n">line</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">readLine</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-                        <span class="n">response</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">line</span><span class="o">);</span>
-                    <span class="o">}</span>
-                <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-                    <span class="k">if</span> <span class="o">(</span><span class="n">listener</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-                        <span class="n">listener</span><span class="o">.</span><span class="na">onError</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
-                    <span class="o">}</span>
-                <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
-                    <span class="k">if</span> <span class="o">(</span><span class="n">connection</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-                        <span class="n">connection</span><span class="o">.</span><span class="na">disconnect</span><span class="o">();</span>
-                    <span class="o">}</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
-        <span class="o">}).</span><span class="na">start</span><span class="o">();</span>
-    <span class="o">}</span>
+ */
+    public static void sendHttpRequest(final String address, final HttpCallbackListener listener) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                HttpURLConnection connection = null;
+                try {
+                    URL url = new URL(address);
+                    connection = (HttpURLConnection) url.openConnection();
+                    connection.setRequestMethod("GET");
+                    connection.setConnectTimeout(8000);
+                    connection.setReadTimeout(8000);
+                    connection.setDoInput(true);
+                    connection.setDoOutput(true);
+                    InputStream in = connection.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+                    StringBuilder response = new StringBuilder();
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        response.append(line);
+                    }
+                } catch (Exception e) {
+                    if (listener != null) {
+                        listener.onError(e);
+                    }
+                } finally {
+                    if (connection != null) {
+                        connection.disconnect();
+                    }
+                }
+            }
+        }).start();
+    }
 
-        <span class="cm">/*
+        /*
         使用方法:
         HttpUtil.sendOkHttpRequest("http://www.baidu.com", new okhttp3.Callback() {
             @Override
@@ -1062,18 +775,18 @@ HttpUtil.sendHttpRequest("http://www.baidu.com", new okhttp3.Callback() {
                 String responseData = response.body().string();
             }
         });
-         */</span>
+         */
 
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">sendOkHttpRequest</span><span class="o">(</span><span class="nc">String</span> <span class="n">address</span><span class="o">,</span> <span class="n">okhttp3</span><span class="o">.</span><span class="na">Callback</span> <span class="n">callback</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">OkHttpClient</span> <span class="n">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">OkHttpClient</span><span class="o">();</span>
-        <span class="nc">Request</span> <span class="n">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Request</span><span class="o">.</span><span class="na">Builder</span><span class="o">()</span>
-                <span class="o">.</span><span class="na">url</span><span class="o">(</span><span class="n">address</span><span class="o">)</span>
-                <span class="o">.</span><span class="na">build</span><span class="o">();</span>
-        <span class="n">client</span><span class="o">.</span><span class="na">newCall</span><span class="o">(</span><span class="n">request</span><span class="o">).</span><span class="na">enqueue</span><span class="o">(</span><span class="n">callback</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
+    public static void sendOkHttpRequest(String address, okhttp3.Callback callback) {
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(address)
+                .build();
+        client.newCall(request).enqueue(callback);
+    }
+}
 
-</pre></td></tr></tbody></table></code></pre></div></div>
+</code></pre>
 
 
                 <hr style="visibility: hidden;">
@@ -1134,42 +847,82 @@ HttpUtil.sendHttpRequest("http://www.baidu.com", new okhttp3.Callback() {
         
         
         
-                <a data-sort="0028" 
+                <a data-sort="0065" 
                     href="/archive/?tag=CodeNote"
                     title="CodeNote"
                     rel="90">CodeNote</a>
         
-                <a data-sort="0111" 
+                <a data-sort="0128" 
+                    href="/archive/?tag=Web%E5%BC%80%E5%8F%91"
+                    title="Web开发"
+                    rel="27">Web开发</a>
+        
+                <a data-sort="0142" 
+                    href="/archive/?tag=SpringBoot"
+                    title="SpringBoot"
+                    rel="13">SpringBoot</a>
+        
+                <a data-sort="0146" 
+                    href="/archive/?tag=%E4%BA%92%E8%81%94%E7%BD%91%E6%9E%B6%E6%9E%84"
+                    title="互联网架构"
+                    rel="9">互联网架构</a>
+        
+                <a data-sort="0148" 
                     href="/archive/?tag=android"
                     title="android"
                     rel="7">android</a>
         
-                <a data-sort="0113" 
+                <a data-sort="0149" 
+                    href="/archive/?tag=DAO"
+                    title="DAO"
+                    rel="6">DAO</a>
+        
+                <a data-sort="0150" 
                     href="/archive/?tag=Python"
                     title="Python"
                     rel="5">Python</a>
         
-                <a data-sort="0114" 
+                <a data-sort="0150" 
+                    href="/archive/?tag=Vue"
+                    title="Vue"
+                    rel="5">Vue</a>
+        
+                <a data-sort="0151" 
+                    href="/archive/?tag=%E6%95%B0%E6%8D%AE%E5%BA%93"
+                    title="数据库"
+                    rel="4">数据库</a>
+        
+                <a data-sort="0151" 
                     href="/archive/?tag=%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B"
                     title="软件工程"
                     rel="4">软件工程</a>
         
-                <a data-sort="0114" 
-                    href="/archive/?tag=vscode%E5%AD%A6%E4%B9%A0"
-                    title="vscode学习"
-                    rel="4">vscode学习</a>
+                <a data-sort="0151" 
+                    href="/archive/?tag=Unity"
+                    title="Unity"
+                    rel="4">Unity</a>
         
-                <a data-sort="0116" 
+                <a data-sort="0151" 
+                    href="/archive/?tag=VSCode%E5%AD%A6%E4%B9%A0"
+                    title="VSCode学习"
+                    rel="4">VSCode学习</a>
+        
+                <a data-sort="0152" 
+                    href="/archive/?tag=%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"
+                    title="版本控制"
+                    rel="3">版本控制</a>
+        
+                <a data-sort="0152" 
+                    href="/archive/?tag=View"
+                    title="View"
+                    rel="3">View</a>
+        
+                <a data-sort="0153" 
                     href="/archive/?tag=Java"
                     title="Java"
                     rel="2">Java</a>
         
-                <a data-sort="0116" 
-                    href="/archive/?tag=JavaWeb%E5%BC%80%E5%8F%91"
-                    title="JavaWeb开发"
-                    rel="2">JavaWeb开发</a>
-        
-                <a data-sort="0116" 
+                <a data-sort="0153" 
                     href="/archive/?tag=Kotlin"
                     title="Kotlin"
                     rel="2">Kotlin</a>
