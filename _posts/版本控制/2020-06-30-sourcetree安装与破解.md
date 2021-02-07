@@ -5,6 +5,7 @@ date: 2020-06-30
 tags: [版本控制]
 categories: [版本控制]
 ---
+
 # soucetree 安装和破解
 
 [参考资料1](https://www.jianshu.com/p/d02e9fba7cf3)
@@ -20,7 +21,8 @@ Sourcetree windows是一款强大的Git/Mercurial桌面客户端, 是一个分�
 
 1. 打开安装程序
 2. 进入注册界面,先置之不理
-3. 打开 `C:\Users\Administrator\AppData\Local\Atlassian\SourceTree` 
+3. 打开 `C:\Users\Administrator\AppData\Local\Atlassian\SourceTree`
+
 4. 新建 accounts.json 文件,输入下列内容
 5. 关闭安装程序,并再次打开,就可以使用了
 

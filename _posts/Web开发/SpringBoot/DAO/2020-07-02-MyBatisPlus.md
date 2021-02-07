@@ -5,6 +5,7 @@ date: 2020-07-02
 tags: [Web开发, SpringBoot, DAO]
 categories: [Web开发-SpringBoot-DAO]
 ---
+
 # MyBatisPlus
 
 [toc]
@@ -97,7 +98,7 @@ public class HisMain {
 
 ### 接口类(Mapper)
 
-``` JAVA
+``` java
 // 接口类,注意继承关系,为下文单元测试
 // src/main/java/com.neuedu/mapper/RoleMapper.java
 @Mapper
@@ -110,7 +111,7 @@ public interface RoleMapper extends BaseMapper<Role> {
 在类名上 ctrl+shift+T 创建单元测试
 在新建的单元测试类上面加入注解@SpringBootTest
 
-``` JAVA
+``` java
 // 单元测试,用于检测上面的是否正确
 // src/test/java/com.neuedu.mapper/RoleMapperTest.java
 @SpringBootTest  // 单元测试

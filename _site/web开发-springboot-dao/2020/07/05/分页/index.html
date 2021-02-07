@@ -338,49 +338,81 @@
 
 <h2 id="配置类">配置类</h2>
 
-<pre><code class="language-JAVA">// com.neuedu/controller/UserController.java
-@EnableTransactionManagement // 事务管理
-@Configuration // 配置类,在Spring启动时优先加载
-@MapperScan("com.neuedu.mapper") // 写完这个就不用在入口类写了
-@Slf4j
-public class MybatisPlusConfig {
-    @Bean // 也是一种注入
-    public PaginationInterceptor paginationInterceptor(){
-        PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
-        paginationInterceptor.setCountSqlParser(new JsqlParserCountOptimize(true));
-        // SpringBoot启动时就可以加载运行这个类(准确的说是加载所有有@Bean标记的方法)
-        log.info("MybatisPlusConfig 配置成功");
-        return paginationInterceptor;
-    }
-}
-</code></pre>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="rouge-code"><pre><span class="c1">// com.neuedu/controller/UserController.java</span>
+<span class="nd">@EnableTransactionManagement</span> <span class="c1">// 事务管理</span>
+<span class="nd">@Configuration</span> <span class="c1">// 配置类,在Spring启动时优先加载</span>
+<span class="nd">@MapperScan</span><span class="o">(</span><span class="s">"com.neuedu.mapper"</span><span class="o">)</span> <span class="c1">// 写完这个就不用在入口类写了</span>
+<span class="nd">@Slf4j</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MybatisPlusConfig</span> <span class="o">{</span>
+    <span class="nd">@Bean</span> <span class="c1">// 也是一种注入</span>
+    <span class="kd">public</span> <span class="nc">PaginationInterceptor</span> <span class="nf">paginationInterceptor</span><span class="o">(){</span>
+        <span class="nc">PaginationInterceptor</span> <span class="n">paginationInterceptor</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PaginationInterceptor</span><span class="o">();</span>
+        <span class="n">paginationInterceptor</span><span class="o">.</span><span class="na">setCountSqlParser</span><span class="o">(</span><span class="k">new</span> <span class="nc">JsqlParserCountOptimize</span><span class="o">(</span><span class="kc">true</span><span class="o">));</span>
+        <span class="c1">// SpringBoot启动时就可以加载运行这个类(准确的说是加载所有有@Bean标记的方法)</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="s">"MybatisPlusConfig 配置成功"</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">paginationInterceptor</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <h2 id="实体类">实体类</h2>
 
-<pre><code class="language-JAVA">@TableName("user")
-@Data
-public class User {
-    @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
-    private String username;
-    private String password;
-    private String birthday;
-    private String sex;
-    private String address;
-}
-</code></pre>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre><span class="nd">@TableName</span><span class="o">(</span><span class="s">"user"</span><span class="o">)</span>
+<span class="nd">@Data</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
+    <span class="nd">@TableId</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">"id"</span><span class="o">,</span> <span class="n">type</span> <span class="o">=</span> <span class="nc">IdType</span><span class="o">.</span><span class="na">AUTO</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Long</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">username</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">password</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">birthday</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">sex</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">address</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <h2 id="接口类">接口类</h2>
 
 <p>这里可能会产生一个疑问, 要是看后面的xml, 这个架构实际上是 MyBatis, 但是这里却使用了 MyBatisPlus 中的接口的声明方法(同时这个插件也是 MyBatisPlus的插件). 但是这实际上是奏效的, 在单元测试中既可以使用 MyBatisPlus 自带的 insert, update 等, 也可以使用自己在这里定义的 selectPageVo . 或许是这两个架构存在共通之处. 其实结合官网上的资料, MyBatisPlus是对 MyBatis 的一个扩展, 基本只有扩展, 没有修改, 所以这里的兼容也是可以理解的.</p>
 
-<pre><code class="language-JAVA">// 实际上这里 @Repository 也可以
-@Mapper
-public interface UserMapper extends BaseMapper&lt;User&gt; {
-    IPage&lt;User&gt; selectPageVo(Page&lt;?&gt; page);
-}
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="c1">// 实际上这里 @Repository 也可以</span>
+<span class="nd">@Mapper</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserMapper</span> <span class="kd">extends</span> <span class="nc">BaseMapper</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="o">{</span>
+    <span class="nc">IPage</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="nf">selectPageVo</span><span class="o">(</span><span class="nc">Page</span><span class="o">&lt;?&gt;</span> <span class="n">page</span><span class="o">);</span>
+<span class="o">}</span>
 
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <h2 id="xml">xml</h2>
 
@@ -464,18 +496,29 @@ public interface UserMapper extends BaseMapper&lt;User&gt; {
 
 <h3 id="java对象转json">java对象转json</h3>
 
-<pre><code class="language-JAVA">@Test
-void Page() {
-    Page page = new Page();
-    page.setSize(2L);
-    page.setCurrent(3L);
-    IPage&lt;User&gt; ipage = userMapper.selectPageVo(page);
-    // 字符可以转为Object
-    // 将对象转为JSON字符串
-    String json = JSON.toJSONString(ipage);
-    log.info(json);
-}
-</code></pre>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre><span class="nd">@Test</span>
+<span class="kt">void</span> <span class="nf">Page</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nc">Page</span> <span class="n">page</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Page</span><span class="o">();</span>
+    <span class="n">page</span><span class="o">.</span><span class="na">setSize</span><span class="o">(</span><span class="mi">2L</span><span class="o">);</span>
+    <span class="n">page</span><span class="o">.</span><span class="na">setCurrent</span><span class="o">(</span><span class="mi">3L</span><span class="o">);</span>
+    <span class="nc">IPage</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="n">ipage</span> <span class="o">=</span> <span class="n">userMapper</span><span class="o">.</span><span class="na">selectPageVo</span><span class="o">(</span><span class="n">page</span><span class="o">);</span>
+    <span class="c1">// 字符可以转为Object</span>
+    <span class="c1">// 将对象转为JSON字符串</span>
+    <span class="nc">String</span> <span class="n">json</span> <span class="o">=</span> <span class="no">JSON</span><span class="o">.</span><span class="na">toJSONString</span><span class="o">(</span><span class="n">ipage</span><span class="o">);</span>
+    <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="n">json</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -485,13 +528,19 @@ void Page() {
 
 <h3 id="json转java对象">json转java对象</h3>
 
-<pre><code class="language-JAVA">@Test
-public void testJsonTransUser() {
-    String json = "{\"address\":\"天津\",\"birthday\":\"2011-01-01\",\"sex\":\"女\",\"username\":\"张三\"}";
-    User user1 = JSON.parseObject(json, User.class);
-    log.info(user1.getAddress());
-}
-</code></pre>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">testJsonTransUser</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nc">String</span> <span class="n">json</span> <span class="o">=</span> <span class="s">"{\"address\":\"天津\",\"birthday\":\"2011-01-01\",\"sex\":\"女\",\"username\":\"张三\"}"</span><span class="o">;</span>
+    <span class="nc">User</span> <span class="n">user1</span> <span class="o">=</span> <span class="no">JSON</span><span class="o">.</span><span class="na">parseObject</span><span class="o">(</span><span class="n">json</span><span class="o">,</span> <span class="nc">User</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="n">user1</span><span class="o">.</span><span class="na">getAddress</span><span class="o">());</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <pre><code class="language-BASH">天津
 </code></pre>

@@ -443,39 +443,64 @@ mybatis-plus:
 
 <h3 id="接口类mapper">接口类(Mapper)</h3>
 
-<pre><code class="language-JAVA">// 接口类,注意继承关系,为下文单元测试
-// src/main/java/com.neuedu/mapper/RoleMapper.java
-@Mapper
-public interface RoleMapper extends BaseMapper&lt;Role&gt; {
-}
-</code></pre>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="c1">// 接口类,注意继承关系,为下文单元测试</span>
+<span class="c1">// src/main/java/com.neuedu/mapper/RoleMapper.java</span>
+<span class="nd">@Mapper</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">RoleMapper</span> <span class="kd">extends</span> <span class="nc">BaseMapper</span><span class="o">&lt;</span><span class="nc">Role</span><span class="o">&gt;</span> <span class="o">{</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <h3 id="单元测试">单元测试</h3>
 
 <p>在类名上 ctrl+shift+T 创建单元测试
 在新建的单元测试类上面加入注解@SpringBootTest</p>
 
-<pre><code class="language-JAVA">// 单元测试,用于检测上面的是否正确
-// src/test/java/com.neuedu.mapper/RoleMapperTest.java
-@SpringBootTest  // 单元测试
-@Slf4j           // 日志
-class RoleMapperTest {
-    @Autowired
-    private RoleMapper roleMapper;
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="rouge-code"><pre><span class="c1">// 单元测试,用于检测上面的是否正确</span>
+<span class="c1">// src/test/java/com.neuedu.mapper/RoleMapperTest.java</span>
+<span class="nd">@SpringBootTest</span>  <span class="c1">// 单元测试</span>
+<span class="nd">@Slf4j</span>           <span class="c1">// 日志</span>
+<span class="kd">class</span> <span class="nc">RoleMapperTest</span> <span class="o">{</span>
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">RoleMapper</span> <span class="n">roleMapper</span><span class="o">;</span>
 
-    @Test
-    public void selectAll() {
-        log.info(roleMapper.toString());
-    }
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">selectAll</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="n">roleMapper</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+    <span class="o">}</span>
 
-    @Test
-    public void insert() {
-        Role role = new Role();
-        role.setRoleName("管理员");
-        roleMapper.insert(role);
-    }
-}
-</code></pre>
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">insert</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">Role</span> <span class="n">role</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Role</span><span class="o">();</span>
+        <span class="n">role</span><span class="o">.</span><span class="na">setRoleName</span><span class="o">(</span><span class="s">"管理员"</span><span class="o">);</span>
+        <span class="n">roleMapper</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">role</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 
                 <hr style="visibility: hidden;">

@@ -335,38 +335,69 @@
 
 <h4 id="引用本类的成员变量和成员函数">引用本类的成员变量和成员函数</h4>
 
-<pre><code class="language-JAVA">public class Student {
-    int rollno;
-    String name;
-    float fee;
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+</pre></td><td class="rouge-code"><pre><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Student</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">rollno</span><span class="o">;</span>
+    <span class="nc">String</span> <span class="n">name</span><span class="o">;</span>
+    <span class="kt">float</span> <span class="n">fee</span><span class="o">;</span>
 
-    Student() {
-        System.out.println("default constructor");
-    }
+    <span class="nc">Student</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"default constructor"</span><span class="o">);</span>
+    <span class="o">}</span>
 
-    // 如果不用this,则此处的形参名无法赋值给成员变量
-    Student(int rollno, String name, float fee) {
-        // 此处如果想重用Student的默认构造函数的话需要 this(),如果写就一定要在第一行,否则编译错误
-        this();
-        this.rollno = rollno;
-        this.name = name;
-        this.fee = fee;
-    }
+    <span class="c1">// 如果不用this,则此处的形参名无法赋值给成员变量</span>
+    <span class="nc">Student</span><span class="o">(</span><span class="kt">int</span> <span class="n">rollno</span><span class="o">,</span> <span class="nc">String</span> <span class="n">name</span><span class="o">,</span> <span class="kt">float</span> <span class="n">fee</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 此处如果想重用Student的默认构造函数的话需要 this(),如果写就一定要在第一行,否则编译错误</span>
+        <span class="k">this</span><span class="o">();</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">rollno</span> <span class="o">=</span> <span class="n">rollno</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">fee</span> <span class="o">=</span> <span class="n">fee</span><span class="o">;</span>
+    <span class="o">}</span>
 
-    void f2() {
-        System.out.println("hello");
-    }
+    <span class="kt">void</span> <span class="nf">f2</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"hello"</span><span class="o">);</span>
+    <span class="o">}</span>
 
-    void f1() {
-        // 实际上这里 用 this.f2() 和 f2()效果是一样的
-        f2();
-    }
+    <span class="kt">void</span> <span class="nf">f1</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// 实际上这里 用 this.f2() 和 f2()效果是一样的</span>
+        <span class="n">f2</span><span class="o">();</span>
+    <span class="o">}</span>
 
-    public static void main(String[] args) {
-        new Student(1, "1", 1).f1();
-    }
-}
-</code></pre>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">new</span> <span class="nf">Student</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="s">"1"</span><span class="o">,</span> <span class="mi">1</span><span class="o">).</span><span class="na">f1</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <h4 id="调用构造函数">调用构造函数</h4>
 
@@ -378,31 +409,55 @@
 
 <h4 id="在构造函数中作为参数传递">在构造函数中作为参数传递</h4>
 
-<pre><code class="language-JAVA">class B {
-    A4 obj;
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+</pre></td><td class="rouge-code"><pre><span class="kd">class</span> <span class="nc">B</span> <span class="o">{</span>
+    <span class="no">A4</span> <span class="n">obj</span><span class="o">;</span>
 
-    B(A4 obj) {
-        this.obj = obj;
-    }
+    <span class="no">B</span><span class="o">(</span><span class="no">A4</span> <span class="n">obj</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">obj</span> <span class="o">=</span> <span class="n">obj</span><span class="o">;</span>
+    <span class="o">}</span>
 
-    void display() {
-        System.out.println(obj.data);// using data member of A4 class
-    }
-}
+    <span class="kt">void</span> <span class="nf">display</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">obj</span><span class="o">.</span><span class="na">data</span><span class="o">);</span><span class="c1">// using data member of A4 class</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 
-class A4 {
-    int data = 10;
+<span class="kd">class</span> <span class="nc">A4</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">data</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
 
-    A4() {
-        B b = new B(this);
-        b.display();
-    }
+    <span class="no">A4</span><span class="o">()</span> <span class="o">{</span>
+        <span class="no">B</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="no">B</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+        <span class="n">b</span><span class="o">.</span><span class="na">display</span><span class="o">();</span>
+    <span class="o">}</span>
 
-    public static void main(String args[]) {
-        A4 a = new A4();
-    }
-}
-</code></pre>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span> <span class="n">args</span><span class="o">[])</span> <span class="o">{</span>
+        <span class="no">A4</span> <span class="n">a</span> <span class="o">=</span> <span class="k">new</span> <span class="no">A4</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>可看到A4与B之间互相引用(类似于指针的关系), 创建A的时候创建B, 然后把A的引用传入来初始化B里面指向A的引用</p>
 

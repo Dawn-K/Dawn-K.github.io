@@ -494,23 +494,39 @@ login() {
 但是并不是完善的解决方案.
 最好如下操作.</p>
 
-<pre><code class="language-JAVA">// src\main\java\com\neuedu\config\GlobalCorsConfig.java
-// 过滤器
-@Configuration
-public class GlobalCorsConfig {
-    @Bean
-    public CorsFilter corsFilter() {
-        CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOrigin("*");
-        config.setAllowCredentials(true);
-        config.addAllowedMethod("*");
-        config.addAllowedHeader("*");
-        UrlBasedCorsConfigurationSource configSource = new UrlBasedCorsConfigurationSource();
-        configSource.registerCorsConfiguration("/**", config);
-        return new CorsFilter(configSource);
-    }
-}
-</code></pre>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="rouge-code"><pre><span class="c1">// src\main\java\com\neuedu\config\GlobalCorsConfig.java</span>
+<span class="c1">// 过滤器</span>
+<span class="nd">@Configuration</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">GlobalCorsConfig</span> <span class="o">{</span>
+    <span class="nd">@Bean</span>
+    <span class="kd">public</span> <span class="nc">CorsFilter</span> <span class="nf">corsFilter</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">CorsConfiguration</span> <span class="n">config</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">CorsConfiguration</span><span class="o">();</span>
+        <span class="n">config</span><span class="o">.</span><span class="na">addAllowedOrigin</span><span class="o">(</span><span class="s">"*"</span><span class="o">);</span>
+        <span class="n">config</span><span class="o">.</span><span class="na">setAllowCredentials</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+        <span class="n">config</span><span class="o">.</span><span class="na">addAllowedMethod</span><span class="o">(</span><span class="s">"*"</span><span class="o">);</span>
+        <span class="n">config</span><span class="o">.</span><span class="na">addAllowedHeader</span><span class="o">(</span><span class="s">"*"</span><span class="o">);</span>
+        <span class="nc">UrlBasedCorsConfigurationSource</span> <span class="n">configSource</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">UrlBasedCorsConfigurationSource</span><span class="o">();</span>
+        <span class="n">configSource</span><span class="o">.</span><span class="na">registerCorsConfiguration</span><span class="o">(</span><span class="s">"/**"</span><span class="o">,</span> <span class="n">config</span><span class="o">);</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">CorsFilter</span><span class="o">(</span><span class="n">configSource</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 
                 <hr style="visibility: hidden;">

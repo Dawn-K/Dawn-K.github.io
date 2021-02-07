@@ -5,6 +5,7 @@ date: 2019-08-06
 tags: [CodeNote]
 categories: [CodeNote]
 ---
+
 # SparseTable
 
 ## RMQ问题

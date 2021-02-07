@@ -350,140 +350,261 @@
 
 <h3 id="实体类">实体类</h3>
 
-<pre><code class="language-JAVA">// 实体类,在之前的基础上改成了MP模式,书写更加简单那
-// com.neuedu/entity/User.java
-@TableName("user")
-@Data
-public class User {
-    @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
-    private String username;
-    private String password;
-    private String birthday;
-    private String sex;
-    private String address;
-}
-</code></pre>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre><span class="c1">// 实体类,在之前的基础上改成了MP模式,书写更加简单那</span>
+<span class="c1">// com.neuedu/entity/User.java</span>
+<span class="nd">@TableName</span><span class="o">(</span><span class="s">"user"</span><span class="o">)</span>
+<span class="nd">@Data</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span> <span class="o">{</span>
+    <span class="nd">@TableId</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">"id"</span><span class="o">,</span> <span class="n">type</span> <span class="o">=</span> <span class="nc">IdType</span><span class="o">.</span><span class="na">AUTO</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">Integer</span> <span class="n">id</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">username</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">password</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">birthday</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">sex</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">address</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <h3 id="接口类">接口类</h3>
 
-<pre><code class="language-JAVA">// 定义业务方法
-// com.neuedu/service/UserService.java
-public interface UserService {
-    //    boolean login(String username,String pwd);
-    boolean login(User user);
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre><span class="c1">// 定义业务方法</span>
+<span class="c1">// com.neuedu/service/UserService.java</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserService</span> <span class="o">{</span>
+    <span class="c1">//    boolean login(String username,String pwd);</span>
+    <span class="kt">boolean</span> <span class="nf">login</span><span class="o">(</span><span class="nc">User</span> <span class="n">user</span><span class="o">);</span>
 
-    //    参数封装为对象之后,如果在user加字段,就可以直接改变,不需要改变参数
-    boolean register(User user);
+    <span class="c1">//    参数封装为对象之后,如果在user加字段,就可以直接改变,不需要改变参数</span>
+    <span class="kt">boolean</span> <span class="nf">register</span><span class="o">(</span><span class="nc">User</span> <span class="n">user</span><span class="o">);</span>
 
-}
+<span class="o">}</span>
 
-</code></pre>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <h3 id="业务类">业务类</h3>
 
-<pre><code class="language-JAVA">// com.neuedu/service/impl/UserServiceImpl/UserServiceImpl.java
-@Service
-public class UserServiceImpl implements UserService {
-    @Autowired
-    private UserMapper userMapper;
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+</pre></td><td class="rouge-code"><pre><span class="c1">// com.neuedu/service/impl/UserServiceImpl/UserServiceImpl.java</span>
+<span class="nd">@Service</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserServiceImpl</span> <span class="kd">implements</span> <span class="nc">UserService</span> <span class="o">{</span>
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">UserMapper</span> <span class="n">userMapper</span><span class="o">;</span>
 
-    public HashMap&lt;String, Integer&gt; userLoginCount = new HashMap&lt;&gt;();
+    <span class="kd">public</span> <span class="nc">HashMap</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">userLoginCount</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">&lt;&gt;();</span>
 
-    @Override
-    public boolean login(User user) {
-        QueryWrapper queryWrapper = new QueryWrapper();
-        String userName = user.getUsername();
-        queryWrapper.eq("username", userName);
-        List&lt;User&gt; list = userMapper.selectList(queryWrapper);
-        if (list.size() &gt; 0) {
-            String password = list.get(0).getPassword();
-            if (password.equals(user.getPassword())) {
-                return true;
-            } else {
-                int count = 0;
-                if (userLoginCount.containsKey(userName)) {
-                    count = userLoginCount.get(userName);
-                }
-                if (count &gt;= 5) {
-                    return false;
-                } else {
-                    userLoginCount.put(userName, count + 1);
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">login</span><span class="o">(</span><span class="nc">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">QueryWrapper</span> <span class="n">queryWrapper</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">QueryWrapper</span><span class="o">();</span>
+        <span class="nc">String</span> <span class="n">userName</span> <span class="o">=</span> <span class="n">user</span><span class="o">.</span><span class="na">getUsername</span><span class="o">();</span>
+        <span class="n">queryWrapper</span><span class="o">.</span><span class="na">eq</span><span class="o">(</span><span class="s">"username"</span><span class="o">,</span> <span class="n">userName</span><span class="o">);</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">userMapper</span><span class="o">.</span><span class="na">selectList</span><span class="o">(</span><span class="n">queryWrapper</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">list</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">String</span> <span class="n">password</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="mi">0</span><span class="o">).</span><span class="na">getPassword</span><span class="o">();</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">password</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">getPassword</span><span class="o">()))</span> <span class="o">{</span>
+                <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+            <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">userLoginCount</span><span class="o">.</span><span class="na">containsKey</span><span class="o">(</span><span class="n">userName</span><span class="o">))</span> <span class="o">{</span>
+                    <span class="n">count</span> <span class="o">=</span> <span class="n">userLoginCount</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">userName</span><span class="o">);</span>
+                <span class="o">}</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">count</span> <span class="o">&gt;=</span> <span class="mi">5</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+                <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                    <span class="n">userLoginCount</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">userName</span><span class="o">,</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
+                    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
 
-    @Override
-    public boolean register(User user) {
-//        先查询,再插入
-        QueryWrapper queryWrapper = new QueryWrapper();
-        queryWrapper.eq("username", user.getUsername());
-        List&lt;User&gt; list = userMapper.selectList(queryWrapper);
-        if (list.size() &gt; 0) {
-            return false;
-        }
-        userMapper.insert(user);
-        return true;
-    }
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">register</span><span class="o">(</span><span class="nc">User</span> <span class="n">user</span><span class="o">)</span> <span class="o">{</span>
+<span class="c1">//        先查询,再插入</span>
+        <span class="nc">QueryWrapper</span> <span class="n">queryWrapper</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">QueryWrapper</span><span class="o">();</span>
+        <span class="n">queryWrapper</span><span class="o">.</span><span class="na">eq</span><span class="o">(</span><span class="s">"username"</span><span class="o">,</span> <span class="n">user</span><span class="o">.</span><span class="na">getUsername</span><span class="o">());</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">User</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">userMapper</span><span class="o">.</span><span class="na">selectList</span><span class="o">(</span><span class="n">queryWrapper</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">list</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span>
+        <span class="n">userMapper</span><span class="o">.</span><span class="na">insert</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span>
 
-}
-</code></pre>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <h3 id="单元测试">单元测试</h3>
 
-<pre><code class="language-JAVA">// com.neuedu/service/impl/UserServiceImplTest.java
-@SpringBootTest
-@Slf4j
-class UserServiceImplTest {
-    @Autowired
-    private UserService userService;
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+</pre></td><td class="rouge-code"><pre><span class="c1">// com.neuedu/service/impl/UserServiceImplTest.java</span>
+<span class="nd">@SpringBootTest</span>
+<span class="nd">@Slf4j</span>
+<span class="kd">class</span> <span class="nc">UserServiceImplTest</span> <span class="o">{</span>
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">UserService</span> <span class="n">userService</span><span class="o">;</span>
 
-    @Autowired
-    private PaginationInterceptor paginationInterceptor;
+    <span class="nd">@Autowired</span>
+    <span class="kd">private</span> <span class="nc">PaginationInterceptor</span> <span class="n">paginationInterceptor</span><span class="o">;</span>
 
-    @Test
-    void testConfig() {
-        Assert.assertNotNull(paginationInterceptor);
-    }
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">testConfig</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">Assert</span><span class="o">.</span><span class="na">assertNotNull</span><span class="o">(</span><span class="n">paginationInterceptor</span><span class="o">);</span>
+    <span class="o">}</span>
 
-    @Test
-    void login() {
-        log.info(userService + "");
-        User user = new User();
-        user.setUsername("张三");
-        boolean bool = userService.login(user);
-        Assert.assertTrue(bool);
-    }
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">login</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="n">userService</span> <span class="o">+</span> <span class="s">""</span><span class="o">);</span>
+        <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">User</span><span class="o">();</span>
+        <span class="n">user</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="s">"张三"</span><span class="o">);</span>
+        <span class="kt">boolean</span> <span class="n">bool</span> <span class="o">=</span> <span class="n">userService</span><span class="o">.</span><span class="na">login</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+        <span class="nc">Assert</span><span class="o">.</span><span class="na">assertTrue</span><span class="o">(</span><span class="n">bool</span><span class="o">);</span>
+    <span class="o">}</span>
 
-    @Test
-    void login6times() {
-        for (int i = 0; i &lt; 6; ++i) {
-            log.info(userService + "");
-            User user = new User();
-            user.setUsername("张三");
-            boolean bool = userService.login(user);
-            log.info(i + " " + bool);
-            if (i == 5) {
-                Assert.assertFalse(bool);
-            }
-        }
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">login6times</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="n">userService</span> <span class="o">+</span> <span class="s">""</span><span class="o">);</span>
+            <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">User</span><span class="o">();</span>
+            <span class="n">user</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="s">"张三"</span><span class="o">);</span>
+            <span class="kt">boolean</span> <span class="n">bool</span> <span class="o">=</span> <span class="n">userService</span><span class="o">.</span><span class="na">login</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+            <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="n">i</span> <span class="o">+</span> <span class="s">" "</span> <span class="o">+</span> <span class="n">bool</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">5</span><span class="o">)</span> <span class="o">{</span>
+                <span class="nc">Assert</span><span class="o">.</span><span class="na">assertFalse</span><span class="o">(</span><span class="n">bool</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
 
-    }
+    <span class="o">}</span>
 
-    @Test
-    void register() {
-        log.info(userService + "");
-        User user = new User();
-        user.setUsername("zhangsan");
-        boolean bool = userService.register(user);
-//        检查返回值
-        Assert.assertTrue(bool);
-    }
-}
-</code></pre>
+    <span class="nd">@Test</span>
+    <span class="kt">void</span> <span class="nf">register</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">log</span><span class="o">.</span><span class="na">info</span><span class="o">(</span><span class="n">userService</span> <span class="o">+</span> <span class="s">""</span><span class="o">);</span>
+        <span class="nc">User</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">User</span><span class="o">();</span>
+        <span class="n">user</span><span class="o">.</span><span class="na">setUsername</span><span class="o">(</span><span class="s">"zhangsan"</span><span class="o">);</span>
+        <span class="kt">boolean</span> <span class="n">bool</span> <span class="o">=</span> <span class="n">userService</span><span class="o">.</span><span class="na">register</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+<span class="c1">//        检查返回值</span>
+        <span class="nc">Assert</span><span class="o">.</span><span class="na">assertTrue</span><span class="o">(</span><span class="n">bool</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 
                 <hr style="visibility: hidden;">
