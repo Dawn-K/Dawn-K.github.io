@@ -275,6 +275,81 @@
             ">
     			
 <div class="post-preview">
+    <a href="/codenote/2019/08/06/%E5%B7%AE%E5%88%86%E4%B8%8E%E5%89%8D%E7%BC%80%E5%92%8C/" target="_blank">
+        <h2 class="post-title">
+            「CodeNote」 差分与前缀和
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            差分与前缀和
+
+绪论
+
+差分与前缀是两个相反的过程,其中差分旨在以递推的形式记录数组元素,前缀和是以求和的方式灵活地面对区间询问
+
+区间加常数
+
+
+  给定一个序列𝑎(初值全为0)。有很多次操作，每个操作形如： l r k
+
+  意为将𝑎[𝑙,𝑟]中的每个值加上𝑘
+
+  最后输出整个数组。 复杂度要求O(𝑛).允许离线
+
+
+这个有朴素的算法,就是老老实实一点点加,但是面对大量数据,就显得力不...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on August
+        6, 2019
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/codenote/2019/08/06/%E5%8D%A1%E7%89%B9%E5%85%B0%E6%95%B0/" target="_blank">
+        <h2 class="post-title">
+            「CodeNote」 卡特兰数
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            [组合数学]卡特兰数
+
+[TOC]
+
+卡特兰数是在复习数据结构时遇到的一个问题。
+
+问题描述
+
+最初的问题是这样：
+
+
+  有n个元素按a1,a2,a3…an的次序依次进栈(容量无穷)，且每个元素只允许进一次栈，则可能的出栈序列有多少种？
+
+
+这个问题在数量少的情况下可以进行模拟，但是仔细思索这是一个组合数学的问题。
+
+
+
+递归写法
+
+
+  首先，我们设f（n）=序列个数为n的出栈序列种数。...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on August
+        6, 2019
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/codenote/2019/08/06/%E5%8D%95%E8%B0%83%E6%A0%88%E4%B8%8E%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/" target="_blank">
         <h2 class="post-title">
             「CodeNote」 单调栈与单调队列
@@ -569,73 +644,6 @@ Trie树是一种高级数据结构,用于解决多模式串匹配问题(KMP算�
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/codenote/2019/08/06/SparseTable%E9%97%AE%E9%A2%98/" target="_blank">
-        <h2 class="post-title">
-            「CodeNote」 SparseTable问题
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            SparseTable
-
-RMQ问题
-
-
-  RMQ (Range Minimum/Maximum Query)问题是指：对于长度为n的数列A，回答若干询问RMQ(A,i,j)(i,j&lt;=n)，返回数列A中下标在i,j里的最小(大）值，也就是说，RMQ问题是指求区间最值的问题。
-
-
-算法
-
-
-  
-    朴素（即搜索），O(n)-O(qn) online。
-  
-  线段树，O(n)...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on August
-        6, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/codenote/2019/08/06/SPFA/" target="_blank">
-        <h2 class="post-title">
-            「CodeNote」 SPFA
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            SPFA
-
-简介
-
-SPFA算法是一种求单源最短路的算法，其BFS写法是基于Ford的队列优化。但是尤其其经常被卡，所以一般不用于正权图，而是用于负权图来求最短路或者判断负环。
-
-算法思想
-
-主要思路是动态逼近法，也就是不断优化，直到无法优化路径。
-
-
-  
-    我们设置一个队列，用于存储待优化的节点。
-  
-  
-    每次将队首节点出队，然后用其松弛邻接的结点，如果能松弛，则将可松...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on August
-        6, 2019
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -678,89 +686,89 @@ SPFA算法是一种求单源最短路的算法，其BFS写法是基于Ford的队
                 <a data-sort="0073" 
                     href="/archive/?tag=CodeNote"
                     title="CodeNote"
-                    rel="90">CodeNote</a>
+                    rel="92">CodeNote</a>
         
-                <a data-sort="0136" 
+                <a data-sort="0138" 
                     href="/archive/?tag=Web%E5%BC%80%E5%8F%91"
                     title="Web开发"
                     rel="27">Web开发</a>
         
-                <a data-sort="0150" 
+                <a data-sort="0152" 
                     href="/archive/?tag=SpringBoot"
                     title="SpringBoot"
                     rel="13">SpringBoot</a>
         
-                <a data-sort="0152" 
+                <a data-sort="0154" 
                     href="/archive/?tag=%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B"
                     title="软件工程"
                     rel="11">软件工程</a>
         
-                <a data-sort="0154" 
+                <a data-sort="0156" 
                     href="/archive/?tag=%E4%BA%92%E8%81%94%E7%BD%91%E6%9E%B6%E6%9E%84"
                     title="互联网架构"
                     rel="9">互联网架构</a>
         
-                <a data-sort="0156" 
+                <a data-sort="0158" 
                     href="/archive/?tag=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"
                     title="设计模式"
                     rel="7">设计模式</a>
         
-                <a data-sort="0156" 
+                <a data-sort="0158" 
                     href="/archive/?tag=android"
                     title="android"
                     rel="7">android</a>
         
-                <a data-sort="0157" 
+                <a data-sort="0159" 
                     href="/archive/?tag=DAO"
                     title="DAO"
                     rel="6">DAO</a>
         
-                <a data-sort="0158" 
+                <a data-sort="0160" 
                     href="/archive/?tag=Python"
                     title="Python"
                     rel="5">Python</a>
         
-                <a data-sort="0158" 
+                <a data-sort="0160" 
                     href="/archive/?tag=Vue"
                     title="Vue"
                     rel="5">Vue</a>
         
-                <a data-sort="0159" 
+                <a data-sort="0161" 
                     href="/archive/?tag=%E6%95%B0%E6%8D%AE%E5%BA%93"
                     title="数据库"
                     rel="4">数据库</a>
         
-                <a data-sort="0159" 
+                <a data-sort="0161" 
                     href="/archive/?tag=Unity"
                     title="Unity"
                     rel="4">Unity</a>
         
-                <a data-sort="0159" 
+                <a data-sort="0161" 
                     href="/archive/?tag=VSCode%E5%AD%A6%E4%B9%A0"
                     title="VSCode学习"
                     rel="4">VSCode学习</a>
         
-                <a data-sort="0160" 
+                <a data-sort="0162" 
                     href="/archive/?tag=%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"
                     title="版本控制"
                     rel="3">版本控制</a>
         
-                <a data-sort="0160" 
+                <a data-sort="0162" 
                     href="/archive/?tag=View"
                     title="View"
                     rel="3">View</a>
         
-                <a data-sort="0161" 
+                <a data-sort="0163" 
                     href="/archive/?tag=Java"
                     title="Java"
                     rel="2">Java</a>
         
-                <a data-sort="0161" 
+                <a data-sort="0163" 
                     href="/archive/?tag=Kotlin"
                     title="Kotlin"
                     rel="2">Kotlin</a>
         
-                <a data-sort="0161" 
+                <a data-sort="0163" 
                     href="/archive/?tag=Linux"
                     title="Linux"
                     rel="2">Linux</a>

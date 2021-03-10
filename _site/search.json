@@ -1,6 +1,22 @@
 [
   
     {
+      "title"    : "「CodeNote」 红黑树",
+      "subtitle" : "",
+      "tags"     : "CodeNote",
+      "url"      : "/codenote/2021/03/09/%E7%BA%A2%E9%BB%91%E6%A0%91/",
+      "date"     : "2021-03-09 00:00:00 +0800"
+    } ,
+  
+    {
+      "title"    : "「CodeNote」 AVL",
+      "subtitle" : "",
+      "tags"     : "CodeNote",
+      "url"      : "/codenote/2021/03/08/AVL/",
+      "date"     : "2021-03-08 00:00:00 +0800"
+    } ,
+  
+    {
       "title"    : "「软件工程-设计模式」 适配器模式",
       "subtitle" : "",
       "tags"     : "软件工程, 设计模式",
