@@ -1,0 +1,1944 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="From ashes to the empire">
+    <meta name="keywords" content="Dawnk , Dawn-K , dawnk , 黄玄的博客, Dawn-K's Blog, 博客, 个人网站, ACM , 算法竞赛">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Open Graph -->
+    <meta property="og:title"
+        content="「Python」 NLP基础概念学习笔记 - Dawn-K's Blog">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="">
+    
+    <meta property="article:published_time" content=" 2020-05-20T00:00:00Z">
+    
+    
+    
+    <meta property="article:tag" content="Python">
+    
+    
+    <meta property="og:image" content="https://dawn-k.gitlab.io/img/daze.jpg">
+    <meta property="og:url" content="https://dawn-k.gitlab.io/_posts/Python/2020-05-20-NLP%BB%F9%B4%A1%B8%C5%C4%EE%D1%A7%CF%B0%B1%CA%BC%C7/">
+    <meta property="og:site_name" content="Dawn-K's Blog">
+
+    <title>「Python」 NLP基础概念学习笔记 - Dawn-K's Blog</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://dawn-k.gitlab.io/_posts/Python/2020-05-20-NLP%BB%F9%B4%A1%B8%C5%C4%EE%D1%A7%CF%B0%B1%CA%BC%C7/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href=" /css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href=" /css/hux-blog.min.css">
+
+    <!-- <link rel="stylesheet" href="http://yandex.st/highlightjs/7.1/styles/default.min.css">
+    <script src="http://yandex.st/highlightjs/7.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> -->
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"
+        type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    </script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+        type="text/javascript"></script>
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Dawn-K's Blog</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="huxblog_navbar">
+                <div class="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-2018%B6%E0%D0%A31/">「CodeNote」 2018多校1</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-ACW100(%B2%EE%B7%D6+%CB%BC%CE%AC)/">「CodeNote」 ACW100(差分+思维)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-ACW101(%B2%EE%B7%D6+%CB%BC%CE%AC)/">「CodeNote」 ACW101(差分+思维)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-ACW102(%B6%FE%B7%D6+%CB%BC%CE%AC)/">「CodeNote」 ACW102(二分+思维)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-ACW104(%CA%FD%D1%A7)/">「CodeNote」 ACW104(数学)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-ACW105(%BE%F9%B7%D6%D6%BD%C5%C6+%CB%BC%CE%AC)/">「CodeNote」 ACW105(均分纸牌+思维)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-ACW95(%D7%B4%D1%B9+%CB%D1%CB%F7)/">「CodeNote」 ACW95(状压+搜索)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-ACW96(DP+%CA%FD%D1%A7)/">「CodeNote」 ACW96(DP+数学)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-ACW97(%D4%BC%CA%FD%BA%CD+%B7%D6%D6%CE)/">「CodeNote」 ACW97(约数和+分治)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-CF%20%CB%A2%CC%E2%D6%AE%C2%B7/">「CodeNote」 CF 刷题之路</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-CF1020C(%C3%B6%BE%D9+%CC%B0%D0%C4)/">「CodeNote」 CF1020C(枚举+贪心)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-CF1027D(dfs+%CD%BC%C2%DB)/">「CodeNote」 CF1027D(dfs+图论)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-CF1029C(%CC%B0%D0%C4)/">「CodeNote」 CF1029C(贪心)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-CF1034A(%CA%FD%C2%DB)/">「CodeNote」 CF1034A(数论)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-CF1138B(%CA%FD%D1%A7+%B1%A9%C1%A6)/">「CodeNote」 CF1138B(数学+暴力)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-CF1186C(%CB%BC%CE%AC+%CE%BB%D4%CB%CB%E3)/">「CodeNote」 CF1186C(思维+位运算)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-CF455A(%BC%F2%B5%A5dp)/">「CodeNote」 CF455A(简单dp)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-HDU2546(01%B1%B3%B0%FC)/">「CodeNote」 HDU2546(01背包)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-HDU3466/">「CodeNote」 HDU3466</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-MR%CB%D8%D0%D4%CC%BD%B2%E2/">「CodeNote」 MR素性探测</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-N%CA%FD%C2%EB%CE%CA%CC%E2/">「CodeNote」 N数码问题</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-POJ1651(Multiplication%20Puzzle)(%C7%F8%BC%E4dp)/">「CodeNote」 POJ1651(Multiplication Puzzle)(区间dp)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/2019-08-06-README/">「」 README</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-SPFA/">「CodeNote」 SPFA</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-SparseTable%CE%CA%CC%E2/">「CodeNote」 SparseTable问题</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-Trie%CA%F7/">「CodeNote」 Trie树</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-%5B%CA%FD%BE%DD%BD%E1%B9%B9%B8%B4%CF%B0%5D%B6%FE%B2%E6%CA%F7/">「CodeNote」 [数据结构复习]二叉树</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-%A1%BE%B2%B9%CC%E2%A1%BF%B4%F3%C3%AB%CA%FD%C2%EC%D2%CF/">「CodeNote」 【补题】大毛数蚂蚁</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-%B1%B3%B0%FC%D1%A7%CF%B0%D0%C4%B5%C3/">「CodeNote」 背包学习心得</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-%B2%A2%B2%E9%BC%AF%BD%F8%BD%D7/">「CodeNote」 并查集进阶</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-%B2%EE%B7%D6%D3%EB%C7%B0%D7%BA%BA%CD/">「CodeNote」 差分与前缀和</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-%B5%A5%B5%F7%D5%BB%D3%EB%B5%A5%B5%F7%B6%D3%C1%D0/">「CodeNote」 单调栈与单调队列</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-%B6%FE%B2%E6%CA%F7%B5%DD%B9%E9%D3%A6%D3%C3/">「CodeNote」 二叉树递归应用</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-%B6%FE%B2%E6%CA%F7%B9%B9%D4%EC/">「CodeNote」 二叉树构造</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-%B7%D6%B2%E3%D7%EE%B6%CC%C2%B7/">「CodeNote」 分层最短路</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-%B8%A1%B5%E3%CE%F3%B2%EE/">「CodeNote」 浮点误差</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-%BC%AB%B4%F3%CD%C5(%D7%EE%B4%F3%CD%EA%C8%AB%D7%D3%CD%BC)/">「CodeNote」 极大团(最大完全子图)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-%BC%C6%CB%E3%BC%B8%BA%CE/">「CodeNote」 计算几何</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-%BF%A8%CC%D8%C0%BC%CA%FD/">「CodeNote」 卡特兰数</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-%C1%B4%CA%BD%C7%B0%CF%F2%D0%C7/">「CodeNote」 链式前向星</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-%C2%ED%C0%AD%B3%B5%CB%E3%B7%A8/">「CodeNote」 马拉车算法</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-%C7%F8%BC%E4%B5%DAk%B4%F3/">「CodeNote」 区间第k大</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-%C8%D5%C6%DA%BC%C6%CB%E3/">「CodeNote」 日期计算</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-%CA%F7%B5%C4%D6%B1%BE%B6/">「CodeNote」 树的直径</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-%CA%F7%D7%B4%CA%FD%D7%E9/">「CodeNote」 树状数组</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-%CA%FD%BE%DD%BD%E1%B9%B9/">「CodeNote」 数据结构</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-%CA%FD%C2%DB%B3%F5%CC%BD/">「CodeNote」 数论初探</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-%CA%FD%CE%BBdp/">「CodeNote」 数位dp</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-%CB%B9%CC%D8%C1%D6%B9%AB%CA%BD/">「CodeNote」 斯特林公式</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-%CB%E6%CA%D6%BC%C7/">「CodeNote」 随手记</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-06-%D1%B5%C1%B7%C1%AA%C3%CB%B5%DA%D2%BB%B3%A1/">「CodeNote」 训练联盟第一场</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-07-K%B6%CC%C2%B7/">「CodeNote」 K短路</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-09-%B4%D3KMP%B5%BDAC%D7%D4%B6%AF%BB%FA/">「CodeNote」 从KMP到AC自动机</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-08-19-__int128/">「CodeNote」 __int128</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-09-14-%CF%DF%D0%D4%BB%F9/">「CodeNote」 线性基</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-09-17-19%C5%A3%BF%CD%B5%DA%CB%C4%B3%A1D(%CA%FD%D1%A7+%CB%BC%CE%AC)/">「CodeNote」 19牛客第四场D(数学+思维)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-09-17-19%C5%A3%BF%CD%B6%E0%D0%A3%B5%DA%CB%C4%B3%A1C(%C3%B6%BE%D9+%C7%B0%D7%BA%BA%CD+%B5%A5%B5%F7%D5%BB)/">「CodeNote」 19牛客多校第四场C(枚举+前缀和+单调栈)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-09-22-JAVA%BC%F2%B5%A5%D3%EF%B7%A8/">「CodeNote」 JAVA简单语法</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-09-26-%B4%CE%D0%A1%C9%FA%B3%C9%CA%F7/">「CodeNote」 次小生成树</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-10-01-%CB%AB%C1%AC%CD%A8%B7%D6%C1%BF/">「CodeNote」 双连通分量</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-10-02-%B1%B6%D4%F6%C7%F3LCA/">「CodeNote」 倍增求LCA</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-10-05-tarjan%C7%F3LCA/">「CodeNote」 tarjan求LCA</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-10-07-%B6%FE%B7%D6%CD%BC%C6%A5%C5%E4/">「CodeNote」 二分图匹配</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-10-22-HDU1281(%B6%FE%B7%D6%CD%BC%C6%A5%C5%E4+%D0%D0%C1%D0%BD%A8%CD%BC)/">「CodeNote」 HDU1281(二分图匹配+行列建图)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-10-22-JAVA%B8%DF%BE%AB%B6%C8%B8%A1%B5%E3%CA%FD/">「CodeNote」 JAVA高精度浮点数</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-10-22-%CD%F8%C2%E7%C1%F7%C8%EB%C3%C5/">「CodeNote」 网络流入门</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-10-23-HDU1045(%B6%FE%B7%D6%CD%BC%C6%A5%C5%E4+%D0%D0%C1%D0%CB%F5%B5%E3%BD%A8%CD%BC)/">「CodeNote」 HDU1045(二分图匹配+行列缩点建图)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-10-24-CF1249D1(%CB%BC%CE%AC+set+%CF%DF%B6%CE%B8%B2%B8%C7)/">「CodeNote」 CF1249D1(思维+set+线段覆盖)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-10-24-CF1249E(%CB%BC%CE%AC+dp)/">「CodeNote」 CF1249E(思维+dp)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-10-25-CF1238D1(%CB%BC%CE%AC+%C0%A8%BA%C5%C6%A5%C5%E4)/">「CodeNote」 CF1238D1(思维+括号匹配)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-10-25-CF1239A(%CB%BC%CE%AC+%EC%B3%B2%A8%C4%C7%C6%F5)/">「CodeNote」 CF1239A(思维+斐波那契)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-10-26-CF1248E(%C4%A3%C4%E2+STL)/">「CodeNote」 CF1248E(模拟+STL)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-11-01-CF1244D(%CB%BC%CE%AC+%CA%F7)/">「CodeNote」 CF1244D(思维+树)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-11-05-CF1166C(%CB%BC%CE%AC+%B6%FE%B7%D6+%CA%FD%D1%A7)/">「CodeNote」 CF1166C(思维+二分+数学)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-11-05-CF1200D(%C4%A3%C4%E2)/">「CodeNote」 CF1200D(模拟)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-11-05-%C5%A3%BF%CD135D(%BD%D7%B3%CB%C4%A9%CE%B20)/">「CodeNote」 牛客135D(阶乘末尾0)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-11-07-%B7%B4%CF%F2%CD%D8%C6%CB/">「CodeNote」 反向拓扑</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-11-10-CF1165D(%D4%BC%CA%FD)/">「CodeNote」 CF1165D(约数)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2019-11-10-CF1165E(%B9%B1%CF%D7)/">「CodeNote」 CF1165E(贡献)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Unity/2019-12-04-unity%D1%A7%CF%B0%B1%CA%BC%C7/">「Unity」 unity学习笔记</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2020-04-08-yxcDP%B7%D6%CE%F6/">「CodeNote」 yxcDP分析</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2020-04-10-%D4%CB%CB%E3%B7%FB%D3%C5%CF%C8%BC%B6/">「CodeNote」 运算符优先级</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2020-04-23-CF538B(%BC%F2%B5%A5%C4%A3%C4%E2)/">「CodeNote」 CF538B(简单模拟)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2020-04-23-CF743C(%CB%BC%CE%AC)/">「CodeNote」 CF743C(思维)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2020-04-23-cf1197D(%B2%A9%DE%C4+%D2%C6%B6%AF%C6%E5%D7%D3)/">「CodeNote」 cf1197D(博弈+移动棋子)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2020-04-23-n%B5%C4m%BB%AE%B7%D6/">「CodeNote」 n的m划分</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2020-04-23-%CD%EA%C8%AB%B1%B3%B0%FC%BC%C6%CA%FD/">「CodeNote」 完全背包计数</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2020-04-25-ACW224(%B6%FE%B7%D6+%CA%F7%D7%B4%CA%FD%D7%E9)/">「CodeNote」 ACW224(二分+树状数组)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/%C8%ED%BC%FE%B9%A4%B3%CC/2020-05-03-UML%C0%E0%CD%BC/">「软件工程」 UML类图</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/%C8%ED%BC%FE%B9%A4%B3%CC/2020-05-04-UML%D3%C3%C0%FD%CD%BC/">「软件工程」 UML用例图</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/%C8%ED%BC%FE%B9%A4%B3%CC/2020-05-05-UML%BB%EE%B6%AF%CD%BC/">「软件工程」 UML活动图</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/%C9%EE%B6%C8%D1%A7%CF%B0/2020-05-06-tf%BB%B7%BE%B3%B0%B2%D7%B0/">「深度学习」 tf环境安装</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Python/2020-05-20-NLP%BB%F9%B4%A1%B8%C5%C4%EE%D1%A7%CF%B0%B1%CA%BC%C7/">「Python」 NLP基础概念学习笔记</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Python/2020-05-20-Python%D3%EF%B7%A8%B2%B9%B3%E4/">「Python」 Python语法补充</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Python/2020-05-20-Pytorch%B1%CA%BC%C7/">「Python」 Pytorch笔记</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Python/2020-05-20-Py%D5%FD%D4%F2%B1%ED%B4%EF%CA%BD%D1%A7%CF%B0%B1%CA%BC%C7/">「Python」 Py正则表达式学习笔记</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Python/2020-05-20-Py%D7%D6%B7%FB%B4%AE%D1%A7%CF%B0%B1%CA%BC%C7/">「Python」 Py字符串学习笔记</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/%C8%ED%BC%FE%B9%A4%B3%CC/2020-05-27-%B4%FA%C2%EB%B4%F3%C8%AB2_%D4%C4%B6%C1%B1%CA%BC%C7/">「软件工程」 代码大全2_阅读笔记</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/%CA%FD%BE%DD%BF%E2/2020-06-04-SQL/">「数据库」 SQL</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/%CA%FD%BE%DD%BF%E2/2020-06-04-%B2%E9%D1%AF%B4%A6%C0%ED%D3%EB%B2%E9%D1%AF%D3%C5%BB%AF/">「数据库」 查询处理与查询优化</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/%CA%FD%BE%DD%BF%E2/2020-06-04-%CA%FD%BE%DD%BF%E2%B0%B2%C8%AB/">「数据库」 数据库安全</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/%CA%FD%BE%DD%BF%E2/2020-06-04-%CA%FD%BE%DD%BF%E2%B1%E0%B3%CC/">「数据库」 数据库编程</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Web%BF%AA%B7%A2/%BB%A5%C1%AA%CD%F8%BC%DC%B9%B9/2020-06-07-JavaWeb%BB%B7%BE%B3%C5%E4%D6%C3/">「Web开发-互联网架构」 JavaWeb环境配置</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Web%BF%AA%B7%A2/%BB%A5%C1%AA%CD%F8%BC%DC%B9%B9/2020-06-07-JavaWeb%BF%AA%B7%A2/">「Web开发-互联网架构」 JavaWeb开发</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2020-06-26-HDU1171(01%B1%B3%B0%FC%BB%F2%C4%B8%BA%AF%CA%FD)/">「CodeNote」 HDU1171(01背包或母函数)</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2020-06-26-%C4%B8%BA%AF%CA%FD/">「CodeNote」 母函数</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2020-06-26-%C5%A3%BF%CD%D0%A1%B0%D725%CC%E2%BD%E2/">「CodeNote」 牛客小白25题解</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Kotlin/2020-06-27-Kotlin%BB%F9%B4%A1%D3%EF%B7%A8/">「Kotlin」 Kotlin基础语法</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Kotlin/2020-06-27-Kotlin%D3%EBAndroidSDK%BB%B7%BE%B3%C5%E4%D6%C3/">「Kotlin」 Kotlin与AndroidSDK环境配置</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Web%BF%AA%B7%A2/%BB%A5%C1%AA%CD%F8%BC%DC%B9%B9/2020-06-29-Java/">「Web开发-互联网架构」 Java</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Web%BF%AA%B7%A2/%BB%A5%C1%AA%CD%F8%BC%DC%B9%B9/2020-06-29-Linux%C5%E4%D6%C3/">「Web开发-互联网架构」 Linux配置</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Web%BF%AA%B7%A2/%BB%A5%C1%AA%CD%F8%BC%DC%B9%B9/2020-06-29-%D7%DC%C0%C0/">「Web开发-互联网架构」 总览</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Web%BF%AA%B7%A2/%BB%A5%C1%AA%CD%F8%BC%DC%B9%B9/2020-06-30-Maven/">「Web开发-互联网架构」 Maven</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Web%BF%AA%B7%A2/%BB%A5%C1%AA%CD%F8%BC%DC%B9%B9/2020-06-30-Nginx/">「Web开发-互联网架构」 Nginx</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Web%BF%AA%B7%A2/%BB%A5%C1%AA%CD%F8%BC%DC%B9%B9/2020-06-30-Redis/">「Web开发-互联网架构」 Redis</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/%B0%E6%B1%BE%BF%D8%D6%C6/2020-06-30-git%BB%F9%B4%A1%C3%FC%C1%EE/">「版本控制」 git基础命令</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Web%BF%AA%B7%A2/%BB%A5%C1%AA%CD%F8%BC%DC%B9%B9/2020-06-30-mysql_Linux/">「Web开发-互联网架构」 mysql_Linux</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/%B0%E6%B1%BE%BF%D8%D6%C6/2020-06-30-sourcetree%B0%B2%D7%B0%D3%EB%C6%C6%BD%E2/">「版本控制」 sourcetree安装与破解</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Web%BF%AA%B7%A2/SpringBoot/2020-07-01-SpringBoot%C5%E4%D6%C3/">「Web开发-SpringBoot」 SpringBoot配置</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/%B0%E6%B1%BE%BF%D8%D6%C6/2020-07-01-git%CA%B9%D3%C3%BC%BC%C7%C9/">「版本控制」 git使用技巧</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Web%BF%AA%B7%A2/SpringBoot/DAO/2020-07-02-MyBatis/">「SpringBoot-DAO」 MyBatis</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Web%BF%AA%B7%A2/SpringBoot/DAO/2020-07-02-MyBatisPlus/">「SpringBoot-DAO」 MyBatisPlus</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Web%BF%AA%B7%A2/SpringBoot/2020-07-02-SpringBootWeb%C5%E4%D6%C3%CE%C4%BC%FE/">「Web开发-SpringBoot」 SpringBootWeb配置文件</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Web%BF%AA%B7%A2/SpringBoot/DAO/2020-07-02-log4j/">「SpringBoot-DAO」 log4j</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Web%BF%AA%B7%A2/SpringBoot/DAO/2020-07-02-%CA%FD%BE%DD%BF%E2%C1%AC%BD%D3%B3%D8/">「SpringBoot-DAO」 数据库连接池</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Web%BF%AA%B7%A2/SpringBoot/View/2020-07-03-RESTful/">「SpringBoot-View」 RESTful</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Web%BF%AA%B7%A2/SpringBoot/Service/2020-07-03-Service%B2%E3%BD%E9%C9%DC/">「SpringBoot-Service」 Service层介绍</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Web%BF%AA%B7%A2/SpringBoot/2020-07-03-SpringBoot%D2%B5%CE%F1%D7%DC%C0%C0/">「Web开发-SpringBoot」 SpringBoot业务总览</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Web%BF%AA%B7%A2/SpringBoot/View/2020-07-03-%BD%D3%BF%DA%B2%E3/">「SpringBoot-View」 接口层</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Web%BF%AA%B7%A2/SpringBoot/DAO/2020-07-05-%B7%D6%D2%B3/">「SpringBoot-DAO」 分页</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Web%BF%AA%B7%A2/Vue/2020-07-06-Vue%B0%B2%D7%B0/">「Web开发-Vue」 Vue安装</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Web%BF%AA%B7%A2/Vue/2020-07-07-AJAX/">「Web开发-Vue」 AJAX</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Web%BF%AA%B7%A2/Vue/2020-07-07-Vue%B2%D9%D7%F7/">「Web开发-Vue」 Vue操作</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Web%BF%AA%B7%A2/SpringBoot/View/2020-07-08-JWT/">「SpringBoot-View」 JWT</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Web%BF%AA%B7%A2/Vue/2020-07-08-LocalStorage/">「Web开发-Vue」 LocalStorage</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Web%BF%AA%B7%A2/Vue/2020-07-11-Vue%C4%BF%C2%BC%BD%E1%B9%B9/">「Web开发-Vue」 Vue目录结构</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Web%BF%AA%B7%A2/SpringBoot/DAO/2020-07-13-%C1%B4%BD%D3%B2%E9%D1%AF/">「SpringBoot-DAO」 链接查询</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Unity/2020-10-01-ezy-slice%D1%A7%CF%B0%B1%CA%BC%C7/">「Unity」 ezy-slice学习笔记</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Unity/2020-10-19-obj%C4%A3%D0%CD%BC%F2%BB%AF/">「Unity」 obj模型简化</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Unity/2020-10-19-%C8%FD%CE%AC%D6%D8%BD%A8/">「Unity」 三维重建</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Linux/2020-12-01-debian%B5%C4%B0%B2%D7%B0%D3%EB%C5%E4%D6%C3/">「Linux」 debian的安装与配置</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/VSCode%D1%A7%CF%B0/2020-12-29-markdown/">「VSCode学习」 markdown</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/VSCode%D1%A7%CF%B0/2020-12-29-vimium/">「VSCode学习」 vimium</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/VSCode%D1%A7%CF%B0/2020-12-30-vim/">「VSCode学习」 vim</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/VSCode%D1%A7%CF%B0/2021-01-03-remote/">「VSCode学习」 remote</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/android/2021-01-04-%BB%B7%BE%B3%C5%E4%D6%C3/">「android」 环境配置</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/android/2021-01-04-%D0%C2%BD%A8%BB%EE%B6%AF/">「android」 新建活动</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/android/2021-01-05-%B8%C5%C0%C0/">「android」 概览</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Java/2021-01-16-%BB%F9%B4%A1%D3%EF%B7%A8/">「Java」 基础语法</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/android/2021-01-17-%C4%DA%C8%DD%CC%E1%B9%A9%C6%F7/">「android」 内容提供器</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/android/2021-01-18-MVC/">「android」 MVC</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/android/2021-01-20-%B6%E0%C3%BD%CC%E5/">「android」 多媒体</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Java/2021-01-20-%C3%E6%CF%F2%B6%D4%CF%F3/">「Java」 面向对象</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2021-01-22-STL%B3%A3%D3%C3%D7%E9%BC%FE/">「CodeNote」 STL常用组件</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/android/2021-01-24-%CD%F8%C2%E7/">「android」 网络</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/Linux/2021-02-08-Shell/">「Linux」 Shell</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/%C8%ED%BC%FE%B9%A4%B3%CC/%C9%E8%BC%C6%C4%A3%CA%BD/2021-02-21-%B9%A4%B3%A7%C4%A3%CA%BD/">「软件工程-设计模式」 工厂模式</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/%C8%ED%BC%FE%B9%A4%B3%CC/%C9%E8%BC%C6%C4%A3%CA%BD/2021-02-21-%BD%A8%D4%EC%D5%DF%C4%A3%CA%BD/">「软件工程-设计模式」 建造者模式</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/%C8%ED%BC%FE%B9%A4%B3%CC/%C9%E8%BC%C6%C4%A3%CA%BD/2021-02-22-%B5%A5%C0%FD%C4%A3%CA%BD/">「软件工程-设计模式」 单例模式</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/%C8%ED%BC%FE%B9%A4%B3%CC/%C9%E8%BC%C6%C4%A3%CA%BD/2021-02-22-%B8%C5%CA%F6/">「软件工程-设计模式」 概述</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/%C8%ED%BC%FE%B9%A4%B3%CC/%C9%E8%BC%C6%C4%A3%CA%BD/2021-02-22-%CA%CA%C5%E4%C6%F7%C4%A3%CA%BD/">「软件工程-设计模式」 适配器模式</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/%C8%ED%BC%FE%B9%A4%B3%CC/%C9%E8%BC%C6%C4%A3%CA%BD/2021-02-22-%D4%AD%D0%CD%C4%A3%CA%BD/">「软件工程-设计模式」 原型模式</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/%C8%ED%BC%FE%B9%A4%B3%CC/%C9%E8%BC%C6%C4%A3%CA%BD/2021-02-22-%D7%B0%CA%CE%C6%F7%C4%A3%CA%BD/">「软件工程-设计模式」 装饰器模式</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2021-03-08-AVL/">「CodeNote」 AVL</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/_posts/CodeNote/2021-03-09-%BA%EC%BA%DA%CA%F7/">「CodeNote」 红黑树</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/archive/">Archive</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li class="search-icon">
+                            <a href="javascript:void(0)">
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <script>
+        // Drop Bootstarp low-performance Navbar
+        // Use customize navbar with high-quality material design animation
+        // in high-perf jank-free CSS3 implementation
+        var $body = document.body;
+        var $toggle = document.querySelector('.navbar-toggle');
+        var $navbar = document.querySelector('#huxblog_navbar');
+        var $collapse = document.querySelector('.navbar-collapse');
+
+        var __HuxNav__ = {
+            close: function () {
+                $navbar.className = " ";
+                // wait until animation end.
+                setTimeout(function () {
+                    // prevent frequently toggle
+                    if ($navbar.className.indexOf('in') < 0) {
+                        $collapse.style.height = "0px"
+                    }
+                }, 400)
+            },
+            open: function () {
+                $collapse.style.height = "auto"
+                $navbar.className += " in";
+            }
+        }
+
+        // Bind Event
+        $toggle.addEventListener('click', function (e) {
+            if ($navbar.className.indexOf('in') > 0) {
+                __HuxNav__.close()
+            } else {
+                __HuxNav__.open()
+            }
+        })
+
+        /**
+         * Since Fastclick is used to delegate 'touchstart' globally
+         * to hack 300ms delay in iOS by performing a fake 'click',
+         * Using 'e.stopPropagation' to stop 'touchstart' event from 
+         * $toggle/$collapse will break global delegation.
+         * 
+         * Instead, we use a 'e.target' filter to prevent handler
+         * added to document close HuxNav.  
+         *
+         * Also, we use 'click' instead of 'touchstart' as compromise
+         */
+        document.addEventListener('click', function (e) {
+            if (e.target == $toggle) return;
+            if (e.target.className == 'icon-bar') return;
+            __HuxNav__.close();
+        })
+    </script>
+    <!-- Search -->
+<div class="search-page">
+  <div class="search-icon-close-container">
+    <span class="search-icon-close">
+      <i class="fa fa-chevron-down"></i>
+    </span>
+  </div>
+  <div class="search-main container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <form></form>
+        <input type="text" id="search-input" placeholder="$ grep...">
+        </form>
+        <div id="search-results" class="mini-post-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/home-bg.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+
+
+
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/img/home-bg.jpg');
+        background: ;
+    }
+
+    
+</style>
+
+<header class="intro-header" >
+
+    <div class="header-mask"></div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/archive/?tag=Python" title="Python">Python</a>
+                        
+                    </div>
+                    <h1>「Python」 NLP基础概念学习笔记</h1>
+                    
+                    <h2 class="subheading"></h2>
+                    <span class="meta">Posted by Dawn-K's Blog on May 20, 2020</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <!-- Multi-Lingual -->
+                
+
+				<h1 id="nlp学习知识点">NLP学习知识点</h1>
+
+<ul>
+  <li>什么是自然语言处理? 其主要有哪些应用? 能够处理什么样的问题?</li>
+  <li>什么是机器翻译? 了解统计机器翻译与神经机器翻译大致原理?</li>
+  <li>什么是数据语料? 数据语料主要有哪些获取途径与方法?</li>
+  <li>机器翻译使用的训练语料大体是哪些形式的? 什么是源语言和目标语言?</li>
+  <li>什么是数据清洗? 数据清洗的主要目的是什么? 有哪些常用的处理手段?</li>
+  <li>在数据清洗的过程中什么是长度比过滤? 为什么要进行长度比过滤?</li>
+  <li>什么是分词? 分词的主要作用是什么?</li>
+  <li>什么是子词切分? 为什么要进行子词切分操作?</li>
+  <li>什么是BLEU值? BLEU值的具体作用是什么?</li>
+</ul>
+
+<h1 id="nlp基础知识">NLP基础知识</h1>
+
+<h2 id="nlp">NLP</h2>
+
+<blockquote>
+  <p>什么是自然语言处理? 其主要有哪些应用? 能够处理什么样的问题?</p>
+</blockquote>
+
+<p>自然语言处理, 是人与机器之间沟通的桥梁.</p>
+
+<p>两个核心任务: NLU(自然语言理解)与NLG(自然语言生成)</p>
+
+<p>典型应用: 情感分析, 聊天机器人, 智能客服, 机器翻译</p>
+
+<h2 id="机器翻译">机器翻译</h2>
+
+<blockquote>
+  <p>什么是机器翻译? 了解统计机器翻译与神经机器翻译大致原理?</p>
+</blockquote>
+
+<p>机器翻译又称为自动翻译, 是利用计算机将一种自然语言(源语言)转换成另外一种自然(目标语言)语言的过程, 本质问题是如何实现两种不同语言之间的等价转换.</p>
+
+<p>统计机器翻译(SMT)的基本思想是通过<strong>对大量的平行语料进行统计分析, 构建统计翻译模型</strong>, 进而使用此模型进行翻译. 从早期基于词的机器翻译已经过渡到基于短语的翻译, 并正在融合句法信息, 以进一步提高翻译的精确性.</p>
+
+<p>神经机器翻译(NMT), 它基本的建模框架是端到端序列生成模型, 是将输入序列变换到输出序列的一种框架和方法.</p>
+
+<p>其核心部分有两点, 一是如何表征输入序列(编码), 二是如何获得输出序列(解码).</p>
+
+<p>对于机器翻译而言不仅包括了编码和解码两个部分, 还引入了额外的机制——注意力机制, 来帮助我们进行调序.</p>
+
+<p>对比:
+神经机器翻译模型不需要词对齐步骤, 基于注意力机制就可以动态获得词对齐信息, 但是相对统计机器翻译来说, 包含信息少, 对齐效果弱.</p>
+
+<p>神经机器翻译相对流利, 但是忠实度上稍差.</p>
+
+<p>改善神经机器翻译的核心: 注意力机制</p>
+
+<h2 id="数据语料">数据语料</h2>
+
+<blockquote>
+  <p>什么是数据语料? 数据语料主要有哪些获取途径与方法?</p>
+</blockquote>
+
+<p>语料库是以电子计算机为载体承载语言知识的基础资源; 真实语料需要经过加工(分析和处理), 才能成为有用的资源.</p>
+
+<p>获取途径和方法</p>
+
+<ul>
+  <li>爬虫</li>
+</ul>
+
+<p>最好的方法就是自己写爬虫, 优点是可以自由的定制想要的数据, 缺点是周期较长.</p>
+
+<ul>
+  <li>数据平台</li>
+</ul>
+
+<p>国内一些机构贡献了一些数据集出来, 大家可以在上面下载.</p>
+
+<ul>
+  <li>
+    <p>数据堂</p>
+  </li>
+  <li>
+    <p>搜狗实验室</p>
+  </li>
+  <li>
+    <p>自然语言处理与信息检索共享平台</p>
+  </li>
+  <li>
+    <p>聚数力</p>
+  </li>
+</ul>
+
+<h2 id="训练语料">训练语料</h2>
+
+<blockquote>
+  <p>机器翻译使用的训练语料大体是哪些形式的? 什么是源语言和目标语言?</p>
+</blockquote>
+
+<p>输入为源语言, 输出为目标语言, 这被称为端到端模型</p>
+
+<h2 id="分词">分词</h2>
+
+<blockquote>
+  <p>什么是分词? 分词的主要作用是什么?</p>
+</blockquote>
+
+<p>分词就是将句子, 段落, 文章这种长文本, 分解为以字词为单位的数据结构, 方便后续的处理分析工作. 本质是非结构化数据转化成结构化数据.</p>
+
+<p>‘词’这个粒度相对更适合分析</p>
+
+<p>深度学习中部分任务也可以分’字’</p>
+
+<p>三种分词的方式:</p>
+
+<ol>
+  <li>基于词典匹配</li>
+  <li>基于统计</li>
+  <li>基于深度学习</li>
+</ol>
+
+<h3 id="基于词典匹配的分词方式">基于词典匹配的分词方式</h3>
+
+<p>优点: 速度快、成本低</p>
+
+<p>缺点: 适应性不强, 不同领域效果差异大</p>
+
+<p>基本思想是基于词典匹配, 将待分词的中文文本根据一定规则切分和调整, 然后跟词典中的词语进行匹配, 匹配成功则按照词典的词分词, 匹配失败通过调整或者重新选择, 如此反复循环即可. 代表方法有基于正向最大匹配和基于逆向最大匹配及双向匹配法.</p>
+
+<h3 id="基于统计的分词方法">基于统计的分词方法</h3>
+
+<p>优点: 适应性较强</p>
+
+<p>缺点: 成本较高, 速度较慢</p>
+
+<p>这类目前常用的是算法是 HMM、CRF、SVM、深度学习 等算法, 比如stanford、Hanlp分词工具是基于CRF算法. 以CRF为例, 基本思路是对汉字进行标注训练, 不仅考虑了词语出现的频率, 还考虑上下文, 具备较好的学习能力, 因此其对歧义词和未登录词的识别都具有良好的效果.</p>
+
+<h3 id="基于深度学习">基于深度学习</h3>
+
+<p>优点: 准确率高、适应性强</p>
+
+<p>缺点: 成本高, 速度慢</p>
+
+<p>例如有人员尝试使用双向LSTM+CRF实现分词器, 其本质上是序列标注, 所以有通用性, 命名实体识别等都可以使用该模型, 据报道其分词器字符准确率可高达97.5%.</p>
+
+<p>常见的分词器都是使用机器学习算法和词典相结合, 一方面能够提高分词准确率, 另一方面能够改善领域适应性.</p>
+
+<h2 id="数据清洗">数据清洗</h2>
+
+<blockquote>
+  <p>什么是数据清洗? 数据清洗的主要目的是什么? 有哪些常用的处理手段?</p>
+</blockquote>
+
+<p>在对文本进行分析时, 对不符合要求的数据进行处理. 常见有几种:</p>
+
+<p>(1)数据重复处理</p>
+
+<p>(2)数据错误处理</p>
+
+<p>(3)数据缺失处理</p>
+
+<p>(4)数据异常处理</p>
+
+<p>数据清洗过程包括遗漏数据处理, 噪声数据处理, 以及不一致数据处理</p>
+
+<p>(一)   手工实现, 通过人工检查, 只要投入足够的人力物力财力, 也能发现所有错误, 但效率低下. 在大数据量的情况下, 几乎是不可能的.</p>
+
+<p>(二)  通过专门编写的应用程序, 这种方法能解决某个特定的问题, 但不够灵活, 特别是在清理过程需要反复进行(一般来说, 数据清理一遍就达到要求的很少)时, 导致程序复杂, 清理过程变化时, 工作量大. 而且这种方法也没有充分利用目前数据库提供的强大数据处理能力 .</p>
+
+<p>(三) 解决某类特定应用域的问题, 如根据概率统计学原理查找数值异常的记录, 对姓名、地址、邮政编码等进行清理, 这是目前研究得较多的领域, 也是应用最成功的一类. 如商用系统: Trillinm Software , System Match Maketr 等.</p>
+
+<p>(四)   与特定应用领域无关的数据清理, 这一部分的研究主要集中在清理重复的记录上, 如Data Cleanser, Data Blade Module , Integrity 系统等.</p>
+
+<p>分箱法或者回归法</p>
+
+<h2 id="子词切分">子词切分</h2>
+
+<blockquote>
+  <p>什么是子词切分? 为什么要进行子词切分操作?</p>
+</blockquote>
+
+<h3 id="bpe-算法">BPE 算法</h3>
+
+<p>分词主要的作用是缩小词典的长度, 词典长度过长会导致在训练的过程中消耗大量的算力. 我们将一些词继续细分, 使得词典长度缩小. 然后再采用BPE算法对未登录词进行处理.</p>
+
+<p>这样我们通过BPE得到了更加合适的词表了, 这个词表可能会出现一些不是单词的组合, 但是这个本身是有意义的一种形式, 加速NLP的学习, 提升不同词之间的语义的区分度.
+BPE在欧洲语系可能表现的更为有效一些, 主要由于欧洲语系中存在词缀等概念.</p>
+
+<h2 id="bleu">BLEU</h2>
+
+<blockquote>
+  <p>什么是BLEU值? BLEU值的具体作用是什么?</p>
+</blockquote>
+
+<p>BLEU(bilingual evaluation understudy)双语互译质量辅助工具, 本质上讲BLEU 就是用来衡量机器翻译文本与参考文本之间的相似程度的指标,</p>
+
+
+                <hr style="visibility: hidden;">
+                <ul class="pager">
+                    
+                    
+                </ul>
+                <hr style="visibility: hidden;">
+
+                
+
+                
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+
+<section>
+    
+        <hr class="hidden-sm hidden-xs">
+    
+    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+        
+        
+        
+        
+        
+                <a data-sort="0073" 
+                    href="/archive/?tag=CodeNote"
+                    title="CodeNote"
+                    rel="92">CodeNote</a>
+        
+                <a data-sort="0138" 
+                    href="/archive/?tag=Web%E5%BC%80%E5%8F%91"
+                    title="Web开发"
+                    rel="27">Web开发</a>
+        
+                <a data-sort="0152" 
+                    href="/archive/?tag=SpringBoot"
+                    title="SpringBoot"
+                    rel="13">SpringBoot</a>
+        
+                <a data-sort="0154" 
+                    href="/archive/?tag=%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B"
+                    title="软件工程"
+                    rel="11">软件工程</a>
+        
+                <a data-sort="0156" 
+                    href="/archive/?tag=%E4%BA%92%E8%81%94%E7%BD%91%E6%9E%B6%E6%9E%84"
+                    title="互联网架构"
+                    rel="9">互联网架构</a>
+        
+                <a data-sort="0158" 
+                    href="/archive/?tag=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"
+                    title="设计模式"
+                    rel="7">设计模式</a>
+        
+                <a data-sort="0158" 
+                    href="/archive/?tag=android"
+                    title="android"
+                    rel="7">android</a>
+        
+                <a data-sort="0159" 
+                    href="/archive/?tag=DAO"
+                    title="DAO"
+                    rel="6">DAO</a>
+        
+                <a data-sort="0160" 
+                    href="/archive/?tag=Python"
+                    title="Python"
+                    rel="5">Python</a>
+        
+                <a data-sort="0160" 
+                    href="/archive/?tag=Vue"
+                    title="Vue"
+                    rel="5">Vue</a>
+        
+                <a data-sort="0161" 
+                    href="/archive/?tag=%E6%95%B0%E6%8D%AE%E5%BA%93"
+                    title="数据库"
+                    rel="4">数据库</a>
+        
+                <a data-sort="0161" 
+                    href="/archive/?tag=Unity"
+                    title="Unity"
+                    rel="4">Unity</a>
+        
+                <a data-sort="0161" 
+                    href="/archive/?tag=VSCode%E5%AD%A6%E4%B9%A0"
+                    title="VSCode学习"
+                    rel="4">VSCode学习</a>
+        
+                <a data-sort="0162" 
+                    href="/archive/?tag=%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"
+                    title="版本控制"
+                    rel="3">版本控制</a>
+        
+                <a data-sort="0162" 
+                    href="/archive/?tag=View"
+                    title="View"
+                    rel="3">View</a>
+        
+                <a data-sort="0163" 
+                    href="/archive/?tag=Java"
+                    title="Java"
+                    rel="2">Java</a>
+        
+                <a data-sort="0163" 
+                    href="/archive/?tag=Kotlin"
+                    title="Kotlin"
+                    rel="2">Kotlin</a>
+        
+                <a data-sort="0163" 
+                    href="/archive/?tag=Linux"
+                    title="Linux"
+                    rel="2">Linux</a>
+    </div>
+</section>
+
+
+                <!-- Friends Blog -->
+                
+<hr>
+<h5>FRIENDS</h5>
+<ul class="list-inline">
+  
+  <li><a href="http://www.criinal.com/">Criinal</a></li>
+  
+</ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<!-- add support for mathjax by voleking-->
+
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'right',
+          // icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- SNS Link -->
+                
+
+
+<ul class="list-inline text-center">
+
+
+  
+  
+  
+  
+  
+  
+  <li>
+    <a target="_blank" href="https://github.com/Dawn-K">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+                <p class="copyright text-muted">
+                    Copyright &copy; Dawn-K's Blog 2021
+                    <br>
+                    Powered by <a href="http://huangxuan.me">Hux Blog</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="100px"
+                        height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Simple Jekyll Search -->
+<script src="/js/simple-jekyll-search.min.js"></script>
+
+<!-- Service Worker -->
+
+<script src="/js/snackbar.js "></script>
+<script src="/js/sw-registration.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+        var d = document, t = 'script',
+            o = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+
+
+
+
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function () {
+        var $nav = document.querySelector("nav");
+        if ($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        // interop with multilangual 
+        if ('' == 'true') {
+            _containerSelector = 'div.post-container.active'
+        } else {
+            _containerSelector = 'div.post-container'
+        }
+
+        // init
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        // clean
+        $(selector).html('')
+
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+<!-- Multi-Lingual -->
+
+
+<!-- Simple Jekyll Search -->
+<script>
+    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
+    function htmlDecode(input) {
+        var e = document.createElement('textarea');
+        e.innerHTML = input;
+        // handle case of empty input
+        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+    }
+
+    SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('search-results'),
+        json: '/search.json',
+        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
+        noResultsText: 'No results',
+        limit: 50,
+        fuzzy: false,
+        // a hack to get escaped subtitle unescaped. for some reason, 
+        // post.subtitle w/o escape filter nuke entire search.
+        templateMiddleware: function (prop, value, template) {
+            if (prop === 'subtitle' || prop === 'title') {
+                if (value.indexOf("code")) {
+                    return htmlDecode(value);
+                } else {
+                    return value;
+                }
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        var $searchPage = $('.search-page');
+        var $searchOpen = $('.search-icon');
+        var $searchClose = $('.search-icon-close');
+        var $searchInput = $('#search-input');
+        var $body = $('body');
+
+        $searchOpen.on('click', function (e) {
+            e.preventDefault();
+            $searchPage.toggleClass('search-active');
+            var prevClasses = $body.attr('class') || '';
+            setTimeout(function () {
+                $body.addClass('no-scroll');
+            }, 400)
+
+            if ($searchPage.hasClass('search-active')) {
+                $searchClose.on('click', function (e) {
+                    e.preventDefault();
+                    $searchPage.removeClass('search-active');
+                    $body.attr('class', prevClasses);  // from closure 
+                });
+                $searchInput.focus();
+            }
+        });
+    });
+</script>
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
