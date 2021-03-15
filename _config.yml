@@ -5,7 +5,7 @@ header-img: img/home-bg.jpg
 # email: huxpro@gmail.com
 description: "From ashes to the empire"
 keyword: "Dawnk , Dawn-K , dawnk , 黄玄的博客, Dawn-K's Blog, 博客, 个人网站, ACM , 算法竞赛"
-url: "https://dawn-k.gitlab.io" # your host, for absolute URL
+url: "https://dawnk.gitlab.io" # your host, for absolute URL
 baseurl: "" # for example, '/blog' if your blog hosted on 'host/blog'
 
 # Publish posts or collection documents with a future date.
@@ -34,7 +34,6 @@ exclude:
         "README.md",
         "README.zh.md",
     ]
-include: [_includes,_layouts,_posts,_site]
 anchorjs: true # if you want to customize anchor. check out line:181 of `post.html`
 # If you have timezone issue (e.g. #68) in China, uncomment to use this:
 #timezone: CN
@@ -76,7 +75,7 @@ netease_comment: false
 
 # Sidebar settings
 sidebar: true # whether or not using Sidebar.
-sidebar-about-description: "Dawnk 计算机本科生 | 退役ACMer | Vocaloid 爱好者"
+sidebar-about-description: "Dawnk | 计算机本科生 | 退役ACMer | Vocaloid 爱好者"
 sidebar-avatar: /img/daze.jpg # use absolute URL, seeing it's used in both `/` and `/about/`
 
 # Featured Tags
