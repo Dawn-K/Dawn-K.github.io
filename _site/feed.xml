@@ -3,10 +3,10 @@
   <channel>
     <title>Dawn-K's Blog</title>
     <description>From ashes to the empire</description>
-    <link>https://dawn-k.github.io/</link>
-    <atom:link href="https://dawn-k.github.io/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 10 Mar 2021 17:02:55 +0800</pubDate>
-    <lastBuildDate>Wed, 10 Mar 2021 17:02:55 +0800</lastBuildDate>
+    <link>https://dawn-k.gitlab.io/</link>
+    <atom:link href="https://dawn-k.gitlab.io/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Mon, 15 Mar 2021 13:51:23 +0800</pubDate>
+    <lastBuildDate>Mon, 15 Mar 2021 13:51:23 +0800</lastBuildDate>
     <generator>Jekyll v4.2.0</generator>
     
       <item>
@@ -68,8 +68,8 @@
 &lt;p&gt;关于上述的分析在叔父节点黑色的情况下少了一个过程: 就是如果插入到二叉树内侧, 需要通过旋转来转换到外侧. 以左子树内侧为例, 这个是因为, 叔父节点如果是黑色, 就必须面临祖父节点的右旋, 而右旋的时候, 就不可避免的接管父节点的右子树, 而根据上面的递归问题(也就是矛盾向上传导), 如果一个具有很大黑高的红色节点(或者红色子树)被交换到另一侧, 势必导致黑高的不等. 所以要通过旋转保证插入到外侧(也就是交换父子关系, 也就是转化为新的节点是原来的父节点, 然后刚插入的节点是现在的父节点).&lt;/p&gt;
 </description>
         <pubDate>Tue, 09 Mar 2021 00:00:00 +0800</pubDate>
-        <link>https://dawn-k.github.io/codenote/2021/03/09/%E7%BA%A2%E9%BB%91%E6%A0%91/</link>
-        <guid isPermaLink="true">https://dawn-k.github.io/codenote/2021/03/09/%E7%BA%A2%E9%BB%91%E6%A0%91/</guid>
+        <link>https://dawn-k.gitlab.io/codenote/2021/03/09/%E7%BA%A2%E9%BB%91%E6%A0%91/</link>
+        <guid isPermaLink="true">https://dawn-k.gitlab.io/codenote/2021/03/09/%E7%BA%A2%E9%BB%91%E6%A0%91/</guid>
         
         <category>CodeNote</category>
         
@@ -386,8 +386,8 @@
 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         <pubDate>Mon, 08 Mar 2021 00:00:00 +0800</pubDate>
-        <link>https://dawn-k.github.io/codenote/2021/03/08/AVL/</link>
-        <guid isPermaLink="true">https://dawn-k.github.io/codenote/2021/03/08/AVL/</guid>
+        <link>https://dawn-k.gitlab.io/codenote/2021/03/08/AVL/</link>
+        <guid isPermaLink="true">https://dawn-k.gitlab.io/codenote/2021/03/08/AVL/</guid>
         
         <category>CodeNote</category>
         
@@ -581,8 +581,8 @@
 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         <pubDate>Mon, 22 Feb 2021 00:00:00 +0800</pubDate>
-        <link>https://dawn-k.github.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</link>
-        <guid isPermaLink="true">https://dawn-k.github.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</guid>
+        <link>https://dawn-k.gitlab.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</link>
+        <guid isPermaLink="true">https://dawn-k.gitlab.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</guid>
         
         <category>软件工程</category>
         
@@ -805,8 +805,8 @@
 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         <pubDate>Mon, 22 Feb 2021 00:00:00 +0800</pubDate>
-        <link>https://dawn-k.github.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F/</link>
-        <guid isPermaLink="true">https://dawn-k.github.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F/</guid>
+        <link>https://dawn-k.gitlab.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F/</link>
+        <guid isPermaLink="true">https://dawn-k.gitlab.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F/</guid>
         
         <category>软件工程</category>
         
@@ -891,8 +891,8 @@
 &lt;/ul&gt;
 </description>
         <pubDate>Mon, 22 Feb 2021 00:00:00 +0800</pubDate>
-        <link>https://dawn-k.github.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E6%A6%82%E8%BF%B0/</link>
-        <guid isPermaLink="true">https://dawn-k.github.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E6%A6%82%E8%BF%B0/</guid>
+        <link>https://dawn-k.gitlab.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E6%A6%82%E8%BF%B0/</link>
+        <guid isPermaLink="true">https://dawn-k.gitlab.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E6%A6%82%E8%BF%B0/</guid>
         
         <category>软件工程</category>
         
@@ -990,8 +990,8 @@
 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         <pubDate>Mon, 22 Feb 2021 00:00:00 +0800</pubDate>
-        <link>https://dawn-k.github.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/</link>
-        <guid isPermaLink="true">https://dawn-k.github.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/</guid>
+        <link>https://dawn-k.gitlab.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/</link>
+        <guid isPermaLink="true">https://dawn-k.gitlab.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/</guid>
         
         <category>软件工程</category>
         
@@ -1122,8 +1122,8 @@
 &lt;p&gt;此外还有 登记式/静态内部类 和 枚举方法, 日后在探究.&lt;/p&gt;
 </description>
         <pubDate>Mon, 22 Feb 2021 00:00:00 +0800</pubDate>
-        <link>https://dawn-k.github.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</link>
-        <guid isPermaLink="true">https://dawn-k.github.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</guid>
+        <link>https://dawn-k.gitlab.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</link>
+        <guid isPermaLink="true">https://dawn-k.gitlab.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</guid>
         
         <category>软件工程</category>
         
@@ -1259,8 +1259,8 @@
 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         <pubDate>Sun, 21 Feb 2021 00:00:00 +0800</pubDate>
-        <link>https://dawn-k.github.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/21/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
-        <guid isPermaLink="true">https://dawn-k.github.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/21/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
+        <link>https://dawn-k.gitlab.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/21/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
+        <guid isPermaLink="true">https://dawn-k.gitlab.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/21/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
         
         <category>软件工程</category>
         
@@ -1516,8 +1516,8 @@
 &lt;a href=&quot;https://blog.csdn.net/ShuSheng0007/article/details/86644481&quot;&gt;抽象工厂模式&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Sun, 21 Feb 2021 00:00:00 +0800</pubDate>
-        <link>https://dawn-k.github.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/21/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</link>
-        <guid isPermaLink="true">https://dawn-k.github.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/21/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</guid>
+        <link>https://dawn-k.gitlab.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/21/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</link>
+        <guid isPermaLink="true">https://dawn-k.gitlab.io/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/21/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</guid>
         
         <category>软件工程</category>
         
@@ -1715,8 +1715,8 @@ fd mcd  &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; ~ &lt;span class=&quot;
 &lt;a href=&quot;https://missing-semester-cn.github.io/2020/shell-tools/&quot;&gt;MIT 6. NULL 中文讲义&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Mon, 08 Feb 2021 00:00:00 +0800</pubDate>
-        <link>https://dawn-k.github.io/linux/2021/02/08/Shell/</link>
-        <guid isPermaLink="true">https://dawn-k.github.io/linux/2021/02/08/Shell/</guid>
+        <link>https://dawn-k.gitlab.io/linux/2021/02/08/Shell/</link>
+        <guid isPermaLink="true">https://dawn-k.gitlab.io/linux/2021/02/08/Shell/</guid>
         
         <category>Linux</category>
         
