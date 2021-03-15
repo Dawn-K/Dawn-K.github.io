@@ -5,7 +5,7 @@ header-img: img/home-bg.jpg
 # email: huxpro@gmail.com
 description: "From ashes to the empire"
 keyword: "Dawnk , Dawn-K , dawnk , 黄玄的博客, Dawn-K's Blog, 博客, 个人网站, ACM , 算法竞赛"
-url: "https://dawnk.gitlab.io" # your host, for absolute URL
+url: "http://dawnk.gitee.io/" # your host, for absolute URL
 baseurl: "" # for example, '/blog' if your blog hosted on 'host/blog'
 
 # Publish posts or collection documents with a future date.
