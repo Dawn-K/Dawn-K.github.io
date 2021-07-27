@@ -7,7 +7,7 @@
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="description" content="From ashes to the empire">
-    <meta name="keywords" content="Dawnk , Dawn-K , dawnk , 黄玄的博客, Dawn-K's Blog, 博客, 个人网站, ACM , 算法竞赛">
+    <meta name="keywords" content="Dawnk, Dawn-K, dawnk, Dawn-K's Blog, 博客, 个人网站, ACM , 算法竞赛">
     <meta name="theme-color" content="#000000">
 
     <!-- Open Graph -->
@@ -109,6 +109,8 @@
                         <li>
                             <a href="/archive/">Archive</a>
                         </li>
+                        
+                        
                         
                         
                         
@@ -275,6 +277,284 @@
             ">
     			
 <div class="post-preview">
+    <a href="/codenote/2021/01/22/STL%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6/" target="_blank">
+        <h2 class="post-title">
+            「CodeNote」 STL常用组件
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            STL常用组件
+
+[toc]
+
+函数
+
+fill
+
+需要 algorithm
+fill速度和手动for赋值基本相同
+
+1
+2
+3
+4
+// 将a在[2,5)区间赋值为3
+fill(a+2,a+5,3);
+// 相比于memset, 它可以赋值任何数, 也可以对容器使用.
+fill(v.begin(),v.end(),5);
+
+
+黑科技
+
+自定义hash
+
+网上流行的一个简单实现如下
+
+1
+2...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on January
+        22, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/android/2021/01/20/%E5%A4%9A%E5%AA%92%E4%BD%93/" target="_blank">
+        <h2 class="post-title">
+            「android」 多媒体
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            多媒体
+
+[toc]
+
+通知
+
+书上的代码有一点过时, 所调用的方法的参数已经被废弃了.
+如果想在自己手机测试的话一定要在应用的设置中打开此应用的通知提示以及声音开关
+
+首先新建一个按钮, 名为 send_notice
+然后新建一个活动, 名为 NotificationActivity , 里面随便写个 TextView , 作为点击通知后的显示界面
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+1...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on January
+        20, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/java/2021/01/20/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" target="_blank">
+        <h2 class="post-title">
+            「Java」 面向对象
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            面向对象
+
+接口与抽象类的区别
+
+语法区别
+
+1)抽象类可以提供成员方法的实现细节, 而接口中只能存在 public abstract 方法; 
+2)抽象类中的成员变量可以是各种类型的, 而接口中的成员变量只能是 public static final类型的; 
+3)接口中不能含有静态代码块以及静态方法, 而抽象类可以有静态代码块和静态方法; 
+4)一个类只能继承一个抽象类, 而一个类却可以...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on January
+        20, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/android/2021/01/18/MVC/" target="_blank">
+        <h2 class="post-title">
+            「android」 MVC
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            MVC
+
+概述
+
+MVC (Model-View-Controller)：M是指逻辑模型，V是指视图模型，C则是控制器。一个逻辑模型可以对于多种视图模型. 而控制器就是为了保证数据一致. 这个与观察者模式相同.
+
+视图层(View)
+
+视图代表模型包含的数据的可视化。
+
+控制层(Controller)
+
+它控制数据流向模型对象，并在数据变化时更新视图。它使视图与模型分离开。控制业务逻辑的实现...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on January
+        18, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/android/2021/01/17/%E5%86%85%E5%AE%B9%E6%8F%90%E4%BE%9B%E5%99%A8/" target="_blank">
+        <h2 class="post-title">
+            「android」 内容提供器
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            内容提供器
+
+权限
+
+以拨号(之前是打开拨号界面, 此处是指直接拨号)为例分析权限申请和使用的过程.
+
+还是基于Intent, 和之前一样, 给一个按钮增加点击的监听器, 重载onClick, 写入如下内容. 为防止权限被拒绝时程序崩溃, 所以此处需要捕获异常.
+
+1
+2
+3
+4
+5
+6
+7
+8
+try {
+    // DIAL 是 打开拨号界面, CALL 是直接拨号,必须申请权限
+  ...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on January
+        17, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/java/2021/01/16/%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" target="_blank">
+        <h2 class="post-title">
+            「Java」 基础语法
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            基础语法
+
+关键字
+
+final
+
+final 类似cpp中的const, 表示常量.
+
+
+  final修饰类, 表示此类不可被继承
+  final修饰方法, 表示此方法在重载中不可被覆盖(覆盖和重写有什么区别), 且不能修饰构造函数.
+  final修饰成员或者局部变量, 表示此成员是常量, 只能在声明时赋值, 一旦赋值就不可修改.
+
+
+static
+
+static 表示静态, 相当于 ...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on January
+        16, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/android/2021/01/05/%E6%A6%82%E8%A7%88/" target="_blank">
+        <h2 class="post-title">
+            「android」 概览
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            [toc]
+@import “./环境配置.md” 
+@import “./新建活动.md” 
+@import “./内容提供器.md” 
+@import “./多媒体.md”
+
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on January
+        5, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/android/2021/01/04/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" target="_blank">
+        <h2 class="post-title">
+            「android」 环境配置
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            环境配置
+
+[toc]
+
+JDK
+
+先安装好1.8及以上的jdk.
+
+关闭hyper-V
+
+bcdedit /set hypervisorlaunchtype off
+
+
+Android Studio 安装
+
+可通过  jetbrain tools 一键安装. 安装时选择custom, 然后选择存放sdk的位置, 以及已有的jdk的位置, 然后预先安装的包全部勾选. 进行安装.
+
+Hello...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on January
+        4, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/android/2021/01/04/%E6%96%B0%E5%BB%BA%E6%B4%BB%E5%8A%A8/" target="_blank">
         <h2 class="post-title">
             「android」 新建活动
@@ -337,316 +617,6 @@ remote-ssh
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/vscode%E5%AD%A6%E4%B9%A0/2020/12/30/vim/" target="_blank">
-        <h2 class="post-title">
-            「VSCode学习」 vim
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            vim
-
-vscodevim配置
-
-1
-2
-3
-4
-5
-6
-7
-8
-"vim.useCtrlKeys": false,
-"vim.easymotion": true,
-"vim.easymotionKeys": "qwertyuiopasdfghjkl;zxcvbnm,",
-// 配置切换到Normal模式后,输入法自动切到英文
-"vim.autoSwitchInputMethod.defa...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on December
-        30, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/vscode%E5%AD%A6%E4%B9%A0/2020/12/29/vimium/" target="_blank">
-        <h2 class="post-title">
-            「VSCode学习」 vimium
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            vimium
-
-快捷键
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-
-向下/上/左/右移动  j/k/h/l
-向下/上跳动  d/u
-回到顶/尾部  gg/G
-窗口打开模式 本窗口/新窗口 f/F
-查找历史记录+书签   o/O
-关闭/恢复标签 x/X
-查找书签  b/B（当前/新窗口打开）
-选择左/右标签 J/K
-搜索...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on December
-        29, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/vscode%E5%AD%A6%E4%B9%A0/2020/12/29/markdown/" target="_blank">
-        <h2 class="post-title">
-            「VSCode学习」 markdown
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            markdown
-
-所需插件
-
-
-  Markdown All in One
-  Markdown Preview Enhanced
-  Markdown formatter
-
-
-使用技巧
-
-Markdown formatter
-
-安装后, 打开某个md文件, 使用vscode全局的格式化快捷键 进行格式化(我的已经改成Alt+F), 会提醒你选择配置文件(如果你也安装了Markdow Al...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on December
-        29, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/linux/2020/12/01/debian%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" target="_blank">
-        <h2 class="post-title">
-            「Linux」 debian的安装与配置
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            debian
-[toc]
-
-debian的版本
-
-debian有四个版本 stable  unstable testing sid. 先折腾stable版本.
-
-安装
-
-使用virtual box 进行安装,分区时选择 guide /home parti
-
-
-  
-    Graphics Install
-  
-  
-    Select a language. Choose English...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on December
-        1, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/unity/2020/10/19/%E4%B8%89%E7%BB%B4%E9%87%8D%E5%BB%BA/" target="_blank">
-        <h2 class="post-title">
-            「Unity」 三维重建
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            三维重建
-
-质点弹簧模型
-
-参考资料
-
-unity MassSpring -资源商店
-
-基于质点-弹簧模型的布模拟方法
-
-虚拟手术中基于质点弹簧建模及其切割技术研究
-
-模型介绍
-
-质点弹簧模型，即将物体的质量离散到一个个质点，质点之间再用弹簧连接来表现物体弹力、阻尼力等物理特性的模型。质点弹簧模型主要用于模拟布料
-
-连接质点的弹簧有三大类。
-
-
-  第一种是结构性弹簧，这种弹簧用于连接横向和...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on October
-        19, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/unity/2020/10/19/obj%E6%A8%A1%E5%9E%8B%E7%AE%80%E5%8C%96/" target="_blank">
-        <h2 class="post-title">
-            「Unity」 obj模型简化
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            obj模型简化
-
-SimpleLOD
-
-Unity3D关于模型合并，模型简化
-
-SIMPLELOD使用方法
-
-在unity asset store 安装插件
-
-(收费插件,但是有破解版)
-
-  1.合并模型(若顶点数超过unity单个Mesh 65535个顶点限制的话，会自动生成多个子物体)
-
-
-
-  2.模型简化
-
-
-
-  3.烘焙Atlas
-
-
-Unity使用Mesh Simplify ...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on October
-        19, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/unity/2020/10/01/ezy-slice%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_blank">
-        <h2 class="post-title">
-            「Unity」 ezy-slice学习笔记
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            ezy-slice 使用笔记
-
-[toc]
-
-下载
-
-ezy-slice
-
-ezyslice-examples-scenes（可选）
-
-学习资料
-
-参考资料
-
-【简明游戏教程】引起舒适的切割插件——Ezy-Slice
-
-第一个教程基本正确,但是有一些跳跃,和下面的b站的视频教程结合起来就相对好理解一些,可以设置物体的材质以及下文的”旋转”.
-
-代码
-
-参考资料里面的代码少了关键的两行,导致平...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on October
-        1, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/web%E5%BC%80%E5%8F%91-springboot-dao/2020/07/13/%E9%93%BE%E6%8E%A5%E6%9F%A5%E8%AF%A2/" target="_blank">
-        <h2 class="post-title">
-            「SpringBoot-DAO」 链接查询
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            链接查询
-
-join
-
-链接语句, 将很多条语句合并成一个语句, (相比于双重循环)大大减少了通过网络传输的次数.
-
-1
-2
-3
-4
-5
-6
-select account ,user.name as username , role.name as rolename 
-from auth_user user 
-INNER JOIN auth_user_role ur
-on ur.user_id...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on July
-        13, 2020
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -686,92 +656,92 @@ on ur.user_id...
         
         
         
-                <a data-sort="0074" 
+                <a data-sort="0082" 
                     href="/archive/?tag=CodeNote"
                     title="CodeNote"
                     rel="92">CodeNote</a>
         
-                <a data-sort="0139" 
+                <a data-sort="0147" 
                     href="/archive/?tag=Web%E5%BC%80%E5%8F%91"
                     title="Web开发"
                     rel="27">Web开发</a>
         
-                <a data-sort="0153" 
+                <a data-sort="0161" 
+                    href="/archive/?tag=%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B"
+                    title="软件工程"
+                    rel="13">软件工程</a>
+        
+                <a data-sort="0161" 
                     href="/archive/?tag=SpringBoot"
                     title="SpringBoot"
                     rel="13">SpringBoot</a>
         
-                <a data-sort="0155" 
-                    href="/archive/?tag=%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B"
-                    title="软件工程"
-                    rel="11">软件工程</a>
-        
-                <a data-sort="0157" 
+                <a data-sort="0165" 
                     href="/archive/?tag=%E4%BA%92%E8%81%94%E7%BD%91%E6%9E%B6%E6%9E%84"
                     title="互联网架构"
                     rel="9">互联网架构</a>
         
-                <a data-sort="0159" 
+                <a data-sort="0167" 
                     href="/archive/?tag=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"
                     title="设计模式"
                     rel="7">设计模式</a>
         
-                <a data-sort="0159" 
+                <a data-sort="0167" 
                     href="/archive/?tag=android"
                     title="android"
                     rel="7">android</a>
         
-                <a data-sort="0160" 
+                <a data-sort="0168" 
                     href="/archive/?tag=DAO"
                     title="DAO"
                     rel="6">DAO</a>
         
-                <a data-sort="0161" 
+                <a data-sort="0169" 
+                    href="/archive/?tag=%E6%95%B0%E6%8D%AE%E5%BA%93"
+                    title="数据库"
+                    rel="5">数据库</a>
+        
+                <a data-sort="0169" 
                     href="/archive/?tag=Python"
                     title="Python"
                     rel="5">Python</a>
         
-                <a data-sort="0161" 
+                <a data-sort="0169" 
                     href="/archive/?tag=Vue"
                     title="Vue"
                     rel="5">Vue</a>
         
-                <a data-sort="0162" 
-                    href="/archive/?tag=%E6%95%B0%E6%8D%AE%E5%BA%93"
-                    title="数据库"
-                    rel="4">数据库</a>
-        
-                <a data-sort="0162" 
+                <a data-sort="0170" 
                     href="/archive/?tag=Unity"
                     title="Unity"
                     rel="4">Unity</a>
         
-                <a data-sort="0162" 
+                <a data-sort="0170" 
                     href="/archive/?tag=VSCode%E5%AD%A6%E4%B9%A0"
                     title="VSCode学习"
                     rel="4">VSCode学习</a>
         
-                <a data-sort="0163" 
+                <a data-sort="0171" 
                     href="/archive/?tag=%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"
                     title="版本控制"
                     rel="3">版本控制</a>
         
-                <a data-sort="0163" 
+                <a data-sort="0171" 
                     href="/archive/?tag=View"
                     title="View"
                     rel="3">View</a>
         
-                <a data-sort="0164" 
+                <a data-sort="0172" 
                     href="/archive/?tag=Java"
                     title="Java"
                     rel="2">Java</a>
         
-                <a data-sort="0164" 
+                <a data-sort="0172" 
                     href="/archive/?tag=Kotlin"
                     title="Kotlin"
                     rel="2">Kotlin</a>
         
-                <a data-sort="0164" 
+                <a data-sort="0172" 
                     href="/archive/?tag=Linux"
                     title="Linux"
                     rel="2">Linux</a>

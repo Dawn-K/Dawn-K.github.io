@@ -7,7 +7,7 @@
     <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="description" content="From ashes to the empire">
-    <meta name="keywords" content="Dawnk , Dawn-K , dawnk , 黄玄的博客, Dawn-K's Blog, 博客, 个人网站, ACM , 算法竞赛">
+    <meta name="keywords" content="Dawnk, Dawn-K, dawnk, Dawn-K's Blog, 博客, 个人网站, ACM , 算法竞赛">
     <meta name="theme-color" content="#000000">
 
     <!-- Open Graph -->
@@ -109,6 +109,8 @@
                         <li>
                             <a href="/archive/">Archive</a>
                         </li>
+                        
+                        
                         
                         
                         
@@ -275,6 +277,303 @@
             ">
     			
 <div class="post-preview">
+    <a href="/c++/2021/03/04/C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" target="_blank">
+        <h2 class="post-title">
+            「C++」 C++基础知识
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            C++知识补充
+
+类型转换
+
+static_cast
+
+对应于 c 中的隐式类型转换。只能在基础类型（但是基础类型和指针类型不能转换）, 和有派生关系的类对象之间转换，也不能去除原有的类型修饰符。
+
+1
+2
+3
+//相当于创建一个 static_cast&lt;double&gt;类型的匿名对象赋值给 d2
+double d2 = static_cast&lt;double&gt;(i);
+...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on March
+        4, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/" target="_blank">
+        <h2 class="post-title">
+            「软件工程-设计模式」 适配器模式
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            适配器模式
+
+概述
+
+适配器模式主要是用来链接两个接口, 比如我们希望通过增加一个第三方的类来增强我们现有的类的功能, 但是我们不想继承这个类(java只能单继承, 或者出于其他因素), 就往往使用适配器模式.
+将新的类作为现有的类的一个成员, 原类通过调用这个成员的方法来增强自身功能.
+
+实现
+
+比如我们最开始有个 MediaPlayer 接口, 然后我们实现了一个 AudioPlayer...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on February
+        22, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F/" target="_blank">
+        <h2 class="post-title">
+            「软件工程-设计模式」 装饰器模式
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            装饰器模式
+
+概述
+
+装饰器模式主要是在不更改原有类的情况下为其增加功能.
+也就是用其他类(装饰器)包含原有类的方式.
+
+实现
+
+比如我们有一个咖啡接口, 和一个已经实现的咖啡实体类. 我们后续想往咖啡中自由添加调料, 而不改变 SimpleCoffee 的实现
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+interface Coffee {
+...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on February
+        22, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E6%A6%82%E8%BF%B0/" target="_blank">
+        <h2 class="post-title">
+            「软件工程-设计模式」 概述
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            设计模式
+
+[toc]
+
+概述
+
+设计模式是一套被反复使用的、多数人知晓的、经过分类编目的、代码设计经验的总结. 使用设计模式是为了重用代码、让代码更容易被他人理解、保证代码可靠性.
+
+分类
+
+创建型模式
+
+这些设计模式提供了一种在创建对象的同时隐藏创建逻辑的方式, 而不是使用 new 运算符直接实例化对象. 这使得程序在判断针对某个给定实例需要创建哪些对象时更加灵活.
+
+
+  工厂模式(F...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on February
+        22, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/" target="_blank">
+        <h2 class="post-title">
+            「软件工程-设计模式」 原型模式
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            原型模式
+
+概述
+
+不通过 new 关键字来产生一个对象, 而是通过对象复制来实现的模式就叫做原型模式. 这种主要是在 new 一个对象开销太大(相比于复制), 而需要大量的对象的情况下.
+
+实现
+
+首先要继承 Cloneable 接口, 实现其 clone()方法, 然后
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+public abs...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on February
+        22, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" target="_blank">
+        <h2 class="post-title">
+            「软件工程-设计模式」 单例模式
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            单例模式
+
+概述
+
+单例模式是说处于某种原因, 我们只能初始化一个对象, 然后在程序中都是引用这对象, 而不能创建新对象.
+
+实现
+
+线程不安全的懒汉式
+
+首要的条件是将构造函数设置为私有, 然后当且仅当 getInstance 被调用且还未曾初始化过对象的时候, 才创建一个对象. 这个实现方法简单, 但是线程不安全, 也就是如果有两个线程紧跟着调用了if那一句的话, 就会产生两个对象.
+
+...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on February
+        22, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/21/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/" target="_blank">
+        <h2 class="post-title">
+            「软件工程-设计模式」 建造者模式
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            建造者模式
+
+知乎参考资料
+
+概述
+
+当一个类特别复杂时(比如构造函数有很多参数且有一些可选参数), 考虑建造者模式.
+
+建造者模式的一种简单实现是使用建造者类通过一系列set的链式调用来构建一个复杂的对象.
+
+比如电脑, 其有多个必选属性, 也有一些可选属性. 由于Java本身不支持默认参数, 导致构建很复杂(可以使用重叠构造器, 但是也不够优雅).
+
+实现方法
+
+我们将 Computer...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on February
+        21, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/21/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" target="_blank">
+        <h2 class="post-title">
+            「软件工程-设计模式」 工厂模式
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            工厂模式
+
+[toc]
+
+简单工厂模式
+
+假设我们要制造小米和苹果的笔记本, 我们声明一个 Computer 抽象类, 然后派生 MiComputer 和 MacComputer 两个子类. 但是直接用new的话, 就无法将装配工作统一接口. 维护起来就会很麻烦.
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+public abstract class Compu...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on February
+        21, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/linux/2021/02/08/Shell/" target="_blank">
         <h2 class="post-title">
             「Linux」 Shell
@@ -351,284 +650,6 @@ Shell 是提供给用户的用以访问操作系统服务的程序.
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/codenote/2021/01/22/STL%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6/" target="_blank">
-        <h2 class="post-title">
-            「CodeNote」 STL常用组件
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            STL常用组件
-
-[toc]
-
-函数
-
-fill
-
-需要 algorithm
-fill速度和手动for赋值基本相同
-
-1
-2
-3
-4
-// 将a在[2,5)区间赋值为3
-fill(a+2,a+5,3);
-// 相比于memset, 它可以赋值任何数, 也可以对容器使用.
-fill(v.begin(),v.end(),5);
-
-
-黑科技
-
-自定义hash
-
-网上流行的一个简单实现如下
-
-1
-2...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on January
-        22, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/android/2021/01/20/%E5%A4%9A%E5%AA%92%E4%BD%93/" target="_blank">
-        <h2 class="post-title">
-            「android」 多媒体
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            多媒体
-
-[toc]
-
-通知
-
-书上的代码有一点过时, 所调用的方法的参数已经被废弃了.
-如果想在自己手机测试的话一定要在应用的设置中打开此应用的通知提示以及声音开关
-
-首先新建一个按钮, 名为 send_notice
-然后新建一个活动, 名为 NotificationActivity , 里面随便写个 TextView , 作为点击通知后的显示界面
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-1...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on January
-        20, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/java/2021/01/20/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" target="_blank">
-        <h2 class="post-title">
-            「Java」 面向对象
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            面向对象
-
-接口与抽象类的区别
-
-语法区别
-
-1)抽象类可以提供成员方法的实现细节, 而接口中只能存在 public abstract 方法; 
-2)抽象类中的成员变量可以是各种类型的, 而接口中的成员变量只能是 public static final类型的; 
-3)接口中不能含有静态代码块以及静态方法, 而抽象类可以有静态代码块和静态方法; 
-4)一个类只能继承一个抽象类, 而一个类却可以...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on January
-        20, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/android/2021/01/18/MVC/" target="_blank">
-        <h2 class="post-title">
-            「android」 MVC
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            MVC
-
-概述
-
-MVC (Model-View-Controller)：M是指逻辑模型，V是指视图模型，C则是控制器。一个逻辑模型可以对于多种视图模型. 而控制器就是为了保证数据一致. 这个与观察者模式相同.
-
-视图层(View)
-
-视图代表模型包含的数据的可视化。
-
-控制层(Controller)
-
-它控制数据流向模型对象，并在数据变化时更新视图。它使视图与模型分离开。控制业务逻辑的实现...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on January
-        18, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/android/2021/01/17/%E5%86%85%E5%AE%B9%E6%8F%90%E4%BE%9B%E5%99%A8/" target="_blank">
-        <h2 class="post-title">
-            「android」 内容提供器
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            内容提供器
-
-权限
-
-以拨号(之前是打开拨号界面, 此处是指直接拨号)为例分析权限申请和使用的过程.
-
-还是基于Intent, 和之前一样, 给一个按钮增加点击的监听器, 重载onClick, 写入如下内容. 为防止权限被拒绝时程序崩溃, 所以此处需要捕获异常.
-
-1
-2
-3
-4
-5
-6
-7
-8
-try {
-    // DIAL 是 打开拨号界面, CALL 是直接拨号,必须申请权限
-  ...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on January
-        17, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/java/2021/01/16/%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" target="_blank">
-        <h2 class="post-title">
-            「Java」 基础语法
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            基础语法
-
-关键字
-
-final
-
-final 类似cpp中的const, 表示常量.
-
-
-  final修饰类, 表示此类不可被继承
-  final修饰方法, 表示此方法在重载中不可被覆盖(覆盖和重写有什么区别), 且不能修饰构造函数.
-  final修饰成员或者局部变量, 表示此成员是常量, 只能在声明时赋值, 一旦赋值就不可修改.
-
-
-static
-
-static 表示静态, 相当于 ...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on January
-        16, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/android/2021/01/05/%E6%A6%82%E8%A7%88/" target="_blank">
-        <h2 class="post-title">
-            「android」 概览
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            [toc]
-@import “./环境配置.md” 
-@import “./新建活动.md” 
-@import “./内容提供器.md” 
-@import “./多媒体.md”
-
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on January
-        5, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/android/2021/01/04/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" target="_blank">
-        <h2 class="post-title">
-            「android」 环境配置
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            环境配置
-
-[toc]
-
-JDK
-
-先安装好1.8及以上的jdk.
-
-关闭hyper-V
-
-bcdedit /set hypervisorlaunchtype off
-
-
-Android Studio 安装
-
-可通过  jetbrain tools 一键安装. 安装时选择custom, 然后选择存放sdk的位置, 以及已有的jdk的位置, 然后预先安装的包全部勾选. 进行安装.
-
-Hello...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on January
-        4, 2021
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -668,92 +689,92 @@ Hello...
         
         
         
-                <a data-sort="0074" 
+                <a data-sort="0082" 
                     href="/archive/?tag=CodeNote"
                     title="CodeNote"
                     rel="92">CodeNote</a>
         
-                <a data-sort="0139" 
+                <a data-sort="0147" 
                     href="/archive/?tag=Web%E5%BC%80%E5%8F%91"
                     title="Web开发"
                     rel="27">Web开发</a>
         
-                <a data-sort="0153" 
+                <a data-sort="0161" 
+                    href="/archive/?tag=%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B"
+                    title="软件工程"
+                    rel="13">软件工程</a>
+        
+                <a data-sort="0161" 
                     href="/archive/?tag=SpringBoot"
                     title="SpringBoot"
                     rel="13">SpringBoot</a>
         
-                <a data-sort="0155" 
-                    href="/archive/?tag=%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B"
-                    title="软件工程"
-                    rel="11">软件工程</a>
-        
-                <a data-sort="0157" 
+                <a data-sort="0165" 
                     href="/archive/?tag=%E4%BA%92%E8%81%94%E7%BD%91%E6%9E%B6%E6%9E%84"
                     title="互联网架构"
                     rel="9">互联网架构</a>
         
-                <a data-sort="0159" 
+                <a data-sort="0167" 
                     href="/archive/?tag=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"
                     title="设计模式"
                     rel="7">设计模式</a>
         
-                <a data-sort="0159" 
+                <a data-sort="0167" 
                     href="/archive/?tag=android"
                     title="android"
                     rel="7">android</a>
         
-                <a data-sort="0160" 
+                <a data-sort="0168" 
                     href="/archive/?tag=DAO"
                     title="DAO"
                     rel="6">DAO</a>
         
-                <a data-sort="0161" 
+                <a data-sort="0169" 
+                    href="/archive/?tag=%E6%95%B0%E6%8D%AE%E5%BA%93"
+                    title="数据库"
+                    rel="5">数据库</a>
+        
+                <a data-sort="0169" 
                     href="/archive/?tag=Python"
                     title="Python"
                     rel="5">Python</a>
         
-                <a data-sort="0161" 
+                <a data-sort="0169" 
                     href="/archive/?tag=Vue"
                     title="Vue"
                     rel="5">Vue</a>
         
-                <a data-sort="0162" 
-                    href="/archive/?tag=%E6%95%B0%E6%8D%AE%E5%BA%93"
-                    title="数据库"
-                    rel="4">数据库</a>
-        
-                <a data-sort="0162" 
+                <a data-sort="0170" 
                     href="/archive/?tag=Unity"
                     title="Unity"
                     rel="4">Unity</a>
         
-                <a data-sort="0162" 
+                <a data-sort="0170" 
                     href="/archive/?tag=VSCode%E5%AD%A6%E4%B9%A0"
                     title="VSCode学习"
                     rel="4">VSCode学习</a>
         
-                <a data-sort="0163" 
+                <a data-sort="0171" 
                     href="/archive/?tag=%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"
                     title="版本控制"
                     rel="3">版本控制</a>
         
-                <a data-sort="0163" 
+                <a data-sort="0171" 
                     href="/archive/?tag=View"
                     title="View"
                     rel="3">View</a>
         
-                <a data-sort="0164" 
+                <a data-sort="0172" 
                     href="/archive/?tag=Java"
                     title="Java"
                     rel="2">Java</a>
         
-                <a data-sort="0164" 
+                <a data-sort="0172" 
                     href="/archive/?tag=Kotlin"
                     title="Kotlin"
                     rel="2">Kotlin</a>
         
-                <a data-sort="0164" 
+                <a data-sort="0172" 
                     href="/archive/?tag=Linux"
                     title="Linux"
                     rel="2">Linux</a>

@@ -5,8 +5,8 @@
     <description>From ashes to the empire</description>
     <link>http://dawnk.gitee.io//</link>
     <atom:link href="http://dawnk.gitee.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 27 Jul 2021 16:41:07 +0800</pubDate>
-    <lastBuildDate>Tue, 27 Jul 2021 16:41:07 +0800</lastBuildDate>
+    <pubDate>Tue, 27 Jul 2021 17:36:36 +0800</pubDate>
+    <lastBuildDate>Tue, 27 Jul 2021 17:36:36 +0800</lastBuildDate>
     <generator>Jekyll v4.2.0</generator>
     
       <item>
@@ -60,6 +60,649 @@
         
         
         <category>编程之外</category>
+        
+      </item>
+    
+      <item>
+        <title>「编译原理」 编译原理基础知识</title>
+        <description>&lt;h1 id=&quot;编译原理基础知识&quot;&gt;编译原理基础知识&lt;/h1&gt;
+
+&lt;h2 id=&quot;哥德尔不完备定理&quot;&gt;哥德尔不完备定理&lt;/h2&gt;
+
+&lt;p&gt;对于一个形式系统，它能从基本的公理推导出其他结论。&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;如果它能推出所有的结论，那么它就是完全性的。&lt;/li&gt;
+  &lt;li&gt;如果它推出的所有结论都是对的，那么它就是可靠的。
+可靠性的证明容易保证，只要保证公理是对的，推导过程是对的，那么就是可靠的。
+但是问题就在于完全性的证明。哥德尔证明出，&lt;strong&gt;如果一个系统能表达初等数学，那么存在一个公式，形式系统既不能推出它，也不能推出它的否定，即形式系统无法判定它&lt;/strong&gt;. 也就是再强的形式系统也具有其无法证明的陈述。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;文法&quot;&gt;文法&lt;/h2&gt;
+
+&lt;p&gt;乔姆斯基把文法分成 4 种类型，即 0 型，1 型，2 型，和 3 型。&lt;/p&gt;
+
+&lt;h3 id=&quot;0-型文法&quot;&gt;0 型文法&lt;/h3&gt;
+
+&lt;p&gt;0 型文法也称短语文法，0 型文法的能力相当于&lt;strong&gt;图灵机 (Turing)&lt;/strong&gt;, 或者说任何 0 型语言都是递归可枚举的。
+产生式没有任何限制。
+图灵机对于任意输入，只有三种状态：&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;接受&lt;/code&gt;: 正确运行到结束并且停机。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;拒绝&lt;/code&gt;: 状态转移函数无定义，落空停机。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;不停机&lt;/code&gt;（无法判定）: 一直有定义，但永不停机。
+如果对于 L 语言，它的任何串的结果都是 1 或 2, 那么它任何一个串都能被判定，这样就称之为递归语言。
+如果对于 L 语言，它的任何串的结果都是 1 或 2 或 3, 即如果一个串在接受集合内，就一定会接受，如果不再，就无法验证，这样就称之为递归可枚举语言。递归语言是递归可枚举语言的子集。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;1-型文法&quot;&gt;1 型文法&lt;/h3&gt;
+
+&lt;p&gt;形如 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;αAβ -&amp;gt; αγβ&lt;/code&gt; , α, β 可以是空串，但 γ 必须不能是空串。1 型文法也称上下文有关法，其能力相当于&lt;strong&gt;线性界限自动机&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;2-型文法&quot;&gt;2 型文法&lt;/h3&gt;
+
+&lt;p&gt;2 型文法也称上下文无关法，其能力相当于&lt;strong&gt;非确定的下推自动机&lt;/strong&gt;.
+形如 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;A -&amp;gt; γ&lt;/code&gt; . 这里的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;A&lt;/code&gt; 是非终结符号， &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;γ&lt;/code&gt; 是包含非终结符号与终结符号的字串。这种文法规定的语言可以被非确定下推自动机接受。上下文无关语言为大多数程序设计语言的语法提供了理论基础。&lt;/p&gt;
+
+&lt;h3 id=&quot;3-型文法&quot;&gt;3 型文法&lt;/h3&gt;
+
+&lt;p&gt;3 型文法也称右线性文法，由于这种文法等价于正规式，所以也称正规文法，相当于&lt;strong&gt;有限状态自动机&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;左边必须只有一个字符，且必须是非终结符；&lt;/li&gt;
+  &lt;li&gt;其右边最多只能有两个字符，且当有两个字符时第一个为非终结符而另一个为终结符。当右边只有一个字符时，此字符必须为终结符。或者右侧是空。
+从文法描述语言的能力来说，&lt;strong&gt;0 型文法最强，3 型文法最弱&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;自动机&quot;&gt;自动机&lt;/h2&gt;
+
+&lt;h3 id=&quot;图灵机&quot;&gt;图灵机&lt;/h3&gt;
+
+&lt;p&gt;图灵机是个抽象的计算模型。它拥有一个读写头，一个无限长的纸带，一个寄存器（用以存储当前的状态，其中有个特殊的状态叫停机状态）, 一套通用的计算规则。
+我们可以构造出一个特殊的图灵机，它接受任意一个图灵机 M 的编码，然后模拟 M 的运作，这样的图灵机称为通用图灵机 (Universal Turing Machine). 现代电子计算机其实就是这样一种通用图灵机的模拟，它能接受一段描述其他图灵机的程序，并运行程序实现该程序所描述的算法。但是也只是模拟，因为计算机的存储能力是有限的。
+计算机的极限计算能力就是通用图灵机的计算能力。&lt;/p&gt;
+
+&lt;h3 id=&quot;线性界限自动机&quot;&gt;线性界限自动机&lt;/h3&gt;
+
+&lt;p&gt;线性界限自动机就是把计算固定在输入带范围上的图灵机。也就是不是无限长的纸带。&lt;/p&gt;
+
+&lt;h3 id=&quot;下推自动机&quot;&gt;下推自动机&lt;/h3&gt;
+
+&lt;p&gt;下推自动机 (PDA) 可以看成是一个带有附加下推存储器的有限自动机，下推存储器是一个堆栈。
+如果把下推自动机扩展，允许一个有限状态自动机存取两个栈，将会得到一个能力更强的自动机，与图灵机等价。&lt;/p&gt;
+
+&lt;h3 id=&quot;有限状态自动机&quot;&gt;有限状态自动机&lt;/h3&gt;
+
+&lt;p&gt;自动机从初始状态 q0 起，逐一读入输入串（由输入字母表 Σ 的字母构成）的每一个字母，根据当前状态、输入字母和转移函数 δ 决定自动机的下一步状态；如果输入串结束时，自动机处于终结状态集合 F 的某一个状态，这表示自动机接受该字串；否则自动机不接受该字串。&lt;/p&gt;
+</description>
+        <pubDate>Sat, 13 Mar 2021 00:00:00 +0800</pubDate>
+        <link>http://dawnk.gitee.io//%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/2021/03/13/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</link>
+        <guid isPermaLink="true">http://dawnk.gitee.io//%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/2021/03/13/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</guid>
+        
+        <category>编译原理</category>
+        
+        
+        <category>编译原理</category>
+        
+      </item>
+    
+      <item>
+        <title>「AI」 人工智能基础知识</title>
+        <description>&lt;h1 id=&quot;人工智能&quot;&gt;人工智能&lt;/h1&gt;
+
+&lt;h2 id=&quot;p-和-np&quot;&gt;P 和 NP&lt;/h2&gt;
+
+&lt;p&gt;P 类问题是指能够在多项式时间内解决的问题
+NP 类问题是指能够在多项式时间内验证一个解对不对的问题，所有 P 问题都是 NP 问题。
+NP-hard: 比 NP 还要难，任意一个 NP 问题都能在多项式时间规约为 NP-hard 问题
+NPC: NP 完全问题，即是 NP 问题，又是 NP-hard 问题&lt;/p&gt;
+
+&lt;p&gt;SAT 问题（第一个 NPC 问题）. 该问题的基本意思是，给定一系列布尔变量以及它的约束集，是否存在一个解使得它的输出为真。
+如果找到一个多项式内能被解决的 npc 问题的解决方法，那么 P=NP.&lt;/p&gt;
+
+&lt;h2 id=&quot;encoder-decoder&quot;&gt;encoder-decoder&lt;/h2&gt;
+
+&lt;p&gt;encoder-decoder 结构，基本思想就是利用两个 RNN, 一个 RNN 作为 encoder, 另一个 RNN 作为 decoder.&lt;/p&gt;
+
+&lt;p&gt;Decoder RNN 在预测的时候，需要把上一个神经元的输出作为下一个神经元的输入，不断的预测下一个词，直到预测输出了结束标志符 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;END&amp;gt;&lt;/code&gt; , 预测结束。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic3.zhimg.com/80/v2-2a0191f6e80679d919d858b936544c16_720w.jpg&quot; alt=&quot;encoder-decoder&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;seq2seq&quot;&gt;seq2seq&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://zhuanlan.zhihu.com/p/147310766&quot;&gt;参考资料&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;seq2seq 属于 encoder-decoder 结构的一种。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic2.zhimg.com/80/v2-6c73bb4f24b93d8a640fea0ef60d1919_720w.jpg&quot; alt=&quot;seq2seq&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;transformer&quot;&gt;transformer&lt;/h2&gt;
+
+&lt;p&gt;Transformer 的本质上是一个 Encoder-Decoder. 编码器由 6 个编码 block 组成，同样解码器是 6 个解码 block 组成，编码器的输出会作为解码器的输入。
+每个 encoder 有两层，一层是 self-Attention(Multi-head) 机制，另一层是前馈神经网络。
+首先可以利用 WordEmbedding 将一个单词转换成固定长度的向量表示&lt;/p&gt;
+
+&lt;p&gt;Self-Attention 核心内容是为输入向量的每个单词学习一个权重。
+对于 decoder 来讲，我们注意到有两个与 encoder 不同的地方，每个 decoder 有三层 . 一个是第一级的 Masked Multi-head, 另一个是第二级的 Multi-Head Attention 不仅接受来自前一级的输出，还要接收 encoder 的输出，第三级也是前馈神经网络。&lt;/p&gt;
+
+&lt;h2 id=&quot;图灵测试&quot;&gt;图灵测试&lt;/h2&gt;
+
+&lt;p&gt;让计算机来冒充人。如果不足 70%的人判对，也就是超过 30%的裁判误以为在和自己说话的是人而非计算机，那就算作成功。
+2014 年 6 月 8 日，一台计算机（计算机尤金·古斯特曼并不是超级计算机，也不是电脑，而是一个聊天机器人，是一个电脑程序）成功让人类相信它是一个 13 岁的男孩，成为有史以来首台通过图灵测试的计算机。这被认为是人工智能发展的一个里程碑事件。&lt;/p&gt;
+
+&lt;h2 id=&quot;cnn&quot;&gt;CNN&lt;/h2&gt;
+
+&lt;p&gt;CNN 的构成是卷积层+池化层+全连接&lt;/p&gt;
+
+&lt;h3 id=&quot;卷积层&quot;&gt;卷积层&lt;/h3&gt;
+
+&lt;p&gt;卷积层就是一个卷积核对一个矩阵进行操作，以二维为例，卷积核作为一个小二维数组（存在自身的值）, 沿着左上角对齐矩阵，然后将重合部分的每对数进行相乘，然后将这些数相加，填入结果矩阵中，然后根据步幅移动到下一个位置，直到把结果数组填满。
+对于更多维的情况，卷积核的通道数（也就是第三维的大小）和矩阵是相同的。四维的情况一般是一个批次的数据，数据的标号作为第四维。&lt;/p&gt;
+
+&lt;h3 id=&quot;池化层&quot;&gt;池化层&lt;/h3&gt;
+
+&lt;p&gt;池化层也叫下采样层。池化层也是一个小数组，不过自身并没有数字。他和卷积核的移动逻辑相同，就是对于重合部分，它直接取最大值（也有取平均值的）, 填入结果数组。
+可以用来缩减模型的大小，提高计算速度，同时提高所提取特征的鲁棒性。在图像处理中，可以在目标平移或者旋转而导致卷积结果有偏移时进行校正（经多次池化后结果一样）, 也可以增大感受野。&lt;/p&gt;
+
+&lt;h3 id=&quot;全连接&quot;&gt;全连接&lt;/h3&gt;
+
+&lt;p&gt;全连接相当于一个分类器。全连接层起到将学到的”分布式特征表示”映射到样本标记空间的作用。&lt;/p&gt;
+
+&lt;h3 id=&quot;rnn&quot;&gt;RNN&lt;/h3&gt;
+
+&lt;p&gt;RNN 全程循环神经网络。其输出不但与当前输入和网络的权值有关，而且也与之前网络的输入有关；其允许我们对向量的序列进行操作：输入可以是序列，输出也可以是序列，在最一般化的情况下输入输出都可以是序列。
+对于 NLP 来说，RNN 理论上可以往前看（往后看）任意多个词。&lt;/p&gt;
+
+&lt;h2 id=&quot;激活函数&quot;&gt;激活函数&lt;/h2&gt;
+
+&lt;h3 id=&quot;relu-函数&quot;&gt;ReLU 函数&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;f(x) = max(0, x)&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;sigmoid&quot;&gt;sigmoid&lt;/h3&gt;
+
+\[θ(x)=\frac{1}{1+e^{-x}}\]
+
+&lt;p&gt;&lt;img src=&quot;https://img-blog.csdn.net/20171231114002135?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHV0aWFueW91MTIz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast&quot; alt=&quot;sigmoid&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;过拟合&quot;&gt;过拟合&lt;/h2&gt;
+
+&lt;p&gt;机器在学习全局特征的同时，又过度学习了局部特征。导致泛化能力不够。模型在训练集上表现的很好，但是在交叉验证集合测试集上表现一般。&lt;/p&gt;
+
+&lt;h3 id=&quot;解决方案&quot;&gt;解决方案&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;增大数据Ｎ。可以直接从数据的源头获取更多的数据，也可以通过对原有的图像的旋转，平移等，获取到更多的数据。&lt;/li&gt;
+  &lt;li&gt;简化模型，可能是模型太复杂，导致数据相对不足。&lt;/li&gt;
+  &lt;li&gt;降低特征的数量&lt;/li&gt;
+  &lt;li&gt;Dropout 指的是在训练过程中每次按一定的概率（比如 50%）随机地“删除”一部分隐藏单元（神经元）&lt;/li&gt;
+  &lt;li&gt;early stopping 。每一个 epoch 结束的时候，检查准确度，如果准确度连续多次没能提升到历史最高，那么就终止训练。&lt;/li&gt;
+  &lt;li&gt;集成学习方法。集成学习通过建立几个模型组合的来解决单一预测问题。它的工作原理是生成多个分类器/模型，各自独立地学习和作出预测。比如随机森林算法，它就是多个决策树的组合。&lt;/li&gt;
+  &lt;li&gt;交叉验证&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;交叉验证&quot;&gt;交叉验证&lt;/h3&gt;
+
+&lt;p&gt;交叉验证的基本思想是把在某种意义下将原始数据 (dataset) 进行分组，一部分做为训练集 (train set), 另一部分做为验证集 (validation set or test set), 首先用训练集对分类器进行训练，再利用验证集来测试训练得到的模型 (model), 以此来做为评价分类器的性能指标&lt;/p&gt;
+
+&lt;h2 id=&quot;聚类&quot;&gt;聚类&lt;/h2&gt;
+
+&lt;p&gt;聚类是一种无监督的学习方法。&lt;/p&gt;
+
+&lt;h3 id=&quot;kmeans&quot;&gt;kmeans&lt;/h3&gt;
+
+&lt;p&gt;1、定义距离，定义初始质心
+2、循环计算每个点到每个质心的距离，然后确定每个点属于的类别（距离最小的）, 并记录该点到该点质心的距离
+3、确认每类下的点，然后计算这一类点的平均值，并把这个值确立为该类的新质心
+4、如果所有数据都确定了属于某一类（不再更新）, 则分类完成&lt;/p&gt;
+
+&lt;h2 id=&quot;线性回归和逻辑回归&quot;&gt;线性回归和逻辑回归&lt;/h2&gt;
+
+&lt;h3 id=&quot;线性回归&quot;&gt;线性回归&lt;/h3&gt;
+
+&lt;p&gt;监督学习，根据数据学习映射关系，利用该映射关系对未知的数据进行预估&lt;/p&gt;
+
+&lt;h3 id=&quot;逻辑回归&quot;&gt;逻辑回归&lt;/h3&gt;
+
+&lt;p&gt;监督学习，解决二分类问题。逻辑回归就是将线性回归的 $(-\infty, +\infty)$结果，通过 sigmoid 函数映射到 $(0, 1)$之间。以 1/2 作为决策边界&lt;/p&gt;
+
+&lt;h3 id=&quot;支持向量机-svm&quot;&gt;支持向量机 (SVM)&lt;/h3&gt;
+
+&lt;p&gt;也是分类问题，最大化最近数据点，如果不能用直线划分，那么就升维，在高纬度进行划分，反映到低维上就是曲线&lt;/p&gt;
+</description>
+        <pubDate>Thu, 11 Mar 2021 00:00:00 +0800</pubDate>
+        <link>http://dawnk.gitee.io//ai/2021/03/11/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</link>
+        <guid isPermaLink="true">http://dawnk.gitee.io//ai/2021/03/11/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</guid>
+        
+        <category>AI</category>
+        
+        
+        <category>AI</category>
+        
+      </item>
+    
+      <item>
+        <title>「计算机网络」 计算机网络基础知识</title>
+        <description>&lt;h1 id=&quot;计算机网络&quot;&gt;计算机网络&lt;/h1&gt;
+
+&lt;p&gt;[toc]&lt;/p&gt;
+
+&lt;h2 id=&quot;osi-模型&quot;&gt;OSI 模型&lt;/h2&gt;
+
+&lt;p&gt;OSI 具有七层，但是其太过理想化，并没有实际采用。&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;物理层（界定连接器和网线的规格）&lt;/li&gt;
+  &lt;li&gt;数据链路层（相邻设备之间传送和识别数据帧）&lt;/li&gt;
+  &lt;li&gt;网络应用层（地址管理和路由选择）&lt;/li&gt;
+  &lt;li&gt;传输层（端到端的数据连接）&lt;/li&gt;
+  &lt;li&gt;会话层（负责建立和断开通信连接）&lt;/li&gt;
+  &lt;li&gt;表示层（数据格式的转换）&lt;/li&gt;
+  &lt;li&gt;应用层（针对特定应用）&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;tcpip&quot;&gt;TCP/IP&lt;/h2&gt;
+
+&lt;p&gt;TCP/IP 是个协议族。包含了 TCP IP, HTTP, UDP, ICMP 等协议&lt;/p&gt;
+
+&lt;h3 id=&quot;tcp-模型&quot;&gt;TCP 模型&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;物理层（界定连接器和网线的规格）&lt;/li&gt;
+  &lt;li&gt;数据链路层（相邻设备之间传送和识别数据帧）&lt;/li&gt;
+  &lt;li&gt;网络应用层（地址管理和路由选择）&lt;/li&gt;
+  &lt;li&gt;传输层（端到端的数据连接）&lt;/li&gt;
+  &lt;li&gt;应用层（针对特定应用，合并了会话层，表示层，应用层）&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;tcp-是面向流的协议&quot;&gt;TCP 是面向流的协议&lt;/h3&gt;
+
+&lt;p&gt;TCP 是个”流”协议，没有界限的一串数据，从 TCP 的帧结构也可以看出，在 TCP 的首部没有表示数据长度的字段。它会根据 TCP 缓冲区的实际情况进行包的划分，所以在业务上认为，一个完整的包可能会被 TCP 拆分成多个包进行发送，也有可能把多个小的包封装成一个大的数据包发送，这就是所谓的 TCP 粘包和拆包问题。
+UDP 则没有这个问题。UDP 是基于报文发送的，从 UDP 的帧结构可以看出，在 UDP 首部采用了 16bit 来指示 UDP 数据报文的长度，因此在应用层能很好的将不同的数据报文区分开，从而避免粘包和拆包的问题。&lt;/p&gt;
+
+&lt;h3 id=&quot;ip&quot;&gt;IP&lt;/h3&gt;
+
+&lt;p&gt;ip 是无连接的模型，尽力发送，且不维护链接状态
+根据数据包的首部的协议字段来分辨 TCP 和 UDP（一个是 6, 一个是 17)&lt;/p&gt;
+
+&lt;h3 id=&quot;icmp&quot;&gt;ICMP&lt;/h3&gt;
+
+&lt;p&gt;ICMP 协议是一种面向无连接的网络层协议，用于传输出错报告控制信息。&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;改变路由&lt;/li&gt;
+  &lt;li&gt;源点抑制&lt;/li&gt;
+  &lt;li&gt;ping 命令&lt;/li&gt;
+  &lt;li&gt;traceroute 命令&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;tcp-udp-区别&quot;&gt;TCP UDP 区别&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;tcp 是面向链接的可靠传输，udp 是无连接的不可靠的&lt;/li&gt;
+  &lt;li&gt;tcp 有流量控制和拥塞控制，udp 没有&lt;/li&gt;
+  &lt;li&gt;tcp 是两点之间的，udp 可以一对一，一对多，多对一，对对多的通信&lt;/li&gt;
+  &lt;li&gt;TCP 首部开销大，首部 20 个字节。UDP 首部开销小，8 字节。（源端口，目的端口，数据长度，校验和）&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;socket&quot;&gt;socket&lt;/h3&gt;
+
+&lt;p&gt;socket 编程步骤。
+服务端： &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;socket&lt;/code&gt;  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bind&lt;/code&gt;  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;listen&lt;/code&gt;  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;accept&lt;/code&gt;  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;read&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;客户端： &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;socket&lt;/code&gt;  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;connect&lt;/code&gt;  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;write&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;包首部&quot;&gt;包首部&lt;/h3&gt;
+
+&lt;p&gt;TCP 包首部含有 20 字节固定的内容。
+UDP 包首部含有 8 字节，没有非固定的内容。
+IP 包首部含有 20 字节固定的内容。&lt;/p&gt;
+
+&lt;h3 id=&quot;可靠性&quot;&gt;可靠性&lt;/h3&gt;
+
+&lt;h4 id=&quot;如何保证可靠性&quot;&gt;如何保证可靠性&lt;/h4&gt;
+
+&lt;p&gt;序列号，确认应答，超时重传&lt;/p&gt;
+
+&lt;h4 id=&quot;序列号&quot;&gt;序列号&lt;/h4&gt;
+
+&lt;p&gt;这时发送方在等待一定时间后会进行重传。这个时间一般是 2*RTT（报文段往返时间）+一个偏差值。&lt;/p&gt;
+
+&lt;h4 id=&quot;流量控制&quot;&gt;流量控制&lt;/h4&gt;
+
+&lt;p&gt;发送端如果收到 3 次相同应答，就会立刻进行重发
+但是如果应答丢失了，因为窗口的存在，发送端就不会重发&lt;/p&gt;
+
+&lt;h3 id=&quot;拥塞控制&quot;&gt;拥塞控制&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;慢开始。一旦出现计时器超时，拥塞窗口变为 1, 然后拥塞阈值降为发生超时时的窗口的一半，然后每经过一个往返时间，窗口就翻倍。&lt;/li&gt;
+  &lt;li&gt;拥塞避免。慢开始一旦超过拥塞阈值，每经过一个往返时间就加一。&lt;/li&gt;
+  &lt;li&gt;快重传。一旦连续收到三个重复确认，就立即重发。&lt;/li&gt;
+  &lt;li&gt;快启动。在快重传的基础上，重发后将拥塞窗口变成一半，阈值也变为一半（和拥塞窗口大小一样）, 然后执行加法增加。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;dhcp&quot;&gt;DHCP&lt;/h2&gt;
+
+&lt;p&gt;一种局域网的网络协议，由服务器控制一段 IP 地址范围，客户机登录服务器时就可以自动获得服务器分配的 IP 地址和子网掩码。&lt;/p&gt;
+
+&lt;h2 id=&quot;网络模型&quot;&gt;网络模型&lt;/h2&gt;
+
+&lt;h3 id=&quot;cs&quot;&gt;C/S&lt;/h3&gt;
+
+&lt;p&gt;非对等相互作用，服务器有客户端不具备的硬件和软件资源、运算能力，服务器提供服务，客户请求服务。
+多个客户进程可以同时访问一个服务进程，一个客户进程可以同时访问多个服务器提供的服务。&lt;/p&gt;
+
+&lt;h3 id=&quot;bs&quot;&gt;B/S&lt;/h3&gt;
+
+&lt;p&gt;BS 是特殊的 CS 模型，其客户端特指浏览器。&lt;/p&gt;
+
+&lt;h2 id=&quot;加密算法&quot;&gt;加密算法&lt;/h2&gt;
+
+&lt;h3 id=&quot;rsa&quot;&gt;RSA&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html&quot;&gt;阮一峰-RSA(1): 数学知识&lt;/a&gt;
+&lt;a href=&quot;http://www.ruanyifeng.com/blog/2013/07/rsa_algorithm_part_two.html&quot;&gt;阮一峰-RSA(2): 算法流程&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;计算过程&quot;&gt;计算过程&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;第一步选择两个质数 p, q 尽可能大&lt;/li&gt;
+  &lt;li&gt;第二步计算&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; n = p * q &lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;第三步计算&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; φ(n) = (p-1) * (q-1) &lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;第四步选择一个整数 e, 使得&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;条件是 1&amp;lt; e &amp;lt; φ(n), 且 e 与φ(n) 互质 &lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;第五步计算 e 关于φ(n) 的逆元 d, 也就是&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt; e*d ≡ 1 (mod φ(n)) &lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;第六步将 (n, e) 封装成公钥，(n, d) 封装成私钥&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;上述计算过程中只有 n 和 e 公开，其余的 p, q, φ(n), d 均不公开&lt;/p&gt;
+
+&lt;h4 id=&quot;保密原理&quot;&gt;保密原理&lt;/h4&gt;
+
+&lt;p&gt;RSA 算法加密的核心就是在于 d 难以通过 n, e 求出来。
+要想算出 d, 需要知道φ(n), 而φ(n) 需要知道 p, q, 也就是对 n 进行因式分解。而因式分解很困难。
+乘法逆元算法如下，两种算法都可以在知道φ(n) 的情况下实现 e 和 d 的互相求值。因为 e 和 d 互为逆元。&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;algorithm&amp;gt;
+#include &amp;lt;iostream&amp;gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;namespace&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;typedef&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 两个方法，前提是 a,p 互质。不互质时返回-1:&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 1. 费马小定理：a*x≡1(mod p), 则 x=a^(p-2) (mod p)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 2. 扩展欧几里得算法：那么 ax≡1 (mod p) 即 ax-yp=1. 把 y 写成+的形式就是 ax+py=1，&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// 为方便理解下面我们把 p 写成 b 就是 ax+by=1。就表示 x 是 a 的模 b 乘法逆元，y 是 b 的模 a 乘法逆元。&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// 快速幂&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ll&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;qpow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ll&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ll&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ll&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ll&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;res&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ll&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;base&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1ll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;res&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;res&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;base&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;base&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;base&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;base&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;exgcd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ll&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ll&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;exgcd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;printf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%lld*(%lld)+%lld*(%lld)=%lld&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ll&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;invByFermat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ll&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ll&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// 欧拉扩展的 Fermat 小定理：如果 gcd(a,n) = 1，则 a(n) mod n = 1。&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// a 的乘法逆元：x=a^euler(n)-1 mod n&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__gcd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;qpow&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;ll&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;invByExgcd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ll&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ll&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ll&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;exgcd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;d&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;ll&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// cin &amp;gt;&amp;gt; a &amp;gt;&amp;gt; p;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1679616&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;11&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;By Fermat: &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;invByFermat&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;endl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;cout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;By Exgcd: &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;invByExgcd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;endl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;http&quot;&gt;http&lt;/h2&gt;
+
+&lt;h3 id=&quot;概述&quot;&gt;概述&lt;/h3&gt;
+
+&lt;p&gt;http 是一种无状态的应用层协议。主要应用在浏览网页上，但是也可以用在其他其他，比如即时通信，下载等。HTTP 协议使用 URI 定位互联网上的资源。
+客户向服务器请求服务时，只需传送请求方法和路径。&lt;strong&gt;支持 B/S 及 C/S 模式。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;持久连接&quot;&gt;持久连接&lt;/h3&gt;
+
+&lt;p&gt;http 0.9 和 1.0 都使用非持续链接，限制每次连接只处理一个请求，服务器处理完客户的请求，并收到客户的应答后，即断开连接。http 1.1 改为了持续链接，可以传输多个对象。而持久性链接带来的还有请求的管线化，也就是可以在上一个请求尚未回复的时候就发送下一个请求。&lt;/p&gt;
+
+&lt;h3 id=&quot;无状态&quot;&gt;无状态&lt;/h3&gt;
+
+&lt;p&gt;http 的无状态意味着它对之前的请求没有记忆，如果需要用到之前的信息，那么需要重新传输，如果不需要，使用起来就节省时间。在需要前后文的场合，一般采用 Cookie 技术。Cookie 技术是说，在首次通信的时候，服务端会在响应中添加 Cookie 信息，然后客户端将其保留，在下次链接的时候，将 Cookie 加入请求，然后服务器就知道之前的状态信息了。&lt;/p&gt;
+
+&lt;h3 id=&quot;工作流程&quot;&gt;工作流程&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;客户端连接到 Web 服务器&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;一个 HTTP 客户端，通常是浏览器，与 Web 服务器的 HTTP 端口（默认为 80) 建立一个 TCP 套接字连接。&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;发送 HTTP 请求&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;通过 TCP 套接字，客户端向 Web 服务器发送一个文本的请求报文，一个请求报文由请求行。请求头部。空行和请求数据 4 部分组成。&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;服务器接受请求并返回 HTTP 响应&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Web 服务器解析请求，定位请求资源。服务器将资源复本写到 TCP 套接字，由客户端读取。响应报文基本上由协议版本、状态码（表示请求成功或失败的数字代码）、用以解释状态码的原因短语、可选的响应首部字段以及实体主体构成。
+如&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;
+HTTP/1.1 200 OK
+Date: Tue, 10 Jul 2012 06:50:15 GMT
+Content-Length: 362
+Content-Type: text/html
+
+&amp;lt;html&amp;gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;释放连接 TCP 连接&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;若 connection 模式为 close, 则服务器主动关闭 TCP 连接，客户端被动关闭连接，释放 TCP 连接；若 connection 模式为 keepalive, 则该连接会保持一段时间，在该时间内可以继续接收请求；&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;客户端浏览器解析 HTML 内容&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;客户端浏览器首先解析状态行，查看表明请求是否成功的状态代码。然后解析每一个响应头，响应头告知以下为若干字节的 HTML 文档和文档的字符集。客户端浏览器读取响应数据 HTML, 根据 HTML 的语法对其进行格式化，并在浏览器窗口中显示。&lt;/p&gt;
+
+&lt;h3 id=&quot;请求&quot;&gt;请求&lt;/h3&gt;
+
+&lt;p&gt;下面是一个真实的请求例子，可以通过 F12 工具里面的 NetWork 看到，是读取百度百科的图标的一个请求，由于 Cookie 太长，就仅仅留了一部分&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;
+GET /favicon.ico HTTP/1.1
+Host: baike.baidu.com
+Connection: keep-alive
+Pragma: no-cache
+Cache-Control: no-cache
+sec-ch-ua: &quot;Google Chrome&quot;;v=&quot;89&quot;, &quot;Chromium&quot;;v=&quot;89&quot;, &quot;;Not A Brand&quot;;v=&quot;99&quot;
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36
+Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: image
+Referer: https://baike.baidu.com/item/goto%E8%AF%AD%E5%8F%A5/7603004?fr=aladdin
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9,zh-TW;q=0.8,en-US;q=0.7,en;q=0.6
+Cookie: BIDUPSID=5BA9C0F9D1F69BCF04F7196693AA0E37; PSTM=1606200267; 
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;HTTP1.0 定义了三种请求方法：GET, POST 和 HEAD 方法。
+HTTP1.1 新增了五种请求方法：OPTIONS, PUT, DELETE, TRACE 和 CONNECT 方法。
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GET&lt;/code&gt; 是请求。
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;POST&lt;/code&gt; 是提交表单。
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HEAD&lt;/code&gt; 和 GET 基本一样，但是只要求返回头部信息。
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PUT&lt;/code&gt; 是向服务端提交文件。几乎不会使用。
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DELETE&lt;/code&gt; 是删除文件。几乎不会使用。
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TRACE&lt;/code&gt; 是追踪请求的转发路线。几乎不会使用。
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CONNECT&lt;/code&gt; 是要求使用隧道进行代理。
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OPTIONS&lt;/code&gt; 是查看 URI 可以执行的动作。&lt;/p&gt;
+
+&lt;h3 id=&quot;https&quot;&gt;https&lt;/h3&gt;
+
+&lt;p&gt;HTTP 本身是明文协议。每个 HTTP 请求和返回的每个 byte 都会在网络上明文传播，不管是 url, header 还是 body.&lt;/p&gt;
+
+&lt;p&gt;SSL(Secure Sockets Layer 安全套接字协议）, 及其继任者传输层安全 (Transport Layer Security, TLS) 是在传输层和应用层之间对信息进行加密。
+通常，HTTP 直接和 TCP 通信。当使用 SSL 时，则演变成先和 SSL 通信，再由 SSL 和 TCP 通信了。简言之，所谓 HTTPS, 其实就是身披 SSL 协议这层外壳的 HTTP. 加密采用混合加密的方式，先用公开密钥方式传输对称密钥，后续的信息就用对称密钥加密的方式。这样既保证了安全性，又保证了效率。
+SSL 不仅提供加密处理，而且还使用了一种被称为证书的手段，可用于确定方。证书由值得信任的第三方机构颁发，用以证明服务器和客户端是实际存在的。
+SSL 提供认证和加密处理及摘要功能。也就是用以防范中间人攻击，保证下载文件的正确性和完整性。常规的校验码的方式都需要用户手动检查，而且检验码本身也可能被篡改。
+https 采用 443 端口&lt;/p&gt;
+
+&lt;h4 id=&quot;客户端服务端验证过程&quot;&gt;客户端服务端验证过程&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;首先客户端通过 URL 访问服务器建立 SSL 连接。&lt;/li&gt;
+  &lt;li&gt;服务端收到客户端请求后，会将网站支持的证书信息（证书中包含公钥）传送一份给客户端。（这里补充一步客户端验证证书）&lt;/li&gt;
+  &lt;li&gt;客户端的服务器开始协商 SSL 连接的安全等级，也就是信息加密的等级。&lt;/li&gt;
+  &lt;li&gt;客户端的浏览器根据双方同意的安全等级，建立会话密钥，然后利用网站的公钥将会话密钥加密，并传送给网站。&lt;/li&gt;
+  &lt;li&gt;服务器利用自己的私钥解密出会话密钥。&lt;/li&gt;
+  &lt;li&gt;服务器利用会话密钥加密与客户端之间的通信。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;客户端验证证书过程&quot;&gt;客户端验证证书过程&lt;/h4&gt;
+
+&lt;p&gt;1: 客户端验证证书内容有效性（过期时间，域名是否相同等）
+2: 验证证书的有效性 （是否被串改）, 通过本地根证书的 CA 公钥解密数字摘要，看是否匹配。
+3: 如果数字签名验证通过，就可以使用服务器证书里面提供的公钥进行下一步通信。
+&lt;strong&gt;综上，HTTPS = HTTP + 加密 + 认证 + 完整性保护。&lt;/strong&gt;
+&lt;a href=&quot;https://zhuanlan.zhihu.com/p/72616216&quot;&gt;链接流程&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;设备&quot;&gt;设备&lt;/h2&gt;
+
+&lt;h2 id=&quot;集线器&quot;&gt;集线器&lt;/h2&gt;
+
+&lt;p&gt;集线器工作在数据链路层，多个端口，无方向性的传送信息包，没有地址转换功能。集线器内部共享带宽。&lt;/p&gt;
+
+&lt;h2 id=&quot;网桥&quot;&gt;网桥&lt;/h2&gt;
+
+&lt;p&gt;网桥工作在数据链路层，将两个 LAN 连起来，根据 MAC 地址来转发帧，可以看作一个”低层的路由器”（路由器工作在网络层，根据网络地址如 IP 地址进行转发）. 网桥可以看作是一个低层的交换机 .&lt;/p&gt;
+
+&lt;h2 id=&quot;交换机&quot;&gt;交换机&lt;/h2&gt;
+
+&lt;p&gt;交换机其实就是多端口的网桥。也是数据链路层，但是能够让设备独享带宽。&lt;/p&gt;
+
+&lt;h2 id=&quot;路由器&quot;&gt;路由器&lt;/h2&gt;
+
+&lt;p&gt;路由器工作在网络层，可以有方向地发送信息包。&lt;/p&gt;
+</description>
+        <pubDate>Wed, 10 Mar 2021 00:00:00 +0800</pubDate>
+        <link>http://dawnk.gitee.io//%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/2021/03/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</link>
+        <guid isPermaLink="true">http://dawnk.gitee.io//%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/2021/03/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</guid>
+        
+        <category>计算机网络</category>
+        
+        
+        <category>计算机网络</category>
         
       </item>
     
@@ -451,525 +1094,369 @@
       </item>
     
       <item>
-        <title>「软件工程-设计模式」 适配器模式</title>
-        <description>&lt;h1 id=&quot;适配器模式&quot;&gt;适配器模式&lt;/h1&gt;
+        <title>「软件工程」 软件工程基础知识</title>
+        <description>&lt;h1 id=&quot;软件工程基础知识&quot;&gt;软件工程基础知识&lt;/h1&gt;
 
-&lt;h2 id=&quot;概述&quot;&gt;概述&lt;/h2&gt;
+&lt;h2 id=&quot;软件开发模型&quot;&gt;软件开发模型&lt;/h2&gt;
 
-&lt;p&gt;适配器模式主要是用来链接两个接口, 比如我们希望通过增加一个第三方的类来增强我们现有的类的功能, 但是我们不想继承这个类(java只能单继承, 或者出于其他因素), 就往往使用适配器模式.
-将新的类作为现有的类的一个成员, 原类通过调用这个成员的方法来增强自身功能.&lt;/p&gt;
+&lt;h3 id=&quot;边做边改模型&quot;&gt;边做边改模型&lt;/h3&gt;
 
-&lt;h2 id=&quot;实现&quot;&gt;实现&lt;/h2&gt;
+&lt;p&gt;没有规划一边做一边改. 容易陷入修改困难甚至无法修改的境地.&lt;/p&gt;
 
-&lt;p&gt;比如我们最开始有个 MediaPlayer 接口, 然后我们实现了一个 AudioPlayer类, 可以播放 mp3格式的文件.&lt;/p&gt;
+&lt;h3 id=&quot;瀑布模型&quot;&gt;瀑布模型&lt;/h3&gt;
 
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MediaPlayer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-   &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;play&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;audioType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;将软件生命周期划分为制定计划、需求分析、软件设计、程序编写、软件测试和运行维护等六个基本活动.
+在瀑布模型中, 软件开发的各项活动严格按照线性方式进行.&lt;/p&gt;
 
-&lt;p&gt;然后我们新引入了一个能播放 mp4和 vlc 的接口. 并且也有对应的实现.&lt;/p&gt;
+&lt;p&gt;缺点: 文档太多, 开发风险大, 用户只能在完全结束后才能看到. 早期的错误需要等到后期才能发现.&lt;/p&gt;
 
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AdvancedMediaPlayer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; 
-   &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;playVlc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-   &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;playMp4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;VlcPlayer&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AdvancedMediaPlayer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-   &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-   &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;playVlc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Playing vlc file. Name: &quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;      
-   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
- 
-   &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-   &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;playMp4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;c1&quot;&gt;//什么也不做&lt;/span&gt;
-   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Mp4Player&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AdvancedMediaPlayer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
- 
-   &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-   &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;playVlc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;c1&quot;&gt;//什么也不做&lt;/span&gt;
-   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
- 
-   &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-   &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;playMp4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Playing mp4 file. Name: &quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;      
-   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;快速原型&quot;&gt;快速原型&lt;/h3&gt;
 
-&lt;p&gt;现在我们想让 AudioPlayer类增加播放 Mp4 和 vlc 格式的能力, 将最简化这个操作. 我们就新增适配器类.&lt;/p&gt;
+&lt;p&gt;快速原型模型的第一步是建造一个快速原型, 实现客户或未来的用户与系统的交互, 用户或客户对原型进行评价, 进一步细化待开发软件的需求.
+有抛弃和附加两种对待原型的方式. 第一种多用于试验性的工程, 确定需求之后就丢弃原型. 第二种是原型逐步添加新功能, 最终发展成用户满意的系统.&lt;/p&gt;
 
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MediaAdapter&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MediaPlayer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
- 
-   &lt;span class=&quot;nc&quot;&gt;AdvancedMediaPlayer&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;advancedMusicPlayer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
- 
-   &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;MediaAdapter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;audioType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;audioType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;equalsIgnoreCase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;vlc&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
-         &lt;span class=&quot;n&quot;&gt;advancedMusicPlayer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;VlcPlayer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;       
-      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;audioType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;equalsIgnoreCase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;mp4&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)){&lt;/span&gt;
-         &lt;span class=&quot;n&quot;&gt;advancedMusicPlayer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Mp4Player&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;  
-   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
- 
-   &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-   &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;play&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;audioType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;audioType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;equalsIgnoreCase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;vlc&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)){&lt;/span&gt;
-         &lt;span class=&quot;n&quot;&gt;advancedMusicPlayer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;playVlc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fileName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;audioType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;equalsIgnoreCase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;mp4&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)){&lt;/span&gt;
-         &lt;span class=&quot;n&quot;&gt;advancedMusicPlayer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;playMp4&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fileName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h3 id=&quot;增量模型&quot;&gt;增量模型&lt;/h3&gt;
 
-&lt;p&gt;这个适配器就可以承担起播放 vlc和 Mp4的任务.
-然后我们将这个适配器装入 AudioPlayer类.&lt;/p&gt;
+&lt;p&gt;整个产品被分解成若干个构件, 开发人员逐个构件地交付产品.
+客户可以不断看到开发的软件.
+缺点: 新加入的部件不能破坏原有的结构. 需要对软件的整体有很好的的把握.&lt;/p&gt;
 
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AudioPlayer&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MediaPlayer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-   &lt;span class=&quot;nc&quot;&gt;MediaAdapter&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mediaAdapter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt; 
- 
-   &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-   &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;play&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;audioType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;    
- 
-      &lt;span class=&quot;c1&quot;&gt;//播放 mp3 音乐文件的内置支持&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;audioType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;equalsIgnoreCase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;mp3&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)){&lt;/span&gt;
-         &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Playing mp3 file. Name: &quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;         
-      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; 
-      &lt;span class=&quot;c1&quot;&gt;//mediaAdapter 提供了播放其他文件格式的支持&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;audioType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;equalsIgnoreCase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;vlc&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 
-         &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;audioType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;equalsIgnoreCase&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;mp4&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)){&lt;/span&gt;
-         &lt;span class=&quot;n&quot;&gt;mediaAdapter&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MediaAdapter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;audioType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-         &lt;span class=&quot;n&quot;&gt;mediaAdapter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;play&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;audioType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileName&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-         &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Invalid media. &quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;audioType&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot; format not supported&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;   
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;h3 id=&quot;迭代模型&quot;&gt;迭代模型&lt;/h3&gt;
 
-&lt;span class=&quot;c1&quot;&gt;// AudioPlayer audioPlayer = new AudioPlayer();&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// audioPlayer.play(&quot;mp3&quot;, &quot;beyond the horizon.mp3&quot;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// audioPlayer.play(&quot;mp4&quot;, &quot;alone.mp4&quot;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// audioPlayer.play(&quot;vlc&quot;, &quot;far far away.vlc&quot;);&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-</description>
-        <pubDate>Mon, 22 Feb 2021 00:00:00 +0800</pubDate>
-        <link>http://dawnk.gitee.io//%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</link>
-        <guid isPermaLink="true">http://dawnk.gitee.io//%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</guid>
-        
-        <category>软件工程</category>
-        
-        <category>设计模式</category>
-        
-        
-        <category>软件工程-设计模式</category>
-        
-      </item>
-    
-      <item>
-        <title>「软件工程-设计模式」 装饰器模式</title>
-        <description>&lt;h1 id=&quot;装饰器模式&quot;&gt;装饰器模式&lt;/h1&gt;
+&lt;p&gt;将软件开发视为一个逐步获取用户需求、完善软件产品的过程&lt;/p&gt;
 
-&lt;h2 id=&quot;概述&quot;&gt;概述&lt;/h2&gt;
+&lt;h3 id=&quot;螺旋模型&quot;&gt;螺旋模型&lt;/h3&gt;
 
-&lt;p&gt;装饰器模式主要是在不更改原有类的情况下为其增加功能.
-也就是用其他类(装饰器)包含原有类的方式.&lt;/p&gt;
+&lt;p&gt;螺旋模型采用一种周期性的方法来进行系统开发, 在每个项目阶段使用瀑布模型法, 并引进了风险分析活动.&lt;/p&gt;
 
-&lt;h2 id=&quot;实现&quot;&gt;实现&lt;/h2&gt;
+&lt;h3 id=&quot;敏捷开发&quot;&gt;敏捷开发&lt;/h3&gt;
 
-&lt;p&gt;比如我们有一个咖啡接口, 和一个已经实现的咖啡实体类. 我们后续想往咖啡中自由添加调料, 而不改变 SimpleCoffee 的实现&lt;/p&gt;
+&lt;p&gt;敏捷开发的核心是迭代开发. 主观能动性优于既定流程和工具. 软件能够运行, 优于详尽的文档. 跟客户的密切协作. 能够响应变化.&lt;/p&gt;
 
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Coffee&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;cm&quot;&gt;/** 获取价格 */&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getCost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;cm&quot;&gt;/** 获取配料 */&lt;/span&gt;
-    &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getIngredients&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SimpleCoffee&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Coffee&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;h2 id=&quot;测试模型&quot;&gt;测试模型&lt;/h2&gt;
 
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getCost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;h3 id=&quot;v模型&quot;&gt;V模型&lt;/h3&gt;
 
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getIngredients&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Coffee&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;标注了测试过程中存在的不同类型的测试&lt;/p&gt;
 
-&lt;p&gt;我们令咖啡装饰器也继承 Coffee 接口&lt;/p&gt;
+&lt;p&gt;缺陷: 没有明确说明早期的测试, 不能体现”尽早地和不断地进行软件测试”的原则.&lt;/p&gt;
 
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CoffeeDecorator&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Coffee&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Coffee&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;decoratedCoffee&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;h3 id=&quot;w模型&quot;&gt;W模型&lt;/h3&gt;
 
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;CoffeeDecorator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Coffee&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;coffee&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;decoratedCoffee&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;coffee&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;p&gt;开发是V, 测试也是与此并行的V.
+也就是开发进行到某个阶段, 测试就紧接着跟上. 测试与开发是同步进行的, 从而有利于尽早的测试、发现问题
+缺陷: 将开发过程看做线性, 不利于迭代.&lt;/p&gt;
 
-    &lt;span class=&quot;cm&quot;&gt;/**
-     * 装饰器父类中直接转发&quot;请求&quot;至引用对象,也就是做简单的封装,维持原有对象的接口
-     */&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getCost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;decoratedCoffee&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getCost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;h3 id=&quot;x模型&quot;&gt;X模型&lt;/h3&gt;
 
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getIngredients&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;decoratedCoffee&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getIngredients&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;X模型左边描述的是针对单独程序片段所进行的相互分离的编码和测试, 此后, 将进行频繁的交接, 通过集成最终合成为可执行的程序. 也就是将交接从点换成一个时间段.&lt;/p&gt;
 
-&lt;p&gt;我们根据这个装饰器类再创建实体类. 其中的价格计算都是链式调用, 一层一层向内调用.&lt;/p&gt;
+&lt;h3 id=&quot;h模型&quot;&gt;H模型&lt;/h3&gt;
 
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;WithMilk&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CoffeeDecorator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;p&gt;软件测试是一个独立的流程, 贯穿产品的整个开发周期, 与其它流程并发进行. 只要某个测试达到准备就绪点, 测试执行活动就可以开展.&lt;/p&gt;
 
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;WithMilk&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Coffee&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;coffee&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;coffee&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;h2 id=&quot;cmm&quot;&gt;CMM&lt;/h2&gt;
 
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getCost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;additionalCost&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getCost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;additionalCost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;p&gt;软件过程成熟度(Capability Maturity Model)是指某个具体软件过程被明确定义、管理、度量和控制的有效程度. 将软件过程的成熟度分为5个级别.&lt;/p&gt;
 
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getIngredients&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;additionalIngredient&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;milk&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getIngredients&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;, &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;additionalIngredient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;WithSugar&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CoffeeDecorator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;h3 id=&quot;初始级&quot;&gt;初始级&lt;/h3&gt;
 
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;WithSugar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Coffee&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;coffee&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;coffee&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;p&gt;项目经常超出预算和不能按期完成&lt;/p&gt;
 
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getCost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getCost&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;h3 id=&quot;可重复级&quot;&gt;可重复级&lt;/h3&gt;
 
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getIngredients&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getIngredients&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;, Sugar&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;组织的软件开发流程可以基于之前成功的例子, 项目处于项目管理系统的有效控制之下, 并能重复以前的成功.&lt;/p&gt;
 
-&lt;p&gt;最后客户端调用的方法如下.&lt;/p&gt;
+&lt;h3 id=&quot;已定义级&quot;&gt;已定义级&lt;/h3&gt;
 
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nc&quot;&gt;Coffee&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SimpleCoffee&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;p&gt;管理与工程都已经文档化, 标准化.&lt;/p&gt;
 
-&lt;span class=&quot;c1&quot;&gt;//增加牛奶的咖啡&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;WithMilk&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;h3 id=&quot;已管理级&quot;&gt;已管理级&lt;/h3&gt;
 
-&lt;span class=&quot;c1&quot;&gt;//再加一点糖&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;WithSugar&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;p&gt;软件性能和质量是优秀的且可预测的.&lt;/p&gt;
 
-&lt;span class=&quot;cm&quot;&gt;/*
-花费了: 1.0
-配料: Coffee
-============
-花费了: 1.5
-配料: Coffee, milk
-============
-花费了: 2.5
-配料: Coffee, milk, Sugar
-============
-*/&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-</description>
-        <pubDate>Mon, 22 Feb 2021 00:00:00 +0800</pubDate>
-        <link>http://dawnk.gitee.io//%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F/</link>
-        <guid isPermaLink="true">http://dawnk.gitee.io//%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F/</guid>
-        
-        <category>软件工程</category>
-        
-        <category>设计模式</category>
-        
-        
-        <category>软件工程-设计模式</category>
-        
-      </item>
-    
-      <item>
-        <title>「软件工程-设计模式」 概述</title>
-        <description>&lt;h1 id=&quot;设计模式&quot;&gt;设计模式&lt;/h1&gt;
+&lt;h3 id=&quot;优化级&quot;&gt;优化级&lt;/h3&gt;
 
-&lt;p&gt;[toc]&lt;/p&gt;
+&lt;p&gt;不断提高自身能力, 可持续改善软件过程.&lt;/p&gt;
 
-&lt;h2 id=&quot;概述&quot;&gt;概述&lt;/h2&gt;
-
-&lt;p&gt;设计模式是一套被反复使用的、多数人知晓的、经过分类编目的、代码设计经验的总结. 使用设计模式是为了重用代码、让代码更容易被他人理解、保证代码可靠性.&lt;/p&gt;
-
-&lt;h2 id=&quot;分类&quot;&gt;分类&lt;/h2&gt;
-
-&lt;h3 id=&quot;创建型模式&quot;&gt;创建型模式&lt;/h3&gt;
-
-&lt;p&gt;这些设计模式提供了一种在创建对象的同时隐藏创建逻辑的方式, 而不是使用 new 运算符直接实例化对象. 这使得程序在判断针对某个给定实例需要创建哪些对象时更加灵活.&lt;/p&gt;
+&lt;h2 id=&quot;好的项目需要什么&quot;&gt;好的项目需要什么&lt;/h2&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;工厂模式(Factory Pattern)&lt;/li&gt;
-  &lt;li&gt;抽象工厂模式(Abstract Factory Pattern)&lt;/li&gt;
-  &lt;li&gt;单例模式(Singleton Pattern)&lt;/li&gt;
-  &lt;li&gt;建造者模式(Builder Pattern)&lt;/li&gt;
-  &lt;li&gt;原型模式(Prototype Pattern)&lt;/li&gt;
+  &lt;li&gt;好的需求&lt;/li&gt;
+  &lt;li&gt;技术与风险评估&lt;/li&gt;
+  &lt;li&gt;合适的开发计划&lt;/li&gt;
+  &lt;li&gt;良好的编码, 保证设计和实现是一致的.&lt;/li&gt;
+  &lt;li&gt;充分的测试&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;结构型模式&quot;&gt;结构型模式&lt;/h3&gt;
+&lt;h2 id=&quot;测试&quot;&gt;测试&lt;/h2&gt;
 
-&lt;p&gt;这些设计模式关注类和对象的组合. 继承的概念被用来组合接口和定义组合对象获得新功能的方式.&lt;/p&gt;
+&lt;h3 id=&quot;单元测试&quot;&gt;单元测试&lt;/h3&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;适配器模式(Adapter Pattern)&lt;/li&gt;
-  &lt;li&gt;桥接模式(Bridge Pattern)&lt;/li&gt;
-  &lt;li&gt;过滤器模式(Filter、Criteria Pattern)&lt;/li&gt;
-  &lt;li&gt;组合模式(Composite Pattern)&lt;/li&gt;
-  &lt;li&gt;装饰器模式(Decorator Pattern)&lt;/li&gt;
-  &lt;li&gt;外观模式(Facade Pattern)&lt;/li&gt;
-  &lt;li&gt;享元模式(Flyweight Pattern)&lt;/li&gt;
-  &lt;li&gt;代理模式(Proxy Pattern)&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;单元测试(unit testing), 是指对软件中的最小可测试单元进行检查和验证.&lt;/p&gt;
 
-&lt;h3 id=&quot;行为型模式&quot;&gt;行为型模式&lt;/h3&gt;
+&lt;p&gt;C语言中单元指一个函数, Java里单元指一个类, 图形化的软件中可以指一个窗口或一个菜单等&lt;/p&gt;
 
-&lt;p&gt;这些设计模式特别关注对象之间的通信.&lt;/p&gt;
+&lt;p&gt;单元测试是在软件开发过程中要进行的最低级别的测试活动, 软件的独立单元将在与程序的其他部分相隔离的情况下进行测试.&lt;/p&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;责任链模式(Chain of Responsibility Pattern)&lt;/li&gt;
-  &lt;li&gt;命令模式(Command Pattern)&lt;/li&gt;
-  &lt;li&gt;解释器模式(Interpreter Pattern)&lt;/li&gt;
-  &lt;li&gt;迭代器模式(Iterator Pattern)&lt;/li&gt;
-  &lt;li&gt;中介者模式(Mediator Pattern)&lt;/li&gt;
-  &lt;li&gt;备忘录模式(Memento Pattern)&lt;/li&gt;
-  &lt;li&gt;观察者模式(Observer Pattern)&lt;/li&gt;
-  &lt;li&gt;状态模式(State Pattern)&lt;/li&gt;
-  &lt;li&gt;空对象模式(Null Object Pattern)&lt;/li&gt;
-  &lt;li&gt;策略模式(Strategy Pattern)&lt;/li&gt;
-  &lt;li&gt;模板模式(Template Pattern)&lt;/li&gt;
-  &lt;li&gt;访问者模式(Visitor Pattern)&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h4 id=&quot;集成测试&quot;&gt;集成测试&lt;/h4&gt;
 
-&lt;h3 id=&quot;j2ee-模式&quot;&gt;J2EE 模式&lt;/h3&gt;
-
-&lt;p&gt;这些设计模式特别关注表示层. 这些模式是由 Sun Java Center 鉴定的.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;MVC 模式(MVC Pattern)&lt;/li&gt;
-  &lt;li&gt;业务代表模式(Business Delegate Pattern)&lt;/li&gt;
-  &lt;li&gt;组合实体模式(Composite Entity Pattern)&lt;/li&gt;
-  &lt;li&gt;数据访问对象模式(Data Access Object Pattern)&lt;/li&gt;
-  &lt;li&gt;前端控制器模式(Front Controller Pattern)&lt;/li&gt;
-  &lt;li&gt;拦截过滤器模式(Intercepting Filter Pattern)&lt;/li&gt;
-  &lt;li&gt;服务定位器模式(Service Locator Pattern)&lt;/li&gt;
-  &lt;li&gt;传输对象模式(Transfer Object Pattern)&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;在单元测试的基础上, 将所有模块按照设计要求(如根据结构图)组装成为子系统或系统, 进行集成测试.&lt;/p&gt;
 </description>
-        <pubDate>Mon, 22 Feb 2021 00:00:00 +0800</pubDate>
-        <link>http://dawnk.gitee.io//%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E6%A6%82%E8%BF%B0/</link>
-        <guid isPermaLink="true">http://dawnk.gitee.io//%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E6%A6%82%E8%BF%B0/</guid>
+        <pubDate>Thu, 04 Mar 2021 00:00:00 +0800</pubDate>
+        <link>http://dawnk.gitee.io//%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/2021/03/04/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</link>
+        <guid isPermaLink="true">http://dawnk.gitee.io//%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/2021/03/04/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</guid>
         
         <category>软件工程</category>
         
-        <category>设计模式</category>
         
-        
-        <category>软件工程-设计模式</category>
+        <category>软件工程</category>
         
       </item>
     
       <item>
-        <title>「软件工程-设计模式」 原型模式</title>
-        <description>&lt;h1 id=&quot;原型模式&quot;&gt;原型模式&lt;/h1&gt;
+        <title>「软件工程」 makefile</title>
+        <description>&lt;h1 id=&quot;makefile&quot;&gt;Makefile&lt;/h1&gt;
 
 &lt;h2 id=&quot;概述&quot;&gt;概述&lt;/h2&gt;
 
-&lt;p&gt;不通过 new 关键字来产生一个对象, 而是通过对象复制来实现的模式就叫做原型模式. 这种主要是在 new 一个对象开销太大(相比于复制), 而需要大量的对象的情况下.&lt;/p&gt;
+&lt;p&gt;Makefile 主要是为了解决构建问题。将编译，链接，清理自动化。&lt;/p&gt;
 
-&lt;h2 id=&quot;实现&quot;&gt;实现&lt;/h2&gt;
+&lt;h2 id=&quot;配置&quot;&gt;配置&lt;/h2&gt;
 
-&lt;p&gt;首先要继承 Cloneable 接口, 实现其 clone()方法, 然后&lt;/p&gt;
+&lt;p&gt;make 在 Windows 上体验不太好。
+主要是 Windows 的 Powershell 和 cmd 的命令并不兼容，而且相比 Linux, 功能还是弱了一些。
+而且一定要注意，命令前面的分隔符是 tab 而不是空格&lt;/p&gt;
 
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;p&gt;提前准备了若干文件，将这几个文件和 Makefile 放在同一层文件夹下。&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;// functions.h&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;factorial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;// function1.cpp&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#include &quot;functions.h&quot;
+&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;factorial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;factorial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;// function2.cpp&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;iostream&amp;gt;
+&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#include &quot;functions.h&quot;
+&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Hello World&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;endl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c1&quot;&gt;// main.cpp&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;iostream&amp;gt;
+&lt;/span&gt;
+&lt;span class=&quot;cp&quot;&gt;#include &quot;functions.h&quot;
+&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;print_hello&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;this is main&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;endl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;The factorial of 5 is &quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;factorial&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;std&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;endl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;基本用法&quot;&gt;基本用法&lt;/h3&gt;
+
+&lt;div class=&quot;language-makefile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nl&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hello&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main.o function1.o function2.o&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;g++&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;main.o&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;function1.o&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;function2.o&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;hello&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;main.o&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main.cpp&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;g++&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;main.cpp&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;function1.o&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;function1.cpp&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;g++&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;function1.cpp&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;function2.o&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;function2.cpp&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;g++&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;function2.cpp&lt;/span&gt;
+
+&lt;span class=&quot;nl&quot;&gt;clean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;err&quot;&gt;rm&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;-rf&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;*.o&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;hello&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;这个就基本展现了 Makefile 的大体功能。&lt;/p&gt;
+
+&lt;div class=&quot;language-makefile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nl&quot;&gt;&amp;lt;target&amp;gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;&amp;lt;dependencies&amp;gt; &lt;/span&gt;
+    &lt;span class=&quot;err&quot;&gt;&amp;lt;command&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;target&lt;/code&gt; 表示 目标，它可以是文件，也可以是单纯的一个符号（比如 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;all&lt;/code&gt; 和 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;clean&lt;/code&gt; ).&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dependencies&lt;/code&gt; 是若干个（或者没有）依赖目标，也就是当前的目标需要在其依赖构建之后才能构建，同时 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;make&lt;/code&gt; 可以判断依赖与目标的新旧程度，尽量少进行构建。比如如果自从上次构建后，依赖的目标没有再更新过，那么就不再重新构建 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;target&lt;/code&gt; . 若有更新，也仅仅重新构建更新的依赖。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;command&lt;/code&gt; 就是构建 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;target&lt;/code&gt; 的语句。可视为 OS 的脚本，因 OS 的不同而不同。&lt;/p&gt;
+
+&lt;p&gt;每个文件的第一个 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;target&lt;/code&gt; 就是默认的目标，直接执行 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;make&lt;/code&gt; 就会尝试构建，也可以手动指定，如 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;make main.o&lt;/code&gt; . 构建前先检查依赖，如果依赖不满足，那么还需要继续递归，直到构建完成。上文中的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;clean&lt;/code&gt; 可以声明为 伪指令，也就是&lt;/p&gt;
+
+&lt;div class=&quot;language-makefile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nl&quot;&gt;.PHONY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;clean&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;clean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+		&lt;span class=&quot;nb&quot;&gt;rm&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-rf&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.o hello
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;这样即使存在着一个文件叫 clean, 也不会对 make clean 造成影响，都会执行下面的删除&lt;/p&gt;
+
+&lt;h3 id=&quot;进阶用法&quot;&gt;进阶用法&lt;/h3&gt;
+
+&lt;p&gt;虽然上述用法节省了大量的体力，但是如果考虑到一个巨大的系统，其 Makefile 的编写和维护也是困难的。&lt;/p&gt;
+
+&lt;h4 id=&quot;变量&quot;&gt;变量&lt;/h4&gt;
+
+&lt;p&gt;可以指定变量，让修改更方便。比如上文的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;g++&lt;/code&gt;  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-c&lt;/code&gt; 等。&lt;/p&gt;
+
+&lt;div class=&quot;language-makefile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;CC&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; g++
+&lt;span class=&quot;nv&quot;&gt;CFLAGS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Wall&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;LFLAGS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Wall&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#   上文的 g++ -c -Wall main.cpp 可以改写为
+# 	$(CC) $(CFLAGS) main.cpp 
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;另外，观察构建过程，发现很多 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;target&lt;/code&gt; 的构建就是编译其所有依赖。故引入如下三个变量（内置的）&lt;/p&gt;
+
+&lt;div class=&quot;language-makefile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;err&quot;&gt;$@&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# 指代 all ，即 target
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&amp;lt;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# 指代 library.cpp， 即第一个 dependency
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$^&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# 指代 library.cpp 和 main.cpp，即所有的 dependencies
+&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;运用好如上的变量，可以将 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;makefile&lt;/code&gt; 修改如下。&lt;/p&gt;
+
+&lt;div class=&quot;language-makefile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;CC&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; g++
+&lt;span class=&quot;nv&quot;&gt;CFLAGS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Wall&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;LFLAGS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Wall&lt;/span&gt;
+
+&lt;span class=&quot;nl&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hello&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main.o function1.o function2.o&lt;/span&gt;
+		&lt;span class=&quot;nv&quot;&gt;$(CC)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(LFLAGS)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$^&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$@&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;main.o&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main.cpp&lt;/span&gt;
+		&lt;span class=&quot;nv&quot;&gt;$(CC)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(CFLAGS)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$&amp;lt;&lt;/span&gt; 
+&lt;span class=&quot;nl&quot;&gt;function1.o&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;function1.cpp&lt;/span&gt;
+		&lt;span class=&quot;nv&quot;&gt;$(CC)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(CFLAGS)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$&amp;lt;&lt;/span&gt; 
+&lt;span class=&quot;nl&quot;&gt;function2.o&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;function2.cpp&lt;/span&gt;
+		&lt;span class=&quot;nv&quot;&gt;$(CC)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(CFLAGS)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$&amp;lt;&lt;/span&gt; 
+
+&lt;span class=&quot;nl&quot;&gt;clean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+		&lt;span class=&quot;nb&quot;&gt;rm&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-rf&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.o hello
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;自动检测&quot;&gt;自动检测&lt;/h4&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;make&lt;/code&gt; 提供了 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wildcard&lt;/code&gt; 命令以获取符合特定规则的文件名&lt;/p&gt;
+
+&lt;p&gt;比如&lt;/p&gt;
+
+&lt;div class=&quot;language-makefile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;SOURCE_DIR&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; .
+&lt;span class=&quot;nv&quot;&gt;SOURCE_FILE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;wildcard&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(SOURCE_DIR)&lt;/span&gt;/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.cpp&lt;span class=&quot;nf&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(SOURCE_FILE)&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;就可以打印出当前目录下所有以 .cpp 结尾的文件&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@echo&lt;/code&gt; 是表示打印时不显示 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;echo&lt;/code&gt; 此句，而仅仅显示要打印的内容。&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;make&lt;/code&gt; 还有个功能是 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;patsubst&lt;/code&gt; , 是用以创建同名但不同后缀名的文件的。&lt;/p&gt;
+
+&lt;p&gt;两个功能可以进行组合，如下的代码可以打印源代码对应的重定向文件。&lt;/p&gt;
+
+&lt;div class=&quot;language-makefile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;SOURCE_DIR&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; .
+&lt;span class=&quot;nv&quot;&gt;SOURCE_FILE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;wildcard&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(SOURCE_DIR)&lt;/span&gt;/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.cpp&lt;span class=&quot;nf&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;OBJS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;patsubst&lt;/span&gt; %.cpp, %.o, &lt;span class=&quot;nv&quot;&gt;$(SOURCE_FILE)&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(SOURCE_FILE)&lt;/span&gt;
+	&lt;span class=&quot;p&quot;&gt;@&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(OBJS)&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;综上， &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;makefile&lt;/code&gt; 可以修改如下&lt;/p&gt;
+
+&lt;div class=&quot;language-makefile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
 2
 3
 4
@@ -988,227 +1475,44 @@
 17
 18
 19
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Shape&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Cloneable&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-   
-   &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;CC&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; g++
+&lt;span class=&quot;nv&quot;&gt;CFLAGS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Wall&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;LFLAGS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Wall&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;SOURCE_DIR&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; .
+&lt;span class=&quot;nv&quot;&gt;SOURCE_FILE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;wildcard&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(SOURCE_DIR)&lt;/span&gt;/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.cpp&lt;span class=&quot;nf&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;OBJS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;patsubst&lt;/span&gt; %.cpp, %.o, &lt;span class=&quot;nv&quot;&gt;$(SOURCE_FILE)&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;)&lt;/span&gt;
 
-   &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-
-   &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;id&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-   &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;clone&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clone&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-         &lt;span class=&quot;n&quot;&gt;clone&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;clone&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;CloneNotSupportedException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-         &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;printStackTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clone&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hello&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;$(OBJS) &lt;/span&gt;
+		&lt;span class=&quot;nv&quot;&gt;$(CC)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(LFLAGS)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$^&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$@&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;main.o&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main.cpp&lt;/span&gt;
+		&lt;span class=&quot;nv&quot;&gt;$(CC)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(CFLAGS)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$&amp;lt;&lt;/span&gt; 
+&lt;span class=&quot;nl&quot;&gt;function1.o&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;function1.cpp&lt;/span&gt;
+		&lt;span class=&quot;nv&quot;&gt;$(CC)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(CFLAGS)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$&amp;lt;&lt;/span&gt; 
+&lt;span class=&quot;nl&quot;&gt;function2.o&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;function2.cpp&lt;/span&gt;
+		&lt;span class=&quot;nv&quot;&gt;$(CC)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(CFLAGS)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$&amp;lt;&lt;/span&gt; 
+&lt;span class=&quot;nl&quot;&gt;.PHONY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;clean&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;clean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+		&lt;span class=&quot;nb&quot;&gt;rm&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-rf&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.o hello
 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;实现具体类&lt;/p&gt;
+&lt;h3 id=&quot;static-pattern-rule&quot;&gt;Static Pattern Rule&lt;/h3&gt;
 
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;p&gt;虽然上述的功能已经非常简洁，但是我们还发现，对于 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;main,&lt;/code&gt;  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;function1, &lt;/code&gt;  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;function2&lt;/code&gt; 其实还有重复的代码，所以我们将其合并，也就是让 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;make&lt;/code&gt; 自动生成对应的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;target&lt;/code&gt; 而不用一个个手写了。&lt;/p&gt;
+
+&lt;div class=&quot;language-makefile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
 2
 3
 4
-5
-6
-7
-8
-9
-10
-11
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Rectangle&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Shape&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
- 
-   &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Rectangle&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-     &lt;span class=&quot;n&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Rectangle&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
- 
-   &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-   &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;draw&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Inside Rectangle::draw() method.&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# 将 target:dependencies 修改如下形式
+&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;targets&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;target-pattern: prereq-patterns&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# 如下文就是表示，将 所有目标文件都指向其。cpp 结尾的依赖
+&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;$(OBJS)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;%.o:%.cpp&lt;/span&gt;
 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;假设下文的 getShapeById 是个耗时很大的操作(即使耗时不大, 一般也是复制比new快), 那么我们可以在查询一次后, 通过复制来构建大量的对象.&lt;/p&gt;
+&lt;p&gt;综上&lt;/p&gt;
 
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nc&quot;&gt;Shape&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cachedShape&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getShapeById&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt; 
-&lt;span class=&quot;nc&quot;&gt;Shape&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newShapeObj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;shape&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;clone&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt; 
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-</description>
-        <pubDate>Mon, 22 Feb 2021 00:00:00 +0800</pubDate>
-        <link>http://dawnk.gitee.io//%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/</link>
-        <guid isPermaLink="true">http://dawnk.gitee.io//%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/</guid>
-        
-        <category>软件工程</category>
-        
-        <category>设计模式</category>
-        
-        
-        <category>软件工程-设计模式</category>
-        
-      </item>
-    
-      <item>
-        <title>「软件工程-设计模式」 单例模式</title>
-        <description>&lt;h1 id=&quot;单例模式&quot;&gt;单例模式&lt;/h1&gt;
-
-&lt;h2 id=&quot;概述&quot;&gt;概述&lt;/h2&gt;
-
-&lt;p&gt;单例模式是说处于某种原因, 我们只能初始化一个对象, 然后在程序中都是引用这对象, 而不能创建新对象.&lt;/p&gt;
-
-&lt;h2 id=&quot;实现&quot;&gt;实现&lt;/h2&gt;
-
-&lt;h3 id=&quot;线程不安全的懒汉式&quot;&gt;线程不安全的懒汉式&lt;/h3&gt;
-
-&lt;p&gt;首要的条件是将构造函数设置为私有, 然后当且仅当 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getInstance&lt;/code&gt; 被调用且还未曾初始化过对象的时候, 才创建一个对象. 这个实现方法简单, 但是线程不安全, 也就是如果有两个线程紧跟着调用了if那一句的话, 就会产生两个对象.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;  
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;  
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(){}&lt;/span&gt;  
-  
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;  
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;  
-        &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;  
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;  
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;  
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;  
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;线程安全的懒汉式&quot;&gt;线程安全的懒汉式&lt;/h3&gt;
-
-&lt;p&gt;将 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getInstance&lt;/code&gt; 加一个同步锁. 虽然实现了线程安全, 但是影响了效率.
-(以后的方法都是线程安全的)&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;  
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;  
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(){}&lt;/span&gt;  
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;  
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;  
-        &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;  
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;  
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;  
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;  
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;饿汉式&quot;&gt;饿汉式&lt;/h3&gt;
-
-&lt;p&gt;这种解决方案也比较粗暴, 就是在类初始化的时候就创建对象, 这样会浪费内存, 产生无用的垃圾对象.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;  
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;  
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(){}&lt;/span&gt;  
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;  
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;  
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;  
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;双重校验锁dcl&quot;&gt;双重校验锁(DCL)&lt;/h3&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;  
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;volatile&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;  
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(){}&lt;/span&gt;  
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Singleton&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getSingleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;  
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;singleton&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;  
-            &lt;span class=&quot;kd&quot;&gt;synchronized&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;  
-                &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;singleton&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;  
-                    &lt;span class=&quot;n&quot;&gt;singleton&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;  
-                &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;  
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;  
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;  
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;singleton&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;  
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;  
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;此外还有 登记式/静态内部类 和 枚举方法, 日后在探究.&lt;/p&gt;
-</description>
-        <pubDate>Mon, 22 Feb 2021 00:00:00 +0800</pubDate>
-        <link>http://dawnk.gitee.io//%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</link>
-        <guid isPermaLink="true">http://dawnk.gitee.io//%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</guid>
-        
-        <category>软件工程</category>
-        
-        <category>设计模式</category>
-        
-        
-        <category>软件工程-设计模式</category>
-        
-      </item>
-    
-      <item>
-        <title>「软件工程-设计模式」 建造者模式</title>
-        <description>&lt;h1 id=&quot;建造者模式&quot;&gt;建造者模式&lt;/h1&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://zhuanlan.zhihu.com/p/58093669&quot;&gt;知乎参考资料&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;概述&quot;&gt;概述&lt;/h2&gt;
-
-&lt;p&gt;当一个类特别复杂时(比如构造函数有很多参数且有一些可选参数), 考虑建造者模式.&lt;/p&gt;
-
-&lt;p&gt;建造者模式的一种简单实现是使用建造者类通过一系列set的链式调用来构建一个复杂的对象.&lt;/p&gt;
-
-&lt;p&gt;比如电脑, 其有多个必选属性, 也有一些可选属性. 由于Java本身不支持默认参数, 导致构建很复杂(可以使用&lt;a href=&quot;https://blog.csdn.net/smartfirstme/article/details/83880446&quot;&gt;重叠构造器&lt;/a&gt;, 但是也不够优雅).&lt;/p&gt;
-
-&lt;h2 id=&quot;实现方法&quot;&gt;实现方法&lt;/h2&gt;
-
-&lt;p&gt;我们将 Computer 的构造函数&lt;strong&gt;变为私有&lt;/strong&gt;, 然后写一个 public 的内部类 Builder, 其与 Computer 有相同的成员, 并且有对应的 setter, 然后有一个 build(), 用来构造出真正的 Computer.&lt;/p&gt;
-
-&lt;p&gt;之所以大费周章的采用这种方式, 而不是 Computer直接写 setter是因为这个 Computer 想设置为一个不可变对象, 也就是一旦被生产出来, 其属性就不可更改.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+&lt;div class=&quot;language-makefile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
 2
 3
 4
@@ -1223,362 +1527,559 @@
 13
 14
 15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Computer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cpu&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//必须&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ram&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//必须&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;usbCount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//可选&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;keyboard&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//可选&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//可选&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;CC&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; g++
+&lt;span class=&quot;nv&quot;&gt;CFLAGS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Wall&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;LFLAGS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Wall&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;SOURCE_DIR&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; .
+&lt;span class=&quot;nv&quot;&gt;SOURCE_FILE&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;wildcard&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(SOURCE_DIR)&lt;/span&gt;/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.cpp&lt;span class=&quot;nf&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;OBJS&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;patsubst&lt;/span&gt; %.cpp, %.o, &lt;span class=&quot;nv&quot;&gt;$(SOURCE_FILE)&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;)&lt;/span&gt;
 
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Computer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Builder&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;cpu&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;cpu&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ram&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ram&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;usbCount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;usbCount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;keyboard&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;keyboard&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Builder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cpu&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//必须&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ram&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//必须&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;usbCount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//可选&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;keyboard&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//可选&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;//可选&lt;/span&gt;
-
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Builder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ram&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;cpu&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cup&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ram&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ram&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Builder&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setUsbCount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;usbCount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;usbCount&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;usbCount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Builder&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setKeyboard&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;keyboard&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;keyboard&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;keyboard&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Builder&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setDisplay&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;display&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;display&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;        
-        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Computer&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Computer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;c1&quot;&gt;//省略getter方法&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hello&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;$(OBJS) &lt;/span&gt;
+		&lt;span class=&quot;nv&quot;&gt;$(CC)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(LFLAGS)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$^&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$@&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;$(OBJS)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;%.o: %.cpp&lt;/span&gt;
+		&lt;span class=&quot;nv&quot;&gt;$(CC)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$(CFLAGS)&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$&amp;lt;&lt;/span&gt; 
+&lt;span class=&quot;nl&quot;&gt;.PHONY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;clean&lt;/span&gt;
+&lt;span class=&quot;nl&quot;&gt;clean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
+		&lt;span class=&quot;nb&quot;&gt;rm&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-rf&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.o hello
 &lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;构建电脑类对象时, 只需要链式调用即可.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nc&quot;&gt;Computer&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;computer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Computer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;Builder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;因特尔&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;三星&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setDisplay&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;三星24寸&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setKeyboard&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;罗技&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setUsbCount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-</description>
-        <pubDate>Sun, 21 Feb 2021 00:00:00 +0800</pubDate>
-        <link>http://dawnk.gitee.io//%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/21/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/</link>
-        <guid isPermaLink="true">http://dawnk.gitee.io//%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/21/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/</guid>
-        
-        <category>软件工程</category>
-        
-        <category>设计模式</category>
-        
-        
-        <category>软件工程-设计模式</category>
-        
-      </item>
-    
-      <item>
-        <title>「软件工程-设计模式」 工厂模式</title>
-        <description>&lt;h1 id=&quot;工厂模式&quot;&gt;工厂模式&lt;/h1&gt;
-
-&lt;p&gt;[toc]&lt;/p&gt;
-
-&lt;h2 id=&quot;简单工厂模式&quot;&gt;简单工厂模式&lt;/h2&gt;
-
-&lt;p&gt;假设我们要制造小米和苹果的笔记本, 我们声明一个 Computer 抽象类, 然后派生 MiComputer 和 MacComputer 两个子类. 但是直接用new的话, 就无法将装配工作统一接口. 维护起来就会很麻烦.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Computer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setOperationSystem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MacComputer&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Computer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setOperationSystem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Mac笔记本安装Mac系统&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MiComputer&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Computer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setOperationSystem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;小米笔记本安装Win10系统&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;简单工厂模式是说, 我们将构建过程也抽象出来, 我们传给工厂不同的参数, 以命令其生产不同的电脑, 而内部其生产过程其实是用各个电脑子类的构造方式, 我们无需关心.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SimpleComputerFactory&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Computer&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;makeComputer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;brand&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;Computer&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;computer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;switch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;brand&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;mac&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;computer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MacComputer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;case&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;mi&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;computer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MiComputer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;
-                &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;computer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// 使用方法,如果要修改,直接将 mi 改为 mac 即可&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//  Computer computer= SimpleComputerFactory.makeComputer(&quot;mi&quot;);&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//  computer.setOperationSystem();&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;工厂模式-1&quot;&gt;工厂模式&lt;/h2&gt;
-
-&lt;p&gt;工厂模式是简单工厂模式的升级版. 简单工厂模式虽然解决了构建的问题, 但是带来了严重的耦合, 一旦我们新加产品, 需要不停改动工厂类.
-我们引入工厂模式, 是将工厂本身也抽象出来, 让工厂成为接口, 各自的产品分别使用各自的工厂(都是继承自工厂接口)
-将简单工厂模式的工厂修改如下&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ComputerFactory&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-     &lt;span class=&quot;nc&quot;&gt;Computer&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;makeComputer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MacComputerFactory&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ComputerFactory&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Computer&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;makeComputer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;MacComputer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MiComputerFactory&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ComputerFactory&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Computer&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;makeComputer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;MiComputer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// 生产Mac电脑&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// ComputerFactory macFactory=new MacComputerFactory();&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// macFactory.makeComputer().setOperationSystem();&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 生产小米电脑&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// ComputerFactory miFactory=new MiComputerFactory();&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;// miFactory.makeComputer().setOperationSystem();&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// 如果后面要修改电脑的类型的话,只需要改 new 后面的构造函数名称即可,具有很好的扩展性.&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;抽象工厂模式&quot;&gt;抽象工厂模式&lt;/h2&gt;
-
-&lt;p&gt;抽象工厂其实是另一种模式了. 这个是面向更大的问题, 比如上文中的苹果和小米, 如果它们不仅仅生产电脑, 还生产手机, 那么就需要更多的工厂. 我们可以考虑将一些相关的产品组成一个”产品族”,&lt;/p&gt;
-
-&lt;p&gt;新增手机类&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MobilePhoto&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;abstract&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setOperationSystem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;IPhoto&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MobilePhoto&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setOperationSystem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;苹果手机安装IOS系统&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MiPhoto&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MobilePhoto&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setOperationSystem&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;小米手机安装Android系统&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;然后修改工厂, 让一个工厂既能建造电脑, 又能建造手机.&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AbstractFactory&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-     &lt;span class=&quot;nc&quot;&gt;Computer&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;makeComputer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-     &lt;span class=&quot;nc&quot;&gt;MobilePhoto&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;makeMobilePhoto&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AppleFactory&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AbstractFactory&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Computer&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;makeComputer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;MacComputer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MobilePhoto&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;makeMobilePhoto&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;IPhoto&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;XiaoMiFactory&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AbstractFactory&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Computer&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;makeComputer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;MiComputer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MobilePhoto&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;makeMobilePhoto&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;MiPhoto&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;但是抽象工厂模式有个缺陷就是: 对于添加产品族容易, 直接实现抽象工厂接口即可, 比如新增戴尔的手机和电脑工厂. 但是对于产品类的扩展比较困难, 比如我们新增鼠标类, 那么就必须修改所有的工厂, 包括抽象工厂. 这叫对开闭原则的倾斜性.&lt;/p&gt;
 
 &lt;h2 id=&quot;参考资料&quot;&gt;参考资料&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/ShuSheng0007/article/details/86634864&quot;&gt;简单工厂模式&lt;/a&gt;
-&lt;a href=&quot;https://blog.csdn.net/ShuSheng0007/article/details/86636494&quot;&gt;工厂模式&lt;/a&gt;
-&lt;a href=&quot;https://blog.csdn.net/ShuSheng0007/article/details/86644481&quot;&gt;抽象工厂模式&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://seisman.github.io/how-to-write-makefile/&quot;&gt;跟我一起写 Makefile&lt;/a&gt;
+&lt;a href=&quot;https://zhuanlan.zhihu.com/p/149346441&quot;&gt;Makefile 入门&lt;/a&gt;&lt;/p&gt;
 </description>
-        <pubDate>Sun, 21 Feb 2021 00:00:00 +0800</pubDate>
-        <link>http://dawnk.gitee.io//%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/21/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</link>
-        <guid isPermaLink="true">http://dawnk.gitee.io//%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/21/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</guid>
+        <pubDate>Thu, 04 Mar 2021 00:00:00 +0800</pubDate>
+        <link>http://dawnk.gitee.io//%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/2021/03/04/makefile/</link>
+        <guid isPermaLink="true">http://dawnk.gitee.io//%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/2021/03/04/makefile/</guid>
         
         <category>软件工程</category>
         
-        <category>设计模式</category>
+        
+        <category>软件工程</category>
+        
+      </item>
+    
+      <item>
+        <title>「数据库」 数据库基础知识</title>
+        <description>&lt;h1 id=&quot;数据库&quot;&gt;数据库&lt;/h1&gt;
+
+&lt;h2 id=&quot;基本概念&quot;&gt;基本概念&lt;/h2&gt;
+
+&lt;p&gt;实体&lt;/p&gt;
+
+&lt;h3 id=&quot;主键&quot;&gt;主键&lt;/h3&gt;
+
+&lt;p&gt;主键应当是唯一的，并且几乎不会变动
+码：所有属性都依赖于码属性。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://img-blog.csdnimg.cn/20190625173457198.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N1bWFsaXFpbmdodWE=,size_16,color_FFFFFF,t_70&quot; alt=&quot;关键字&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;码&lt;/code&gt; : 能够唯一标识一条记录的属性或属性集。
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;候选码&lt;/code&gt; : 能够唯一标识一条记录的&lt;strong&gt;最小&lt;/strong&gt;属性集
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;主键&lt;/code&gt; : 人为从候选码中挑的一个码。
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;主属性&lt;/code&gt; : 包含在任一候选码中的属性称主属性
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;非主属性&lt;/code&gt; : 不包含在候选码中的属性称为非主属性&lt;/p&gt;
+
+&lt;h2 id=&quot;数据库范式&quot;&gt;数据库范式&lt;/h2&gt;
+
+&lt;p&gt;范式是一种规范，能够减少数据冗余。但是范式不是越高越好，因为高的范式容易导致数据库性能的下降（查询插入缓慢）&lt;/p&gt;
+
+&lt;h3 id=&quot;第一范式&quot;&gt;第一范式&lt;/h3&gt;
+
+&lt;p&gt;所有的域都应该是原子性的，即数据库表的每一列都是不可分割的原子数据项，而不能是集合，数组，记录等非原子数据项。&lt;/p&gt;
+
+&lt;h3 id=&quot;第二范式&quot;&gt;第二范式&lt;/h3&gt;
+
+&lt;p&gt;第二范式首先要满足第一范式。第二范式是指每条记录都要有唯一的标识&lt;/p&gt;
+
+&lt;p&gt;依赖有三种&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;完全函数依赖。 y 完全依赖于 x 表示，不存在一个 x 对应两个 y 的情况，而且任何一个 x 的真子集 x’，y 未必依赖于 x’&lt;/li&gt;
+  &lt;li&gt;部分函数依赖。y 依赖 x 但是不完全依赖 x&lt;/li&gt;
+  &lt;li&gt;传递函数依赖。x-&amp;gt;y-&amp;gt;z 则称 z 传递依赖于 x&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;准确地说是：所有非主属性不能部分依赖于主码。
+比如如果一个表，主键是（学号，课程）
+学号|课程|姓名 | 分数|
+—–|—–|—–|—–|
+分数是满足的，因为分数完全依赖于（学号，课程）, 但是姓名是部分依赖于（学号，课程）的。&lt;/p&gt;
+
+&lt;h3 id=&quot;第三范式&quot;&gt;第三范式&lt;/h3&gt;
+
+&lt;p&gt;第三范式 (3NF) 要求一个关系中不包含已在其它关系已包含的非主关键字信息。
+准确地说是，不能有属性传递依赖于主键。
+比如下表的主键是学号。
+学号|系名|姓名 | 系主任名|
+—–|—–|—–|—–|
+系主任名是传递依赖于学号的。因为 学号-&amp;gt;系名-&amp;gt;系主任名
+所以正确的做法是将系名和系主任名分开存到另一个表里，来减少数据冗余。&lt;/p&gt;
+
+&lt;h3 id=&quot;巴斯-科德范式-bcnf&quot;&gt;巴斯-科德范式 (BCNF)&lt;/h3&gt;
+
+&lt;p&gt;在 3NF 的基础上，没有任何属性完全函数依赖于非候选码的任何一组属性。也就是主键不会被非主属性绑定（比如仓库只有一个管理员，管理员也只管一个仓库，那么如果仓库是主键，就不能&lt;/p&gt;
+
+&lt;h2 id=&quot;事务-transaction&quot;&gt;事务 TRANSACTION&lt;/h2&gt;
+
+&lt;p&gt;将两个单词 (trans action) 分开念即可&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.liaoxuefeng.com/wiki/1177760294764384/1179611198786848#0&quot;&gt;事务-廖雪峰&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;acid&quot;&gt;ACID&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;A：Atomic&lt;/code&gt; , 原子性，将所有 SQL 作为原子工作单元执行，要么全部执行，要么全部不执行；
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;C：Consistent&lt;/code&gt; , 一致性，事务完成后，所有数据的状态都是一致的，即 A 账户只要减去了 100, B 账户则必定加上了 100; 如果数据库在执行前是一致的，那么它在执行后也应当是一致的。而数据库自身的一致性是指其是否能正确反映客观世界。
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;I：Isolation&lt;/code&gt; , 隔离性，如果有多个事务并发执行，每个事务作出的修改必须与其他事务隔离；
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;D：Duration&lt;/code&gt; , 持久性，即事务完成后，对数据库数据的修改被持久化存储。即使系统在此事务执行后崩溃了。&lt;/p&gt;
+
+&lt;h3 id=&quot;四种隔离级别&quot;&gt;四种隔离级别&lt;/h3&gt;
+
+&lt;h4 id=&quot;未提交读-read-uncommitted&quot;&gt;未提交读 (read uncommitted)&lt;/h4&gt;
+
+&lt;p&gt;允许读取未提交数据，可能发生脏读&lt;/p&gt;
+
+&lt;h4 id=&quot;已提交读-consistent-read&quot;&gt;已提交读 (consistent read)&lt;/h4&gt;
+
+&lt;p&gt;大多数数据库的默认等级
+只允许读取已经提交的数据，但不要求可重复读，在事务两次读取一个数据之间，另一个事务更新了数据并提交。&lt;/p&gt;
+
+&lt;h4 id=&quot;可重复读-repeatable-read&quot;&gt;可重复读 (repeatable read)&lt;/h4&gt;
+
+&lt;p&gt;Mysql 的默认等级
+只允许读取已提交数据，而且在一个事务两次读取一个数据项期间，其他事务不得更新该数据。但该事务不要求与其他事务可串行化。
+可能发生幻读：一个事务（同一个 read view) 在前后两次查询同一范围的时候，后一次查询看到了前一次查询没有看到的行。重点在于新增的行。&lt;/p&gt;
+
+&lt;h4 id=&quot;串行化-serializable-read&quot;&gt;串行化 (serializable read)&lt;/h4&gt;
+
+&lt;p&gt;对同一行记录，读会加”读锁”, 写会加”写锁”, 当出现读写冲突时，前后访问的事务必须等前一个事务执行完成，才能继续执行。&lt;/p&gt;
+
+&lt;h2 id=&quot;元数据&quot;&gt;元数据&lt;/h2&gt;
+
+&lt;p&gt;元数据（英语：metadata), 又称诠释资料、中介资料、中继资料、后设资料等，为描述其他资料信息的资料。有三种不同类型的元数据，分别是记叙性元数据、结构性元数据和管理性元数据。&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;记叙性元数据描述了用于发现与辨别意义的资源。它可以包括如标题、摘要、作者和关键字等元素。&lt;/li&gt;
+  &lt;li&gt;结构性元数据是有关于资料容器的元数据，指示如何整理其中复合的对象。例如页面依什么排序方式组成章节。&lt;/li&gt;
+  &lt;li&gt;管理性元数据是用于管理资源的信息，例如资料产生的时间和方式、文件种类和其它技术信息，以及谁有权限访问它。在某些国家，有关于电子邮件、电话、网页、IP 链接与手机位置的元数据是固定由国家来存储的。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;文件系统和数据库的区别&quot;&gt;文件系统和数据库的区别&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;文件系统把数据组织成相互独立的数据文件，实现了记录内的结构性，但整体无结构；&lt;/li&gt;
+  &lt;li&gt;数据库系统实现整体数据的结构化（也就是建立表与表之间的联系）, 这是数据库的主要特征之一，也是数据库系统与文件系统的本质区别。&lt;/li&gt;
+  &lt;li&gt;在文件系统中，数据冗余度大，浪费存储空间，容易造成数据的不一致；&lt;/li&gt;
+  &lt;li&gt;数据库系统中，数据是面向整个系统，数据可以被多个用户、多个应用共享使用，减少了数据冗余。&lt;/li&gt;
+  &lt;li&gt;文件系统中的文件是为某一特定应用服务的，当要修改数据的逻辑结构时，必须修改应用程序，修改文件结构的定义，数据和程序之间缺乏独立性；&lt;/li&gt;
+  &lt;li&gt;数据库系统中，通过 DBMS 的两级映象实现了数据的物理独立性和逻辑独立性，把数据的定义从程序中分离出去，减少了应用程序的维护和修改。&lt;/li&gt;
+  &lt;li&gt;一般来说数据库系统会调用文件系统来管理自己的数据文件，但也有些数据库系统能够自己管理数据文件，甚至在裸设备上。文件系统是操作系统必须的，而数据库系统只是数据库管理和应用所必需的。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;数据模型及其地位&quot;&gt;数据模型及其地位&lt;/h2&gt;
+
+&lt;p&gt;数据模型是对现实世界数据特征的抽象，其三要素是 ( &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;数据结构&lt;/code&gt; , &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;数据操作&lt;/code&gt; , &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;数据的约束条件&lt;/code&gt; )
+最常用的数据模型分为概念数据模型和基本数据模型
+概念数据模型是按用户的观点对数据和信息建模，是现实世界到信息世界的第一层抽象。
+基本数据模型是按计算机系统的观点对数据建模，是现实世界数据特征的抽象，用于 dbms 的实现（层次模型，网状模型，关系模型）&lt;/p&gt;
+
+&lt;h2 id=&quot;索引&quot;&gt;索引&lt;/h2&gt;
+
+&lt;p&gt;MySQL 支持诸多存储引擎，而各种存储引擎对索引的支持也各不相同，因此 MySQL 数据库支持多种索引类型，如 BTree 索引，哈希索引，全文索引等等
+在数据之外，数据库系统还维护着满足特定查找算法的数据结构，这些数据结构以某种方式引用（指向）数据，这样就可以在这些数据结构上实现高级查找算法。这种数据结构，就是索引。（也就是说索引就是一种加速查找的数据结构）&lt;/p&gt;
+
+&lt;h3 id=&quot;索引的不足&quot;&gt;索引的不足&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;虽然索引大大提高了查询速度，同时却会降低更新表的速度，如对表进行 INSERT、UPDATE 和 DELETE. 因为更新表时，MySQL 不仅要保存数据，还要保存一下索引文件&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;建立索引会占用磁盘空间的索引文件。一般情况这个问题不太严重，但如果你在一个大表上创建了多种组合索引，索引文件的会膨胀很快。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;聚集索引和非聚集索引&quot;&gt;聚集索引和非聚集索引&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;聚集索引是指数据库表行中数据的物理顺序与键值的逻辑（索引）顺序相同（准确的说是连续存放）.&lt;/strong&gt; &lt;strong&gt;一个表只能有一个聚集索引&lt;/strong&gt;, 因为一个表的物理顺序只有一种情况。
+与非聚集索引相比，聚集索引有着更快的检索速度。&lt;/p&gt;
+
+&lt;h3 id=&quot;稠密索引和非稠密索引&quot;&gt;稠密索引和非稠密索引&lt;/h3&gt;
+
+&lt;p&gt;索引项指每个搜索码值都有一个对应的索引。
+稠密索引可支持聚集和非聚集索引。对于聚集索引，稠密索引是索引项包括搜索码值和指向对应的第一条数据记录的指针。对于非聚集索引，索引必须包括搜索码值和指向所有具有相同搜索码值的记录的指针列表。
+稀疏索引就只能支持聚集索引。形式和稠密索引对聚集索引的形式一样。
+稀疏索引只为搜索码的某些值建立索引项。每个索引项包括一个搜索码值和指向具有该搜索码值的第一条数据记录的指针。&lt;/p&gt;
+
+&lt;h2 id=&quot;视图&quot;&gt;视图&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;视图是为了不让用户完全看到逻辑模型，或者是想要建立一个更符合用户直觉的而采用的一种关系集合。&lt;/li&gt;
+  &lt;li&gt;视图一般是作为虚关系存在，针对视图的查询，往往需要先计算出集合，然后再进行查询。也有很少数的情况，面对大量的查询，有些数据库将视图物化。&lt;/li&gt;
+  &lt;li&gt;视图一般不会允许进行更改。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;崩溃后的恢复&quot;&gt;崩溃后的恢复&lt;/h2&gt;
+
+&lt;p&gt;数据库有日志系统。对于已经提交的事务，则一定能保证其持久性。如果执行到一半的事务，就回滚事务。&lt;/p&gt;
+
+&lt;h2 id=&quot;主键-1&quot;&gt;主键&lt;/h2&gt;
+
+&lt;p&gt;主键是为了作为表的唯一标识的候选关键字，可以由一个字段构成，也可以由多个字段组成。主键应该对于用户无意义，也不应该被更新。&lt;/p&gt;
+
+&lt;h2 id=&quot;死锁&quot;&gt;死锁&lt;/h2&gt;
+
+&lt;p&gt;数据库的死锁和操作系统基本一致，操作系统的是进程之间对于资源的争夺，数据库的死锁是事务之间关于读写的锁。&lt;/p&gt;
+
+&lt;h3 id=&quot;死锁的四个必要条件&quot;&gt;死锁的四个必要条件&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;互斥访问&lt;/li&gt;
+  &lt;li&gt;请求保持&lt;/li&gt;
+  &lt;li&gt;不剥夺&lt;/li&gt;
+  &lt;li&gt;环路等待&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;尽可能避免死锁&quot;&gt;尽可能避免死锁&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;保持事务简短&lt;/li&gt;
+  &lt;li&gt;使用较低的隔离等级&lt;/li&gt;
+  &lt;li&gt;尽量避免用户交互&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;mysql&quot;&gt;MYSQL&lt;/h2&gt;
+
+&lt;h3 id=&quot;引擎&quot;&gt;引擎&lt;/h3&gt;
+
+&lt;p&gt;MySQL 主要有四种引擎，MyISAM, InnoDB（默认引擎）, MEMORY, Archive.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;MyISAM 更注重性能，平台的迁移性更好。不支持事务的设计，如果有需求可以在 service 层进行根据自己的业务需求进行相应的控制。&lt;/li&gt;
+  &lt;li&gt;InnoDB 支持事务和外部键等复杂操作。&lt;/li&gt;
+  &lt;li&gt;MEMORY 将数据存在内存中，一般是用来存储临时数据。&lt;/li&gt;
+  &lt;li&gt;Archive 主要用于存储日志等文件。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;关于索引以及-b树的实现&quot;&gt;关于索引以及 b+树的实现&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;MyISAM 索引文件和数据文件是分离的，索引文件仅保存数据记录的地址。&lt;/li&gt;
+  &lt;li&gt;在 InnoDB 中，表数据文件本身就是按 B+Tree 组织的一个索引结构，这棵树的叶节点 data 域保存了完整的数据记录。这个索引的 key 是数据表的主键，因此 InnoDB 表数据文件本身就是主索引。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;mvcc&quot;&gt;MVCC&lt;/h3&gt;
+
+&lt;p&gt;MVCC 全称为多版本并发控制。主要在 InnoDB 中用以实现读已提交和可重复读。
+实现原理如下：对于每行数据，都增加两个隐藏列，一个是创建时间（版本号）, 一个是删除时间（版本号）.
+然后对于每个事务都有其对应的唯一的 ID, 事务创建一个记录时，会将自身的 ID 填入创建时间。事务删除一个记录时，将 ID 填入删除时间。更新采取先删后建的方式。
+对于查询来说，一个事务尽可能查询到同时满足以下条件的记录：&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;删除时间大于当前的版本号。也就是它被后面的事务删除或更新。&lt;/li&gt;
+  &lt;li&gt;创建时间小于等于当前的版本号，也就是在事务执行前就已经存在的数据或者是本事务添加的数据。
+具体原理比较复杂，日后再说。
+&lt;a href=&quot;https://blog.csdn.net/SnailMann/article/details/94724197&quot;&gt;CSDN-【MySQL 笔记】正确的理解 MySQL 的 MVCC 及实现原理&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;b-树&quot;&gt;b 树&lt;/h2&gt;
+
+&lt;p&gt;B 树的优点在于数据存储在每个结点中，可以更快访问到，而不必须走到叶子结点，B 树更多的用在文件系统中。&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;根节点至少两个子节点，其他节点最多有 m-1 个关键字 (m 个子树）, 最少有 floor(m/2)-1 个节点 (floor(m/2) 个子树）.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;每个节点可以存储数据&lt;/strong&gt;.&lt;/li&gt;
+  &lt;li&gt;每个节点的左儿子都严格小于它本身，右儿子都严格大于它本身。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;b树&quot;&gt;b+树&lt;/h2&gt;
+
+&lt;p&gt;b+树是在 b 树的基础上改进的。&lt;/p&gt;
+
+&lt;h3 id=&quot;相对于-b-树的不同&quot;&gt;相对于 b 树的不同&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;每个节点最多有 m 个关键字，每个关键字对应一颗子树。&lt;/li&gt;
+  &lt;li&gt;数据全部存在叶子节点，非叶子节点不存数据。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;父节点的元素也一定存在在某个子节点之中&lt;/strong&gt;, 父节点的元素也是子节点元素的最大值的集合。&lt;/li&gt;
+  &lt;li&gt;最后的叶子节点由一个链表穿起，从小到大，便于范围查询&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;相对于-b-树的优点&quot;&gt;相对于 b 树的优点&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;范围查询更加方便。b 树在找到下界之后需要中序遍历，io 次数多。b+树查询到下界之后可以通过链表来遍历。减少了 io 次数。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;b+树节点中不含数据&lt;/strong&gt;, 所以占用同样大小的磁盘空间的情况下，可以更多的存储节点。且查询效率比 b 树稳定，因为一定会查询到叶子节点。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;数据字典&quot;&gt;数据字典&lt;/h2&gt;
+
+&lt;p&gt;在开发的程序（系统）中的数据字典。可以帮助开发人员理解各个数据项目的类型、数值和它们与现实世界中的对象的关系。&lt;/p&gt;
+</description>
+        <pubDate>Thu, 04 Mar 2021 00:00:00 +0800</pubDate>
+        <link>http://dawnk.gitee.io//%E6%95%B0%E6%8D%AE%E5%BA%93/2021/03/04/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</link>
+        <guid isPermaLink="true">http://dawnk.gitee.io//%E6%95%B0%E6%8D%AE%E5%BA%93/2021/03/04/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</guid>
+        
+        <category>数据库</category>
         
         
-        <category>软件工程-设计模式</category>
+        <category>数据库</category>
+        
+      </item>
+    
+      <item>
+        <title>「操作系统」 操作系统基础知识</title>
+        <description>&lt;h1 id=&quot;操作系统基础知识&quot;&gt;操作系统基础知识&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://zhuanlan.zhihu.com/p/124639863&quot;&gt;参考资料&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;概述&quot;&gt;概述&lt;/h2&gt;
+
+&lt;p&gt;操作系统是一个系统软件，管理进程，调度系统资源，输入输出等，提供一个让用户和系统交互的操作界面。&lt;/p&gt;
+
+&lt;h2 id=&quot;线程进程&quot;&gt;线程进程&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;进程是资源分配的最小单位，线程是 CPU 调度的最小单位&lt;/li&gt;
+  &lt;li&gt;多线程程序只要有一个线程崩溃，整个程序就崩溃了，但多进程程序中一个进程崩溃并不会对其它进程造成影响，因为进程有自己的独立地址空间，因此多进程更加健壮&lt;/li&gt;
+  &lt;li&gt;在进程切换时，涉及到整个当前进程 CPU 环境的保存环境的设置以及新被调度运行的 CPU 环境的设置，而线程切换只需保存和设置少量的寄存器的内容，并不涉及存储器管理方面的操作&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;线程共享数据&quot;&gt;线程共享数据&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;进程代码段&lt;/li&gt;
+  &lt;li&gt;进程的公有数据（全局变量、静态变量。..)&lt;/li&gt;
+  &lt;li&gt;进程打开的文件描述符&lt;/li&gt;
+  &lt;li&gt;进程的当前目录&lt;/li&gt;
+  &lt;li&gt;信号处理器/信号处理函数：对收到的信号的处理方式&lt;/li&gt;
+  &lt;li&gt;进程 ID 与进程组 ID&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;线程独占的资源&quot;&gt;线程独占的资源&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;线程 ID&lt;/li&gt;
+  &lt;li&gt;一组寄存器的值&lt;/li&gt;
+  &lt;li&gt;线程自身的栈（堆是共享的）&lt;/li&gt;
+  &lt;li&gt;错误返回码：线程可能会产生不同的错误返回码，一个线程的错误返回码不应该被其它线程修改；&lt;/li&gt;
+  &lt;li&gt;信号掩码/信号屏蔽字 (Signal mask): 表示是否屏蔽/阻塞相应的信号 (SIGKILL, SIGSTOP 除外）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;进程间通信方式&quot;&gt;进程间通信方式&lt;/h3&gt;
+
+&lt;h4 id=&quot;管道&quot;&gt;管道&lt;/h4&gt;
+
+&lt;p&gt;特殊文件，一个管道可供进程进行半双工通信。此处是指匿名管道，仅能在有亲缘关系的进程之间使用（如父子或者兄弟之间）.&lt;/p&gt;
+
+&lt;h4 id=&quot;命名管道&quot;&gt;命名管道&lt;/h4&gt;
+
+&lt;p&gt;命名管道支持任意两个进程进行通信，而且是全双工的&lt;/p&gt;
+
+&lt;h4 id=&quot;消息队列&quot;&gt;消息队列&lt;/h4&gt;
+
+&lt;p&gt;消息队列是一个消息的链表。可以供进程读写。&lt;/p&gt;
+
+&lt;h4 id=&quot;共享内存&quot;&gt;共享内存&lt;/h4&gt;
+
+&lt;p&gt;多个进程共享一块内存区域，但是需要加锁和同步。&lt;/p&gt;
+
+&lt;h4 id=&quot;信号量&quot;&gt;信号量&lt;/h4&gt;
+
+&lt;p&gt;用于同步和互斥。&lt;/p&gt;
+
+&lt;h4 id=&quot;套接字&quot;&gt;套接字&lt;/h4&gt;
+
+&lt;p&gt;可用于更为一般的进程间通信，甚至可以是网络上不同机器的进程间通信。
+域，端口号，协议类型。&lt;/p&gt;
+
+&lt;h2 id=&quot;操作系统种类&quot;&gt;操作系统种类&lt;/h2&gt;
+
+&lt;h3 id=&quot;网络操作系统和分布式操作系统区别&quot;&gt;网络操作系统和分布式操作系统区别&lt;/h3&gt;
+
+&lt;p&gt;网络操作系统是把在同一网络上的多个计算机连接起来，实现资源共享和通信。
+分布式操作系统是在网络操作系统的基础上，实现工作的分布，让若干台计算机可以并行完成同一工作。&lt;/p&gt;
+
+&lt;h2 id=&quot;死锁&quot;&gt;死锁&lt;/h2&gt;
+
+&lt;h3 id=&quot;信号量与互斥量&quot;&gt;信号量与互斥量&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;信号量为正时表示资源剩余量。&lt;/li&gt;
+  &lt;li&gt;信号量为负时表示正在等待的进程数。
+这里之前写的不严谨，实际上信号量和互斥量是两种东西。
+&lt;a href=&quot;https://zhuanlan.zhihu.com/p/90990453&quot;&gt;参考资料&lt;/a&gt;
+信号量用于同步，互斥量用于互斥。&lt;/li&gt;
+  &lt;li&gt;信号量 (semaphore) 是作用于不同的进程，是进程通信的一种方式&lt;/li&gt;
+  &lt;li&gt;互斥量 (mutex) 是在一个进程之中的，互斥量值只能为 0/1, 是对资源的占有和释放，是一种锁机制&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;pv-操作&quot;&gt;PV 操作&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;P 即 wait&lt;/li&gt;
+  &lt;li&gt;V 即 signal&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;死锁的必要条件&quot;&gt;死锁的必要条件&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;互斥条件：一个资源只能被一个进程使用&lt;/li&gt;
+  &lt;li&gt;请求与保持条件：一个进程因为请求其他资源而被阻塞时，不会放弃已经获得的资源。&lt;/li&gt;
+  &lt;li&gt;不剥夺条件：进程未使用完资源之前不能强行剥夺&lt;/li&gt;
+  &lt;li&gt;循环等待条件&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;解除死锁的方法&quot;&gt;解除死锁的方法&lt;/h3&gt;
+
+&lt;p&gt;从上个问题，逐步解决必要条件。&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;互斥问题是资源的性质决定的，没法解决。&lt;/li&gt;
+  &lt;li&gt;破坏请求与保持的条件，也就是让进程必须一次申请完所有的资源。&lt;/li&gt;
+  &lt;li&gt;破坏不剥夺条件，也就是进程如果申请失败必须归还所有的已经占用的资源。&lt;/li&gt;
+  &lt;li&gt;破坏循环等待条件，也就是给资源标号，只能按照递增的顺序申请，这样就不会循环等待了。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;epoll&quot;&gt;epoll&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/songchuwang1868/article/details/89877739/&quot;&gt;Epoll 的本质&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;select 和 epoll 都是为了解决系统 IO 问题的，后者是对前者的改进。比如某个进程要监视多个 socket , 如果接受到了信息，进程就再做下一步打算（可以理解为等待 IO 时阻塞了）.&lt;/p&gt;
+
+&lt;h3 id=&quot;select&quot;&gt;select&lt;/h3&gt;
+
+&lt;p&gt;假如进程 A 同时监视的 sock1、sock2 和 sock3 三个 socket. 那么系统会将 A 加入这三个 socket 的等待队列中，一旦任意一个接受到了信息，就唤醒进程。然后将 A 从所有的等待队列中移除，然后放入到就绪队列，最后再遍历一次进程，得到是哪个进程发来的数据。
+可见，加入，移除，查询哪个 socket , 一共需要三次遍历，效率低下。
+所以 select 方法最多监视 1024 个进程。当然如果最开始调用 select 的时候就有 socket 有数据了，那么会直接返回，不用阻塞。&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AF_INET&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SOCK_STREAM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;  
+&lt;span class=&quot;n&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;...)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;...)&lt;/span&gt;
+ 
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;  &lt;span class=&quot;err&quot;&gt;存放需要监听的&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;socket&lt;/span&gt;
+ 
+&lt;span class=&quot;nf&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;select&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(...,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;...)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FD_ISSET&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fds&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;...)){&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;//fds[i] 的数据处理&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;epoll-对-select-的改进&quot;&gt;epoll 对 select 的改进&lt;/h3&gt;
+
+&lt;p&gt;epoll 将操作分成了三步：epoll_create epoll_ctl epoll_wait&lt;/p&gt;
+
+&lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AF_INET&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SOCK_STREAM&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;   
+&lt;span class=&quot;n&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;...)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;...)&lt;/span&gt;
+ 
+&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;epfd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;epoll_create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(...);&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;epoll_ctl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;epfd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;...);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;//将所有需要监听的 socket 添加到 epfd 中&lt;/span&gt;
+ 
+&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;n&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;epoll_wait&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(...)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;（接收到数据的&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;socket&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;//处理&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;某个进程调用 epoll_create 方法时，内核会创建一个 eventpoll 对象（也就是程序中 epfd 所代表的对象）&lt;/li&gt;
+  &lt;li&gt;eventpoll 对象相当于是 socket 和进程之间的中介，socket 的数据接收并不直接影响进程，而是通过改变 eventpoll 的就绪列表来改变进程状态。&lt;/li&gt;
+  &lt;li&gt;当程序执行到 epoll_wait 时，如果 rdlist 已经引用了 socket, 那么 epoll_wait 直接返回，如果 rdlist 为空，阻塞进程。&lt;/li&gt;
+  &lt;li&gt;当 socket 接收到数据，中断程序一方面修改 rdlist, 另一方面唤醒 eventpoll 等待队列中的进程，进程 A 再次进入运行状态。也因为 rdlist 的存在，进程 A 可以知道哪些 socket 发生了变化。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;扇区和簇&quot;&gt;扇区和簇&lt;/h2&gt;
+
+&lt;p&gt;扇区 (Sector) 是磁盘最小的物理存储单元，是磁盘读写基本单位。但是扇区太多了，操作系统难以对每个扇区寻址，所以引入了簇。
+簇 (Clust) 是多个扇区组成的数据块，是操作系统文件存储的最小单位。也就是一个文件再小也要占据一个簇。然后每个文件的最后一个簇可能未使用全。这个在 Windows 下叫簇，在 Linux 下如 Ext4 等文件系统中叫做块 (Block). 磁盘控制器是用来映射块和簇的。&lt;/p&gt;
+
+&lt;h2 id=&quot;fat32-和-ntfs&quot;&gt;FAT32 和 NTFS&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://zhuanlan.zhihu.com/p/44064885&quot;&gt;文件系统 FAT 与 NTFS 的简介和区别&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;FAT 是文件配置表 (File Allocation Table). FAT32 为 FAT 的最后一个产品，采用 32 位文件分配表，可以管理单文件大小最大为 4G.&lt;/p&gt;
+
+&lt;p&gt;FAT 系统&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;安全性差&lt;/li&gt;
+  &lt;li&gt;容易产生磁盘碎片&lt;/li&gt;
+  &lt;li&gt;难以恢复等问题&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;相比于 FAT 文件管理来说，NTFS 文件管理有&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;更安全的文件保障，可以加密&lt;/li&gt;
+  &lt;li&gt;更好的磁盘压缩功能，减少磁盘碎片&lt;/li&gt;
+  &lt;li&gt;支持最大 2TB 的硬盘&lt;/li&gt;
+  &lt;li&gt;可以赋予单个文件和文件夹权限等种种优点。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;僵尸进程&quot;&gt;僵尸进程&lt;/h2&gt;
+
+&lt;p&gt;任何一个子进程 (init 除外）在 exit() 之后，并非马上就消失掉，而是留下一个称为僵尸进程 (Zombie) 的数据结构，等待父进程处理。可以令父进程接到信号的时候执行 waitpid()&lt;/p&gt;
+
+&lt;h2 id=&quot;孤儿进程&quot;&gt;孤儿进程&lt;/h2&gt;
+
+&lt;p&gt;孤儿进程指的是在其父进程执行完成或被终止后仍继续运行的一类进程。这些孤儿进程将被 init 进程（进程号为 1) 所收养，并由 init 进程对它们完成状态收集工作。&lt;/p&gt;
+
+&lt;h2 id=&quot;优先级反转&quot;&gt;优先级反转&lt;/h2&gt;
+
+&lt;p&gt;试想如下三个进程
+A 优先级很低，目前占有一个锁
+B 优先级中等
+C 优先级高，且目前需要 A 的锁&lt;/p&gt;
+
+&lt;p&gt;那么 C 会因为 A 的锁而一直阻塞，而 A 因为本身优先级很低，所以很难被运行，这样就导致 B 的优先级比另外两个都高，这就是优先级反转&lt;/p&gt;
+
+&lt;h3 id=&quot;解决方案&quot;&gt;解决方案&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;设置优先级上限，也就是把临界区的优先级设置的超过其他所有进程，任何一个进入此临界区的变量，都会被设置为这种超高优先级，就不会出现优先级反转的情况了&lt;/li&gt;
+  &lt;li&gt;优先级继承，当一个高优先级进程等待一个低优先级进程持有的资源时，低优先级进程将暂时获得高优先级进程的优先级别，在释放共享资源后，低优先级进程回到原来的优先级别。&lt;/li&gt;
+  &lt;li&gt;临界区禁止中断&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Thu, 04 Mar 2021 00:00:00 +0800</pubDate>
+        <link>http://dawnk.gitee.io//%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/2021/03/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</link>
+        <guid isPermaLink="true">http://dawnk.gitee.io//%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/2021/03/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</guid>
+        
+        <category>操作系统</category>
+        
+        
+        <category>操作系统</category>
         
       </item>
     

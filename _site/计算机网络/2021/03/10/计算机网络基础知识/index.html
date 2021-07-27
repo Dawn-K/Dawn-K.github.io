@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="From ashes to the empire">
+    <meta name="keywords" content="Dawnk, Dawn-K, dawnk, Dawn-K's Blog, 博客, 个人网站, ACM , 算法竞赛">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Open Graph -->
+    <meta property="og:title"
+        content="「计算机网络」 计算机网络基础知识 - Dawn-K's Blog">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="计算机网络
+">
+    
+    <meta property="article:published_time" content=" 2021-03-10T00:00:00Z">
+    
+    
+    
+    <meta property="article:tag" content="计算机网络">
+    
+    
+    <meta property="og:image" content="http://dawnk.gitee.io//img/daze.jpg">
+    <meta property="og:url" content="http://dawnk.gitee.io//%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/2021/03/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+    <meta property="og:site_name" content="Dawn-K's Blog">
+
+    <title>「计算机网络」 计算机网络基础知识 - Dawn-K's Blog</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="http://dawnk.gitee.io//%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/2021/03/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href=" /css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href=" /css/hux-blog.min.css">
+
+    <!-- <link rel="stylesheet" href="http://yandex.st/highlightjs/7.1/styles/default.min.css">
+    <script src="http://yandex.st/highlightjs/7.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> -->
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"
+        type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    </script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+        type="text/javascript"></script>
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Dawn-K's Blog</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="huxblog_navbar">
+                <div class="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/archive/">Archive</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li class="search-icon">
+                            <a href="javascript:void(0)">
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <script>
+        // Drop Bootstarp low-performance Navbar
+        // Use customize navbar with high-quality material design animation
+        // in high-perf jank-free CSS3 implementation
+        var $body = document.body;
+        var $toggle = document.querySelector('.navbar-toggle');
+        var $navbar = document.querySelector('#huxblog_navbar');
+        var $collapse = document.querySelector('.navbar-collapse');
+
+        var __HuxNav__ = {
+            close: function () {
+                $navbar.className = " ";
+                // wait until animation end.
+                setTimeout(function () {
+                    // prevent frequently toggle
+                    if ($navbar.className.indexOf('in') < 0) {
+                        $collapse.style.height = "0px"
+                    }
+                }, 400)
+            },
+            open: function () {
+                $collapse.style.height = "auto"
+                $navbar.className += " in";
+            }
+        }
+
+        // Bind Event
+        $toggle.addEventListener('click', function (e) {
+            if ($navbar.className.indexOf('in') > 0) {
+                __HuxNav__.close()
+            } else {
+                __HuxNav__.open()
+            }
+        })
+
+        /**
+         * Since Fastclick is used to delegate 'touchstart' globally
+         * to hack 300ms delay in iOS by performing a fake 'click',
+         * Using 'e.stopPropagation' to stop 'touchstart' event from 
+         * $toggle/$collapse will break global delegation.
+         * 
+         * Instead, we use a 'e.target' filter to prevent handler
+         * added to document close HuxNav.  
+         *
+         * Also, we use 'click' instead of 'touchstart' as compromise
+         */
+        document.addEventListener('click', function (e) {
+            if (e.target == $toggle) return;
+            if (e.target.className == 'icon-bar') return;
+            __HuxNav__.close();
+        })
+    </script>
+    <!-- Search -->
+<div class="search-page">
+  <div class="search-icon-close-container">
+    <span class="search-icon-close">
+      <i class="fa fa-chevron-down"></i>
+    </span>
+  </div>
+  <div class="search-main container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <form></form>
+        <input type="text" id="search-input" placeholder="$ grep...">
+        </form>
+        <div id="search-results" class="mini-post-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/home-bg.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+
+
+
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/img/home-bg.jpg');
+        background: ;
+    }
+
+    
+</style>
+
+<header class="intro-header" >
+
+    <div class="header-mask"></div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/archive/?tag=%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C" title="计算机网络">计算机网络</a>
+                        
+                    </div>
+                    <h1>「计算机网络」 计算机网络基础知识</h1>
+                    
+                    <h2 class="subheading"></h2>
+                    <span class="meta">Posted by Dawn-K's Blog on March 10, 2021</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <!-- Multi-Lingual -->
+                
+
+				<h1 id="计算机网络">计算机网络</h1>
+
+<p>[toc]</p>
+
+<h2 id="osi-模型">OSI 模型</h2>
+
+<p>OSI 具有七层，但是其太过理想化，并没有实际采用。</p>
+<ol>
+  <li>物理层（界定连接器和网线的规格）</li>
+  <li>数据链路层（相邻设备之间传送和识别数据帧）</li>
+  <li>网络应用层（地址管理和路由选择）</li>
+  <li>传输层（端到端的数据连接）</li>
+  <li>会话层（负责建立和断开通信连接）</li>
+  <li>表示层（数据格式的转换）</li>
+  <li>应用层（针对特定应用）</li>
+</ol>
+
+<h2 id="tcpip">TCP/IP</h2>
+
+<p>TCP/IP 是个协议族。包含了 TCP IP, HTTP, UDP, ICMP 等协议</p>
+
+<h3 id="tcp-模型">TCP 模型</h3>
+
+<ol>
+  <li>物理层（界定连接器和网线的规格）</li>
+  <li>数据链路层（相邻设备之间传送和识别数据帧）</li>
+  <li>网络应用层（地址管理和路由选择）</li>
+  <li>传输层（端到端的数据连接）</li>
+  <li>应用层（针对特定应用，合并了会话层，表示层，应用层）</li>
+</ol>
+
+<h3 id="tcp-是面向流的协议">TCP 是面向流的协议</h3>
+
+<p>TCP 是个”流”协议，没有界限的一串数据，从 TCP 的帧结构也可以看出，在 TCP 的首部没有表示数据长度的字段。它会根据 TCP 缓冲区的实际情况进行包的划分，所以在业务上认为，一个完整的包可能会被 TCP 拆分成多个包进行发送，也有可能把多个小的包封装成一个大的数据包发送，这就是所谓的 TCP 粘包和拆包问题。
+UDP 则没有这个问题。UDP 是基于报文发送的，从 UDP 的帧结构可以看出，在 UDP 首部采用了 16bit 来指示 UDP 数据报文的长度，因此在应用层能很好的将不同的数据报文区分开，从而避免粘包和拆包的问题。</p>
+
+<h3 id="ip">IP</h3>
+
+<p>ip 是无连接的模型，尽力发送，且不维护链接状态
+根据数据包的首部的协议字段来分辨 TCP 和 UDP（一个是 6, 一个是 17)</p>
+
+<h3 id="icmp">ICMP</h3>
+
+<p>ICMP 协议是一种面向无连接的网络层协议，用于传输出错报告控制信息。</p>
+<ol>
+  <li>改变路由</li>
+  <li>源点抑制</li>
+  <li>ping 命令</li>
+  <li>traceroute 命令</li>
+</ol>
+
+<h3 id="tcp-udp-区别">TCP UDP 区别</h3>
+
+<ol>
+  <li>tcp 是面向链接的可靠传输，udp 是无连接的不可靠的</li>
+  <li>tcp 有流量控制和拥塞控制，udp 没有</li>
+  <li>tcp 是两点之间的，udp 可以一对一，一对多，多对一，对对多的通信</li>
+  <li>TCP 首部开销大，首部 20 个字节。UDP 首部开销小，8 字节。（源端口，目的端口，数据长度，校验和）</li>
+</ol>
+
+<h3 id="socket">socket</h3>
+
+<p>socket 编程步骤。
+服务端： <code class="language-plaintext highlighter-rouge">socket</code>  <code class="language-plaintext highlighter-rouge">bind</code>  <code class="language-plaintext highlighter-rouge">listen</code>  <code class="language-plaintext highlighter-rouge">accept</code>  <code class="language-plaintext highlighter-rouge">read</code></p>
+
+<p>客户端： <code class="language-plaintext highlighter-rouge">socket</code>  <code class="language-plaintext highlighter-rouge">connect</code>  <code class="language-plaintext highlighter-rouge">write</code></p>
+
+<h3 id="包首部">包首部</h3>
+
+<p>TCP 包首部含有 20 字节固定的内容。
+UDP 包首部含有 8 字节，没有非固定的内容。
+IP 包首部含有 20 字节固定的内容。</p>
+
+<h3 id="可靠性">可靠性</h3>
+
+<h4 id="如何保证可靠性">如何保证可靠性</h4>
+
+<p>序列号，确认应答，超时重传</p>
+
+<h4 id="序列号">序列号</h4>
+
+<p>这时发送方在等待一定时间后会进行重传。这个时间一般是 2*RTT（报文段往返时间）+一个偏差值。</p>
+
+<h4 id="流量控制">流量控制</h4>
+
+<p>发送端如果收到 3 次相同应答，就会立刻进行重发
+但是如果应答丢失了，因为窗口的存在，发送端就不会重发</p>
+
+<h3 id="拥塞控制">拥塞控制</h3>
+
+<ul>
+  <li>慢开始。一旦出现计时器超时，拥塞窗口变为 1, 然后拥塞阈值降为发生超时时的窗口的一半，然后每经过一个往返时间，窗口就翻倍。</li>
+  <li>拥塞避免。慢开始一旦超过拥塞阈值，每经过一个往返时间就加一。</li>
+  <li>快重传。一旦连续收到三个重复确认，就立即重发。</li>
+  <li>快启动。在快重传的基础上，重发后将拥塞窗口变成一半，阈值也变为一半（和拥塞窗口大小一样）, 然后执行加法增加。</li>
+</ul>
+
+<h2 id="dhcp">DHCP</h2>
+
+<p>一种局域网的网络协议，由服务器控制一段 IP 地址范围，客户机登录服务器时就可以自动获得服务器分配的 IP 地址和子网掩码。</p>
+
+<h2 id="网络模型">网络模型</h2>
+
+<h3 id="cs">C/S</h3>
+
+<p>非对等相互作用，服务器有客户端不具备的硬件和软件资源、运算能力，服务器提供服务，客户请求服务。
+多个客户进程可以同时访问一个服务进程，一个客户进程可以同时访问多个服务器提供的服务。</p>
+
+<h3 id="bs">B/S</h3>
+
+<p>BS 是特殊的 CS 模型，其客户端特指浏览器。</p>
+
+<h2 id="加密算法">加密算法</h2>
+
+<h3 id="rsa">RSA</h3>
+
+<p><a href="http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html">阮一峰-RSA(1): 数学知识</a>
+<a href="http://www.ruanyifeng.com/blog/2013/07/rsa_algorithm_part_two.html">阮一峰-RSA(2): 算法流程</a></p>
+
+<h4 id="计算过程">计算过程</h4>
+
+<ul>
+  <li>第一步选择两个质数 p, q 尽可能大</li>
+  <li>第二步计算<code class="language-plaintext highlighter-rouge"> n = p * q </code></li>
+  <li>第三步计算<code class="language-plaintext highlighter-rouge"> φ(n) = (p-1) * (q-1) </code></li>
+  <li>第四步选择一个整数 e, 使得<code class="language-plaintext highlighter-rouge">条件是 1&lt; e &lt; φ(n), 且 e 与φ(n) 互质 </code></li>
+  <li>第五步计算 e 关于φ(n) 的逆元 d, 也就是<code class="language-plaintext highlighter-rouge"> e*d ≡ 1 (mod φ(n)) </code></li>
+  <li>第六步将 (n, e) 封装成公钥，(n, d) 封装成私钥</li>
+</ul>
+
+<p>上述计算过程中只有 n 和 e 公开，其余的 p, q, φ(n), d 均不公开</p>
+
+<h4 id="保密原理">保密原理</h4>
+
+<p>RSA 算法加密的核心就是在于 d 难以通过 n, e 求出来。
+要想算出 d, 需要知道φ(n), 而φ(n) 需要知道 p, q, 也就是对 n 进行因式分解。而因式分解很困难。
+乘法逆元算法如下，两种算法都可以在知道φ(n) 的情况下实现 e 和 d 的互相求值。因为 e 和 d 互为逆元。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+</pre></td><td class="rouge-code"><pre><span class="cp">#include &lt;algorithm&gt;
+#include &lt;iostream&gt;
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ll</span><span class="p">;</span>
+
+<span class="c1">// 两个方法，前提是 a,p 互质。不互质时返回-1:</span>
+<span class="c1">// 1. 费马小定理：a*x≡1(mod p), 则 x=a^(p-2) (mod p)</span>
+<span class="c1">// 2. 扩展欧几里得算法：那么 ax≡1 (mod p) 即 ax-yp=1. 把 y 写成+的形式就是 ax+py=1，</span>
+<span class="c1">// 为方便理解下面我们把 p 写成 b 就是 ax+by=1。就表示 x 是 a 的模 b 乘法逆元，y 是 b 的模 a 乘法逆元。</span>
+
+<span class="c1">// 快速幂</span>
+<span class="n">ll</span> <span class="nf">qpow</span><span class="p">(</span><span class="n">ll</span> <span class="n">a</span><span class="p">,</span> <span class="n">ll</span> <span class="n">b</span><span class="p">,</span> <span class="n">ll</span> <span class="n">mod</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">ll</span> <span class="n">res</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">ll</span> <span class="n">base</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">b</span> <span class="o">&amp;</span> <span class="mi">1ll</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">res</span> <span class="o">=</span> <span class="n">res</span> <span class="o">*</span> <span class="n">base</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">base</span> <span class="o">=</span> <span class="n">base</span> <span class="o">*</span> <span class="n">base</span> <span class="o">%</span> <span class="n">mod</span><span class="p">;</span>
+        <span class="n">b</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">res</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">exgcd</span><span class="p">(</span><span class="n">ll</span> <span class="n">a</span><span class="p">,</span> <span class="n">ll</span> <span class="n">b</span><span class="p">,</span> <span class="n">ll</span><span class="o">&amp;</span> <span class="n">d</span><span class="p">,</span> <span class="n">ll</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">,</span> <span class="n">ll</span><span class="o">&amp;</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">exgcd</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+        <span class="n">y</span> <span class="o">-=</span> <span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="n">a</span> <span class="o">/</span> <span class="n">b</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">"%lld*(%lld)+%lld*(%lld)=%lld</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">d</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">ll</span> <span class="nf">invByFermat</span><span class="p">(</span><span class="n">ll</span> <span class="n">a</span><span class="p">,</span> <span class="n">ll</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 欧拉扩展的 Fermat 小定理：如果 gcd(a,n) = 1，则 a(n) mod n = 1。</span>
+    <span class="c1">// a 的乘法逆元：x=a^euler(n)-1 mod n</span>
+
+    <span class="k">return</span> <span class="n">__gcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">?</span> <span class="n">qpow</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">p</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">ll</span> <span class="nf">invByExgcd</span><span class="p">(</span><span class="n">ll</span> <span class="n">a</span><span class="p">,</span> <span class="n">ll</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">ll</span> <span class="n">d</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span>
+    <span class="n">exgcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">d</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">d</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">?</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">p</span><span class="p">)</span> <span class="o">%</span> <span class="n">p</span> <span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">ll</span> <span class="n">a</span><span class="p">,</span> <span class="n">p</span><span class="p">;</span>
+    <span class="c1">// cin &gt;&gt; a &gt;&gt; p;</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="mi">1679616</span><span class="p">;</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"By Fermat: "</span> <span class="o">&lt;&lt;</span> <span class="n">invByFermat</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"By Exgcd: "</span> <span class="o">&lt;&lt;</span> <span class="n">invByExgcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="http">http</h2>
+
+<h3 id="概述">概述</h3>
+
+<p>http 是一种无状态的应用层协议。主要应用在浏览网页上，但是也可以用在其他其他，比如即时通信，下载等。HTTP 协议使用 URI 定位互联网上的资源。
+客户向服务器请求服务时，只需传送请求方法和路径。<strong>支持 B/S 及 C/S 模式。</strong></p>
+
+<h3 id="持久连接">持久连接</h3>
+
+<p>http 0.9 和 1.0 都使用非持续链接，限制每次连接只处理一个请求，服务器处理完客户的请求，并收到客户的应答后，即断开连接。http 1.1 改为了持续链接，可以传输多个对象。而持久性链接带来的还有请求的管线化，也就是可以在上一个请求尚未回复的时候就发送下一个请求。</p>
+
+<h3 id="无状态">无状态</h3>
+
+<p>http 的无状态意味着它对之前的请求没有记忆，如果需要用到之前的信息，那么需要重新传输，如果不需要，使用起来就节省时间。在需要前后文的场合，一般采用 Cookie 技术。Cookie 技术是说，在首次通信的时候，服务端会在响应中添加 Cookie 信息，然后客户端将其保留，在下次链接的时候，将 Cookie 加入请求，然后服务器就知道之前的状态信息了。</p>
+
+<h3 id="工作流程">工作流程</h3>
+
+<ol>
+  <li>客户端连接到 Web 服务器</li>
+</ol>
+
+<p>一个 HTTP 客户端，通常是浏览器，与 Web 服务器的 HTTP 端口（默认为 80) 建立一个 TCP 套接字连接。</p>
+<ol>
+  <li>发送 HTTP 请求</li>
+</ol>
+
+<p>通过 TCP 套接字，客户端向 Web 服务器发送一个文本的请求报文，一个请求报文由请求行。请求头部。空行和请求数据 4 部分组成。</p>
+<ol>
+  <li>服务器接受请求并返回 HTTP 响应</li>
+</ol>
+
+<p>Web 服务器解析请求，定位请求资源。服务器将资源复本写到 TCP 套接字，由客户端读取。响应报文基本上由协议版本、状态码（表示请求成功或失败的数字代码）、用以解释状态码的原因短语、可选的响应首部字段以及实体主体构成。
+如</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre>
+HTTP/1.1 200 OK
+Date: Tue, 10 Jul 2012 06:50:15 GMT
+Content-Length: 362
+Content-Type: text/html
+
+&lt;html&gt;
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ol>
+  <li>释放连接 TCP 连接</li>
+</ol>
+
+<p>若 connection 模式为 close, 则服务器主动关闭 TCP 连接，客户端被动关闭连接，释放 TCP 连接；若 connection 模式为 keepalive, 则该连接会保持一段时间，在该时间内可以继续接收请求；</p>
+<ol>
+  <li>客户端浏览器解析 HTML 内容</li>
+</ol>
+
+<p>客户端浏览器首先解析状态行，查看表明请求是否成功的状态代码。然后解析每一个响应头，响应头告知以下为若干字节的 HTML 文档和文档的字符集。客户端浏览器读取响应数据 HTML, 根据 HTML 的语法对其进行格式化，并在浏览器窗口中显示。</p>
+
+<h3 id="请求">请求</h3>
+
+<p>下面是一个真实的请求例子，可以通过 F12 工具里面的 NetWork 看到，是读取百度百科的图标的一个请求，由于 Cookie 太长，就仅仅留了一部分</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="rouge-code"><pre>
+GET /favicon.ico HTTP/1.1
+Host: baike.baidu.com
+Connection: keep-alive
+Pragma: no-cache
+Cache-Control: no-cache
+sec-ch-ua: "Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"
+sec-ch-ua-mobile: ?0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36
+Accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: no-cors
+Sec-Fetch-Dest: image
+Referer: https://baike.baidu.com/item/goto%E8%AF%AD%E5%8F%A5/7603004?fr=aladdin
+Accept-Encoding: gzip, deflate, br
+Accept-Language: zh-CN,zh;q=0.9,zh-TW;q=0.8,en-US;q=0.7,en;q=0.6
+Cookie: BIDUPSID=5BA9C0F9D1F69BCF04F7196693AA0E37; PSTM=1606200267; 
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>HTTP1.0 定义了三种请求方法：GET, POST 和 HEAD 方法。
+HTTP1.1 新增了五种请求方法：OPTIONS, PUT, DELETE, TRACE 和 CONNECT 方法。
+<code class="language-plaintext highlighter-rouge">GET</code> 是请求。
+<code class="language-plaintext highlighter-rouge">POST</code> 是提交表单。
+<code class="language-plaintext highlighter-rouge">HEAD</code> 和 GET 基本一样，但是只要求返回头部信息。
+<code class="language-plaintext highlighter-rouge">PUT</code> 是向服务端提交文件。几乎不会使用。
+<code class="language-plaintext highlighter-rouge">DELETE</code> 是删除文件。几乎不会使用。
+<code class="language-plaintext highlighter-rouge">TRACE</code> 是追踪请求的转发路线。几乎不会使用。
+<code class="language-plaintext highlighter-rouge">CONNECT</code> 是要求使用隧道进行代理。
+<code class="language-plaintext highlighter-rouge">OPTIONS</code> 是查看 URI 可以执行的动作。</p>
+
+<h3 id="https">https</h3>
+
+<p>HTTP 本身是明文协议。每个 HTTP 请求和返回的每个 byte 都会在网络上明文传播，不管是 url, header 还是 body.</p>
+
+<p>SSL(Secure Sockets Layer 安全套接字协议）, 及其继任者传输层安全 (Transport Layer Security, TLS) 是在传输层和应用层之间对信息进行加密。
+通常，HTTP 直接和 TCP 通信。当使用 SSL 时，则演变成先和 SSL 通信，再由 SSL 和 TCP 通信了。简言之，所谓 HTTPS, 其实就是身披 SSL 协议这层外壳的 HTTP. 加密采用混合加密的方式，先用公开密钥方式传输对称密钥，后续的信息就用对称密钥加密的方式。这样既保证了安全性，又保证了效率。
+SSL 不仅提供加密处理，而且还使用了一种被称为证书的手段，可用于确定方。证书由值得信任的第三方机构颁发，用以证明服务器和客户端是实际存在的。
+SSL 提供认证和加密处理及摘要功能。也就是用以防范中间人攻击，保证下载文件的正确性和完整性。常规的校验码的方式都需要用户手动检查，而且检验码本身也可能被篡改。
+https 采用 443 端口</p>
+
+<h4 id="客户端服务端验证过程">客户端服务端验证过程</h4>
+
+<ol>
+  <li>首先客户端通过 URL 访问服务器建立 SSL 连接。</li>
+  <li>服务端收到客户端请求后，会将网站支持的证书信息（证书中包含公钥）传送一份给客户端。（这里补充一步客户端验证证书）</li>
+  <li>客户端的服务器开始协商 SSL 连接的安全等级，也就是信息加密的等级。</li>
+  <li>客户端的浏览器根据双方同意的安全等级，建立会话密钥，然后利用网站的公钥将会话密钥加密，并传送给网站。</li>
+  <li>服务器利用自己的私钥解密出会话密钥。</li>
+  <li>服务器利用会话密钥加密与客户端之间的通信。</li>
+</ol>
+
+<h4 id="客户端验证证书过程">客户端验证证书过程</h4>
+
+<p>1: 客户端验证证书内容有效性（过期时间，域名是否相同等）
+2: 验证证书的有效性 （是否被串改）, 通过本地根证书的 CA 公钥解密数字摘要，看是否匹配。
+3: 如果数字签名验证通过，就可以使用服务器证书里面提供的公钥进行下一步通信。
+<strong>综上，HTTPS = HTTP + 加密 + 认证 + 完整性保护。</strong>
+<a href="https://zhuanlan.zhihu.com/p/72616216">链接流程</a></p>
+
+<h2 id="设备">设备</h2>
+
+<h2 id="集线器">集线器</h2>
+
+<p>集线器工作在数据链路层，多个端口，无方向性的传送信息包，没有地址转换功能。集线器内部共享带宽。</p>
+
+<h2 id="网桥">网桥</h2>
+
+<p>网桥工作在数据链路层，将两个 LAN 连起来，根据 MAC 地址来转发帧，可以看作一个”低层的路由器”（路由器工作在网络层，根据网络地址如 IP 地址进行转发）. 网桥可以看作是一个低层的交换机 .</p>
+
+<h2 id="交换机">交换机</h2>
+
+<p>交换机其实就是多端口的网桥。也是数据链路层，但是能够让设备独享带宽。</p>
+
+<h2 id="路由器">路由器</h2>
+
+<p>路由器工作在网络层，可以有方向地发送信息包。</p>
+
+
+                <hr style="visibility: hidden;">
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/codenote/2021/03/09/%E7%BA%A2%E9%BB%91%E6%A0%91/" data-toggle="tooltip" data-placement="top" title="「CodeNote」 红黑树">
+                        Previous<br>
+                        <span>「CodeNote」 红黑树</span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/ai/2021/03/11/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" data-toggle="tooltip" data-placement="top" title="「AI」 人工智能基础知识">
+                        Next<br>
+                        <span>「AI」 人工智能基础知识</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <hr style="visibility: hidden;">
+
+                
+
+                
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+
+<section>
+    
+        <hr class="hidden-sm hidden-xs">
+    
+    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+        
+        
+        
+        
+        
+                <a data-sort="0082" 
+                    href="/archive/?tag=CodeNote"
+                    title="CodeNote"
+                    rel="92">CodeNote</a>
+        
+                <a data-sort="0147" 
+                    href="/archive/?tag=Web%E5%BC%80%E5%8F%91"
+                    title="Web开发"
+                    rel="27">Web开发</a>
+        
+                <a data-sort="0161" 
+                    href="/archive/?tag=%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B"
+                    title="软件工程"
+                    rel="13">软件工程</a>
+        
+                <a data-sort="0161" 
+                    href="/archive/?tag=SpringBoot"
+                    title="SpringBoot"
+                    rel="13">SpringBoot</a>
+        
+                <a data-sort="0165" 
+                    href="/archive/?tag=%E4%BA%92%E8%81%94%E7%BD%91%E6%9E%B6%E6%9E%84"
+                    title="互联网架构"
+                    rel="9">互联网架构</a>
+        
+                <a data-sort="0167" 
+                    href="/archive/?tag=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"
+                    title="设计模式"
+                    rel="7">设计模式</a>
+        
+                <a data-sort="0167" 
+                    href="/archive/?tag=android"
+                    title="android"
+                    rel="7">android</a>
+        
+                <a data-sort="0168" 
+                    href="/archive/?tag=DAO"
+                    title="DAO"
+                    rel="6">DAO</a>
+        
+                <a data-sort="0169" 
+                    href="/archive/?tag=%E6%95%B0%E6%8D%AE%E5%BA%93"
+                    title="数据库"
+                    rel="5">数据库</a>
+        
+                <a data-sort="0169" 
+                    href="/archive/?tag=Python"
+                    title="Python"
+                    rel="5">Python</a>
+        
+                <a data-sort="0169" 
+                    href="/archive/?tag=Vue"
+                    title="Vue"
+                    rel="5">Vue</a>
+        
+                <a data-sort="0170" 
+                    href="/archive/?tag=Unity"
+                    title="Unity"
+                    rel="4">Unity</a>
+        
+                <a data-sort="0170" 
+                    href="/archive/?tag=VSCode%E5%AD%A6%E4%B9%A0"
+                    title="VSCode学习"
+                    rel="4">VSCode学习</a>
+        
+                <a data-sort="0171" 
+                    href="/archive/?tag=%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"
+                    title="版本控制"
+                    rel="3">版本控制</a>
+        
+                <a data-sort="0171" 
+                    href="/archive/?tag=View"
+                    title="View"
+                    rel="3">View</a>
+        
+                <a data-sort="0172" 
+                    href="/archive/?tag=Java"
+                    title="Java"
+                    rel="2">Java</a>
+        
+                <a data-sort="0172" 
+                    href="/archive/?tag=Kotlin"
+                    title="Kotlin"
+                    rel="2">Kotlin</a>
+        
+                <a data-sort="0172" 
+                    href="/archive/?tag=Linux"
+                    title="Linux"
+                    rel="2">Linux</a>
+    </div>
+</section>
+
+
+                <!-- Friends Blog -->
+                
+<hr>
+<h5>FRIENDS</h5>
+<ul class="list-inline">
+  
+  <li><a href="http://www.criinal.com/">Criinal</a></li>
+  
+</ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<!-- add support for mathjax by voleking-->
+
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'right',
+          // icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- SNS Link -->
+                
+
+
+<ul class="list-inline text-center">
+
+
+  
+  
+  
+  
+  
+  
+  <li>
+    <a target="_blank" href="https://github.com/Dawn-K">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+                <p class="copyright text-muted">
+                    Copyright &copy; Dawn-K's Blog 2021
+                    <br>
+                    Powered by <a href="http://huangxuan.me">Hux Blog</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="100px"
+                        height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Simple Jekyll Search -->
+<script src="/js/simple-jekyll-search.min.js"></script>
+
+<!-- Service Worker -->
+
+<script src="/js/snackbar.js "></script>
+<script src="/js/sw-registration.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+        var d = document, t = 'script',
+            o = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+
+
+
+
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function () {
+        var $nav = document.querySelector("nav");
+        if ($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        // interop with multilangual 
+        if ('' == 'true') {
+            _containerSelector = 'div.post-container.active'
+        } else {
+            _containerSelector = 'div.post-container'
+        }
+
+        // init
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        // clean
+        $(selector).html('')
+
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+<!-- Multi-Lingual -->
+
+
+<!-- Simple Jekyll Search -->
+<script>
+    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
+    function htmlDecode(input) {
+        var e = document.createElement('textarea');
+        e.innerHTML = input;
+        // handle case of empty input
+        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+    }
+
+    SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('search-results'),
+        json: '/search.json',
+        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
+        noResultsText: 'No results',
+        limit: 50,
+        fuzzy: false,
+        // a hack to get escaped subtitle unescaped. for some reason, 
+        // post.subtitle w/o escape filter nuke entire search.
+        templateMiddleware: function (prop, value, template) {
+            if (prop === 'subtitle' || prop === 'title') {
+                if (value.indexOf("code")) {
+                    return htmlDecode(value);
+                } else {
+                    return value;
+                }
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        var $searchPage = $('.search-page');
+        var $searchOpen = $('.search-icon');
+        var $searchClose = $('.search-icon-close');
+        var $searchInput = $('#search-input');
+        var $body = $('body');
+
+        $searchOpen.on('click', function (e) {
+            e.preventDefault();
+            $searchPage.toggleClass('search-active');
+            var prevClasses = $body.attr('class') || '';
+            setTimeout(function () {
+                $body.addClass('no-scroll');
+            }, 400)
+
+            if ($searchPage.hasClass('search-active')) {
+                $searchClose.on('click', function (e) {
+                    e.preventDefault();
+                    $searchPage.removeClass('search-active');
+                    $body.attr('class', prevClasses);  // from closure 
+                });
+                $searchInput.focus();
+            }
+        });
+    });
+</script>
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

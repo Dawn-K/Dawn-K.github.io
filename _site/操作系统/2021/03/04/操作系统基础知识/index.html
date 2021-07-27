@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="From ashes to the empire">
+    <meta name="keywords" content="Dawnk, Dawn-K, dawnk, Dawn-K's Blog, 博客, 个人网站, ACM , 算法竞赛">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Open Graph -->
+    <meta property="og:title"
+        content="「操作系统」 操作系统基础知识 - Dawn-K's Blog">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="操作系统基础知识
+">
+    
+    <meta property="article:published_time" content=" 2021-03-04T00:00:00Z">
+    
+    
+    
+    <meta property="article:tag" content="操作系统">
+    
+    
+    <meta property="og:image" content="http://dawnk.gitee.io//img/daze.jpg">
+    <meta property="og:url" content="http://dawnk.gitee.io//%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/2021/03/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+    <meta property="og:site_name" content="Dawn-K's Blog">
+
+    <title>「操作系统」 操作系统基础知识 - Dawn-K's Blog</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="http://dawnk.gitee.io//%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/2021/03/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href=" /css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href=" /css/hux-blog.min.css">
+
+    <!-- <link rel="stylesheet" href="http://yandex.st/highlightjs/7.1/styles/default.min.css">
+    <script src="http://yandex.st/highlightjs/7.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> -->
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"
+        type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    </script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+        type="text/javascript"></script>
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Dawn-K's Blog</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="huxblog_navbar">
+                <div class="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/archive/">Archive</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li class="search-icon">
+                            <a href="javascript:void(0)">
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <script>
+        // Drop Bootstarp low-performance Navbar
+        // Use customize navbar with high-quality material design animation
+        // in high-perf jank-free CSS3 implementation
+        var $body = document.body;
+        var $toggle = document.querySelector('.navbar-toggle');
+        var $navbar = document.querySelector('#huxblog_navbar');
+        var $collapse = document.querySelector('.navbar-collapse');
+
+        var __HuxNav__ = {
+            close: function () {
+                $navbar.className = " ";
+                // wait until animation end.
+                setTimeout(function () {
+                    // prevent frequently toggle
+                    if ($navbar.className.indexOf('in') < 0) {
+                        $collapse.style.height = "0px"
+                    }
+                }, 400)
+            },
+            open: function () {
+                $collapse.style.height = "auto"
+                $navbar.className += " in";
+            }
+        }
+
+        // Bind Event
+        $toggle.addEventListener('click', function (e) {
+            if ($navbar.className.indexOf('in') > 0) {
+                __HuxNav__.close()
+            } else {
+                __HuxNav__.open()
+            }
+        })
+
+        /**
+         * Since Fastclick is used to delegate 'touchstart' globally
+         * to hack 300ms delay in iOS by performing a fake 'click',
+         * Using 'e.stopPropagation' to stop 'touchstart' event from 
+         * $toggle/$collapse will break global delegation.
+         * 
+         * Instead, we use a 'e.target' filter to prevent handler
+         * added to document close HuxNav.  
+         *
+         * Also, we use 'click' instead of 'touchstart' as compromise
+         */
+        document.addEventListener('click', function (e) {
+            if (e.target == $toggle) return;
+            if (e.target.className == 'icon-bar') return;
+            __HuxNav__.close();
+        })
+    </script>
+    <!-- Search -->
+<div class="search-page">
+  <div class="search-icon-close-container">
+    <span class="search-icon-close">
+      <i class="fa fa-chevron-down"></i>
+    </span>
+  </div>
+  <div class="search-main container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <form></form>
+        <input type="text" id="search-input" placeholder="$ grep...">
+        </form>
+        <div id="search-results" class="mini-post-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/home-bg.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+
+
+
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/img/home-bg.jpg');
+        background: ;
+    }
+
+    
+</style>
+
+<header class="intro-header" >
+
+    <div class="header-mask"></div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/archive/?tag=%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F" title="操作系统">操作系统</a>
+                        
+                    </div>
+                    <h1>「操作系统」 操作系统基础知识</h1>
+                    
+                    <h2 class="subheading"></h2>
+                    <span class="meta">Posted by Dawn-K's Blog on March 4, 2021</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <!-- Multi-Lingual -->
+                
+
+				<h1 id="操作系统基础知识">操作系统基础知识</h1>
+
+<p><a href="https://zhuanlan.zhihu.com/p/124639863">参考资料</a></p>
+
+<h2 id="概述">概述</h2>
+
+<p>操作系统是一个系统软件，管理进程，调度系统资源，输入输出等，提供一个让用户和系统交互的操作界面。</p>
+
+<h2 id="线程进程">线程进程</h2>
+
+<ul>
+  <li>进程是资源分配的最小单位，线程是 CPU 调度的最小单位</li>
+  <li>多线程程序只要有一个线程崩溃，整个程序就崩溃了，但多进程程序中一个进程崩溃并不会对其它进程造成影响，因为进程有自己的独立地址空间，因此多进程更加健壮</li>
+  <li>在进程切换时，涉及到整个当前进程 CPU 环境的保存环境的设置以及新被调度运行的 CPU 环境的设置，而线程切换只需保存和设置少量的寄存器的内容，并不涉及存储器管理方面的操作</li>
+</ul>
+
+<h3 id="线程共享数据">线程共享数据</h3>
+
+<ul>
+  <li>进程代码段</li>
+  <li>进程的公有数据（全局变量、静态变量。..)</li>
+  <li>进程打开的文件描述符</li>
+  <li>进程的当前目录</li>
+  <li>信号处理器/信号处理函数：对收到的信号的处理方式</li>
+  <li>进程 ID 与进程组 ID</li>
+</ul>
+
+<h3 id="线程独占的资源">线程独占的资源</h3>
+
+<ul>
+  <li>线程 ID</li>
+  <li>一组寄存器的值</li>
+  <li>线程自身的栈（堆是共享的）</li>
+  <li>错误返回码：线程可能会产生不同的错误返回码，一个线程的错误返回码不应该被其它线程修改；</li>
+  <li>信号掩码/信号屏蔽字 (Signal mask): 表示是否屏蔽/阻塞相应的信号 (SIGKILL, SIGSTOP 除外）</li>
+</ul>
+
+<h3 id="进程间通信方式">进程间通信方式</h3>
+
+<h4 id="管道">管道</h4>
+
+<p>特殊文件，一个管道可供进程进行半双工通信。此处是指匿名管道，仅能在有亲缘关系的进程之间使用（如父子或者兄弟之间）.</p>
+
+<h4 id="命名管道">命名管道</h4>
+
+<p>命名管道支持任意两个进程进行通信，而且是全双工的</p>
+
+<h4 id="消息队列">消息队列</h4>
+
+<p>消息队列是一个消息的链表。可以供进程读写。</p>
+
+<h4 id="共享内存">共享内存</h4>
+
+<p>多个进程共享一块内存区域，但是需要加锁和同步。</p>
+
+<h4 id="信号量">信号量</h4>
+
+<p>用于同步和互斥。</p>
+
+<h4 id="套接字">套接字</h4>
+
+<p>可用于更为一般的进程间通信，甚至可以是网络上不同机器的进程间通信。
+域，端口号，协议类型。</p>
+
+<h2 id="操作系统种类">操作系统种类</h2>
+
+<h3 id="网络操作系统和分布式操作系统区别">网络操作系统和分布式操作系统区别</h3>
+
+<p>网络操作系统是把在同一网络上的多个计算机连接起来，实现资源共享和通信。
+分布式操作系统是在网络操作系统的基础上，实现工作的分布，让若干台计算机可以并行完成同一工作。</p>
+
+<h2 id="死锁">死锁</h2>
+
+<h3 id="信号量与互斥量">信号量与互斥量</h3>
+
+<ul>
+  <li>信号量为正时表示资源剩余量。</li>
+  <li>信号量为负时表示正在等待的进程数。
+这里之前写的不严谨，实际上信号量和互斥量是两种东西。
+<a href="https://zhuanlan.zhihu.com/p/90990453">参考资料</a>
+信号量用于同步，互斥量用于互斥。</li>
+  <li>信号量 (semaphore) 是作用于不同的进程，是进程通信的一种方式</li>
+  <li>互斥量 (mutex) 是在一个进程之中的，互斥量值只能为 0/1, 是对资源的占有和释放，是一种锁机制</li>
+</ul>
+
+<h3 id="pv-操作">PV 操作</h3>
+
+<ul>
+  <li>P 即 wait</li>
+  <li>V 即 signal</li>
+</ul>
+
+<h3 id="死锁的必要条件">死锁的必要条件</h3>
+
+<ul>
+  <li>互斥条件：一个资源只能被一个进程使用</li>
+  <li>请求与保持条件：一个进程因为请求其他资源而被阻塞时，不会放弃已经获得的资源。</li>
+  <li>不剥夺条件：进程未使用完资源之前不能强行剥夺</li>
+  <li>循环等待条件</li>
+</ul>
+
+<h3 id="解除死锁的方法">解除死锁的方法</h3>
+
+<p>从上个问题，逐步解决必要条件。</p>
+<ul>
+  <li>互斥问题是资源的性质决定的，没法解决。</li>
+  <li>破坏请求与保持的条件，也就是让进程必须一次申请完所有的资源。</li>
+  <li>破坏不剥夺条件，也就是进程如果申请失败必须归还所有的已经占用的资源。</li>
+  <li>破坏循环等待条件，也就是给资源标号，只能按照递增的顺序申请，这样就不会循环等待了。</li>
+</ul>
+
+<h2 id="epoll">epoll</h2>
+
+<p><a href="https://blog.csdn.net/songchuwang1868/article/details/89877739/">Epoll 的本质</a></p>
+
+<p>select 和 epoll 都是为了解决系统 IO 问题的，后者是对前者的改进。比如某个进程要监视多个 socket , 如果接受到了信息，进程就再做下一步打算（可以理解为等待 IO 时阻塞了）.</p>
+
+<h3 id="select">select</h3>
+
+<p>假如进程 A 同时监视的 sock1、sock2 和 sock3 三个 socket. 那么系统会将 A 加入这三个 socket 的等待队列中，一旦任意一个接受到了信息，就唤醒进程。然后将 A 从所有的等待队列中移除，然后放入到就绪队列，最后再遍历一次进程，得到是哪个进程发来的数据。
+可见，加入，移除，查询哪个 socket , 一共需要三次遍历，效率低下。
+所以 select 方法最多监视 1024 个进程。当然如果最开始调用 select 的时候就有 socket 有数据了，那么会直接返回，不用阻塞。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="rouge-code"><pre><span class="kt">int</span> <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>  
+<span class="n">bind</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="p">...)</span>
+<span class="n">listen</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="p">...)</span>
+ 
+<span class="kt">int</span> <span class="n">fds</span><span class="p">[]</span> <span class="o">=</span>  <span class="err">存放需要监听的</span> <span class="n">socket</span>
+ 
+<span class="nf">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">select</span><span class="p">(...,</span> <span class="n">fds</span><span class="p">,</span> <span class="p">...)</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">fds</span><span class="p">.</span><span class="n">count</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">FD_ISSET</span><span class="p">(</span><span class="n">fds</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="p">...)){</span>
+            <span class="c1">//fds[i] 的数据处理</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h3 id="epoll-对-select-的改进">epoll 对 select 的改进</h3>
+
+<p>epoll 将操作分成了三步：epoll_create epoll_ctl epoll_wait</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="rouge-code"><pre><span class="kt">int</span> <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>   
+<span class="n">bind</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="p">...)</span>
+<span class="n">listen</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="p">...)</span>
+ 
+<span class="kt">int</span> <span class="n">epfd</span> <span class="o">=</span> <span class="n">epoll_create</span><span class="p">(...);</span>
+<span class="n">epoll_ctl</span><span class="p">(</span><span class="n">epfd</span><span class="p">,</span> <span class="p">...);</span> <span class="c1">//将所有需要监听的 socket 添加到 epfd 中</span>
+ 
+<span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">epoll_wait</span><span class="p">(...)</span>
+    <span class="k">for</span><span class="err">（接收到数据的</span> <span class="n">socket</span><span class="p">){</span>
+        <span class="c1">//处理</span>
+    <span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<ul>
+  <li>某个进程调用 epoll_create 方法时，内核会创建一个 eventpoll 对象（也就是程序中 epfd 所代表的对象）</li>
+  <li>eventpoll 对象相当于是 socket 和进程之间的中介，socket 的数据接收并不直接影响进程，而是通过改变 eventpoll 的就绪列表来改变进程状态。</li>
+  <li>当程序执行到 epoll_wait 时，如果 rdlist 已经引用了 socket, 那么 epoll_wait 直接返回，如果 rdlist 为空，阻塞进程。</li>
+  <li>当 socket 接收到数据，中断程序一方面修改 rdlist, 另一方面唤醒 eventpoll 等待队列中的进程，进程 A 再次进入运行状态。也因为 rdlist 的存在，进程 A 可以知道哪些 socket 发生了变化。</li>
+</ul>
+
+<h2 id="扇区和簇">扇区和簇</h2>
+
+<p>扇区 (Sector) 是磁盘最小的物理存储单元，是磁盘读写基本单位。但是扇区太多了，操作系统难以对每个扇区寻址，所以引入了簇。
+簇 (Clust) 是多个扇区组成的数据块，是操作系统文件存储的最小单位。也就是一个文件再小也要占据一个簇。然后每个文件的最后一个簇可能未使用全。这个在 Windows 下叫簇，在 Linux 下如 Ext4 等文件系统中叫做块 (Block). 磁盘控制器是用来映射块和簇的。</p>
+
+<h2 id="fat32-和-ntfs">FAT32 和 NTFS</h2>
+
+<p><a href="https://zhuanlan.zhihu.com/p/44064885">文件系统 FAT 与 NTFS 的简介和区别</a></p>
+
+<p>FAT 是文件配置表 (File Allocation Table). FAT32 为 FAT 的最后一个产品，采用 32 位文件分配表，可以管理单文件大小最大为 4G.</p>
+
+<p>FAT 系统</p>
+
+<ul>
+  <li>安全性差</li>
+  <li>容易产生磁盘碎片</li>
+  <li>难以恢复等问题</li>
+</ul>
+
+<p>相比于 FAT 文件管理来说，NTFS 文件管理有</p>
+
+<ul>
+  <li>更安全的文件保障，可以加密</li>
+  <li>更好的磁盘压缩功能，减少磁盘碎片</li>
+  <li>支持最大 2TB 的硬盘</li>
+  <li>可以赋予单个文件和文件夹权限等种种优点。</li>
+</ul>
+
+<h2 id="僵尸进程">僵尸进程</h2>
+
+<p>任何一个子进程 (init 除外）在 exit() 之后，并非马上就消失掉，而是留下一个称为僵尸进程 (Zombie) 的数据结构，等待父进程处理。可以令父进程接到信号的时候执行 waitpid()</p>
+
+<h2 id="孤儿进程">孤儿进程</h2>
+
+<p>孤儿进程指的是在其父进程执行完成或被终止后仍继续运行的一类进程。这些孤儿进程将被 init 进程（进程号为 1) 所收养，并由 init 进程对它们完成状态收集工作。</p>
+
+<h2 id="优先级反转">优先级反转</h2>
+
+<p>试想如下三个进程
+A 优先级很低，目前占有一个锁
+B 优先级中等
+C 优先级高，且目前需要 A 的锁</p>
+
+<p>那么 C 会因为 A 的锁而一直阻塞，而 A 因为本身优先级很低，所以很难被运行，这样就导致 B 的优先级比另外两个都高，这就是优先级反转</p>
+
+<h3 id="解决方案">解决方案</h3>
+
+<ol>
+  <li>设置优先级上限，也就是把临界区的优先级设置的超过其他所有进程，任何一个进入此临界区的变量，都会被设置为这种超高优先级，就不会出现优先级反转的情况了</li>
+  <li>优先级继承，当一个高优先级进程等待一个低优先级进程持有的资源时，低优先级进程将暂时获得高优先级进程的优先级别，在释放共享资源后，低优先级进程回到原来的优先级别。</li>
+  <li>临界区禁止中断</li>
+</ol>
+
+
+                <hr style="visibility: hidden;">
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/c++/2021/03/04/C++%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" data-toggle="tooltip" data-placement="top" title="「C++」 C++基础知识">
+                        Previous<br>
+                        <span>「C++」 C++基础知识</span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/%E6%95%B0%E6%8D%AE%E5%BA%93/2021/03/04/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" data-toggle="tooltip" data-placement="top" title="「数据库」 数据库基础知识">
+                        Next<br>
+                        <span>「数据库」 数据库基础知识</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <hr style="visibility: hidden;">
+
+                
+
+                
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+
+<section>
+    
+        <hr class="hidden-sm hidden-xs">
+    
+    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+        
+        
+        
+        
+        
+                <a data-sort="0082" 
+                    href="/archive/?tag=CodeNote"
+                    title="CodeNote"
+                    rel="92">CodeNote</a>
+        
+                <a data-sort="0147" 
+                    href="/archive/?tag=Web%E5%BC%80%E5%8F%91"
+                    title="Web开发"
+                    rel="27">Web开发</a>
+        
+                <a data-sort="0161" 
+                    href="/archive/?tag=%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B"
+                    title="软件工程"
+                    rel="13">软件工程</a>
+        
+                <a data-sort="0161" 
+                    href="/archive/?tag=SpringBoot"
+                    title="SpringBoot"
+                    rel="13">SpringBoot</a>
+        
+                <a data-sort="0165" 
+                    href="/archive/?tag=%E4%BA%92%E8%81%94%E7%BD%91%E6%9E%B6%E6%9E%84"
+                    title="互联网架构"
+                    rel="9">互联网架构</a>
+        
+                <a data-sort="0167" 
+                    href="/archive/?tag=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"
+                    title="设计模式"
+                    rel="7">设计模式</a>
+        
+                <a data-sort="0167" 
+                    href="/archive/?tag=android"
+                    title="android"
+                    rel="7">android</a>
+        
+                <a data-sort="0168" 
+                    href="/archive/?tag=DAO"
+                    title="DAO"
+                    rel="6">DAO</a>
+        
+                <a data-sort="0169" 
+                    href="/archive/?tag=%E6%95%B0%E6%8D%AE%E5%BA%93"
+                    title="数据库"
+                    rel="5">数据库</a>
+        
+                <a data-sort="0169" 
+                    href="/archive/?tag=Python"
+                    title="Python"
+                    rel="5">Python</a>
+        
+                <a data-sort="0169" 
+                    href="/archive/?tag=Vue"
+                    title="Vue"
+                    rel="5">Vue</a>
+        
+                <a data-sort="0170" 
+                    href="/archive/?tag=Unity"
+                    title="Unity"
+                    rel="4">Unity</a>
+        
+                <a data-sort="0170" 
+                    href="/archive/?tag=VSCode%E5%AD%A6%E4%B9%A0"
+                    title="VSCode学习"
+                    rel="4">VSCode学习</a>
+        
+                <a data-sort="0171" 
+                    href="/archive/?tag=%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"
+                    title="版本控制"
+                    rel="3">版本控制</a>
+        
+                <a data-sort="0171" 
+                    href="/archive/?tag=View"
+                    title="View"
+                    rel="3">View</a>
+        
+                <a data-sort="0172" 
+                    href="/archive/?tag=Java"
+                    title="Java"
+                    rel="2">Java</a>
+        
+                <a data-sort="0172" 
+                    href="/archive/?tag=Kotlin"
+                    title="Kotlin"
+                    rel="2">Kotlin</a>
+        
+                <a data-sort="0172" 
+                    href="/archive/?tag=Linux"
+                    title="Linux"
+                    rel="2">Linux</a>
+    </div>
+</section>
+
+
+                <!-- Friends Blog -->
+                
+<hr>
+<h5>FRIENDS</h5>
+<ul class="list-inline">
+  
+  <li><a href="http://www.criinal.com/">Criinal</a></li>
+  
+</ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<!-- add support for mathjax by voleking-->
+
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'right',
+          // icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- SNS Link -->
+                
+
+
+<ul class="list-inline text-center">
+
+
+  
+  
+  
+  
+  
+  
+  <li>
+    <a target="_blank" href="https://github.com/Dawn-K">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+                <p class="copyright text-muted">
+                    Copyright &copy; Dawn-K's Blog 2021
+                    <br>
+                    Powered by <a href="http://huangxuan.me">Hux Blog</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="100px"
+                        height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Simple Jekyll Search -->
+<script src="/js/simple-jekyll-search.min.js"></script>
+
+<!-- Service Worker -->
+
+<script src="/js/snackbar.js "></script>
+<script src="/js/sw-registration.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+        var d = document, t = 'script',
+            o = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+
+
+
+
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function () {
+        var $nav = document.querySelector("nav");
+        if ($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        // interop with multilangual 
+        if ('' == 'true') {
+            _containerSelector = 'div.post-container.active'
+        } else {
+            _containerSelector = 'div.post-container'
+        }
+
+        // init
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        // clean
+        $(selector).html('')
+
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+<!-- Multi-Lingual -->
+
+
+<!-- Simple Jekyll Search -->
+<script>
+    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
+    function htmlDecode(input) {
+        var e = document.createElement('textarea');
+        e.innerHTML = input;
+        // handle case of empty input
+        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+    }
+
+    SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('search-results'),
+        json: '/search.json',
+        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
+        noResultsText: 'No results',
+        limit: 50,
+        fuzzy: false,
+        // a hack to get escaped subtitle unescaped. for some reason, 
+        // post.subtitle w/o escape filter nuke entire search.
+        templateMiddleware: function (prop, value, template) {
+            if (prop === 'subtitle' || prop === 'title') {
+                if (value.indexOf("code")) {
+                    return htmlDecode(value);
+                } else {
+                    return value;
+                }
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        var $searchPage = $('.search-page');
+        var $searchOpen = $('.search-icon');
+        var $searchClose = $('.search-icon-close');
+        var $searchInput = $('#search-input');
+        var $body = $('body');
+
+        $searchOpen.on('click', function (e) {
+            e.preventDefault();
+            $searchPage.toggleClass('search-active');
+            var prevClasses = $body.attr('class') || '';
+            setTimeout(function () {
+                $body.addClass('no-scroll');
+            }, 400)
+
+            if ($searchPage.hasClass('search-active')) {
+                $searchClose.on('click', function (e) {
+                    e.preventDefault();
+                    $searchPage.removeClass('search-active');
+                    $body.attr('class', prevClasses);  // from closure 
+                });
+                $searchInput.focus();
+            }
+        });
+    });
+</script>
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

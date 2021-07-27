@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="From ashes to the empire">
+    <meta name="keywords" content="Dawnk, Dawn-K, dawnk, Dawn-K's Blog, 博客, 个人网站, ACM , 算法竞赛">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Open Graph -->
+    <meta property="og:title"
+        content="「数据库」 数据库基础知识 - Dawn-K's Blog">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="数据库
+">
+    
+    <meta property="article:published_time" content=" 2021-03-04T00:00:00Z">
+    
+    
+    
+    <meta property="article:tag" content="数据库">
+    
+    
+    <meta property="og:image" content="http://dawnk.gitee.io//img/daze.jpg">
+    <meta property="og:url" content="http://dawnk.gitee.io//%E6%95%B0%E6%8D%AE%E5%BA%93/2021/03/04/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+    <meta property="og:site_name" content="Dawn-K's Blog">
+
+    <title>「数据库」 数据库基础知识 - Dawn-K's Blog</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="http://dawnk.gitee.io//%E6%95%B0%E6%8D%AE%E5%BA%93/2021/03/04/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href=" /css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href=" /css/hux-blog.min.css">
+
+    <!-- <link rel="stylesheet" href="http://yandex.st/highlightjs/7.1/styles/default.min.css">
+    <script src="http://yandex.st/highlightjs/7.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> -->
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"
+        type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    </script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+        type="text/javascript"></script>
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Dawn-K's Blog</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="huxblog_navbar">
+                <div class="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/archive/">Archive</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li class="search-icon">
+                            <a href="javascript:void(0)">
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <script>
+        // Drop Bootstarp low-performance Navbar
+        // Use customize navbar with high-quality material design animation
+        // in high-perf jank-free CSS3 implementation
+        var $body = document.body;
+        var $toggle = document.querySelector('.navbar-toggle');
+        var $navbar = document.querySelector('#huxblog_navbar');
+        var $collapse = document.querySelector('.navbar-collapse');
+
+        var __HuxNav__ = {
+            close: function () {
+                $navbar.className = " ";
+                // wait until animation end.
+                setTimeout(function () {
+                    // prevent frequently toggle
+                    if ($navbar.className.indexOf('in') < 0) {
+                        $collapse.style.height = "0px"
+                    }
+                }, 400)
+            },
+            open: function () {
+                $collapse.style.height = "auto"
+                $navbar.className += " in";
+            }
+        }
+
+        // Bind Event
+        $toggle.addEventListener('click', function (e) {
+            if ($navbar.className.indexOf('in') > 0) {
+                __HuxNav__.close()
+            } else {
+                __HuxNav__.open()
+            }
+        })
+
+        /**
+         * Since Fastclick is used to delegate 'touchstart' globally
+         * to hack 300ms delay in iOS by performing a fake 'click',
+         * Using 'e.stopPropagation' to stop 'touchstart' event from 
+         * $toggle/$collapse will break global delegation.
+         * 
+         * Instead, we use a 'e.target' filter to prevent handler
+         * added to document close HuxNav.  
+         *
+         * Also, we use 'click' instead of 'touchstart' as compromise
+         */
+        document.addEventListener('click', function (e) {
+            if (e.target == $toggle) return;
+            if (e.target.className == 'icon-bar') return;
+            __HuxNav__.close();
+        })
+    </script>
+    <!-- Search -->
+<div class="search-page">
+  <div class="search-icon-close-container">
+    <span class="search-icon-close">
+      <i class="fa fa-chevron-down"></i>
+    </span>
+  </div>
+  <div class="search-main container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <form></form>
+        <input type="text" id="search-input" placeholder="$ grep...">
+        </form>
+        <div id="search-results" class="mini-post-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/home-bg.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+
+
+
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/img/home-bg.jpg');
+        background: ;
+    }
+
+    
+</style>
+
+<header class="intro-header" >
+
+    <div class="header-mask"></div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/archive/?tag=%E6%95%B0%E6%8D%AE%E5%BA%93" title="数据库">数据库</a>
+                        
+                    </div>
+                    <h1>「数据库」 数据库基础知识</h1>
+                    
+                    <h2 class="subheading"></h2>
+                    <span class="meta">Posted by Dawn-K's Blog on March 4, 2021</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <!-- Multi-Lingual -->
+                
+
+				<h1 id="数据库">数据库</h1>
+
+<h2 id="基本概念">基本概念</h2>
+
+<p>实体</p>
+
+<h3 id="主键">主键</h3>
+
+<p>主键应当是唯一的，并且几乎不会变动
+码：所有属性都依赖于码属性。</p>
+
+<p><img src="https://img-blog.csdnimg.cn/20190625173457198.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3N1bWFsaXFpbmdodWE=,size_16,color_FFFFFF,t_70" alt="关键字" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">码</code> : 能够唯一标识一条记录的属性或属性集。
+<code class="language-plaintext highlighter-rouge">候选码</code> : 能够唯一标识一条记录的<strong>最小</strong>属性集
+<code class="language-plaintext highlighter-rouge">主键</code> : 人为从候选码中挑的一个码。
+<code class="language-plaintext highlighter-rouge">主属性</code> : 包含在任一候选码中的属性称主属性
+<code class="language-plaintext highlighter-rouge">非主属性</code> : 不包含在候选码中的属性称为非主属性</p>
+
+<h2 id="数据库范式">数据库范式</h2>
+
+<p>范式是一种规范，能够减少数据冗余。但是范式不是越高越好，因为高的范式容易导致数据库性能的下降（查询插入缓慢）</p>
+
+<h3 id="第一范式">第一范式</h3>
+
+<p>所有的域都应该是原子性的，即数据库表的每一列都是不可分割的原子数据项，而不能是集合，数组，记录等非原子数据项。</p>
+
+<h3 id="第二范式">第二范式</h3>
+
+<p>第二范式首先要满足第一范式。第二范式是指每条记录都要有唯一的标识</p>
+
+<p>依赖有三种</p>
+
+<ol>
+  <li>完全函数依赖。 y 完全依赖于 x 表示，不存在一个 x 对应两个 y 的情况，而且任何一个 x 的真子集 x’，y 未必依赖于 x’</li>
+  <li>部分函数依赖。y 依赖 x 但是不完全依赖 x</li>
+  <li>传递函数依赖。x-&gt;y-&gt;z 则称 z 传递依赖于 x</li>
+</ol>
+
+<p>准确地说是：所有非主属性不能部分依赖于主码。
+比如如果一个表，主键是（学号，课程）
+学号|课程|姓名 | 分数|
+—–|—–|—–|—–|
+分数是满足的，因为分数完全依赖于（学号，课程）, 但是姓名是部分依赖于（学号，课程）的。</p>
+
+<h3 id="第三范式">第三范式</h3>
+
+<p>第三范式 (3NF) 要求一个关系中不包含已在其它关系已包含的非主关键字信息。
+准确地说是，不能有属性传递依赖于主键。
+比如下表的主键是学号。
+学号|系名|姓名 | 系主任名|
+—–|—–|—–|—–|
+系主任名是传递依赖于学号的。因为 学号-&gt;系名-&gt;系主任名
+所以正确的做法是将系名和系主任名分开存到另一个表里，来减少数据冗余。</p>
+
+<h3 id="巴斯-科德范式-bcnf">巴斯-科德范式 (BCNF)</h3>
+
+<p>在 3NF 的基础上，没有任何属性完全函数依赖于非候选码的任何一组属性。也就是主键不会被非主属性绑定（比如仓库只有一个管理员，管理员也只管一个仓库，那么如果仓库是主键，就不能</p>
+
+<h2 id="事务-transaction">事务 TRANSACTION</h2>
+
+<p>将两个单词 (trans action) 分开念即可</p>
+
+<p><a href="https://www.liaoxuefeng.com/wiki/1177760294764384/1179611198786848#0">事务-廖雪峰</a></p>
+
+<h3 id="acid">ACID</h3>
+
+<p><code class="language-plaintext highlighter-rouge">A：Atomic</code> , 原子性，将所有 SQL 作为原子工作单元执行，要么全部执行，要么全部不执行；
+<code class="language-plaintext highlighter-rouge">C：Consistent</code> , 一致性，事务完成后，所有数据的状态都是一致的，即 A 账户只要减去了 100, B 账户则必定加上了 100; 如果数据库在执行前是一致的，那么它在执行后也应当是一致的。而数据库自身的一致性是指其是否能正确反映客观世界。
+<code class="language-plaintext highlighter-rouge">I：Isolation</code> , 隔离性，如果有多个事务并发执行，每个事务作出的修改必须与其他事务隔离；
+<code class="language-plaintext highlighter-rouge">D：Duration</code> , 持久性，即事务完成后，对数据库数据的修改被持久化存储。即使系统在此事务执行后崩溃了。</p>
+
+<h3 id="四种隔离级别">四种隔离级别</h3>
+
+<h4 id="未提交读-read-uncommitted">未提交读 (read uncommitted)</h4>
+
+<p>允许读取未提交数据，可能发生脏读</p>
+
+<h4 id="已提交读-consistent-read">已提交读 (consistent read)</h4>
+
+<p>大多数数据库的默认等级
+只允许读取已经提交的数据，但不要求可重复读，在事务两次读取一个数据之间，另一个事务更新了数据并提交。</p>
+
+<h4 id="可重复读-repeatable-read">可重复读 (repeatable read)</h4>
+
+<p>Mysql 的默认等级
+只允许读取已提交数据，而且在一个事务两次读取一个数据项期间，其他事务不得更新该数据。但该事务不要求与其他事务可串行化。
+可能发生幻读：一个事务（同一个 read view) 在前后两次查询同一范围的时候，后一次查询看到了前一次查询没有看到的行。重点在于新增的行。</p>
+
+<h4 id="串行化-serializable-read">串行化 (serializable read)</h4>
+
+<p>对同一行记录，读会加”读锁”, 写会加”写锁”, 当出现读写冲突时，前后访问的事务必须等前一个事务执行完成，才能继续执行。</p>
+
+<h2 id="元数据">元数据</h2>
+
+<p>元数据（英语：metadata), 又称诠释资料、中介资料、中继资料、后设资料等，为描述其他资料信息的资料。有三种不同类型的元数据，分别是记叙性元数据、结构性元数据和管理性元数据。</p>
+<ul>
+  <li>记叙性元数据描述了用于发现与辨别意义的资源。它可以包括如标题、摘要、作者和关键字等元素。</li>
+  <li>结构性元数据是有关于资料容器的元数据，指示如何整理其中复合的对象。例如页面依什么排序方式组成章节。</li>
+  <li>管理性元数据是用于管理资源的信息，例如资料产生的时间和方式、文件种类和其它技术信息，以及谁有权限访问它。在某些国家，有关于电子邮件、电话、网页、IP 链接与手机位置的元数据是固定由国家来存储的。</li>
+</ul>
+
+<h2 id="文件系统和数据库的区别">文件系统和数据库的区别</h2>
+
+<ul>
+  <li>文件系统把数据组织成相互独立的数据文件，实现了记录内的结构性，但整体无结构；</li>
+  <li>数据库系统实现整体数据的结构化（也就是建立表与表之间的联系）, 这是数据库的主要特征之一，也是数据库系统与文件系统的本质区别。</li>
+  <li>在文件系统中，数据冗余度大，浪费存储空间，容易造成数据的不一致；</li>
+  <li>数据库系统中，数据是面向整个系统，数据可以被多个用户、多个应用共享使用，减少了数据冗余。</li>
+  <li>文件系统中的文件是为某一特定应用服务的，当要修改数据的逻辑结构时，必须修改应用程序，修改文件结构的定义，数据和程序之间缺乏独立性；</li>
+  <li>数据库系统中，通过 DBMS 的两级映象实现了数据的物理独立性和逻辑独立性，把数据的定义从程序中分离出去，减少了应用程序的维护和修改。</li>
+  <li>一般来说数据库系统会调用文件系统来管理自己的数据文件，但也有些数据库系统能够自己管理数据文件，甚至在裸设备上。文件系统是操作系统必须的，而数据库系统只是数据库管理和应用所必需的。</li>
+</ul>
+
+<h2 id="数据模型及其地位">数据模型及其地位</h2>
+
+<p>数据模型是对现实世界数据特征的抽象，其三要素是 ( <code class="language-plaintext highlighter-rouge">数据结构</code> , <code class="language-plaintext highlighter-rouge">数据操作</code> , <code class="language-plaintext highlighter-rouge">数据的约束条件</code> )
+最常用的数据模型分为概念数据模型和基本数据模型
+概念数据模型是按用户的观点对数据和信息建模，是现实世界到信息世界的第一层抽象。
+基本数据模型是按计算机系统的观点对数据建模，是现实世界数据特征的抽象，用于 dbms 的实现（层次模型，网状模型，关系模型）</p>
+
+<h2 id="索引">索引</h2>
+
+<p>MySQL 支持诸多存储引擎，而各种存储引擎对索引的支持也各不相同，因此 MySQL 数据库支持多种索引类型，如 BTree 索引，哈希索引，全文索引等等
+在数据之外，数据库系统还维护着满足特定查找算法的数据结构，这些数据结构以某种方式引用（指向）数据，这样就可以在这些数据结构上实现高级查找算法。这种数据结构，就是索引。（也就是说索引就是一种加速查找的数据结构）</p>
+
+<h3 id="索引的不足">索引的不足</h3>
+
+<ol>
+  <li>
+    <p>虽然索引大大提高了查询速度，同时却会降低更新表的速度，如对表进行 INSERT、UPDATE 和 DELETE. 因为更新表时，MySQL 不仅要保存数据，还要保存一下索引文件</p>
+  </li>
+  <li>
+    <p>建立索引会占用磁盘空间的索引文件。一般情况这个问题不太严重，但如果你在一个大表上创建了多种组合索引，索引文件的会膨胀很快。</p>
+  </li>
+</ol>
+
+<h3 id="聚集索引和非聚集索引">聚集索引和非聚集索引</h3>
+
+<p><strong>聚集索引是指数据库表行中数据的物理顺序与键值的逻辑（索引）顺序相同（准确的说是连续存放）.</strong> <strong>一个表只能有一个聚集索引</strong>, 因为一个表的物理顺序只有一种情况。
+与非聚集索引相比，聚集索引有着更快的检索速度。</p>
+
+<h3 id="稠密索引和非稠密索引">稠密索引和非稠密索引</h3>
+
+<p>索引项指每个搜索码值都有一个对应的索引。
+稠密索引可支持聚集和非聚集索引。对于聚集索引，稠密索引是索引项包括搜索码值和指向对应的第一条数据记录的指针。对于非聚集索引，索引必须包括搜索码值和指向所有具有相同搜索码值的记录的指针列表。
+稀疏索引就只能支持聚集索引。形式和稠密索引对聚集索引的形式一样。
+稀疏索引只为搜索码的某些值建立索引项。每个索引项包括一个搜索码值和指向具有该搜索码值的第一条数据记录的指针。</p>
+
+<h2 id="视图">视图</h2>
+
+<ul>
+  <li>视图是为了不让用户完全看到逻辑模型，或者是想要建立一个更符合用户直觉的而采用的一种关系集合。</li>
+  <li>视图一般是作为虚关系存在，针对视图的查询，往往需要先计算出集合，然后再进行查询。也有很少数的情况，面对大量的查询，有些数据库将视图物化。</li>
+  <li>视图一般不会允许进行更改。</li>
+</ul>
+
+<h2 id="崩溃后的恢复">崩溃后的恢复</h2>
+
+<p>数据库有日志系统。对于已经提交的事务，则一定能保证其持久性。如果执行到一半的事务，就回滚事务。</p>
+
+<h2 id="主键-1">主键</h2>
+
+<p>主键是为了作为表的唯一标识的候选关键字，可以由一个字段构成，也可以由多个字段组成。主键应该对于用户无意义，也不应该被更新。</p>
+
+<h2 id="死锁">死锁</h2>
+
+<p>数据库的死锁和操作系统基本一致，操作系统的是进程之间对于资源的争夺，数据库的死锁是事务之间关于读写的锁。</p>
+
+<h3 id="死锁的四个必要条件">死锁的四个必要条件</h3>
+
+<ul>
+  <li>互斥访问</li>
+  <li>请求保持</li>
+  <li>不剥夺</li>
+  <li>环路等待</li>
+</ul>
+
+<h3 id="尽可能避免死锁">尽可能避免死锁</h3>
+
+<ul>
+  <li>保持事务简短</li>
+  <li>使用较低的隔离等级</li>
+  <li>尽量避免用户交互</li>
+</ul>
+
+<h2 id="mysql">MYSQL</h2>
+
+<h3 id="引擎">引擎</h3>
+
+<p>MySQL 主要有四种引擎，MyISAM, InnoDB（默认引擎）, MEMORY, Archive.</p>
+
+<ul>
+  <li>MyISAM 更注重性能，平台的迁移性更好。不支持事务的设计，如果有需求可以在 service 层进行根据自己的业务需求进行相应的控制。</li>
+  <li>InnoDB 支持事务和外部键等复杂操作。</li>
+  <li>MEMORY 将数据存在内存中，一般是用来存储临时数据。</li>
+  <li>Archive 主要用于存储日志等文件。</li>
+</ul>
+
+<h3 id="关于索引以及-b树的实现">关于索引以及 b+树的实现</h3>
+
+<ul>
+  <li>MyISAM 索引文件和数据文件是分离的，索引文件仅保存数据记录的地址。</li>
+  <li>在 InnoDB 中，表数据文件本身就是按 B+Tree 组织的一个索引结构，这棵树的叶节点 data 域保存了完整的数据记录。这个索引的 key 是数据表的主键，因此 InnoDB 表数据文件本身就是主索引。</li>
+</ul>
+
+<h3 id="mvcc">MVCC</h3>
+
+<p>MVCC 全称为多版本并发控制。主要在 InnoDB 中用以实现读已提交和可重复读。
+实现原理如下：对于每行数据，都增加两个隐藏列，一个是创建时间（版本号）, 一个是删除时间（版本号）.
+然后对于每个事务都有其对应的唯一的 ID, 事务创建一个记录时，会将自身的 ID 填入创建时间。事务删除一个记录时，将 ID 填入删除时间。更新采取先删后建的方式。
+对于查询来说，一个事务尽可能查询到同时满足以下条件的记录：</p>
+<ol>
+  <li>删除时间大于当前的版本号。也就是它被后面的事务删除或更新。</li>
+  <li>创建时间小于等于当前的版本号，也就是在事务执行前就已经存在的数据或者是本事务添加的数据。
+具体原理比较复杂，日后再说。
+<a href="https://blog.csdn.net/SnailMann/article/details/94724197">CSDN-【MySQL 笔记】正确的理解 MySQL 的 MVCC 及实现原理</a></li>
+</ol>
+
+<h2 id="b-树">b 树</h2>
+
+<p>B 树的优点在于数据存储在每个结点中，可以更快访问到，而不必须走到叶子结点，B 树更多的用在文件系统中。</p>
+<ul>
+  <li>根节点至少两个子节点，其他节点最多有 m-1 个关键字 (m 个子树）, 最少有 floor(m/2)-1 个节点 (floor(m/2) 个子树）.</li>
+  <li><strong>每个节点可以存储数据</strong>.</li>
+  <li>每个节点的左儿子都严格小于它本身，右儿子都严格大于它本身。</li>
+</ul>
+
+<h2 id="b树">b+树</h2>
+
+<p>b+树是在 b 树的基础上改进的。</p>
+
+<h3 id="相对于-b-树的不同">相对于 b 树的不同</h3>
+
+<ul>
+  <li>每个节点最多有 m 个关键字，每个关键字对应一颗子树。</li>
+  <li>数据全部存在叶子节点，非叶子节点不存数据。</li>
+  <li><strong>父节点的元素也一定存在在某个子节点之中</strong>, 父节点的元素也是子节点元素的最大值的集合。</li>
+  <li>最后的叶子节点由一个链表穿起，从小到大，便于范围查询</li>
+</ul>
+
+<h3 id="相对于-b-树的优点">相对于 b 树的优点</h3>
+
+<ul>
+  <li>范围查询更加方便。b 树在找到下界之后需要中序遍历，io 次数多。b+树查询到下界之后可以通过链表来遍历。减少了 io 次数。</li>
+  <li><strong>b+树节点中不含数据</strong>, 所以占用同样大小的磁盘空间的情况下，可以更多的存储节点。且查询效率比 b 树稳定，因为一定会查询到叶子节点。</li>
+</ul>
+
+<h2 id="数据字典">数据字典</h2>
+
+<p>在开发的程序（系统）中的数据字典。可以帮助开发人员理解各个数据项目的类型、数值和它们与现实世界中的对象的关系。</p>
+
+
+                <hr style="visibility: hidden;">
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/2021/03/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" data-toggle="tooltip" data-placement="top" title="「操作系统」 操作系统基础知识">
+                        Previous<br>
+                        <span>「操作系统」 操作系统基础知识</span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/2021/03/04/makefile/" data-toggle="tooltip" data-placement="top" title="「软件工程」 makefile">
+                        Next<br>
+                        <span>「软件工程」 makefile</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <hr style="visibility: hidden;">
+
+                
+
+                
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+
+<section>
+    
+        <hr class="hidden-sm hidden-xs">
+    
+    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+        
+        
+        
+        
+        
+                <a data-sort="0082" 
+                    href="/archive/?tag=CodeNote"
+                    title="CodeNote"
+                    rel="92">CodeNote</a>
+        
+                <a data-sort="0147" 
+                    href="/archive/?tag=Web%E5%BC%80%E5%8F%91"
+                    title="Web开发"
+                    rel="27">Web开发</a>
+        
+                <a data-sort="0161" 
+                    href="/archive/?tag=%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B"
+                    title="软件工程"
+                    rel="13">软件工程</a>
+        
+                <a data-sort="0161" 
+                    href="/archive/?tag=SpringBoot"
+                    title="SpringBoot"
+                    rel="13">SpringBoot</a>
+        
+                <a data-sort="0165" 
+                    href="/archive/?tag=%E4%BA%92%E8%81%94%E7%BD%91%E6%9E%B6%E6%9E%84"
+                    title="互联网架构"
+                    rel="9">互联网架构</a>
+        
+                <a data-sort="0167" 
+                    href="/archive/?tag=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"
+                    title="设计模式"
+                    rel="7">设计模式</a>
+        
+                <a data-sort="0167" 
+                    href="/archive/?tag=android"
+                    title="android"
+                    rel="7">android</a>
+        
+                <a data-sort="0168" 
+                    href="/archive/?tag=DAO"
+                    title="DAO"
+                    rel="6">DAO</a>
+        
+                <a data-sort="0169" 
+                    href="/archive/?tag=%E6%95%B0%E6%8D%AE%E5%BA%93"
+                    title="数据库"
+                    rel="5">数据库</a>
+        
+                <a data-sort="0169" 
+                    href="/archive/?tag=Python"
+                    title="Python"
+                    rel="5">Python</a>
+        
+                <a data-sort="0169" 
+                    href="/archive/?tag=Vue"
+                    title="Vue"
+                    rel="5">Vue</a>
+        
+                <a data-sort="0170" 
+                    href="/archive/?tag=Unity"
+                    title="Unity"
+                    rel="4">Unity</a>
+        
+                <a data-sort="0170" 
+                    href="/archive/?tag=VSCode%E5%AD%A6%E4%B9%A0"
+                    title="VSCode学习"
+                    rel="4">VSCode学习</a>
+        
+                <a data-sort="0171" 
+                    href="/archive/?tag=%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"
+                    title="版本控制"
+                    rel="3">版本控制</a>
+        
+                <a data-sort="0171" 
+                    href="/archive/?tag=View"
+                    title="View"
+                    rel="3">View</a>
+        
+                <a data-sort="0172" 
+                    href="/archive/?tag=Java"
+                    title="Java"
+                    rel="2">Java</a>
+        
+                <a data-sort="0172" 
+                    href="/archive/?tag=Kotlin"
+                    title="Kotlin"
+                    rel="2">Kotlin</a>
+        
+                <a data-sort="0172" 
+                    href="/archive/?tag=Linux"
+                    title="Linux"
+                    rel="2">Linux</a>
+    </div>
+</section>
+
+
+                <!-- Friends Blog -->
+                
+<hr>
+<h5>FRIENDS</h5>
+<ul class="list-inline">
+  
+  <li><a href="http://www.criinal.com/">Criinal</a></li>
+  
+</ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<!-- add support for mathjax by voleking-->
+
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'right',
+          // icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- SNS Link -->
+                
+
+
+<ul class="list-inline text-center">
+
+
+  
+  
+  
+  
+  
+  
+  <li>
+    <a target="_blank" href="https://github.com/Dawn-K">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+                <p class="copyright text-muted">
+                    Copyright &copy; Dawn-K's Blog 2021
+                    <br>
+                    Powered by <a href="http://huangxuan.me">Hux Blog</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="100px"
+                        height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Simple Jekyll Search -->
+<script src="/js/simple-jekyll-search.min.js"></script>
+
+<!-- Service Worker -->
+
+<script src="/js/snackbar.js "></script>
+<script src="/js/sw-registration.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+        var d = document, t = 'script',
+            o = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+
+
+
+
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function () {
+        var $nav = document.querySelector("nav");
+        if ($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        // interop with multilangual 
+        if ('' == 'true') {
+            _containerSelector = 'div.post-container.active'
+        } else {
+            _containerSelector = 'div.post-container'
+        }
+
+        // init
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        // clean
+        $(selector).html('')
+
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+<!-- Multi-Lingual -->
+
+
+<!-- Simple Jekyll Search -->
+<script>
+    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
+    function htmlDecode(input) {
+        var e = document.createElement('textarea');
+        e.innerHTML = input;
+        // handle case of empty input
+        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+    }
+
+    SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('search-results'),
+        json: '/search.json',
+        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
+        noResultsText: 'No results',
+        limit: 50,
+        fuzzy: false,
+        // a hack to get escaped subtitle unescaped. for some reason, 
+        // post.subtitle w/o escape filter nuke entire search.
+        templateMiddleware: function (prop, value, template) {
+            if (prop === 'subtitle' || prop === 'title') {
+                if (value.indexOf("code")) {
+                    return htmlDecode(value);
+                } else {
+                    return value;
+                }
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        var $searchPage = $('.search-page');
+        var $searchOpen = $('.search-icon');
+        var $searchClose = $('.search-icon-close');
+        var $searchInput = $('#search-input');
+        var $body = $('body');
+
+        $searchOpen.on('click', function (e) {
+            e.preventDefault();
+            $searchPage.toggleClass('search-active');
+            var prevClasses = $body.attr('class') || '';
+            setTimeout(function () {
+                $body.addClass('no-scroll');
+            }, 400)
+
+            if ($searchPage.hasClass('search-active')) {
+                $searchClose.on('click', function (e) {
+                    e.preventDefault();
+                    $searchPage.removeClass('search-active');
+                    $body.attr('class', prevClasses);  // from closure 
+                });
+                $searchInput.focus();
+            }
+        });
+    });
+</script>
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
