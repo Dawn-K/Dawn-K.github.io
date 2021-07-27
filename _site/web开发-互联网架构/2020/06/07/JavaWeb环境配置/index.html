@@ -323,8 +323,9 @@
   <li>启动服务</li>
 </ul>
 
-<p>首先下载 <code class="language-plaintext highlighter-rouge">mysql-5.7.20-winx64.zip</code>
-<a href="https://dev.mysql.com/downloads/file/?id=473309">下载地址</a></p>
+<p>首先下载 <code class="language-plaintext highlighter-rouge">mysql-5.7.20-winx64.zip</code></p>
+
+<p><a href="https://dev.mysql.com/downloads/file/?id=473309">下载地址</a></p>
 
 <p>解压后, 将 <code class="language-plaintext highlighter-rouge">mysql-5.7.22-winx64\bin</code> 加入环境变量</p>
 
@@ -394,23 +395,25 @@ net stop mysql
 
 <hr />
 
-<h3 id="安装navicat">安装Navicat</h3>
+<h3 id="安装navicat旧版本">安装Navicat(旧版本)</h3>
 
 <p>Navicat是一套快速、可靠并价格相宜的数据库管理工具, 专为简化数据库的管理及降低系统管理成本而设.</p>
 
 <h4 id="修改mysql加密方法">修改mysql加密方法</h4>
 
 <blockquote>
-  <p>在安装完MySQL的时候, 我们现在一般都使用Navicat来连接数据库, 可惜出现下面的错误: <code class="language-plaintext highlighter-rouge">1251-Client does not support authentication protocol requested by server; consider upgrading MySQL client.</code>
-出现上述问题的原因是:mysql8 之前的版本中加密规则是 <code class="language-plaintext highlighter-rouge">mysql_native_password</code> , 而在mysql8之后, 加密规则是 <code class="language-plaintext highlighter-rouge">caching_sha2_password</code> ? 把mysql用户登录密码加密规则还原成 <code class="language-plaintext highlighter-rouge">mysql_native_password</code>
-登入成功后mysql &gt; 样式中输入</p>
+  <p>在安装完MySQL的时候, 我们现在一般都使用Navicat来连接数据库, 可惜出现下面的错误: <code class="language-plaintext highlighter-rouge">1251-Client does not support authentication protocol requested by server; consider upgrading MySQL client.</code></p>
 </blockquote>
+
+<p>出现上述问题的原因是:mysql8 之前的版本中加密规则是 <code class="language-plaintext highlighter-rouge">mysql_native_password</code> , 而在mysql8之后, 加密规则是 <code class="language-plaintext highlighter-rouge">caching_sha2_password</code> ? 把mysql用户登录密码加密规则还原成 <code class="language-plaintext highlighter-rouge">mysql_native_password</code></p>
+
+<p>登入成功后mysql &gt; 样式中输入</p>
 
 <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre><span class="k">ALTER</span> <span class="k">USER</span> <span class="s1">'root'</span><span class="o">@</span><span class="s1">'localhost'</span> <span class="n">IDENTIFIED</span> <span class="k">WITH</span> <span class="n">mysql_native_password</span> <span class="k">BY</span> <span class="s1">'123456'</span><span class="p">;</span> 
 </pre></td></tr></tbody></table></code></pre></div></div>
 
-<p>然后使用 <code class="language-plaintext highlighter-rouge">FLUSH PRIVILEGES</code> 或者重新启动 mysql 服务器, 来使新设置生效.</p>
+<p>然后使用 <code class="language-plaintext highlighter-rouge">FLUSH PRIVILEGES;</code> 或者重新启动 mysql 服务器, 来使新设置生效.</p>
 
 <h4 id="破解navicat">破解navicat</h4>
 
@@ -422,6 +425,17 @@ net stop mysql
 
 <p>傻瓜式连接, 打开 <code class="language-plaintext highlighter-rouge">navicat.exe</code> 点击连接输入用户名密码即可</p>
 
+<h3 id="安装-navicat-15">安装 Navicat 15</h3>
+
+<p><a href="https://www.jb51.net/article/199496.htm">参考资料</a>
+首先从官网上下载安装包, 然后安装(记住安装的路径)
+然后打开破解程序
+在激活工具的第一个选项(1. Patch)里选择Backup, Host, Navicat 是那个版本就选那个版本(在我们的例子中是15), 然后点击, Patch按钮, 选择Navicat的安装位置中的navicat.exe文件</p>
+
+<p>然后出现 Cracked!, 在License里选中Enterprise、在Produce里选择Premium、在Languages里选择Simplified Chinese(其实都是默认选项). 点击 右侧中部的Generate, 获得激活码.</p>
+
+<p>然后<strong>断网</strong>, 打开 navicat.exe 文件, 然后会弹出注册界面, 将密钥复制过去, 会弹出一个警告框, 然后点击手动激活. 此时屏幕上会有一个请求码, 将请求码粘贴到破解工具的第一个大框中, 然后点左下角的 Generate, 获得很长的激活码. 粘贴到 navicat中, 破解结束.</p>
+
 <h3 id="idea中链接数据库报错">idea中链接数据库报错</h3>
 
 <h4 id="server-returns-invalid-timezone">Server returns invalid timezone.</h4>
@@ -430,7 +444,12 @@ net stop mysql
 <a href="https://blog.csdn.net/ITMan2017/article/details/100601438">设置时区</a></p>
 
 <p>时区问题一般是mysql 8.+才会产生
-找到serverTimeZone(大概是开头1/4的位置),设置为Asia/Shanghai</p>
+找到serverTimeZone(大概是开头1/4的位置), 设置为Asia/Shanghai
+当然也可以在配置文件中, 写上 <code class="language-plaintext highlighter-rouge">serverTimezone=Asia/Shanghai</code> 参数, 最后风格如下, 注意数据库名后第一个参数前是 <code class="language-plaintext highlighter-rouge">?</code> , 之后的是 <code class="language-plaintext highlighter-rouge">&amp;</code></p>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="na">url</span><span class="pi">:</span> <span class="s">jdbc:mysql://127.0.0.1:3306/dicom_db?useUnicode=true&amp;characterEncoding=UTF-8&amp;useSSL=false&amp;autoReconnect=true&amp;failOverReadOnly=false&amp;serverTimezone=Asia/Shanghai</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
 
 <h4 id="sql-dialect-is-not-configured">SQL dialect is not configured</h4>
 
@@ -497,7 +516,7 @@ net stop mysql
 
 <ol>
   <li>
-    <p>新建环境变量 JAVA_HOME <code class="language-plaintext highlighter-rouge">JAVA_HOME=D:\jdk1.8.0_111</code> 仅仅是举个例子, 也就是安装的路径, JAVA_HOME下有 <code class="language-plaintext highlighter-rouge">bin</code> , <code class="language-plaintext highlighter-rouge">jre</code> , <code class="language-plaintext highlighter-rouge">lib</code> 等包</p>
+    <p>新建环境变量 JAVA_HOME <code class="language-plaintext highlighter-rouge">JAVA_HOME=D:\jdk1.8.0_111</code> 仅仅是举个例子, 也就是安装的路径, JAVA_HOME下有 <code class="language-plaintext highlighter-rouge">bin</code> ,                                 <code class="language-plaintext highlighter-rouge">jre</code> ,                                 <code class="language-plaintext highlighter-rouge">lib</code> 等包</p>
   </li>
   <li>
     <p>还要记得将 <code class="language-plaintext highlighter-rouge">JAVA_HOME\bin</code>  <code class="language-plaintext highlighter-rouge">JAVA_HOME\jre\bin</code> 加入环境变量(主要是看看下面有没有jre文件夹)</p>
@@ -547,6 +566,7 @@ Add→Standard VM
 选择jre home→finished</p>
 
 <p>注: 这里的 <code class="language-plaintext highlighter-rouge">jre home</code> 是指的 <code class="language-plaintext highlighter-rouge">JAVA_HOME/jre</code></p>
+
 <ol>
   <li>移除项目原来的</li>
 </ol>
@@ -637,92 +657,92 @@ Add→Standard VM
         
         
         
-                <a data-sort="0073" 
+                <a data-sort="0074" 
                     href="/archive/?tag=CodeNote"
                     title="CodeNote"
                     rel="92">CodeNote</a>
         
-                <a data-sort="0138" 
+                <a data-sort="0139" 
                     href="/archive/?tag=Web%E5%BC%80%E5%8F%91"
                     title="Web开发"
                     rel="27">Web开发</a>
         
-                <a data-sort="0152" 
+                <a data-sort="0153" 
                     href="/archive/?tag=SpringBoot"
                     title="SpringBoot"
                     rel="13">SpringBoot</a>
         
-                <a data-sort="0154" 
+                <a data-sort="0155" 
                     href="/archive/?tag=%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B"
                     title="软件工程"
                     rel="11">软件工程</a>
         
-                <a data-sort="0156" 
+                <a data-sort="0157" 
                     href="/archive/?tag=%E4%BA%92%E8%81%94%E7%BD%91%E6%9E%B6%E6%9E%84"
                     title="互联网架构"
                     rel="9">互联网架构</a>
         
-                <a data-sort="0158" 
+                <a data-sort="0159" 
                     href="/archive/?tag=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"
                     title="设计模式"
                     rel="7">设计模式</a>
         
-                <a data-sort="0158" 
+                <a data-sort="0159" 
                     href="/archive/?tag=android"
                     title="android"
                     rel="7">android</a>
         
-                <a data-sort="0159" 
+                <a data-sort="0160" 
                     href="/archive/?tag=DAO"
                     title="DAO"
                     rel="6">DAO</a>
         
-                <a data-sort="0160" 
+                <a data-sort="0161" 
                     href="/archive/?tag=Python"
                     title="Python"
                     rel="5">Python</a>
         
-                <a data-sort="0160" 
+                <a data-sort="0161" 
                     href="/archive/?tag=Vue"
                     title="Vue"
                     rel="5">Vue</a>
         
-                <a data-sort="0161" 
+                <a data-sort="0162" 
                     href="/archive/?tag=%E6%95%B0%E6%8D%AE%E5%BA%93"
                     title="数据库"
                     rel="4">数据库</a>
         
-                <a data-sort="0161" 
+                <a data-sort="0162" 
                     href="/archive/?tag=Unity"
                     title="Unity"
                     rel="4">Unity</a>
         
-                <a data-sort="0161" 
+                <a data-sort="0162" 
                     href="/archive/?tag=VSCode%E5%AD%A6%E4%B9%A0"
                     title="VSCode学习"
                     rel="4">VSCode学习</a>
         
-                <a data-sort="0162" 
+                <a data-sort="0163" 
                     href="/archive/?tag=%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"
                     title="版本控制"
                     rel="3">版本控制</a>
         
-                <a data-sort="0162" 
+                <a data-sort="0163" 
                     href="/archive/?tag=View"
                     title="View"
                     rel="3">View</a>
         
-                <a data-sort="0163" 
+                <a data-sort="0164" 
                     href="/archive/?tag=Java"
                     title="Java"
                     rel="2">Java</a>
         
-                <a data-sort="0163" 
+                <a data-sort="0164" 
                     href="/archive/?tag=Kotlin"
                     title="Kotlin"
                     rel="2">Kotlin</a>
         
-                <a data-sort="0163" 
+                <a data-sort="0164" 
                     href="/archive/?tag=Linux"
                     title="Linux"
                     rel="2">Linux</a>

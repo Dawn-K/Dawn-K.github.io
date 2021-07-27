@@ -1085,6 +1085,82 @@ HttpUtil.sendHttpRequest("http://www.baidu.com", new okhttp3.Callback() {
 
 </pre></td></tr></tbody></table></code></pre></div></div>
 
+<h2 id="原生下载器">原生下载器</h2>
+
+<p>原生下载器在下载单个文件的时候非常好用, 在多文件下载的时候会受到系统对于并发下载量的限制, 比如小米只能同时下载两个文件.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+</pre></td><td class="rouge-code"><pre> <span class="kd">private</span> <span class="kt">void</span> <span class="nf">downloadFiles</span><span class="o">(</span><span class="nc">String</span> <span class="n">dirName</span><span class="o">,</span> <span class="nc">String</span><span class="o">[]</span> <span class="n">fileNames</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">DownloadManager</span><span class="o">.</span><span class="na">Request</span> <span class="n">request</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DownloadManager</span><span class="o">.</span><span class="na">Request</span><span class="o">(</span><span class="nc">Uri</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="nc">Config</span><span class="o">.</span><span class="na">getBaseUrl</span><span class="o">()</span> <span class="o">+</span> <span class="s">"/download/"</span> <span class="o">+</span> <span class="n">dirName</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">fileName</span><span class="o">));</span>
+    <span class="nc">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="no">TAG</span><span class="o">,</span> <span class="s">"begin to download "</span> <span class="o">+</span> <span class="nc">Config</span><span class="o">.</span><span class="na">getBaseUrl</span><span class="o">()</span> <span class="o">+</span> <span class="s">"/download/"</span> <span class="o">+</span> <span class="n">dirName</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="n">fileName</span><span class="o">);</span>
+    <span class="c1">//                            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);//下载中与下载完成后都会在通知中显示| 另外可以选 DownloadManager.Request.VISIBILITY_VISIBLE 仅在下载中时显示在通知中,完成后会自动隐藏</span>
+    <span class="n">request</span><span class="o">.</span><span class="na">setTitle</span><span class="o">(</span><span class="n">fileName</span><span class="o">);</span>
+    <span class="n">request</span><span class="o">.</span><span class="na">setDescription</span><span class="o">(</span><span class="s">"正在下载图像序列"</span><span class="o">);</span>
+    <span class="n">request</span><span class="o">.</span><span class="na">setAllowedOverRoaming</span><span class="o">(</span><span class="kc">false</span><span class="o">);</span>
+    <span class="n">request</span><span class="o">.</span><span class="na">setDestinationInExternalFilesDir</span><span class="o">(</span><span class="nc">DicomViewer</span><span class="o">.</span><span class="na">this</span><span class="o">,</span> <span class="nc">Environment</span><span class="o">.</span><span class="na">DIRECTORY_DOCUMENTS</span><span class="o">,</span> <span class="nc">File</span><span class="o">.</span><span class="na">separator</span> <span class="o">+</span> <span class="n">dirName</span> <span class="o">+</span> <span class="nc">File</span><span class="o">.</span><span class="na">separator</span> <span class="o">+</span> <span class="n">fileName</span><span class="o">);</span>
+    <span class="c1">//                            request.setDestinationUri(new Uri(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) + "/" + dirName + "/" + fileName));</span>
+    <span class="c1">// subpath 实际上是文件名</span>
+    <span class="c1">//                            request.setDestinationInExternalFilesDir(DicomViewer.this, Environment.DIRECTORY_DOWNLOADS, fileName);</span>
+    <span class="nc">DownloadManager</span> <span class="n">downloadManager</span> <span class="o">=</span> <span class="o">(</span><span class="nc">DownloadManager</span><span class="o">)</span> <span class="n">getSystemService</span><span class="o">(</span><span class="no">DOWNLOAD_SERVICE</span><span class="o">);</span>
+    <span class="kt">long</span> <span class="n">downloadId</span> <span class="o">=</span> <span class="n">downloadManager</span><span class="o">.</span><span class="na">enqueue</span><span class="o">(</span><span class="n">request</span><span class="o">);</span>
+    <span class="nc">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="no">TAG</span><span class="o">,</span> <span class="s">"download id : "</span> <span class="o">+</span> <span class="n">downloadId</span><span class="o">);</span>
+    <span class="n">listen</span><span class="o">(</span><span class="n">fileName</span><span class="o">,</span> <span class="n">downloadId</span><span class="o">);</span>
+<span class="o">}</span>
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">listen</span><span class="o">(</span><span class="kd">final</span> <span class="nc">String</span> <span class="n">fileName</span><span class="o">,</span> <span class="kd">final</span> <span class="kt">long</span> <span class="nc">Id</span><span class="o">)</span> <span class="o">{</span>
+    <span class="c1">// 注册广播监听系统的下载完成事件。</span>
+    <span class="nc">IntentFilter</span> <span class="n">intentFilter</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">IntentFilter</span><span class="o">(</span><span class="nc">DownloadManager</span><span class="o">.</span><span class="na">ACTION_DOWNLOAD_COMPLETE</span><span class="o">);</span>
+    <span class="n">broadcastReceiver</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BroadcastReceiver</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onReceive</span><span class="o">(</span><span class="nc">Context</span> <span class="n">context</span><span class="o">,</span> <span class="nc">Intent</span> <span class="n">intent</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">long</span> <span class="no">ID</span> <span class="o">=</span> <span class="n">intent</span><span class="o">.</span><span class="na">getLongExtra</span><span class="o">(</span><span class="nc">DownloadManager</span><span class="o">.</span><span class="na">EXTRA_DOWNLOAD_ID</span><span class="o">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(</span><span class="no">ID</span> <span class="o">==</span> <span class="nc">Id</span><span class="o">)</span> <span class="o">{</span>
+<span class="c1">//                    Toast.makeText(getApplicationContext(), " 文件:" + fileName + " 任务:" + Id + " 下载完成!", Toast.LENGTH_SHORT).show();</span>
+<span class="c1">//                    Log.d(TAG, "try to compress " + zipFilePath + " to " + getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS));</span>
+                <span class="nc">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="no">TAG</span><span class="o">,</span> <span class="s">"文件 "</span> <span class="o">+</span> <span class="n">fileName</span> <span class="o">+</span> <span class="s">" 下载完成  "</span> <span class="o">+</span> <span class="nc">System</span><span class="o">.</span><span class="na">currentTimeMillis</span><span class="o">()</span> <span class="o">/</span> <span class="mi">1000</span> <span class="o">+</span> <span class="s">" s"</span><span class="o">);</span>
+                <span class="c1">// 记得在代码中自动增加这个文件夹</span>
+<span class="c1">//                    FileUtil.decompressFile(getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS).getAbsolutePath(), zipFilePath);</span>
+<span class="c1">//                    Toast.makeText(getApplicationContext(), "解压完成", Toast.LENGTH_SHORT).show();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">};</span>
+    <span class="n">registerReceiver</span><span class="o">(</span><span class="n">broadcastReceiver</span><span class="o">,</span> <span class="n">intentFilter</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
 
                 <hr style="visibility: hidden;">
                 <ul class="pager">
@@ -1151,92 +1227,92 @@ HttpUtil.sendHttpRequest("http://www.baidu.com", new okhttp3.Callback() {
         
         
         
-                <a data-sort="0073" 
+                <a data-sort="0074" 
                     href="/archive/?tag=CodeNote"
                     title="CodeNote"
                     rel="92">CodeNote</a>
         
-                <a data-sort="0138" 
+                <a data-sort="0139" 
                     href="/archive/?tag=Web%E5%BC%80%E5%8F%91"
                     title="Web开发"
                     rel="27">Web开发</a>
         
-                <a data-sort="0152" 
+                <a data-sort="0153" 
                     href="/archive/?tag=SpringBoot"
                     title="SpringBoot"
                     rel="13">SpringBoot</a>
         
-                <a data-sort="0154" 
+                <a data-sort="0155" 
                     href="/archive/?tag=%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B"
                     title="软件工程"
                     rel="11">软件工程</a>
         
-                <a data-sort="0156" 
+                <a data-sort="0157" 
                     href="/archive/?tag=%E4%BA%92%E8%81%94%E7%BD%91%E6%9E%B6%E6%9E%84"
                     title="互联网架构"
                     rel="9">互联网架构</a>
         
-                <a data-sort="0158" 
+                <a data-sort="0159" 
                     href="/archive/?tag=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"
                     title="设计模式"
                     rel="7">设计模式</a>
         
-                <a data-sort="0158" 
+                <a data-sort="0159" 
                     href="/archive/?tag=android"
                     title="android"
                     rel="7">android</a>
         
-                <a data-sort="0159" 
+                <a data-sort="0160" 
                     href="/archive/?tag=DAO"
                     title="DAO"
                     rel="6">DAO</a>
         
-                <a data-sort="0160" 
+                <a data-sort="0161" 
                     href="/archive/?tag=Python"
                     title="Python"
                     rel="5">Python</a>
         
-                <a data-sort="0160" 
+                <a data-sort="0161" 
                     href="/archive/?tag=Vue"
                     title="Vue"
                     rel="5">Vue</a>
         
-                <a data-sort="0161" 
+                <a data-sort="0162" 
                     href="/archive/?tag=%E6%95%B0%E6%8D%AE%E5%BA%93"
                     title="数据库"
                     rel="4">数据库</a>
         
-                <a data-sort="0161" 
+                <a data-sort="0162" 
                     href="/archive/?tag=Unity"
                     title="Unity"
                     rel="4">Unity</a>
         
-                <a data-sort="0161" 
+                <a data-sort="0162" 
                     href="/archive/?tag=VSCode%E5%AD%A6%E4%B9%A0"
                     title="VSCode学习"
                     rel="4">VSCode学习</a>
         
-                <a data-sort="0162" 
+                <a data-sort="0163" 
                     href="/archive/?tag=%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"
                     title="版本控制"
                     rel="3">版本控制</a>
         
-                <a data-sort="0162" 
+                <a data-sort="0163" 
                     href="/archive/?tag=View"
                     title="View"
                     rel="3">View</a>
         
-                <a data-sort="0163" 
+                <a data-sort="0164" 
                     href="/archive/?tag=Java"
                     title="Java"
                     rel="2">Java</a>
         
-                <a data-sort="0163" 
+                <a data-sort="0164" 
                     href="/archive/?tag=Kotlin"
                     title="Kotlin"
                     rel="2">Kotlin</a>
         
-                <a data-sort="0163" 
+                <a data-sort="0164" 
                     href="/archive/?tag=Linux"
                     title="Linux"
                     rel="2">Linux</a>

@@ -356,6 +356,40 @@ foo <span class="o">=</span> bar <span class="c"># 会将 foo 视作可执行文
 
 </pre></td></tr></tbody></table></code></pre></div></div>
 
+<h3 id="环境变量">环境变量</h3>
+
+<p>shell 内置了一些常用的变量. 可以通过 <code class="language-plaintext highlighter-rouge">printenv</code> 来打印出所有的变量. 也可以通过c语言的stdio.h库的 environ变量进行打印.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="cp">#include&lt;stdio.h&gt;
+</span><span class="k">extern</span> <span class="kt">char</span><span class="o">**</span> <span class="n">environ</span><span class="p">;</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+        <span class="kt">char</span> <span class="o">**</span> <span class="n">var</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">var</span> <span class="o">=</span> <span class="n">environ</span><span class="p">;</span><span class="o">*</span><span class="n">var</span><span class="o">!=</span><span class="nb">NULL</span><span class="p">;</span><span class="o">++</span><span class="n">var</span><span class="p">){</span>
+                <span class="n">printf</span><span class="p">(</span><span class="s">"%s</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span><span class="o">*</span><span class="n">var</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">export</code> 命令可以进行环境变量的增删改查, 但是仅限于当前登录活动.</p>
+
+<p>环境变量相当于上文提到的本地变量的区别就是, 本地变量仅能在当前shell中使用, 而不能在当前shell执行的脚本或者子进程中使用. 但是环境变量可以.</p>
+
+<pre><code class="language-BASH">$USER # 用户名
+$HOME # 个人目录
+$PATH # 环境变量的路径
+$DISPLAY # X窗口服务器名称和显示器编号
+</code></pre>
+
 <h3 id="函数">函数</h3>
 
 <p>编写文件 mcd.sh</p>
@@ -385,7 +419,7 @@ mcd<span class="o">(){</span>
 <code class="language-plaintext highlighter-rouge">$1</code> 到 <code class="language-plaintext highlighter-rouge">$9</code> - 脚本的参数. <code class="language-plaintext highlighter-rouge">$1</code> 是第一个参数, 依此类推.
 <code class="language-plaintext highlighter-rouge">$@</code> - 所有参数
 <code class="language-plaintext highlighter-rouge">$#</code> - 参数个数
-<code class="language-plaintext highlighter-rouge">$?</code> - 前一个命令的返回值(往往0表示正常退出)
+<code class="language-plaintext highlighter-rouge">$?</code> - 前一个命令的返回值(往往0表示正常退出, 如果用c语言的话, 就是main函数或者exit的返回值)
 <code class="language-plaintext highlighter-rouge">$$</code> - 当前脚本的进程识别码
 <code class="language-plaintext highlighter-rouge">!!</code> - 完整的上一条命令, 包括参数. 常见应用: 当你因为权限不足执行命令失败时, 可以使用 sudo !! 再尝试一次.
 <code class="language-plaintext highlighter-rouge">$_</code> - 上一条命令的最后一个参数. 如果你正在使用的是交互式shell, 你可以通过按下 Esc 之后键入 . 来获取这个值.</p>
@@ -484,7 +518,8 @@ fd mcd  <span class="nt">-p</span> ~ <span class="nt">-e</span> sh
 
 <p><a href="https://www.bilibili.com/video/BV14E411J7n2?p=2">MIT 6. NULL B站视频</a>
 <a href="https://missing.csail.mit.edu/2020/shell-tools/">MIT 6. NULL 英文讲义</a>
-<a href="https://missing-semester-cn.github.io/2020/shell-tools/">MIT 6. NULL 中文讲义</a></p>
+<a href="https://missing-semester-cn.github.io/2020/shell-tools/">MIT 6. NULL 中文讲义</a>
+<a href="https://book.douban.com/subject/3008512/">Advanced Linux Programming</a></p>
 
 
                 <hr style="visibility: hidden;">
@@ -552,92 +587,92 @@ fd mcd  <span class="nt">-p</span> ~ <span class="nt">-e</span> sh
         
         
         
-                <a data-sort="0073" 
+                <a data-sort="0074" 
                     href="/archive/?tag=CodeNote"
                     title="CodeNote"
                     rel="92">CodeNote</a>
         
-                <a data-sort="0138" 
+                <a data-sort="0139" 
                     href="/archive/?tag=Web%E5%BC%80%E5%8F%91"
                     title="Web开发"
                     rel="27">Web开发</a>
         
-                <a data-sort="0152" 
+                <a data-sort="0153" 
                     href="/archive/?tag=SpringBoot"
                     title="SpringBoot"
                     rel="13">SpringBoot</a>
         
-                <a data-sort="0154" 
+                <a data-sort="0155" 
                     href="/archive/?tag=%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B"
                     title="软件工程"
                     rel="11">软件工程</a>
         
-                <a data-sort="0156" 
+                <a data-sort="0157" 
                     href="/archive/?tag=%E4%BA%92%E8%81%94%E7%BD%91%E6%9E%B6%E6%9E%84"
                     title="互联网架构"
                     rel="9">互联网架构</a>
         
-                <a data-sort="0158" 
+                <a data-sort="0159" 
                     href="/archive/?tag=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"
                     title="设计模式"
                     rel="7">设计模式</a>
         
-                <a data-sort="0158" 
+                <a data-sort="0159" 
                     href="/archive/?tag=android"
                     title="android"
                     rel="7">android</a>
         
-                <a data-sort="0159" 
+                <a data-sort="0160" 
                     href="/archive/?tag=DAO"
                     title="DAO"
                     rel="6">DAO</a>
         
-                <a data-sort="0160" 
+                <a data-sort="0161" 
                     href="/archive/?tag=Python"
                     title="Python"
                     rel="5">Python</a>
         
-                <a data-sort="0160" 
+                <a data-sort="0161" 
                     href="/archive/?tag=Vue"
                     title="Vue"
                     rel="5">Vue</a>
         
-                <a data-sort="0161" 
+                <a data-sort="0162" 
                     href="/archive/?tag=%E6%95%B0%E6%8D%AE%E5%BA%93"
                     title="数据库"
                     rel="4">数据库</a>
         
-                <a data-sort="0161" 
+                <a data-sort="0162" 
                     href="/archive/?tag=Unity"
                     title="Unity"
                     rel="4">Unity</a>
         
-                <a data-sort="0161" 
+                <a data-sort="0162" 
                     href="/archive/?tag=VSCode%E5%AD%A6%E4%B9%A0"
                     title="VSCode学习"
                     rel="4">VSCode学习</a>
         
-                <a data-sort="0162" 
+                <a data-sort="0163" 
                     href="/archive/?tag=%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"
                     title="版本控制"
                     rel="3">版本控制</a>
         
-                <a data-sort="0162" 
+                <a data-sort="0163" 
                     href="/archive/?tag=View"
                     title="View"
                     rel="3">View</a>
         
-                <a data-sort="0163" 
+                <a data-sort="0164" 
                     href="/archive/?tag=Java"
                     title="Java"
                     rel="2">Java</a>
         
-                <a data-sort="0163" 
+                <a data-sort="0164" 
                     href="/archive/?tag=Kotlin"
                     title="Kotlin"
                     rel="2">Kotlin</a>
         
-                <a data-sort="0163" 
+                <a data-sort="0164" 
                     href="/archive/?tag=Linux"
                     title="Linux"
                     rel="2">Linux</a>

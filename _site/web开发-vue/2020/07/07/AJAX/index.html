@@ -344,20 +344,20 @@
 <span class="k">import</span> <span class="nx">axois</span> <span class="k">from</span> <span class="dl">"</span><span class="s2">axios</span><span class="dl">"</span><span class="p">;</span>
 
 <span class="nx">login</span><span class="p">()</span> <span class="p">{</span>
-  <span class="c1">// 也就是说可以双向改变</span>
-  <span class="c1">// console.log(this.username);</span>
-  <span class="c1">// this.username = "test";</span>
+    <span class="c1">// 也就是说可以双向改变</span>
+    <span class="c1">// console.log(this.username);</span>
+    <span class="c1">// this.username = "test";</span>
 
-  <span class="nx">axois</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">http://localhost:8888/user/all</span><span class="dl">"</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
-  <span class="p">});</span>
-  <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">username</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">admin</span><span class="dl">"</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">password</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">1234</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">登录成功</span><span class="dl">"</span><span class="p">);</span>
-    <span class="c1">// 引用 main.js中import的文件</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">$router</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span> <span class="s2">`/home`</span> <span class="p">);</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">登录失败</span><span class="dl">"</span><span class="p">);</span>
-  <span class="p">}</span>
+    <span class="nx">axois</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="dl">"</span><span class="s2">http://localhost:8888/user/all</span><span class="dl">"</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">username</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">admin</span><span class="dl">"</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">password</span> <span class="o">==</span> <span class="dl">"</span><span class="s2">1234</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">登录成功</span><span class="dl">"</span><span class="p">);</span>
+        <span class="c1">// 引用 main.js中import的文件</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">$router</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">`/home`</span><span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">"</span><span class="s2">登录失败</span><span class="dl">"</span><span class="p">);</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></code></pre></div></div>
 
@@ -368,46 +368,46 @@
 <pre><code class="language-JS">// src/utils/request.js
 import axios from 'axios'
 import {
-  getToken,
-  setToken,
-  removeToken
+    getToken,
+    setToken,
+    removeToken
 } from '@/utils/localStorage.js'
 // 创建axios实例
 const service = axios.create({
-  baseURL: 'http://localhost:8888', // api的base_url
-  timeout: 5000 // 请求超时时间
+    baseURL: 'http://localhost:8888', // api的base_url
+    timeout: 5000 // 请求超时时间
 })
 
 // request拦截器
 service.interceptors.request.use(config =&gt; {
-  console.log("请求拦截");
-  // 统一加上令牌
-  if (getToken() !== "") {
-    config.headers.token = getToken();
-  }
-  return config
+    console.log("请求拦截");
+    // 统一加上令牌
+    if (getToken() !== "") {
+        config.headers.token = getToken();
+    }
+    return config
 }, error =&gt; {
-  return Promise.reject(error);
+    return Promise.reject(error);
 })
 
 // respone拦截器
 service.interceptors.response.use(
-  response =&gt; {
-    console.log(response);
-    console.log("响应拦截");
-    // 没有token跳转到登录
+    response =&gt; {
+        console.log(response);
+        console.log("响应拦截");
+        // 没有token跳转到登录
 
-    // 跨域问题
-    if (response.data.code == 4) {
-      window.location.href = "/";
-      return;
-    }
+        // 跨域问题
+        if (response.data.code == 4) {
+            window.location.href = "/";
+            return;
+        }
 
-    return response;
-  }, error =&gt; {
-    console.log(error);
-    return Promise.reject(error.response.data)
-  })
+        return response;
+    }, error =&gt; {
+        console.log(error);
+        return Promise.reject(error.response.data)
+    })
 
 export default service
 </code></pre>
@@ -416,15 +416,15 @@ export default service
 import request from "@/utils/request.js";
 // 无用的部分在此没有写出
 login() {
-  // 复用性较差,对于获取所有人的信息,可能会造成代码的冗余
-  // 所以创建src/api文件用以提高复用性
-  request({
-    // 和request中的service拼接路径
-    url: "/user/all",
-    method: "get"
-  }).then(response =&gt; {
-    console.log(response.data);
-  });
+    // 复用性较差,对于获取所有人的信息,可能会造成代码的冗余
+    // 所以创建src/api文件用以提高复用性
+    request({
+        // 和request中的service拼接路径
+        url: "/user/all",
+        method: "get"
+    }).then(response =&gt; {
+        console.log(response.data);
+    });
 }
 </code></pre>
 
@@ -433,55 +433,69 @@ login() {
 <p>保留上个方法中的request.js
 新建api文件夹, 中间存放user.js. 将request的设置也一并封装成js函数, 在vue文件中直接调用函数.</p>
 
+<p>此处一定要注意, 这里一定要写 <code class="language-plaintext highlighter-rouge">data:data</code> 这种形式, 后一个data表示数据的参数, 前者表示类型, 如果前者为 <code class="language-plaintext highlighter-rouge">params</code> , 则为路径形式的传参</p>
+
 <pre><code class="language-JS">// src/api/user.js
 import request from "@/utils/request.js";
 
 // 可以和后端代码不那么严丝合缝的对应
 // 获取所用用户数据
-export function getUsers() {
-  return request({
-    url: "/user/all",
-    method: "get"
-  });
-}
-
+const basePath = "/user"
 // 添加用户
 export function insert(data) {
-  return request({
-    url: "/user",
-    method: "post",
-    data
-  });
+    return request({
+        url: basePath,
+        method: "post",
+        data: data
+    });
 }
 
 // 修改用户
 export function update(data) {
-  return request({
-    url: "/user",
-    method: "put",
-    data
-  });
+    return request({
+        url: basePath,
+        method: "put",
+        data: data
+    });
 }
 // 删除用户
-export function deleteUser(id) {
-  return request({
-    url: "/user/" + id,
-    method: "delete",
-  });
+export function deleteElem(ids) {
+    return request({
+        url: basePath,
+        method: "delete",
+        data: ids
+    });
+}
+
+// 获取分页信息
+export function getPage(data) {
+    return request({
+        url: basePath + "/query",
+        method: "post",
+        data: data
+    });
+}
+
+// 获取所有用户信息
+export function getAll() {
+    return request({
+        url: basePath + "/all",
+        method: "get",
+    });
 }
 </code></pre>
 
 <pre><code class="language-JS">import {
-  getUsers
+    getUsers
 } from "@/api/user.js";
 
 // 无用的部分在此没有写出
 login() {
-  // 复用性较差,对于获取所有人的信息,可能会造成代码的冗余
-  // 所以创建src/api文件用以提高复用性
-  getUsers().then(response =&gt; {
-    console.log(response.data);
-  });
+    // 复用性较差,对于获取所有人的信息,可能会造成代码的冗余
+    // 所以创建src/api文件用以提高复用性
+    getUsers().then(response =&gt; {
+        console.log(response.data);
+    });
 }
 </code></pre>
 
@@ -596,92 +610,92 @@ login() {
         
         
         
-                <a data-sort="0073" 
+                <a data-sort="0074" 
                     href="/archive/?tag=CodeNote"
                     title="CodeNote"
                     rel="92">CodeNote</a>
         
-                <a data-sort="0138" 
+                <a data-sort="0139" 
                     href="/archive/?tag=Web%E5%BC%80%E5%8F%91"
                     title="Web开发"
                     rel="27">Web开发</a>
         
-                <a data-sort="0152" 
+                <a data-sort="0153" 
                     href="/archive/?tag=SpringBoot"
                     title="SpringBoot"
                     rel="13">SpringBoot</a>
         
-                <a data-sort="0154" 
+                <a data-sort="0155" 
                     href="/archive/?tag=%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B"
                     title="软件工程"
                     rel="11">软件工程</a>
         
-                <a data-sort="0156" 
+                <a data-sort="0157" 
                     href="/archive/?tag=%E4%BA%92%E8%81%94%E7%BD%91%E6%9E%B6%E6%9E%84"
                     title="互联网架构"
                     rel="9">互联网架构</a>
         
-                <a data-sort="0158" 
+                <a data-sort="0159" 
                     href="/archive/?tag=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"
                     title="设计模式"
                     rel="7">设计模式</a>
         
-                <a data-sort="0158" 
+                <a data-sort="0159" 
                     href="/archive/?tag=android"
                     title="android"
                     rel="7">android</a>
         
-                <a data-sort="0159" 
+                <a data-sort="0160" 
                     href="/archive/?tag=DAO"
                     title="DAO"
                     rel="6">DAO</a>
         
-                <a data-sort="0160" 
+                <a data-sort="0161" 
                     href="/archive/?tag=Python"
                     title="Python"
                     rel="5">Python</a>
         
-                <a data-sort="0160" 
+                <a data-sort="0161" 
                     href="/archive/?tag=Vue"
                     title="Vue"
                     rel="5">Vue</a>
         
-                <a data-sort="0161" 
+                <a data-sort="0162" 
                     href="/archive/?tag=%E6%95%B0%E6%8D%AE%E5%BA%93"
                     title="数据库"
                     rel="4">数据库</a>
         
-                <a data-sort="0161" 
+                <a data-sort="0162" 
                     href="/archive/?tag=Unity"
                     title="Unity"
                     rel="4">Unity</a>
         
-                <a data-sort="0161" 
+                <a data-sort="0162" 
                     href="/archive/?tag=VSCode%E5%AD%A6%E4%B9%A0"
                     title="VSCode学习"
                     rel="4">VSCode学习</a>
         
-                <a data-sort="0162" 
+                <a data-sort="0163" 
                     href="/archive/?tag=%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"
                     title="版本控制"
                     rel="3">版本控制</a>
         
-                <a data-sort="0162" 
+                <a data-sort="0163" 
                     href="/archive/?tag=View"
                     title="View"
                     rel="3">View</a>
         
-                <a data-sort="0163" 
+                <a data-sort="0164" 
                     href="/archive/?tag=Java"
                     title="Java"
                     rel="2">Java</a>
         
-                <a data-sort="0163" 
+                <a data-sort="0164" 
                     href="/archive/?tag=Kotlin"
                     title="Kotlin"
                     rel="2">Kotlin</a>
         
-                <a data-sort="0163" 
+                <a data-sort="0164" 
                     href="/archive/?tag=Linux"
                     title="Linux"
                     rel="2">Linux</a>

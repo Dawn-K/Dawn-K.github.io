@@ -5,9 +5,63 @@
     <description>From ashes to the empire</description>
     <link>http://dawnk.gitee.io//</link>
     <atom:link href="http://dawnk.gitee.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 15 Mar 2021 16:17:58 +0800</pubDate>
-    <lastBuildDate>Mon, 15 Mar 2021 16:17:58 +0800</lastBuildDate>
+    <pubDate>Tue, 27 Jul 2021 16:41:07 +0800</pubDate>
+    <lastBuildDate>Tue, 27 Jul 2021 16:41:07 +0800</lastBuildDate>
     <generator>Jekyll v4.2.0</generator>
+    
+      <item>
+        <title>「编程之外」 给 PDF 增加目录</title>
+        <description>&lt;h1 id=&quot;给-pdf-增加目录&quot;&gt;给 PDF 增加目录&lt;/h1&gt;
+
+&lt;h2 id=&quot;背景&quot;&gt;背景&lt;/h2&gt;
+
+&lt;p&gt;很多 pdf 电子书没有目录，在翻阅时非常不便。事实上在 windows 平台有个很好的解决方案，就是使用 FreePic2Pdf 工具进行对目录的修改。&lt;/p&gt;
+
+&lt;h2 id=&quot;步骤&quot;&gt;步骤&lt;/h2&gt;
+
+&lt;h3 id=&quot;提取目录&quot;&gt;提取目录&lt;/h3&gt;
+
+&lt;p&gt;首先下载 FreePic2Pdf . 打开后在程序的右下角选择”更改 PDF”. 然后在弹出框中选择”从 pdf 中取文件”, 设置好 pdf 路径，文件夹输出路径用默认即可。
+然后点击开始，发现在 pdf 同层，多了个文件夹。文件夹中有两个文件，一个是 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FreePic2Pdf_bkmk.txt&lt;/code&gt; , 一个是 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FreePic2Pdf.itf&lt;/code&gt; . 我们主要对前者进行修改。&lt;/p&gt;
+&lt;h3 id=&quot;修改文件&quot;&gt;修改文件&lt;/h3&gt;
+
+&lt;p&gt;txt 的格式要求是这样的：&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;以缩进来表示层级，每一级缩进使用一个 tab&lt;/li&gt;
+  &lt;li&gt;每一行代表一个目录项，对于每一个目录项，目录名和页码之间以一个 tab 隔开&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;举例：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-BASH&quot;&gt;0x00 基本算法	1
+	0x01 位运算	1
+	0x02 递推和递归	11
+	0x03 前缀和与差分	21
+	0x04 二分	25
+	0x05 排序	32
+	0x06 倍增	39
+	0x07 贪心	42
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这一步如果使用一些强大的编辑工具，比如 vim 或者正则替换工具，可以在很短的时间内完成。&lt;/p&gt;
+
+&lt;p&gt;在修改完 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FreePic2Pdf_bkmk.txt&lt;/code&gt; 后，我们还要对偏移量做一个修正，也就是目录中的 1 在真正 pdf 中的值是多少。比如我举例的这本书的页码的第一页对应 pdf 的第 11 页。所以打开 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FreePic2Pdf.itf&lt;/code&gt; ，将里面的对应项修改，也就是 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BasePage=11&lt;/code&gt; 。&lt;/p&gt;
+
+&lt;p&gt;最后回到 FreePic2Pdf , 打开”往 pdf 挂文件”, 然后选中 pdf 和文件夹，点击开始即可。&lt;/p&gt;
+
+&lt;h2 id=&quot;参考资料&quot;&gt;参考资料&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://juejin.cn/post/6844903545498517517&quot;&gt;PDF 没有书签目录？自己动手五分钟生成！&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Tue, 27 Jul 2021 00:00:00 +0800</pubDate>
+        <link>http://dawnk.gitee.io//%E7%BC%96%E7%A8%8B%E4%B9%8B%E5%A4%96/2021/07/27/%E7%BB%99PDF%E5%A2%9E%E5%8A%A0%E7%9B%AE%E5%BD%95/</link>
+        <guid isPermaLink="true">http://dawnk.gitee.io//%E7%BC%96%E7%A8%8B%E4%B9%8B%E5%A4%96/2021/07/27/%E7%BB%99PDF%E5%A2%9E%E5%8A%A0%E7%9B%AE%E5%BD%95/</guid>
+        
+        <category>编程之外</category>
+        
+        
+        <category>编程之外</category>
+        
+      </item>
     
       <item>
         <title>「CodeNote」 红黑树</title>
@@ -1525,203 +1579,6 @@
         
         
         <category>软件工程-设计模式</category>
-        
-      </item>
-    
-      <item>
-        <title>「Linux」 Shell</title>
-        <description>&lt;h1 id=&quot;shell&quot;&gt;Shell&lt;/h1&gt;
-
-&lt;p&gt;[toc]&lt;/p&gt;
-
-&lt;h2 id=&quot;概述&quot;&gt;概述&lt;/h2&gt;
-
-&lt;p&gt;Shell 是提供给用户的用以访问操作系统服务的程序.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;sh(Bourne Shell)是一个早期的重要shell, 1978年由史蒂夫·伯恩编写, 并同Version 7 Unix一起发布.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;bash(Bourne-Again Shell)是一个为GNU计划编写的Unix shell.1987年由布莱恩·福克斯创造. 主要目标是与POSIX标准保持一致, 同时兼顾对sh的兼容, 是各种Linux发行版标准配置的Shell, 在Linux系统上/bin/sh往往是指向/bin/bash的符号链接.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;简单说, sh是bash的一种特殊的模式, sh就是开启了POSIX标准的bash, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/bin/sh&lt;/code&gt; 相当于 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/bin/bash --posix&lt;/code&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;shell-脚本&quot;&gt;Shell 脚本&lt;/h2&gt;
-
-&lt;h3 id=&quot;执行程序&quot;&gt;执行程序&lt;/h3&gt;
-
-&lt;p&gt;Shell 脚本的第一行常常写为&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/sh&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;虽然 # 开头的是注释, 但是这个写在第一行就是指定使用哪个解释器来翻译.&lt;/p&gt;
-
-&lt;h3 id=&quot;变量&quot;&gt;变量&lt;/h3&gt;
-
-&lt;p&gt;在交互模式下逐行输入下面命令&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# 定义变量(不能加空格)&lt;/span&gt;
-&lt;span class=&quot;nv&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;bar
-&lt;span class=&quot;nv&quot;&gt;$foo&lt;/span&gt;
-foo &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; bar &lt;span class=&quot;c&quot;&gt;# 会将 foo 视作可执行文件,从而报错&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# 单引号不会转义,双引号会转义&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$foo&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# bar&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'$foo'&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# $foo&lt;/span&gt;
-
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;函数&quot;&gt;函数&lt;/h3&gt;
-
-&lt;p&gt;编写文件 mcd.sh&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/sh&lt;/span&gt;
-mcd&lt;span class=&quot;o&quot;&gt;(){&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# $1 就是传入的第一个参数,类似 argv[1]&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;然后执行 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;source mcd.sh&lt;/code&gt; , 看似无事发生, 实际上已经将 mcd导入了 shell 中, 在之后就可以直接使用了.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mcd new_folder&lt;/code&gt; 会创建 new_folder 文件夹并 cd 进去&lt;/p&gt;
-
-&lt;h3 id=&quot;特殊变量&quot;&gt;特殊变量&lt;/h3&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$0&lt;/code&gt; - 脚本名
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$1&lt;/code&gt; 到 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$9&lt;/code&gt; - 脚本的参数. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$1&lt;/code&gt; 是第一个参数, 依此类推.
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$@&lt;/code&gt; - 所有参数
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$#&lt;/code&gt; - 参数个数
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$?&lt;/code&gt; - 前一个命令的返回值(往往0表示正常退出)
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$$&lt;/code&gt; - 当前脚本的进程识别码
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;!!&lt;/code&gt; - 完整的上一条命令, 包括参数. 常见应用: 当你因为权限不足执行命令失败时, 可以使用 sudo !! 再尝试一次.
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$_&lt;/code&gt; - 上一条命令的最后一个参数. 如果你正在使用的是交互式shell, 你可以通过按下 Esc 之后键入 . 来获取这个值.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;逻辑操作&quot;&gt;逻辑操作&lt;/h3&gt;
-
-&lt;p&gt;有趣的是, 根据上文的 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$?&lt;/code&gt; , true 的返回值恒为0, false 返回值恒为1.
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;amp;&amp;amp;&lt;/code&gt; 链接两个命令, 仅当第一个返回值为0时才执行第二个. 为方便记忆, 即前面成功才执行后面.
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;||&lt;/code&gt; 链接两个命令, 仅当第一个返回值为1时才执行第二个. 为方便记忆, 即前面失败才执行后面.
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;;&lt;/code&gt; 也是如此, 不过是无论第一个的返回值如何, 都会执行第二个&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;success&quot;&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;This is not print&quot;&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;success&quot;&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;This is not print&quot;&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;This will always run&quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;综合运用&quot;&gt;综合运用&lt;/h3&gt;
-
-&lt;p&gt;创建 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;example.sh&lt;/code&gt; , 然后赋予执行权限&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# 日期 以 $(cmd) 的形式就是将命令执行完的输出替换占位符&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Starting program at &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;# Date will be substituted&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# 文件名 , 参数数量 , 进程号&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Running program &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$0&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; with &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$# &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;arguments with pid &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$$&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-
-&lt;span class=&quot;c&quot;&gt;# 遍历参数&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;file &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$@&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# 让标准输出 和 错误输出都重定向到 null&lt;/span&gt;
-    &lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;foobar &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; /dev/null 2&amp;gt; /dev/null
-    &lt;span class=&quot;c&quot;&gt;# When pattern is not found, grep has exit status 1&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# We redirect STDOUT and STDERR to a null register since we do not care about them&lt;/span&gt;
-    &lt;span class=&quot;c&quot;&gt;# ne 即 not equal ,判断 grep 的返回值,如果没有 foobar,那么在文件末尾加上 #  foobar&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$?&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-ne&lt;/span&gt; 0 &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;then
-        &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;File &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; does not have any foobar, adding one&quot;&lt;/span&gt;
-        &lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;# foobar&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$file&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;fi
-done&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;运行结果如下&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-3
-4
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;./example.sh mcd.sh example.sh
-Starting program at 2021年 02月 08日 星期一 12:15:07 CST
-Running program ./example.sh with 2 arguments with pid 8972
-File mcd.sh does not have any foobar, adding one
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;常用工具&quot;&gt;常用工具&lt;/h2&gt;
-
-&lt;h3 id=&quot;fd&quot;&gt;fd&lt;/h3&gt;
-
-&lt;p&gt;fd 是用于替换掉 find的工具. 此工具更快而且更易使用&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
-2
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;rouge-code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;c&quot;&gt;# 在 ~ 下递归搜索后缀为 sh 的, 文件名中含 mcd 的文件&lt;/span&gt;
-fd mcd  &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; ~ &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; sh
-&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;参考资料&quot;&gt;参考资料&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV14E411J7n2?p=2&quot;&gt;MIT 6. NULL B站视频&lt;/a&gt;
-&lt;a href=&quot;https://missing.csail.mit.edu/2020/shell-tools/&quot;&gt;MIT 6. NULL 英文讲义&lt;/a&gt;
-&lt;a href=&quot;https://missing-semester-cn.github.io/2020/shell-tools/&quot;&gt;MIT 6. NULL 中文讲义&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Mon, 08 Feb 2021 00:00:00 +0800</pubDate>
-        <link>http://dawnk.gitee.io//linux/2021/02/08/Shell/</link>
-        <guid isPermaLink="true">http://dawnk.gitee.io//linux/2021/02/08/Shell/</guid>
-        
-        <category>Linux</category>
-        
-        
-        <category>Linux</category>
         
       </item>
     
