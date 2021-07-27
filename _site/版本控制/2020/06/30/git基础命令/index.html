@@ -345,8 +345,9 @@ ssh-key <span class="nt">-t</span> ras <span class="nt">-C</span> <span class="s
 </ol>
 
 <p>gitee:
- <code class="language-plaintext highlighter-rouge">设置-&gt;SSH公钥</code>
-github:
+ <code class="language-plaintext highlighter-rouge">设置-&gt;SSH公钥</code></p>
+
+<p>github:
  <code class="language-plaintext highlighter-rouge">setting-&gt;SSH and GPG keys</code></p>
 
 <h3 id="初始化">初始化</h3>
@@ -390,6 +391,7 @@ git add <span class="nt">--all</span>
 </pre></td><td class="rouge-code"><pre>git commit <span class="nt">-m</span> <span class="s2">"提交的说明"</span>
 
 </pre></td></tr></tbody></table></code></pre></div></div>
+
 <p>commit可以一次提交缓冲区的所有文件</p>
 
 <h3 id="git-status-查看git库的状态">git status: 查看git库的状态</h3>
@@ -491,6 +493,26 @@ git checkout  <span class="nt">-b</span> 分支名
 
 <pre><code class="language-BASH">git merge 分支名
 </code></pre>
+
+<h2 id="git常见问题">git常见问题</h2>
+
+<h3 id="配置多个远程仓库">配置多个远程仓库</h3>
+
+<pre><code class="language-BASH"># 查看当前配置的远程仓库
+git remote -v
+
+# 添加仓库
+git remote add repo1 ${your_remote_repo_address}
+git remote add repo2 ${your_another_remote_repo_address}
+
+# Push
+git push repo1
+git push repo2
+</code></pre>
+
+<h3 id="要求输入账号密码">要求输入账号密码</h3>
+
+<p>这个往往是远程仓库采用了http的方式导致的. 使用git remote修改为ssh方式的地址即可.</p>
 
 
                 <hr style="visibility: hidden;">
