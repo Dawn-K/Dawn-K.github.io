@@ -514,6 +514,33 @@ git push repo2
 
 <p>这个往往是远程仓库采用了http的方式导致的. 使用git remote修改为ssh方式的地址即可.</p>
 
+<h3 id="git-status中文乱码">git status中文乱码</h3>
+
+<pre><code class="language-BASH">git config --global core.quotepath false
+</code></pre>
+
+<h3 id="修改上一条commit">修改上一条commit</h3>
+
+<p><a href="https://www.jianshu.com/p/6c7fea49172b">git commit –amend</a></p>
+
+<pre><code class="language-BASH"># 如果有提交遗漏的文件,此时可以add上,然后在编辑器中关闭(让vscode的git正确显示)
+git add your_file
+# 然后修改上次的命令,这一步主要是修改上一步的提交信息的,刚才add的文件无需在此操作
+git commit --amend
+</code></pre>
+
+<h3 id="git-commit-amend-后出现-waiting-for-your-editor">git commit –amend 后出现 Waiting for your editor</h3>
+
+<p>原文:</p>
+
+<p>hint: Waiting for your editor to close the file… “C:\Soft\Microsoft VS Code\Code.exe” –wait: C:\Soft\Microsoft VS Code\Code.exe: No such file or directory
+error: There was a problem with the editor ‘“C:\Soft\Microsoft VS Code\Code.exe” –wait’.</p>
+
+<p>配置一下 vscode 的打开方式即可</p>
+
+<pre><code class="language-BASH">git config --global core.editor 'code --wait'
+</code></pre>
+
 
                 <hr style="visibility: hidden;">
                 <ul class="pager">
