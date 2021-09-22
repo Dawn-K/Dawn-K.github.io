@@ -1401,12 +1401,12 @@ Lambda 主要由如下部分组成：捕获列表，参数，函数体等。</p>
 8
 </pre></td><td class="rouge-code"><pre><span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
 <span class="k">auto</span> <span class="n">l</span> <span class="o">=</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span> <span class="p">};</span>
-<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">l</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 3</span>
-<span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">l</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span> <span class="c1">// 仍然是 3</span>
-
 <span class="k">auto</span> <span class="n">r</span> <span class="o">=</span> <span class="p">[</span><span class="o">&amp;</span><span class="n">a</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">]()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span> <span class="p">};</span>
-<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">r</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span><span class="c1">// 4, 因为是传引用</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">l</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>  <span class="c1">// 3</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">l</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>  <span class="c1">// 仍然是 3</span>
+
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">r</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>  <span class="c1">// 4, 因为是传引</span>
 </pre></td></tr></tbody></table></code></pre></div></div>
 
 <p>当然也有简写方法，如 <code class="language-plaintext highlighter-rouge">[]</code> 表示空， <code class="language-plaintext highlighter-rouge">[=]</code> 表示用值的方式传递 lambda 所有可见的（在 lambda 声明之前出现的变量）, <code class="language-plaintext highlighter-rouge">[&amp;]</code> 表示用引用的方式传递所有可见的变量。当然也可以组合成 <code class="language-plaintext highlighter-rouge">=，&amp;a,&amp;b</code> . 也就是除 a 和 B 按引用进行传递外，其他的参数都按照值传递。</p>
@@ -1511,8 +1511,7 @@ Lambda 主要由如下部分组成：捕获列表，参数，函数体等。</p>
 
 <h4 id="share_ptr">share_ptr</h4>
 
-<p>share_ptr
-多个 share_ptr 可以指向同一个裸指针，当所有的 share_ptr 都解除了对此指针的引用的时候，资源就会自动释放。
+<p>多个 share_ptr 可以指向同一个裸指针，当所有的 share_ptr 都解除了对此指针的引用的时候，资源就会自动释放。
 但是一定要注意，对于一个对象的第一次托管直接声明即可，但是后续的托管一定要通过已有的指针</p>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -1543,7 +1542,11 @@ weak_ptr 在功能上类似于普通指针，然而一个比较大的区别是�
 2
 3
 4
+5
+6
 </pre></td><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">A</span> <span class="p">{};</span>
+<span class="c1">// 一定要注意这里是返回一个对象,而不是对象的地址</span>
+<span class="c1">// new A(); 才是返回地址</span>
 <span class="n">A</span> <span class="nf">f</span><span class="p">()</span> <span class="p">{</span> 
     <span class="k">return</span> <span class="n">A</span><span class="p">();</span>
 <span class="p">}</span>
@@ -1645,6 +1648,9 @@ weak_ptr 在功能上类似于普通指针，然而一个比较大的区别是�
 68
 69
 70
+71
+72
+73
 </pre></td><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">MyString</span>
 <span class="p">{</span>
 <span class="nl">public:</span>
@@ -1652,7 +1658,7 @@ weak_ptr 在功能上类似于普通指针，然而一个比较大的区别是�
     <span class="k">static</span> <span class="kt">size_t</span> <span class="n">MCtor</span><span class="p">;</span> <span class="c1">//统计调用移动构造函数的次数</span>
     <span class="k">static</span> <span class="kt">size_t</span> <span class="n">CAsgn</span><span class="p">;</span> <span class="c1">//统计调用拷贝赋值函数的次数</span>
     <span class="k">static</span> <span class="kt">size_t</span> <span class="n">MAsgn</span><span class="p">;</span> <span class="c1">//统计调用移动赋值函数的次数</span>
-
+    <span class="kt">char</span> <span class="o">*</span> <span class="n">m_data</span><span class="p">;</span>
 <span class="nl">public:</span>
     <span class="c1">// 构造函数</span>
    <span class="n">MyString</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">cstr</span><span class="o">=</span><span class="mi">0</span><span class="p">){</span>
@@ -1680,6 +1686,8 @@ weak_ptr 在功能上类似于普通指针，然而一个比较大的区别是�
    <span class="p">}</span>
 
    <span class="c1">// 拷贝赋值函数 =号重载</span>
+   <span class="c1">// 这个不能对str进行修改</span>
+
    <span class="n">MyString</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">MyString</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">){</span>
        <span class="n">CAsgn</span> <span class="o">++</span><span class="p">;</span>
        <span class="k">if</span> <span class="p">(</span><span class="k">this</span> <span class="o">==</span> <span class="o">&amp;</span><span class="n">str</span><span class="p">)</span> <span class="c1">// 避免自我赋值！!</span>
@@ -1691,7 +1699,8 @@ weak_ptr 在功能上类似于普通指针，然而一个比较大的区别是�
        <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
    <span class="p">}</span>
 
-   <span class="c1">// 移动赋值函数 =号重载</span>
+   <span class="c1">// 移动赋值函数 =号重载 当且仅当等号右侧是右值的时候</span>
+   <span class="c1">// 比如 s = MyString("new string") 时候就会调用这个函数</span>
    <span class="n">MyString</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">MyString</span><span class="o">&amp;&amp;</span> <span class="n">str</span><span class="p">)</span> <span class="k">noexcept</span><span class="p">{</span>
        <span class="n">MAsgn</span> <span class="o">++</span><span class="p">;</span>
        <span class="k">if</span> <span class="p">(</span><span class="k">this</span> <span class="o">==</span> <span class="o">&amp;</span><span class="n">str</span><span class="p">)</span> <span class="c1">// 避免自我赋值！!</span>
