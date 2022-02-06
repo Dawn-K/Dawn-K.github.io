@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="From ashes to the empire">
+    <meta name="keywords" content="Dawnk, Dawn-K, dawnk, Dawn-K's Blog, 博客, 个人网站, ACM , 算法竞赛">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Open Graph -->
+    <meta property="og:title"
+        content="「垃圾回收的算法和实现」 第三章-引用计数法 - Dawn-K's Blog">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="引用计数法
+">
+    
+    <meta property="article:published_time" content=" 2022-01-21T00:00:00Z">
+    
+    
+    
+    <meta property="article:tag" content="垃圾回收的算法和实现">
+    
+    
+    <meta property="og:image" content="http://dawnk.gitee.io//img/daze.jpg">
+    <meta property="og:url" content="http://dawnk.gitee.io//%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E7%AE%97%E6%B3%95%E5%92%8C%E5%AE%9E%E7%8E%B0/2022/01/21/%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E6%B3%95/">
+    <meta property="og:site_name" content="Dawn-K's Blog">
+
+    <title>「垃圾回收的算法和实现」 第三章-引用计数法 - Dawn-K's Blog</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="http://dawnk.gitee.io//%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E7%AE%97%E6%B3%95%E5%92%8C%E5%AE%9E%E7%8E%B0/2022/01/21/%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E6%B3%95/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href=" /css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href=" /css/hux-blog.min.css">
+
+    <!-- <link rel="stylesheet" href="http://yandex.st/highlightjs/7.1/styles/default.min.css">
+    <script src="http://yandex.st/highlightjs/7.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> -->
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"
+        type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    </script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+        type="text/javascript"></script>
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Dawn-K's Blog</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="huxblog_navbar">
+                <div class="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/archive/">Archive</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li class="search-icon">
+                            <a href="javascript:void(0)">
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <script>
+        // Drop Bootstarp low-performance Navbar
+        // Use customize navbar with high-quality material design animation
+        // in high-perf jank-free CSS3 implementation
+        var $body = document.body;
+        var $toggle = document.querySelector('.navbar-toggle');
+        var $navbar = document.querySelector('#huxblog_navbar');
+        var $collapse = document.querySelector('.navbar-collapse');
+
+        var __HuxNav__ = {
+            close: function () {
+                $navbar.className = " ";
+                // wait until animation end.
+                setTimeout(function () {
+                    // prevent frequently toggle
+                    if ($navbar.className.indexOf('in') < 0) {
+                        $collapse.style.height = "0px"
+                    }
+                }, 400)
+            },
+            open: function () {
+                $collapse.style.height = "auto"
+                $navbar.className += " in";
+            }
+        }
+
+        // Bind Event
+        $toggle.addEventListener('click', function (e) {
+            if ($navbar.className.indexOf('in') > 0) {
+                __HuxNav__.close()
+            } else {
+                __HuxNav__.open()
+            }
+        })
+
+        /**
+         * Since Fastclick is used to delegate 'touchstart' globally
+         * to hack 300ms delay in iOS by performing a fake 'click',
+         * Using 'e.stopPropagation' to stop 'touchstart' event from 
+         * $toggle/$collapse will break global delegation.
+         * 
+         * Instead, we use a 'e.target' filter to prevent handler
+         * added to document close HuxNav.  
+         *
+         * Also, we use 'click' instead of 'touchstart' as compromise
+         */
+        document.addEventListener('click', function (e) {
+            if (e.target == $toggle) return;
+            if (e.target.className == 'icon-bar') return;
+            __HuxNav__.close();
+        })
+    </script>
+    <!-- Search -->
+<div class="search-page">
+  <div class="search-icon-close-container">
+    <span class="search-icon-close">
+      <i class="fa fa-chevron-down"></i>
+    </span>
+  </div>
+  <div class="search-main container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <form></form>
+        <input type="text" id="search-input" placeholder="$ grep...">
+        </form>
+        <div id="search-results" class="mini-post-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/home-bg.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+
+
+
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/img/home-bg.jpg');
+        background: ;
+    }
+
+    
+</style>
+
+<header class="intro-header" >
+
+    <div class="header-mask"></div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/archive/?tag=%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E7%AE%97%E6%B3%95%E5%92%8C%E5%AE%9E%E7%8E%B0" title="垃圾回收的算法和实现">垃圾回收的算法和实现</a>
+                        
+                    </div>
+                    <h1>「垃圾回收的算法和实现」 第三章-引用计数法</h1>
+                    
+                    <h2 class="subheading"></h2>
+                    <span class="meta">Posted by Dawn-K's Blog on January 21, 2022</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <!-- Multi-Lingual -->
+                
+
+				<h1 id="引用计数法">引用计数法</h1>
+
+<h2 id="思路">思路</h2>
+
+<p>引用计数法的思路也是比较简单。既然当空间不足时再从头找垃圾，不如就不使用标记，在每次指针的赋值过程中就把引用的数量给维护了。一个对象，当有一个新的指针指向它的时候，计数器加 1，如果一个指针不再指向它，计数器减 1. 当计数器减为 0 的瞬间，执行回收。回收的时候还要考虑到它所有发射出的指针指向的儿子对象都要计数减 1。</p>
+
+<p>这种思路看起来似乎正确，但是有一个致命的问题：循环引用。</p>
+
+<p>根指向 A，A 指向 B，B 指向 A。然后根的指针指向别处，然后 A 和 B 的计数器都不为 1，所以就导致了内存泄漏。</p>
+
+<h2 id="实现方法">实现方法</h2>
+
+<p>在讲述优化方法之前先讲这个算法的实现。</p>
+
+<p>核心的算法有两个，一个是 NewPoj()，一个是 UpdatePtr()</p>
+
+<p><code class="language-plaintext highlighter-rouge">$freeList</code> 是全局变量，是空闲链表
+<code class="language-plaintext highlighter-rouge">reclaim(obj)</code> 表示把对象所在的空间串入空闲链表。
+<code class="language-plaintext highlighter-rouge">pickupChunk(size,$freeList)</code> 表示在空闲链表中寻找合适的块（已在标记清扫法中讲过）
+<code class="language-plaintext highlighter-rouge">allocationFail()</code> 表示分配失败，可以理解为抛出异常，自动终止程序流程</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+</pre></td><td class="rouge-code"><pre><span class="c1">// 将 oldPtr 指向 obj 这个引用</span>
+<span class="c1">// 根据后文的分析，这里的 obj 就当做是对象的引用来使用</span>
+<span class="n">UpdatePtr</span><span class="p">(</span><span class="n">oldPtr</span><span class="p">,</span><span class="n">obj</span><span class="p">){</span>
+    <span class="c1">// 注意必须先增加再减少，如果反过来可能会造成对象减计数之后直接被回收了</span>
+    <span class="n">incObj</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+    <span class="c1">// 这里也要看做传递的引用</span>
+    <span class="n">decObj</span><span class="p">(</span><span class="o">*</span><span class="n">oldPtr</span><span class="p">);</span>
+    <span class="n">oldPtr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">obj</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">incObj</span><span class="p">(</span><span class="n">obj</span><span class="p">){</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 这里的 obj 是引用</span>
+<span class="n">decObj</span><span class="p">(</span><span class="n">obj</span><span class="p">){</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">cnt</span><span class="o">--</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">obj</span><span class="p">.</span><span class="n">cnt</span><span class="p">){</span> <span class="c1">// 为零的时候进行释放操作</span>
+        <span class="c1">// 这里可以理解为都是指针</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">child</span> <span class="o">:</span> <span class="n">children</span><span class="p">(</span><span class="n">obj</span><span class="p">)){</span>
+            <span class="n">decObj</span><span class="p">(</span><span class="n">child</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">reclaim</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 分配对象</span>
+<span class="n">NewObj</span><span class="p">(</span><span class="n">size</span><span class="p">){</span>
+    <span class="c1">// 从空闲链表中尝试寻找合适大小的块</span>
+    <span class="n">obj</span>  <span class="o">=</span> <span class="n">pickupChunk</span><span class="p">(</span><span class="n">size</span><span class="p">,</span><span class="err">$</span><span class="n">freeList</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">obj</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">){</span>
+        <span class="n">allocationFail</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="n">obj</span><span class="p">.</span><span class="n">cnt</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="c1">// 这里可以理解为返回的是指针，也可以理解为就是返回的 longlong，不过这个 ll 和内存的值相同</span>
+    <span class="c1">// 但是就不要再想这个指针对对象的引用了，这个对象就是个临时对象，朝生暮死，不考虑它对对象的影响，它的使命就是把值传给外面</span>
+    <span class="k">return</span> <span class="n">obj</span><span class="p">;</span> 
+<span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="优点">优点</h2>
+
+<ol>
+  <li>随时整理，每次都能及时回收垃圾。最大暂停时间短</li>
+  <li>沿着指针查找次数少。仅在一个对象被回收了之后才会查找子对象。相比标记清扫法极大减少了沿对象指针的遍历次数</li>
+</ol>
+
+<h2 id="缺点">缺点</h2>
+
+<ol>
+  <li>每次指针的移动都要进行标记，减缓了速度</li>
+  <li>无法解决循环引用</li>
+  <li>计数器的大小问题，如果小了容易溢出，大了就浪费空间</li>
+  <li>UpdatePtr 这种方式过于笨重，让指针的赋值变得繁琐</li>
+</ol>
+
+<h2 id="优化">优化</h2>
+
+<h3 id="zct-优化">zct 优化</h3>
+
+<p>zct 优化的方向是试图减少<strong>因根中的指针频繁变动</strong>而造成的计数的消耗。将根指针的引用还是用普通的方法来赋值 <code class="language-plaintext highlighter-rouge">oldPtr = newPtr</code> , 对于堆中的还是采用上文提到的 <code class="language-plaintext highlighter-rouge">UpdatePtr</code> 。</p>
+
+<p>然后由于缺少了对根指针引用的记录，必然导致有些计数为 0 的对象本来不是垃圾。所以不能直接清除计数为 0 的对象。我们这里采用了一个表 ZCT(Zero Count Table) 来作为一个缓冲，收留这些计数为 0 的对象。</p>
+
+<p>根据这个思路，刚被根创建的对象的引用数是 0。</p>
+
+<p>在 <code class="language-plaintext highlighter-rouge">decObj</code> 中，如果一个对象的计数被减为 0，不要直接回收，而是把它放到 ZCT 里面。</p>
+
+<p>在 <code class="language-plaintext highlighter-rouge">NewObj()</code> 中，如果一个对象能够在空闲链表中找到合适的空间，就直接分配。仅仅在空闲列表中没有内存的时候，调用 <code class="language-plaintext highlighter-rouge">scanZct()</code> 来操作 zct 中的对象，看看能不能释放它们。</p>
+
+<p>新方法 <code class="language-plaintext highlighter-rouge">scanZct()</code> ，首先把所有根指向的对象的引用值+1（这些对象可能不在 zct 中），然后遍历 zct，回收其中所有的引用为 0 的对象。遍历之后再把跟指向的对象的引用值-1.</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+</pre></td><td class="rouge-code"><pre><span class="n">UpdatePtr</span><span class="p">(</span><span class="n">oldPtr</span><span class="p">,</span><span class="n">obj</span><span class="p">){</span>
+    <span class="n">incObj</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+    <span class="n">decObj</span><span class="p">(</span><span class="o">*</span><span class="n">oldPtr</span><span class="p">);</span>
+    <span class="n">oldPtr</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">obj</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">incObj</span><span class="p">(</span><span class="n">obj</span><span class="p">){</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">decObj</span><span class="p">(</span><span class="n">obj</span><span class="p">){</span>
+    <span class="c1">// 这里仍是对象引用</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">cnt</span><span class="o">--</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">obj</span><span class="p">.</span><span class="n">cnt</span><span class="p">){</span>
+        <span class="c1">// 满了就整理一下</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">isFull</span><span class="p">(</span><span class="err">$</span><span class="n">zct</span><span class="p">)){</span>
+            <span class="n">scanZct</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="c1">// 放到 zct 表中，为了程序简洁，这里就不再写如果表满了会怎样</span>
+        <span class="n">push</span><span class="p">(</span><span class="err">$</span><span class="n">zct</span><span class="p">,</span><span class="n">obj</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 分配对象</span>
+<span class="n">NewObj</span><span class="p">(</span><span class="n">size</span><span class="p">){</span>
+    <span class="n">obj</span>  <span class="o">=</span> <span class="n">pickupChunk</span><span class="p">(</span><span class="n">size</span><span class="p">,</span><span class="err">$</span><span class="n">freeList</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">obj</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">){</span>
+        <span class="c1">// 整理之后重试</span>
+        <span class="n">scanZct</span><span class="p">();</span>
+        <span class="n">obj</span>  <span class="o">=</span> <span class="n">pickupChunk</span><span class="p">(</span><span class="n">size</span><span class="p">,</span><span class="err">$</span><span class="n">freeList</span><span class="p">);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">obj</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">){</span>
+            <span class="n">allocationFail</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">obj</span><span class="p">.</span><span class="n">cnt</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">obj</span><span class="p">;</span> 
+<span class="p">}</span>
+
+<span class="c1">// 清除无用对象</span>
+<span class="c1">// 实际上如果这个函数运行时一个垃圾也没回收，可以直接报错了</span>
+<span class="c1">// 因为都是没空间的时候才会去调用它</span>
+<span class="n">scanZct</span><span class="p">(){</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">root</span> <span class="o">:</span> <span class="err">$</span><span class="n">roots</span><span class="p">){</span>
+        <span class="n">root</span><span class="p">.</span><span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="n">obj</span> <span class="o">:</span> <span class="err">$</span><span class="n">zct</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">obj</span><span class="p">.</span><span class="n">cnt</span><span class="p">){</span>
+            <span class="k">for</span><span class="p">(</span><span class="n">child</span> <span class="o">:</span> <span class="n">children</span><span class="p">(</span><span class="n">obj</span><span class="p">)){</span>
+                <span class="n">decObj</span><span class="p">(</span><span class="n">child</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="n">reclaim</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">root</span> <span class="o">:</span> <span class="err">$</span><span class="n">roots</span><span class="p">){</span>
+        <span class="n">root</span><span class="p">.</span><span class="n">cnt</span><span class="o">--</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h4 id="总结">总结</h4>
+
+<p>这个方法的原理就是，我不去记录每次的根指针导致的对象引用计数变化。我只是在即将清除对象的时候再去检查它会不会被根节点引用了，如果没有的话就回收，有的话就让它继续在 zct 里待着。</p>
+
+<p>虽然书中没有说，但是我感觉到，书中对 指针的转移，语焉不详。这里写的是根指针的引用不需要计数，比如根引用对象 A，然后根又指向对象 B 了，也就是放弃了对 A 的引用，那么岂不是 A 的计数器永远不会少了？然后也不会被加入到 zct 中。同样的道理，一旦加入了 zct 中，就再也没有出来的机会了。</p>
+
+<p>这种方法减少了部分对计数器的操作。但是在 zct 满的时候会进行一次扫描，这个操作是费时的，也就消除了引用计数法的一大优势，也就是 STW 短。</p>
+
+<p>而且这个算法的效率也受 zct 的大小制约。如果 zct 过小，则清理的次数多，如果 zct 过大，则单次清理的时间长。</p>
+
+<h3 id="sticky-引用计数法">Sticky 引用计数法</h3>
+
+<p>这个算法的思路是针对于计数器占用空间的大小进行优化。这个算法基于两个经验：</p>
+
+<ol>
+  <li>引用计数不会很大，大部分对象都是出生之后不久就会死亡，不会有太多计数</li>
+  <li>被大量引用的对象在未来的一段时间内大概率不是垃圾</li>
+</ol>
+
+<p>这个可以了理解为，大部分对象不会有太多引用，而有大量引用的对象很难成为垃圾，也就是有很长的寿命。</p>
+
+<p>基于这个，我们就可以把计数器设置的小一点，比如 5 位，也就是最多 31 个对象引用它。</p>
+
+<p>而面对溢出这个计数器的对象，也有两种思路。第一种是直接不管了，反正这样的对象很少很少。第二种思路是采用标记清扫法来作为备份。我们主要讨论第二种。</p>
+
+<p>书中对此处的标记清扫法进行了魔改。我理解的是这里的操作是为了兼容计数器而不是之前说的标记。在标记前将所有对象的计数器全部清零。然后在标记完之后，每个对象的计数器也达到了正确的数量。然后清扫计数器为 0 的。</p>
+
+<p>这样就解决了溢出的对象，然后也减少了计数器的空间占用，并且还能回收循环引用。唯一的缺点就是让 STW 变大了。</p>
+
+<h3 id="一位引用计数">一位引用计数</h3>
+
+<p>此外还有更激进的改法，就是直接把计数器改成 1 位，只有 0 和 1.</p>
+
+<p>这个思路是这样的，我们在 decObj 的时候是先减后判断。其实我们完全可以先特判它是不是 1，也就是 0 这个状态是无用的。所以在这个算法中，0 表示 1, 1 表示大于等于 2. 书中称之为标签。0 是 Unique, 1 是 Multiple.</p>
+
+<p>这里还使用了内存对齐的黑科技，来存储这个比特（因为没法直接申请 1 比特）。书中假定的都是 32 位系统，所有的对象都按照四字节对齐也就是对象占据的内存的首地址必须是 4 的倍数，也就是首地址末尾的两个 bit 一定是 0，所以指向这个对象的指针的值的最后两位也都是 0.</p>
+
+<p>换言之，一个指针除了它指向的位置之外，还可以存储一个标签，用于指明这个指针指向的对象引用是 1 还是更多，这个标签是在指针上存储，所以不会占据对象的空间。</p>
+
+<p>将 UpdatePtr 换成了 <code class="language-plaintext highlighter-rouge">CopyPtr(oldPtr,newPtr)</code> ，也就是直接针对两个指针进行复制操作。这个有点类似 c++中 shared_ptr 的复制操作。</p>
+
+<p>可以分析出，</p>
+<ol>
+  <li>oldPtr 如果是 Unique，则指向的对象就可以直接回收了。</li>
+  <li>如果 newPtr 指向的对象只有一个引用，也就是 newPtr 本身的标签是 Unique，那么在这次复制之后，必然变成 Multiple. 而 oldPtr 一定会变成 Multiple</li>
+</ol>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="rouge-code"><pre><span class="c1">// 将 UpdatePtr 改成这个，其他的都不用变</span>
+<span class="n">CopyPtr</span><span class="p">(</span><span class="n">oldPtr</span><span class="p">,</span><span class="n">newPtr</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">oldPtr</span><span class="p">.</span><span class="n">tag</span> <span class="o">==</span> <span class="n">UNIQUE</span><span class="p">){</span>
+        <span class="n">reclaim</span><span class="p">(</span><span class="n">oldPtr</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">oldPtr</span> <span class="o">=</span> <span class="n">newPtr</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">newPtr</span><span class="p">.</span><span class="n">tag</span> <span class="o">==</span> <span class="n">UNIQUE</span><span class="p">){</span>
+        <span class="n">newPtr</span><span class="p">.</span><span class="n">tag</span> <span class="o">==</span> <span class="n">MULTIPLE</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">oldPtr</span><span class="p">.</span><span class="n">tag</span> <span class="o">==</span> <span class="n">MULTIPLE</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>这个优化思路是极大减少了对内存的占用，并且在指针操作的时候不用对对象本身有任何操作，甚至不用读取对象本身。对 cache 比较友好，而在<strong>对计数器溢出的对象则是采用完全不管的方式，只要一个对象被两个指针引用了，那么就再也不会被回收了</strong>。</p>
+
+<h3 id="部分标记清扫法">部分标记清扫法</h3>
+
+<p>这个方法实际上比较冗长，效果也不好，相关资料也少。不过 PHP 里面就是这种方法，我们就简单说一下。这种染色的思想也被 go 语言吸纳了一部分，之后会通过 go 的 gc 算法来详细地讲述并行时候的实现（虽然书上没有）。</p>
+
+<p>这个算法可以参考下面的资料，不过实际上论文实现的要复杂很多很多，论文还讲述了这个算法的并行形式。书中只是举了个非常简化版的说明。</p>
+
+<p><a href="https://www.php.net/manual/en/features.gc.collecting-cycles.php">PHP 官方文档</a>
+<a href="https://researcher.watson.ibm.com/researcher/files/us-bacon/Bacon01Concurrent.pdf">IBM 论文</a></p>
+
+<p>核心思想是通过引入标记清扫法来解决循环引用问题。但是直接使用标记清扫法会带来很大的开销。既然为了消除循环引用，那么我们的标记清扫法也要针对这个问题进行魔改。我们只关注可能是循环引用的对象群。</p>
+
+<p>规定四种颜色代表四种状态：</p>
+
+<ol>
+  <li>黑色，表示绝对不会是垃圾</li>
+  <li>白色，表示一定是垃圾</li>
+  <li>灰色，已经搜索完毕，但是还不能判定是黑白</li>
+  <li>阴影 (HATCH)，可能是循环垃圾，往往阴影对象都会放到阴影队列中 ($hatch_queue)</li>
+</ol>
+
+<p>我们经过染色，将对象最终染成黑白两色，把白色的给回收即可。</p>
+
+<p>至于颜色，用两个位来表示，就存储的对象的头上。</p>
+
+<ol>
+  <li>刚创建的对象一定是黑色，计数为 1</li>
+  <li>减少对象引用的时候，如果引用为 0，那就直接照上文进行回收以及对子对象的减计数即可，同时如果在队列中也记得删除。如果引用不为 0，那么就把它加到队列中并涂成阴影（如果已经是阴影就表示已经在队列，就不用添加）</li>
+  <li>当且仅当分配对象没有空间的时候，才会去选择调用<code class="language-plaintext highlighter-rouge">scanHatchQueue()</code>方法，然后尝试重新运行 newObj（注意这里不是重新到空闲链表去找，而是重新运行整个方法，这也就意味着可能要连着回收好几次阴影队列中的对象。这是一个新方法，也是我们的重头戏。</li>
+</ol>
+
+<p>这个方法就是遍历队列，遇到阴影对象就尝试探索它是不是在一个对象群中。如果是，就对这个群进行染色和回收，然后算法就结束了，也就是一次只回收一个对象群。否则就寻找队列中下一个对象。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+</pre></td><td class="rouge-code"><pre><span class="n">decObj</span><span class="p">(</span><span class="n">obj</span><span class="p">){</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">cnt</span><span class="o">--</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">obj</span><span class="p">.</span><span class="n">cnt</span><span class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">child</span> <span class="o">:</span> <span class="n">children</span><span class="p">(</span><span class="n">obj</span><span class="p">)){</span>
+            <span class="n">decObj</span><span class="p">(</span><span class="n">child</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">reclaim</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+    <span class="p">}</span><span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">color</span> <span class="o">!=</span> <span class="n">HATCH</span><span class="p">){</span>
+        <span class="c1">// 标记为阴影并且加入队列</span>
+        <span class="n">obj</span><span class="p">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">HATCH</span><span class="p">;</span>
+        <span class="n">push</span><span class="p">(</span><span class="err">$</span><span class="n">hatch_queue</span><span class="p">,</span><span class="n">obj</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">NewObj</span><span class="p">(</span><span class="n">size</span><span class="p">){</span>
+    <span class="n">obj</span>  <span class="o">=</span> <span class="n">pickupChunk</span><span class="p">(</span><span class="n">size</span><span class="p">,</span><span class="err">$</span><span class="n">freeList</span><span class="p">);</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">obj</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">){</span>
+        <span class="k">return</span> <span class="n">obj</span><span class="p">;</span>
+    <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="err">$</span><span class="n">hatch_queue</span><span class="p">.</span><span class="n">empty</span><span class="p">()){</span>
+        <span class="n">scanHatchQueue</span><span class="p">();</span>
+        <span class="c1">// 一直重试到找到对象或者队列为空</span>
+        <span class="k">return</span> <span class="n">newObj</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="n">allocationFail</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// 尝试回收第一个对象群</span>
+<span class="n">scanHatchQueue</span><span class="p">(){</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="err">$</span><span class="n">hatch_queue</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">color</span> <span class="o">==</span> <span class="n">HATCH</span><span class="p">){</span>
+        <span class="n">paintGray</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+        <span class="n">scanGray</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+        <span class="n">collectWrite</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+    <span class="p">}</span><span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="err">$</span><span class="n">hatch_queue</span><span class="p">.</span><span class="n">empty</span><span class="p">()){</span>
+        <span class="n">scanHatchQueue</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">paintGray</span><span class="p">(</span><span class="n">obj</span><span class="p">){</span>
+    <span class="c1">// 这里的意思是 灰色不用染色， 白色是垃圾，不能染色</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">color</span> <span class="o">==</span> <span class="p">(</span><span class="n">BLACK</span> <span class="o">|</span> <span class="n">HATCH</span><span class="p">))</span>
+        <span class="n">obj</span><span class="p">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">GRAY</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">child</span> <span class="o">:</span> <span class="n">children</span><span class="p">(</span><span class="n">obj</span><span class="p">)){</span>
+            <span class="c1">// 这里乍看比较突兀，似乎和染色没有关系</span>
+            <span class="c1">// 实际上是为下文 scanGray 的判断循环引用设置条件</span>
+            <span class="n">child</span><span class="p">.</span><span class="n">cnt</span><span class="o">--</span><span class="p">;</span>
+            <span class="n">paintGray</span><span class="p">(</span><span class="n">child</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="err">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>这里先暂停一下，我们探讨一个环的性质。如果一群对象构成了一个环（不一定是简单环，复杂的环也可以），那么从任何一个点出发，沿着有向边 dfs 去减另一个阴影对象的计数，那么必然最终会减到自己，把自己减为 0。</p>
+
+<p>换言之，<strong>从垃圾环（也就是循环引用的垃圾群）中任意一个对象出发，沿着引用的指针减去其子对象的引用计数，并且将自身染成灰色，那么最终会得到一堆引用计数为 0 的灰色对象</strong>，而如果最终这个对象自身并没有被减到 0，那么说明他不存在于任何垃圾环中。</p>
+
+<p>而且必须是要自己被循环回来的指针给减计数，否则假设根有两个指针指向 A，A 指向 B，B 指向 C，C 不向外指。那么根的一个指针不再指向 A 的时候，顺着过去这三个都会被识别成垃圾。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+</pre></td><td class="rouge-code"><pre><span class="n">scanGray</span><span class="p">(</span><span class="n">obj</span><span class="p">){</span>
+    <span class="c1">// 只扫描灰色的，别的颜色的不管</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">color</span> <span class="o">==</span> <span class="n">GRAY</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">cnt</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+            <span class="n">obj</span><span class="p">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">WRITE</span><span class="p">;</span>
+            <span class="k">for</span><span class="p">(</span><span class="n">child</span> <span class="o">:</span> <span class="n">children</span><span class="p">(</span><span class="n">obj</span><span class="p">)){</span>
+                <span class="n">scanGray</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+            <span class="n">paintBlack</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// 执行到这个函数说明 obj 虽然是灰色，但是引用计数并不为 0</span>
+<span class="c1">// 所以就需要撤销</span>
+<span class="n">paintBlack</span><span class="p">(</span><span class="n">obj</span><span class="p">){</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">color</span> <span class="o">!=</span> <span class="n">BLACK</span><span class="p">){</span>
+        <span class="n">obj</span><span class="p">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">BLACK</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">child</span> <span class="o">:</span> <span class="n">children</span><span class="p">(</span><span class="n">obj</span><span class="p">)){</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">child</span><span class="p">.</span><span class="n">color</span> <span class="o">==</span> <span class="n">GRAY</span><span class="p">){</span>
+                <span class="c1">// 这里的逻辑和之前的一样，不是给自己加而是给儿子加</span>
+                <span class="n">child</span><span class="p">.</span><span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
+                <span class="n">paintBlack</span><span class="p">(</span><span class="n">child</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">collectWrite</span><span class="p">(</span><span class="n">obj</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">color</span> <span class="o">==</span> <span class="n">WRITE</span><span class="p">){</span>
+        <span class="c1">// 避免无限递归</span>
+        <span class="n">obj</span><span class="p">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">BLACKED</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">child</span> <span class="o">:</span> <span class="n">children</span><span class="p">(</span><span class="n">obj</span><span class="p">)){</span>
+            <span class="n">collectWrite</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="n">reclaim</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<p>这个算法在垃圾回收的时候要扫描三次对象，效率比较低下。</p>
+
+
+                <hr style="visibility: hidden;">
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E7%AE%97%E6%B3%95%E5%92%8C%E5%AE%9E%E7%8E%B0/2022/01/20/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%A0%87%E8%AE%B0%E6%B8%85%E6%89%AB%E6%B3%95/" data-toggle="tooltip" data-placement="top" title="「垃圾回收的算法和实现」 第二章-标记清扫法">
+                        Previous<br>
+                        <span>「垃圾回收的算法和实现」 第二章-标记清扫法</span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E7%AE%97%E6%B3%95%E5%92%8C%E5%AE%9E%E7%8E%B0/2022/01/22/%E7%AC%AC%E5%9B%9B%E7%AB%A0-GC%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95/" data-toggle="tooltip" data-placement="top" title="「垃圾回收的算法和实现」 第四章-GC 复制算法">
+                        Next<br>
+                        <span>「垃圾回收的算法和实现」 第四章-GC 复制算法</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <hr style="visibility: hidden;">
+
+                
+
+                
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+
+<section>
+    
+        <hr class="hidden-sm hidden-xs">
+    
+    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+        
+        
+        
+        
+        
+                <a data-sort="0090" 
+                    href="/archive/?tag=CodeNote"
+                    title="CodeNote"
+                    rel="92">CodeNote</a>
+        
+                <a data-sort="0155" 
+                    href="/archive/?tag=Web%E5%BC%80%E5%8F%91"
+                    title="Web开发"
+                    rel="27">Web开发</a>
+        
+                <a data-sort="0169" 
+                    href="/archive/?tag=%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B"
+                    title="软件工程"
+                    rel="13">软件工程</a>
+        
+                <a data-sort="0169" 
+                    href="/archive/?tag=SpringBoot"
+                    title="SpringBoot"
+                    rel="13">SpringBoot</a>
+        
+                <a data-sort="0173" 
+                    href="/archive/?tag=%E4%BA%92%E8%81%94%E7%BD%91%E6%9E%B6%E6%9E%84"
+                    title="互联网架构"
+                    rel="9">互联网架构</a>
+        
+                <a data-sort="0175" 
+                    href="/archive/?tag=%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E7%AE%97%E6%B3%95%E5%92%8C%E5%AE%9E%E7%8E%B0"
+                    title="垃圾回收的算法和实现"
+                    rel="7">垃圾回收的算法和实现</a>
+        
+                <a data-sort="0175" 
+                    href="/archive/?tag=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"
+                    title="设计模式"
+                    rel="7">设计模式</a>
+        
+                <a data-sort="0175" 
+                    href="/archive/?tag=android"
+                    title="android"
+                    rel="7">android</a>
+        
+                <a data-sort="0176" 
+                    href="/archive/?tag=DAO"
+                    title="DAO"
+                    rel="6">DAO</a>
+        
+                <a data-sort="0177" 
+                    href="/archive/?tag=%E6%95%B0%E6%8D%AE%E5%BA%93"
+                    title="数据库"
+                    rel="5">数据库</a>
+        
+                <a data-sort="0177" 
+                    href="/archive/?tag=Python"
+                    title="Python"
+                    rel="5">Python</a>
+        
+                <a data-sort="0177" 
+                    href="/archive/?tag=Vue"
+                    title="Vue"
+                    rel="5">Vue</a>
+        
+                <a data-sort="0178" 
+                    href="/archive/?tag=Unity"
+                    title="Unity"
+                    rel="4">Unity</a>
+        
+                <a data-sort="0178" 
+                    href="/archive/?tag=VSCode%E5%AD%A6%E4%B9%A0"
+                    title="VSCode学习"
+                    rel="4">VSCode学习</a>
+        
+                <a data-sort="0179" 
+                    href="/archive/?tag=%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"
+                    title="版本控制"
+                    rel="3">版本控制</a>
+        
+                <a data-sort="0179" 
+                    href="/archive/?tag=View"
+                    title="View"
+                    rel="3">View</a>
+        
+                <a data-sort="0180" 
+                    href="/archive/?tag=C%2B%2B"
+                    title="C++"
+                    rel="2">C++</a>
+        
+                <a data-sort="0180" 
+                    href="/archive/?tag=Java"
+                    title="Java"
+                    rel="2">Java</a>
+        
+                <a data-sort="0180" 
+                    href="/archive/?tag=Kotlin"
+                    title="Kotlin"
+                    rel="2">Kotlin</a>
+        
+                <a data-sort="0180" 
+                    href="/archive/?tag=Linux"
+                    title="Linux"
+                    rel="2">Linux</a>
+    </div>
+</section>
+
+
+                <!-- Friends Blog -->
+                
+<hr>
+<h5>FRIENDS</h5>
+<ul class="list-inline">
+  
+  <li><a href="http://www.criinal.com/">Criinal</a></li>
+  
+</ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<!-- add support for mathjax by voleking-->
+
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'right',
+          // icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- SNS Link -->
+                
+
+
+<ul class="list-inline text-center">
+
+
+  
+  
+  
+  
+  
+  
+  <li>
+    <a target="_blank" href="https://github.com/Dawn-K">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+                <p class="copyright text-muted">
+                    Copyright &copy; Dawn-K's Blog 2022
+                    <br>
+                    Powered by <a href="http://huangxuan.me">Hux Blog</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="100px"
+                        height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Simple Jekyll Search -->
+<script src="/js/simple-jekyll-search.min.js"></script>
+
+<!-- Service Worker -->
+
+<script src="/js/snackbar.js "></script>
+<script src="/js/sw-registration.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+        var d = document, t = 'script',
+            o = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+
+
+
+
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function () {
+        var $nav = document.querySelector("nav");
+        if ($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        // interop with multilangual 
+        if ('' == 'true') {
+            _containerSelector = 'div.post-container.active'
+        } else {
+            _containerSelector = 'div.post-container'
+        }
+
+        // init
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        // clean
+        $(selector).html('')
+
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+<!-- Multi-Lingual -->
+
+
+<!-- Simple Jekyll Search -->
+<script>
+    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
+    function htmlDecode(input) {
+        var e = document.createElement('textarea');
+        e.innerHTML = input;
+        // handle case of empty input
+        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+    }
+
+    SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('search-results'),
+        json: '/search.json',
+        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
+        noResultsText: 'No results',
+        limit: 50,
+        fuzzy: false,
+        // a hack to get escaped subtitle unescaped. for some reason, 
+        // post.subtitle w/o escape filter nuke entire search.
+        templateMiddleware: function (prop, value, template) {
+            if (prop === 'subtitle' || prop === 'title') {
+                if (value.indexOf("code")) {
+                    return htmlDecode(value);
+                } else {
+                    return value;
+                }
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        var $searchPage = $('.search-page');
+        var $searchOpen = $('.search-icon');
+        var $searchClose = $('.search-icon-close');
+        var $searchInput = $('#search-input');
+        var $body = $('body');
+
+        $searchOpen.on('click', function (e) {
+            e.preventDefault();
+            $searchPage.toggleClass('search-active');
+            var prevClasses = $body.attr('class') || '';
+            setTimeout(function () {
+                $body.addClass('no-scroll');
+            }, 400)
+
+            if ($searchPage.hasClass('search-active')) {
+                $searchClose.on('click', function (e) {
+                    e.preventDefault();
+                    $searchPage.removeClass('search-active');
+                    $body.attr('class', prevClasses);  // from closure 
+                });
+                $searchInput.focus();
+            }
+        });
+    });
+</script>
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

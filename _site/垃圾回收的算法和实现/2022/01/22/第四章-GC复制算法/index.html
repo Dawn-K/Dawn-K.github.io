@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="From ashes to the empire">
+    <meta name="keywords" content="Dawnk, Dawn-K, dawnk, Dawn-K's Blog, 博客, 个人网站, ACM , 算法竞赛">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Open Graph -->
+    <meta property="og:title"
+        content="「垃圾回收的算法和实现」 第四章-GC 复制算法 - Dawn-K's Blog">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:description" content="GC 复制算法
+">
+    
+    <meta property="article:published_time" content=" 2022-01-22T00:00:00Z">
+    
+    
+    
+    <meta property="article:tag" content="垃圾回收的算法和实现">
+    
+    
+    <meta property="og:image" content="http://dawnk.gitee.io//img/daze.jpg">
+    <meta property="og:url" content="http://dawnk.gitee.io//%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E7%AE%97%E6%B3%95%E5%92%8C%E5%AE%9E%E7%8E%B0/2022/01/22/%E7%AC%AC%E5%9B%9B%E7%AB%A0-GC%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95/">
+    <meta property="og:site_name" content="Dawn-K's Blog">
+
+    <title>「垃圾回收的算法和实现」 第四章-GC 复制算法 - Dawn-K's Blog</title>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/pwa/manifest.json">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="http://dawnk.gitee.io//%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E7%AE%97%E6%B3%95%E5%92%8C%E5%AE%9E%E7%8E%B0/2022/01/22/%E7%AC%AC%E5%9B%9B%E7%AB%A0-GC%E5%A4%8D%E5%88%B6%E7%AE%97%E6%B3%95/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href=" /css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href=" /css/hux-blog.min.css">
+
+    <!-- <link rel="stylesheet" href="http://yandex.st/highlightjs/7.1/styles/default.min.css">
+    <script src="http://yandex.st/highlightjs/7.1/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script> -->
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"
+        type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+            inlineMath: [['$','$']]
+            }
+        });
+    </script>
+    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+        type="text/javascript"></script>
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Dawn-K's Blog</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="huxblog_navbar">
+                <div class="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                        
+                        
+                        <li>
+                            <a href="/archive/">Archive</a>
+                        </li>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <li class="search-icon">
+                            <a href="javascript:void(0)">
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <script>
+        // Drop Bootstarp low-performance Navbar
+        // Use customize navbar with high-quality material design animation
+        // in high-perf jank-free CSS3 implementation
+        var $body = document.body;
+        var $toggle = document.querySelector('.navbar-toggle');
+        var $navbar = document.querySelector('#huxblog_navbar');
+        var $collapse = document.querySelector('.navbar-collapse');
+
+        var __HuxNav__ = {
+            close: function () {
+                $navbar.className = " ";
+                // wait until animation end.
+                setTimeout(function () {
+                    // prevent frequently toggle
+                    if ($navbar.className.indexOf('in') < 0) {
+                        $collapse.style.height = "0px"
+                    }
+                }, 400)
+            },
+            open: function () {
+                $collapse.style.height = "auto"
+                $navbar.className += " in";
+            }
+        }
+
+        // Bind Event
+        $toggle.addEventListener('click', function (e) {
+            if ($navbar.className.indexOf('in') > 0) {
+                __HuxNav__.close()
+            } else {
+                __HuxNav__.open()
+            }
+        })
+
+        /**
+         * Since Fastclick is used to delegate 'touchstart' globally
+         * to hack 300ms delay in iOS by performing a fake 'click',
+         * Using 'e.stopPropagation' to stop 'touchstart' event from 
+         * $toggle/$collapse will break global delegation.
+         * 
+         * Instead, we use a 'e.target' filter to prevent handler
+         * added to document close HuxNav.  
+         *
+         * Also, we use 'click' instead of 'touchstart' as compromise
+         */
+        document.addEventListener('click', function (e) {
+            if (e.target == $toggle) return;
+            if (e.target.className == 'icon-bar') return;
+            __HuxNav__.close();
+        })
+    </script>
+    <!-- Search -->
+<div class="search-page">
+  <div class="search-icon-close-container">
+    <span class="search-icon-close">
+      <i class="fa fa-chevron-down"></i>
+    </span>
+  </div>
+  <div class="search-main container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <form></form>
+        <input type="text" id="search-input" placeholder="$ grep...">
+        </form>
+        <div id="search-results" class="mini-post-list"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Image to hack wechat -->
+<!-- <img src="/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="/img/home-bg.jpg" width="0" height="0"> -->
+
+<!-- Post Header -->
+
+
+
+<style type="text/css">
+    header.intro-header{
+        position: relative;
+        background-image: url('/img/home-bg.jpg');
+        background: ;
+    }
+
+    
+</style>
+
+<header class="intro-header" >
+
+    <div class="header-mask"></div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                        <a class="tag" href="/archive/?tag=%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E7%AE%97%E6%B3%95%E5%92%8C%E5%AE%9E%E7%8E%B0" title="垃圾回收的算法和实现">垃圾回收的算法和实现</a>
+                        
+                    </div>
+                    <h1>「垃圾回收的算法和实现」 第四章-GC 复制算法</h1>
+                    
+                    <h2 class="subheading"></h2>
+                    <span class="meta">Posted by Dawn-K's Blog on January 22, 2022</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <!-- Multi-Lingual -->
+                
+
+				<h1 id="gc-复制算法">GC 复制算法</h1>
+
+<h2 id="思路">思路</h2>
+
+<p>之前提到的标记清扫和引用计数法都不会更改对象的位置，并且利用了全部的内存。在此我们就打破这个限制。</p>
+
+<p>首先我们把内存分成两半，一半叫 <code class="language-plaintext highlighter-rouge">from</code> , 一半叫 <code class="language-plaintext highlighter-rouge">to</code> 。每次程序运行时只占用 from，当需要垃圾回收的时候，就先找到所有的活动对象，然后复制到 to 中，并且从 to 的低地址陆续摆放。然后交换 from 和 to 的名字。</p>
+
+<p>这个算法的关键是不仅要把对象搬运过来，还要把对象之间的引用给修正了。这里也是假定了对象至少有一个域，我们把这个域称为 <code class="language-plaintext highlighter-rouge">forward</code> .</p>
+
+<p>在对象还是在 from 中的活动对象的时候，这个 forward 就可以认为不存在，因为这是对象的成员的一部分。而当对象复制到 to 之后的时候，原来的对象就没用了，我们就取它的第一个字节为 forward，用来记录对象复制到 to 之后的新地址。</p>
+
+<p>值得一提的是：由于 from 和 to 本身都是连续的地址（但是 from 和 to 的地址未必是连续的，这里只需要记录下 from 和 to 的开始和结尾四个变量即可，实际上用了 <code class="language-plaintext highlighter-rouge">$heapSize/2</code> ）所以<strong>可以瞬间判断一个地址是属于 from 还是 to，进而判断它有没有被复制完成。</strong></p>
+
+<p>但是我们暂时不用这种方法，仍然是采用多设置一个 obj.tag，如果为 1，也就是 COPYED, 就表示已经复制了，否则就没有复制。</p>
+
+<p>经过上述分析不难发现，这个算法是不会在内存中产生碎片的。因为内存的空闲位置一定在 from 的高地址位置连续。所以也不需要空闲链表，只需要看看 from 空间末尾还有没有位置即可。</p>
+
+<h2 id="实现">实现</h2>
+
+<p>全局变量</p>
+
+<p><code class="language-plaintext highlighter-rouge">$fromStart</code> : from 的起始地址
+<code class="language-plaintext highlighter-rouge">$toStart</code> : to 的起始地址
+<code class="language-plaintext highlighter-rouge">$heapSize</code> : 整个堆的大小
+<code class="language-plaintext highlighter-rouge">$toFree</code> : 目前 to 的空闲的位置的首地址
+<code class="language-plaintext highlighter-rouge">$free</code> : 目前 from 空间的空闲位置的首地址</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+</pre></td><td class="rouge-code"><pre><span class="n">newObj</span><span class="p">(</span><span class="n">size</span><span class="p">){</span>
+    <span class="c1">// from 空间不足</span>
+    <span class="c1">// 这里是假设堆只有 from 和 to 两个空间</span>
+    <span class="k">if</span><span class="p">(</span><span class="err">$</span><span class="n">free</span> <span class="o">+</span> <span class="n">size</span> <span class="o">&gt;</span> <span class="err">$</span><span class="n">heapSize</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">copying</span><span class="p">();</span>
+        <span class="k">if</span><span class="p">(</span><span class="err">$</span><span class="n">free</span> <span class="o">+</span> <span class="n">size</span> <span class="o">&gt;</span> <span class="err">$</span><span class="n">heapSize</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">allocationFail</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="err">}</span>
+    <span class="n">obj</span> <span class="o">=</span> <span class="err">$</span><span class="n">free</span><span class="p">;</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span><span class="p">;</span> 
+    <span class="err">$</span><span class="n">free</span> <span class="o">+=</span><span class="n">size</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">obj</span><span class="p">;</span>
+<span class="err">}</span>
+
+<span class="c1">// 将所有对象都复制到 to 中</span>
+<span class="n">copying</span><span class="p">(){</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">r</span> <span class="o">:</span> <span class="err">$</span><span class="n">roots</span><span class="p">){</span>
+        <span class="n">copy</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">swap</span><span class="p">(</span><span class="err">$</span><span class="n">from</span><span class="p">,</span><span class="err">$</span><span class="n">to</span><span class="p">);</span>
+    <span class="err">$</span><span class="n">toFree</span> <span class="o">=</span> <span class="err">$</span><span class="n">to</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 复制单个对象并且</span>
+<span class="n">copy</span><span class="p">(</span><span class="n">obj</span><span class="p">){</span>
+    <span class="c1">// obj 是旧对象</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">obj</span><span class="p">.</span><span class="n">tag</span> <span class="o">!=</span> <span class="n">COPYED</span><span class="p">){</span>
+        <span class="n">obj</span><span class="p">.</span><span class="n">tag</span> <span class="o">=</span> <span class="n">COPYED</span><span class="p">;</span>
+        <span class="n">obj</span><span class="p">.</span><span class="n">forward</span> <span class="o">=</span> <span class="err">$</span><span class="n">toFree</span><span class="p">;</span>
+        <span class="err">$</span><span class="n">toFree</span> <span class="o">+=</span> <span class="n">obj</span><span class="p">.</span><span class="n">size</span><span class="p">;</span>
+        <span class="c1">// 这里实际上是个引用，就是引用自己复制后的对象，修正新对象的儿子指针的指向。</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">child</span> <span class="o">:</span> <span class="n">children</span><span class="p">(</span><span class="o">*</span><span class="n">obj</span><span class="p">.</span><span class="n">forward</span><span class="p">)){</span>
+            <span class="c1">// 如果儿子没被复制就复制，如果被复制了就会返回新地址</span>
+            <span class="n">child</span> <span class="o">=</span> <span class="n">copying</span><span class="p">(</span><span class="n">child</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">obj</span><span class="p">.</span><span class="n">forward</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">obj</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h2 id="优点">优点</h2>
+
+<p>GC 复制算法优点很多。</p>
+
+<ol>
+  <li>没有碎片。因为每次复制之后，活动对象都紧紧挨着，所以没有碎片。</li>
+  <li>分配对象速度快。只需要判断 from 的末尾是否能放开这个对象即可，不需要。</li>
+  <li>只对活动对象进行分配，所以算法的复杂度就是标记的复杂度（正比于活动对象的个数）和复制的复杂度（也是正比于活动对象的个数）</li>
+  <li>对缓存友好。在复制之后，所有有引用关系的对象都会尽可能挨着（因为是 dfs 序排放）</li>
+</ol>
+
+<h2 id="缺点">缺点</h2>
+
+<ol>
+  <li>最大的缺点就是只有一半的内存使用效率。</li>
+  <li>不兼容保守式 gc。也就是说我们必须重写指针，这是之前的算法所没有的。</li>
+  <li>采用了 dfs，有爆栈的风险。事实上这是一个比较好解决的方案，我们接下来就会解决它。</li>
+</ol>
+
+<h2 id="优化">优化</h2>
+
+<h3 id="cheney-gc-复制算法">Cheney GC 复制算法</h3>
+
+<p>这个算法思路非常巧妙。之前提到担心 dfs 会爆栈，所以我们就可以采用 bfs，但是 bfs 不也是有空间消耗吗？此算法就拿 to 空间本身加上一些指针就把 to 当做了队列来使用。</p>
+
+<p>首先要复制根直接指向的对象（不递归）。</p>
+
+<p>然后设置队首指针 <code class="language-plaintext highlighter-rouge">scan</code> ，指向 to 空间的首地址。 <code class="language-plaintext highlighter-rouge">$toFree</code> 表示 to 空间的第一个空闲的首地址。</p>
+
+<p>然后进入循环，扫描队首对象的子对象，如果没有在队列中，就放到 <code class="language-plaintext highlighter-rouge">toFree</code> 的位置，然后 toFree 向后移动。当处理完队首对象，scan 就向后移动。</p>
+
+<p>注意这个算法顺便还取消了 tag，所有的对象都按照 forward 指针的值来判断是否已经复制了。这个原理我们在本章前文已经讲述了。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+</pre></td><td class="rouge-code"><pre><span class="c1">// copy 所有对象</span>
+<span class="n">copying</span><span class="p">(){</span>
+    <span class="n">scan</span> <span class="o">=</span> <span class="err">$</span><span class="n">toFree</span> <span class="o">=</span> <span class="err">$</span><span class="n">toStart</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">r</span> <span class="o">:</span> <span class="err">$</span><span class="n">roots</span><span class="p">){</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">copyObj</span><span class="p">(</span><span class="n">r</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// scan == $toFree 表示队列为空</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">scan</span> <span class="o">&lt;</span> <span class="err">$</span><span class="n">toFree</span><span class="p">){</span>
+        <span class="k">for</span><span class="p">(</span><span class="n">child</span> <span class="o">:</span> <span class="n">children</span><span class="p">(</span><span class="o">*</span><span class="n">scan</span><span class="p">)){</span>
+            <span class="n">child</span> <span class="o">=</span> <span class="n">copyObj</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">swap</span><span class="p">(</span><span class="err">$</span><span class="n">fromStart</span><span class="err">，$</span><span class="n">toStart</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="n">copyObj</span><span class="p">(</span><span class="n">obj</span><span class="p">){</span>
+    <span class="c1">// 实际上这里的 obj 必然是一个在 from 空间的对象，所以必须要看其 forward</span>
+    <span class="c1">// 已经复制完了</span>
+    <span class="k">if</span><span class="p">(</span><span class="err">$</span><span class="n">toFree</span> <span class="o">&lt;</span> <span class="n">obj</span><span class="p">.</span><span class="n">forward</span> <span class="o">&amp;&amp;</span> <span class="n">obj</span><span class="p">.</span><span class="n">forward</span> <span class="o">&lt;</span> <span class="err">$</span><span class="n">toFree</span><span class="o">+</span><span class="err">$</span><span class="n">heapSize</span><span class="o">/</span><span class="mi">2</span><span class="p">){</span>
+        <span class="k">return</span> <span class="n">obj</span><span class="p">.</span><span class="n">forward</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">forward</span> <span class="o">=</span> <span class="err">$</span><span class="n">free</span><span class="p">;</span>
+    <span class="err">$</span><span class="n">free</span><span class="o">+=</span><span class="n">obj</span><span class="p">.</span><span class="n">size</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">obj</span><span class="p">.</span><span class="n">forward</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></code></pre></div></div>
+
+<h4 id="优点-1">优点</h4>
+
+<p>相比于原始的 GC 复制算法，Cheney 方法能够更好的利用内存，避免了爆栈的风险。</p>
+
+<h4 id="缺点-1">缺点</h4>
+
+<p>同样，由于 bfs 的访问顺序问题，相邻的对象就不一定是其儿子对象了。相当于树的层序遍历顺序，这样其实对缓存不友好。接下来的方法就是尝试去解决这个问题。</p>
+
+<h3 id="近似深度优先搜索">近似深度优先搜索</h3>
+
+<p>这个算法是针对 Cheney 的优化。主要是考虑了内存分页问题。我们假设所有对象都一样大，每个页能放的对象个数也一样。</p>
+
+<p>但是这个算法如果仅仅根据书中的描述是很有局限性的。书中举得例子是有些巧合的。</p>
+
+<p>大体思路是这样：由于每个页的大小是有限的，所以我们争取把父子关系的对象放到一个页里。当一个节点的儿子对象被分到了新的一页的时候，就停止当前的操作，再把这个儿子的儿子对象给分配到这一页（注意这个过程不是递归的）。</p>
+
+<p><code class="language-plaintext highlighter-rouge">$majorScan</code> : 当前正在处理的第一页（也就是存在儿子对象没有复制完的对象的第一页）
+<code class="language-plaintext highlighter-rouge">$free</code> : 整个堆空间中剩余空间的开端
+<code class="language-plaintext highlighter-rouge">$localScan[]</code> 是一个数组，大小和页面数相同，第 i 个元素表示第 i 页的第一个没有处理完子对象的儿子的下标</p>
+
+<p>然后复制 majorScan 的时候，如果探测到子对象被安排在了新页，就跳到那一页的开始放这个子对象的子对象。放完了之后再眺回 majorScan 那一页继续复制。最终缓存友好了。</p>
+
+<h3 id="多空间复制算法">多空间复制算法</h3>
+
+<p>GC 复制算法一次使用半个堆太浪费了，但是要保证 from 不能大于 to 的大小，所以就有人提出了把堆分成多个空间。其中一个空间是 from，另一个空间是 to，在这两个空间里使用 gc 复制算法，其他的采用标记清除算法。然后每次的 from 和 to 都不一样。</p>
+
+<p>思路也比较简单。假设空间的标号是 <code class="language-plaintext highlighter-rouge">[0, n-1]</code> (n&gt;2) , 那么我们令 0 为 to, 1 为 from，然后其他空间标记清扫，这两个空间 gc 复制。在复制之后， <code class="language-plaintext highlighter-rouge">to = from, from = (from+1)%n</code> .</p>
+
+<p>这样就综合了两种方法的优点和缺点，实际上是降低了标记清扫法每次停止的时间。然后也减少了标记清扫法产生的内存碎片问题。</p>
+
+
+                <hr style="visibility: hidden;">
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E7%AE%97%E6%B3%95%E5%92%8C%E5%AE%9E%E7%8E%B0/2022/01/21/%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E6%B3%95/" data-toggle="tooltip" data-placement="top" title="「垃圾回收的算法和实现」 第三章-引用计数法">
+                        Previous<br>
+                        <span>「垃圾回收的算法和实现」 第三章-引用计数法</span>
+                        </a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E7%AE%97%E6%B3%95%E5%92%8C%E5%AE%9E%E7%8E%B0/2022/01/23/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E6%A0%87%E8%AE%B0%E5%8E%8B%E7%BC%A9%E7%AE%97%E6%B3%95/" data-toggle="tooltip" data-placement="top" title="「垃圾回收的算法和实现」 第五章-标记压缩算法">
+                        Next<br>
+                        <span>「垃圾回收的算法和实现」 第五章-标记压缩算法</span>
+                        </a>
+                    </li>
+                    
+                </ul>
+                <hr style="visibility: hidden;">
+
+                
+
+                
+            </div>  
+
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+
+
+<section>
+    
+        <hr class="hidden-sm hidden-xs">
+    
+    <h5><a href="/archive/">FEATURED TAGS</a></h5>
+    <div class="tags">
+        
+        
+        
+        
+        
+        
+                <a data-sort="0090" 
+                    href="/archive/?tag=CodeNote"
+                    title="CodeNote"
+                    rel="92">CodeNote</a>
+        
+                <a data-sort="0155" 
+                    href="/archive/?tag=Web%E5%BC%80%E5%8F%91"
+                    title="Web开发"
+                    rel="27">Web开发</a>
+        
+                <a data-sort="0169" 
+                    href="/archive/?tag=%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B"
+                    title="软件工程"
+                    rel="13">软件工程</a>
+        
+                <a data-sort="0169" 
+                    href="/archive/?tag=SpringBoot"
+                    title="SpringBoot"
+                    rel="13">SpringBoot</a>
+        
+                <a data-sort="0173" 
+                    href="/archive/?tag=%E4%BA%92%E8%81%94%E7%BD%91%E6%9E%B6%E6%9E%84"
+                    title="互联网架构"
+                    rel="9">互联网架构</a>
+        
+                <a data-sort="0175" 
+                    href="/archive/?tag=%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E7%AE%97%E6%B3%95%E5%92%8C%E5%AE%9E%E7%8E%B0"
+                    title="垃圾回收的算法和实现"
+                    rel="7">垃圾回收的算法和实现</a>
+        
+                <a data-sort="0175" 
+                    href="/archive/?tag=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"
+                    title="设计模式"
+                    rel="7">设计模式</a>
+        
+                <a data-sort="0175" 
+                    href="/archive/?tag=android"
+                    title="android"
+                    rel="7">android</a>
+        
+                <a data-sort="0176" 
+                    href="/archive/?tag=DAO"
+                    title="DAO"
+                    rel="6">DAO</a>
+        
+                <a data-sort="0177" 
+                    href="/archive/?tag=%E6%95%B0%E6%8D%AE%E5%BA%93"
+                    title="数据库"
+                    rel="5">数据库</a>
+        
+                <a data-sort="0177" 
+                    href="/archive/?tag=Python"
+                    title="Python"
+                    rel="5">Python</a>
+        
+                <a data-sort="0177" 
+                    href="/archive/?tag=Vue"
+                    title="Vue"
+                    rel="5">Vue</a>
+        
+                <a data-sort="0178" 
+                    href="/archive/?tag=Unity"
+                    title="Unity"
+                    rel="4">Unity</a>
+        
+                <a data-sort="0178" 
+                    href="/archive/?tag=VSCode%E5%AD%A6%E4%B9%A0"
+                    title="VSCode学习"
+                    rel="4">VSCode学习</a>
+        
+                <a data-sort="0179" 
+                    href="/archive/?tag=%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"
+                    title="版本控制"
+                    rel="3">版本控制</a>
+        
+                <a data-sort="0179" 
+                    href="/archive/?tag=View"
+                    title="View"
+                    rel="3">View</a>
+        
+                <a data-sort="0180" 
+                    href="/archive/?tag=C%2B%2B"
+                    title="C++"
+                    rel="2">C++</a>
+        
+                <a data-sort="0180" 
+                    href="/archive/?tag=Java"
+                    title="Java"
+                    rel="2">Java</a>
+        
+                <a data-sort="0180" 
+                    href="/archive/?tag=Kotlin"
+                    title="Kotlin"
+                    rel="2">Kotlin</a>
+        
+                <a data-sort="0180" 
+                    href="/archive/?tag=Linux"
+                    title="Linux"
+                    rel="2">Linux</a>
+    </div>
+</section>
+
+
+                <!-- Friends Blog -->
+                
+<hr>
+<h5>FRIENDS</h5>
+<ul class="list-inline">
+  
+  <li><a href="http://www.criinal.com/">Criinal</a></li>
+  
+</ul>
+
+            </div>
+        </div>
+    </div>
+</article>
+
+<!-- add support for mathjax by voleking-->
+
+
+
+
+
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'hover',
+          placement: 'right',
+          // icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <!-- SNS Link -->
+                
+
+
+<ul class="list-inline text-center">
+
+
+  
+  
+  
+  
+  
+  
+  <li>
+    <a target="_blank" href="https://github.com/Dawn-K">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-circle fa-stack-2x"></i>
+        <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+      </span>
+    </a>
+  </li>
+  
+  
+</ul>
+
+                <p class="copyright text-muted">
+                    Copyright &copy; Dawn-K's Blog 2022
+                    <br>
+                    Powered by <a href="http://huangxuan.me">Hux Blog</a> |
+                    <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="100px"
+                        height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=huxpro&repo=huxpro.github.io&type=star&count=true">
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Currently, only navbar scroll-down effect at desktop still depends on this -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js "></script>
+
+<!-- Simple Jekyll Search -->
+<script src="/js/simple-jekyll-search.min.js"></script>
+
+<!-- Service Worker -->
+
+<script src="/js/snackbar.js "></script>
+<script src="/js/sw-registration.js "></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+        var d = document, t = 'script',
+            o = d.createElement(t),
+            s = d.getElementsByTagName(t)[0];
+        o.src = u;
+        if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+        s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!--
+     Because of the native support for backtick-style fenced code blocks
+     right within the Markdown is landed in Github Pages,
+     From V1.6, There is no need for Highlight.js,
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/
+     - https://github.com/jneen/rouge/wiki/list-of-supported-languages-and-lexers
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+
+
+
+
+
+<!--fastClick.js -->
+<script>
+    async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function () {
+        var $nav = document.querySelector("nav");
+        if ($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+<!-- Baidu Tongji -->
+
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog(selector) {
+
+        // interop with multilangual 
+        if ('' == 'true') {
+            _containerSelector = 'div.post-container.active'
+        } else {
+            _containerSelector = 'div.post-container'
+        }
+
+        // init
+        var P = $(_containerSelector), a, n, t, l, i, c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+
+        // clean
+        $(selector).html('')
+
+        // appending
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#" + $(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="' + i + '" rel="nofollow">' + t + '</a>');
+            l = $('<li class="' + n + '_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function (e) {
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+<!-- Multi-Lingual -->
+
+
+<!-- Simple Jekyll Search -->
+<script>
+    // https://stackoverflow.com/questions/1912501/unescape-html-entities-in-javascript
+    function htmlDecode(input) {
+        var e = document.createElement('textarea');
+        e.innerHTML = input;
+        // handle case of empty input
+        return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+    }
+
+    SimpleJekyllSearch({
+        searchInput: document.getElementById('search-input'),
+        resultsContainer: document.getElementById('search-results'),
+        json: '/search.json',
+        searchResultTemplate: '<div class="post-preview item"><a href="{url}"><h2 class="post-title">{title}</h2><h3 class="post-subtitle">{subtitle}</h3><hr></a></div>',
+        noResultsText: 'No results',
+        limit: 50,
+        fuzzy: false,
+        // a hack to get escaped subtitle unescaped. for some reason, 
+        // post.subtitle w/o escape filter nuke entire search.
+        templateMiddleware: function (prop, value, template) {
+            if (prop === 'subtitle' || prop === 'title') {
+                if (value.indexOf("code")) {
+                    return htmlDecode(value);
+                } else {
+                    return value;
+                }
+            }
+        }
+    });
+
+    $(document).ready(function () {
+        var $searchPage = $('.search-page');
+        var $searchOpen = $('.search-icon');
+        var $searchClose = $('.search-icon-close');
+        var $searchInput = $('#search-input');
+        var $body = $('body');
+
+        $searchOpen.on('click', function (e) {
+            e.preventDefault();
+            $searchPage.toggleClass('search-active');
+            var prevClasses = $body.attr('class') || '';
+            setTimeout(function () {
+                $body.addClass('no-scroll');
+            }, 400)
+
+            if ($searchPage.hasClass('search-active')) {
+                $searchClose.on('click', function (e) {
+                    e.preventDefault();
+                    $searchPage.removeClass('search-active');
+                    $body.attr('class', prevClasses);  // from closure 
+                });
+                $searchInput.focus();
+            }
+        });
+    });
+</script>
+
+
+<!-- Image to hack wechat -->
+<img src="/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>

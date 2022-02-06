@@ -153,6 +153,8 @@
                         
                         
                         
+                        
+                        
                         <li class="search-icon">
                             <a href="javascript:void(0)">
                                 <i class="fa fa-search"></i>
@@ -277,6 +279,255 @@
             ">
     			
 <div class="post-preview">
+    <a href="/codenote/2019/10/05/tarjan%E6%B1%82LCA/" target="_blank">
+        <h2 class="post-title">
+            「CodeNote」 tarjan求LCA
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            tarjan求LCA
+
+介绍
+
+第三种求LCA的方法,离线的.
+
+但是实现时如果用STL,就还不如在线的算法快(已在洛谷实验过).
+
+算法
+
+算法是这样的,首先建图,然后将查询用邻接表的方式存下.
+
+然后从根节点进行dfs,然后每访问到一个节点,就标记.在访问了一个节点u的过程中,将它的子节点都dfs一下.然后用并查集将u,v合并(u作为父亲)
+
+然后处理完节点u的所有子节点之后,开始进行处...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on October
+        5, 2019
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/codenote/2019/10/02/%E5%80%8D%E5%A2%9E%E6%B1%82LCA/" target="_blank">
+        <h2 class="post-title">
+            「CodeNote」 倍增求LCA
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            倍增求LCA
+
+参考资料
+
+介绍
+
+LCA的求法已经在之前的笔记中记载过,一共有三种.
+
+
+  ST表.预处理时空复杂度都是O(nlogn),单次询问O(1).在线
+  倍增法.预处理时空复杂度O(nlogn),单次询问O(logn).在线
+  tarjan.复杂度O(n+q).离线
+
+
+倍增
+
+倍增是一种对暴力的优化方式.
+
+我们用p[i][j]表示i号节点的第$2^j$ 层祖先(j=0时...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on October
+        2, 2019
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/codenote/2019/10/01/%E5%8F%8C%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F/" target="_blank">
+        <h2 class="post-title">
+            「CodeNote」 双连通分量
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            双连通分量
+
+参考资料
+
+参考资料2
+
+[TOC]
+
+介绍
+
+
+  若一个无向连通图不存在割点，则称它为“点双连通图”。若一个无向连通图不存在割边，则称它为“边双连通图”。
+无向图的极大点双连通子图称为“点双连通分量”，简记为“v-DCC”。无向连通图的极大边双连通子图被称为“边双连通分量”，简记为“e-DCC”。二者统称为“双连通分量”，简记为“DCC”。
+
+
+树的割顶
+
+(割顶和割点没区...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on October
+        1, 2019
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/codenote/2019/09/26/%E6%AC%A1%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/" target="_blank">
+        <h2 class="post-title">
+            「CodeNote」 次小生成树
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            次小生成树
+
+介绍
+
+
+  次小生成树是就是第二小的生成树.其权值可能和最小生成树一样,也可能稍大于最小生成树.
+
+  另外还有严格最小生成树,就是指权值大于最小生成树的最小的生成树,以下先介绍非严格的.
+
+
+算法
+
+次小生成树有现有的模板,思路主要是魔改最小生成树的模板.基于Prim和Kruskal .
+
+在求出最小生成树(以下简称mst)后,尝试将其他边加入,这样必然会生成环,去掉环中除...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on September
+        26, 2019
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/codenote/2019/09/22/JAVA%E7%AE%80%E5%8D%95%E8%AF%AD%E6%B3%95/" target="_blank">
+        <h2 class="post-title">
+            「CodeNote」 JAVA简单语法
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            JAVA简单语法
+
+简介
+
+  总结一下java的简单语法,比赛用
+
+
+格式
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+// 注意java没有 long long ,只有long
+import java.io.*;
+import java.util.*;
+import java.math.BigInteger;
+Scanner cin = new Scanner(new BufferedI...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on September
+        22, 2019
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/codenote/2019/09/17/19%E7%89%9B%E5%AE%A2%E7%AC%AC%E5%9B%9B%E5%9C%BAD(%E6%95%B0%E5%AD%A6+%E6%80%9D%E7%BB%B4)/" target="_blank">
+        <h2 class="post-title">
+            「CodeNote」 19牛客第四场D(数学+思维)
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            19牛客第四场D(数学+思维)
+
+题目链接
+
+题目
+
+
+  给出一个数n,要求输出尽可能少的一组数,使得这一组数或 的结果恰好等于n,而且给出的数都是3的倍数,题目保证一定有解.
+
+
+思路
+
+这个题咋看之下不太好做,因为3的倍数在二进制上并没有明显规律.
+
+显然我们发现如果$n$本身就是3的倍数的话,那么直接输出n即可.
+
+问题就在于如果$n$不是3的倍数的情况.
+
+关于这种构造题,我们还是...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on September
+        17, 2019
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/codenote/2019/09/17/19%E7%89%9B%E5%AE%A2%E5%A4%9A%E6%A0%A1%E7%AC%AC%E5%9B%9B%E5%9C%BAC(%E6%9E%9A%E4%B8%BE+%E5%89%8D%E7%BC%80%E5%92%8C+%E5%8D%95%E8%B0%83%E6%A0%88)/" target="_blank">
+        <h2 class="post-title">
+            「CodeNote」 19牛客多校第四场C(枚举+前缀和+单调栈)
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            19牛客多校第四场C(枚举+前缀和+单调栈)
+
+题目链接
+
+题意
+
+
+  给你两个长度为$n$的序列,第一个称为$a$,第二个称为$b$ .然后求$\displaystyle \max_{1 \le l \le r \le n} {min(a_{l \dots r}) \times sum(b_{l \dots r})}$
+
+
+分析
+
+首先不难想到通过前缀和以及ST表优化只有,此题有$O(n...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on September
+        17, 2019
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/codenote/2019/09/14/%E7%BA%BF%E6%80%A7%E5%9F%BA/" target="_blank">
         <h2 class="post-title">
             「CodeNote」 线性基
@@ -382,248 +633,6 @@ KMP算法通过模式串自身的性质，来减少匹配的...
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/codenote/2019/08/07/K%E7%9F%AD%E8%B7%AF/" target="_blank">
-        <h2 class="post-title">
-            「CodeNote」 K短路
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            K短路
-
-简介
-
-K短路是个图论中的著名问题，即给出一个图，给出起点和终点，要求输出第k短的路的长度（第1短的就是最短路，第2短的就是次短路）
-
-思想
-
-这个地方采用了A*算法（第一次写关于这个算法的模板）。我们慢慢分析。首先，用BFS，如果不设置vis[]数组，也就是让点只要可达就直接扩展，不考虑重复的情况下，第k次扩展到终点的路就是k短路。但是显然其时空复杂度非常高。我们就针对这个特点进...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on August
-        7, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/codenote/2019/08/06/%E9%A9%AC%E6%8B%89%E8%BD%A6%E7%AE%97%E6%B3%95/" target="_blank">
-        <h2 class="post-title">
-            「CodeNote」 马拉车算法
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            马拉车算法
-
-参考资料
-
-[TOC]
-
-简介
-
-
-  马拉车算法是一种在O(n)时间内求一个字符串的最长回文子串的算法
-
-
-思路
-
-对于最长回文子串,我们可以有很多朴素算法
-
-
-  比如穷举所有子串,然后验证这些子串是否是回文的,这样的复杂度是O(n^3),
-  比如我们遍历数组,对于每一个元素,我们都认为其是某个回文子串的中心,我们同时向两边伸展,然后取其中的最大值,这样的算法的复杂度是O...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on August
-        6, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/codenote/2019/08/06/%E9%9A%8F%E6%89%8B%E8%AE%B0/" target="_blank">
-        <h2 class="post-title">
-            「CodeNote」 随手记
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            随手记
-
-
-  
-    链式前向星(临接表优化版)
-  
-  
-    SPFA算法(解决负权图，如果瞎优化会变成指数复杂度)
-  
-  
-    反向建图(这个应该是和路径输出有关，具体再分析)
-  
-  
-    最大连续子序列和(动态规划大法好 O(n)复杂度)，或者也可以维护前缀和最小值，
-  
-  
-    给出阶梯博弈(尼姆进阶版)先手必胜的条件：当且仅当所有奇数上的台阶的石子...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on August
-        6, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/codenote/2019/08/06/%E9%93%BE%E5%BC%8F%E5%89%8D%E5%90%91%E6%98%9F/" target="_blank">
-        <h2 class="post-title">
-            「CodeNote」 链式前向星
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            链式前向星
-
-介绍
-
-链式前向星是一种用于存图的数据结构,比较适用于存稀疏图.其综合了邻接表,邻接矩阵的优缺点,然后在前向星的基础上进行改进.
-
-时间复杂度,空间复杂度,查询复杂度都是O(m)
-
-初始化
-
-1
-2
-3
-4
-void CFSInit() { // 链式前向星初始化
-    cnt = 1; // 其实这里是0也无所谓
-    memset(head, 0, sizeof(hea...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on August
-        6, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/codenote/2019/08/06/%E8%AE%AD%E7%BB%83%E8%81%94%E7%9B%9F%E7%AC%AC%E4%B8%80%E5%9C%BA/" target="_blank">
-        <h2 class="post-title">
-            「CodeNote」 训练联盟第一场
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            训练联盟 第一场
-
-
-  日拱一卒,功不唐捐
-
-
-A. 图像压缩四叉树
-
-题目描述
-
-四叉树把大量坐标数据压缩包存在内存空间中，它总是将给定空间分割成4个，然后以递归形式标识，故得名四叉树。其最著名的应用是对黑白图像的压缩。
-
-四叉树会用字符串的形式对 2^N * 2 ^N的黑白图像进行如下压缩。
-
-- 如果所有像素是黑色，无论图像大小是多少，四叉树压缩的结构都是b；
-
-- 图像所有像素是白...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on August
-        6, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/codenote/2019/08/06/%E8%AE%A1%E7%AE%97%E5%87%A0%E4%BD%95/" target="_blank">
-        <h2 class="post-title">
-            「CodeNote」 计算几何
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            计算几何
-
-矩阵交
-
-判断两个矩阵交及矩阵相交面积
-
-给出两个矩形(每个矩形给出左上角坐标和右下角坐标),快速判断两个矩形有没有相交(此处指重合面积大于0)
-
-判断方法(图有点小,凑活着看)
-
-
-
-我们假设矩形 a ((x1,y1),(x2,y2)) , b ((x1',y1'),(x2',y2'))
-
-则判断矩形相交的条件为 max(x1,x1') &lt; min(x2,x2') &am...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on August
-        6, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/codenote/2019/08/06/%E8%83%8C%E5%8C%85%E5%AD%A6%E4%B9%A0%E5%BF%83%E5%BE%97/" target="_blank">
-        <h2 class="post-title">
-            「CodeNote」 背包学习心得
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            动态规划初步
-
-[TOC]
-
-动态规划认知
-
-
-
-​	在问题满足最优性原理之后，用动态规划解决问题的核心就在于填表，表填写完毕，最优解也就找到。
-
-01 背包
-
-
-
-问题
-
-有n件物品和一个容量为m的背包，放入第ｉ件物品所需要的空间为ｗi，第ｉ件物品的价值为vｉ，问背包可以放入物品的最大价值为多少？
-
-
-  
-    此问题不可用贪心算法，贪心法得到的往往不是最优解。
-    直接暴力穷举n...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on August
-        6, 2019
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -663,97 +672,102 @@ A. 图像压缩四叉树
         
         
         
-                <a data-sort="0083" 
+                <a data-sort="0090" 
                     href="/archive/?tag=CodeNote"
                     title="CodeNote"
                     rel="92">CodeNote</a>
         
-                <a data-sort="0148" 
+                <a data-sort="0155" 
                     href="/archive/?tag=Web%E5%BC%80%E5%8F%91"
                     title="Web开发"
                     rel="27">Web开发</a>
         
-                <a data-sort="0162" 
+                <a data-sort="0169" 
                     href="/archive/?tag=%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B"
                     title="软件工程"
                     rel="13">软件工程</a>
         
-                <a data-sort="0162" 
+                <a data-sort="0169" 
                     href="/archive/?tag=SpringBoot"
                     title="SpringBoot"
                     rel="13">SpringBoot</a>
         
-                <a data-sort="0166" 
+                <a data-sort="0173" 
                     href="/archive/?tag=%E4%BA%92%E8%81%94%E7%BD%91%E6%9E%B6%E6%9E%84"
                     title="互联网架构"
                     rel="9">互联网架构</a>
         
-                <a data-sort="0168" 
+                <a data-sort="0175" 
+                    href="/archive/?tag=%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E7%AE%97%E6%B3%95%E5%92%8C%E5%AE%9E%E7%8E%B0"
+                    title="垃圾回收的算法和实现"
+                    rel="7">垃圾回收的算法和实现</a>
+        
+                <a data-sort="0175" 
                     href="/archive/?tag=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"
                     title="设计模式"
                     rel="7">设计模式</a>
         
-                <a data-sort="0168" 
+                <a data-sort="0175" 
                     href="/archive/?tag=android"
                     title="android"
                     rel="7">android</a>
         
-                <a data-sort="0169" 
+                <a data-sort="0176" 
                     href="/archive/?tag=DAO"
                     title="DAO"
                     rel="6">DAO</a>
         
-                <a data-sort="0170" 
+                <a data-sort="0177" 
                     href="/archive/?tag=%E6%95%B0%E6%8D%AE%E5%BA%93"
                     title="数据库"
                     rel="5">数据库</a>
         
-                <a data-sort="0170" 
+                <a data-sort="0177" 
                     href="/archive/?tag=Python"
                     title="Python"
                     rel="5">Python</a>
         
-                <a data-sort="0170" 
+                <a data-sort="0177" 
                     href="/archive/?tag=Vue"
                     title="Vue"
                     rel="5">Vue</a>
         
-                <a data-sort="0171" 
+                <a data-sort="0178" 
                     href="/archive/?tag=Unity"
                     title="Unity"
                     rel="4">Unity</a>
         
-                <a data-sort="0171" 
+                <a data-sort="0178" 
                     href="/archive/?tag=VSCode%E5%AD%A6%E4%B9%A0"
                     title="VSCode学习"
                     rel="4">VSCode学习</a>
         
-                <a data-sort="0172" 
+                <a data-sort="0179" 
                     href="/archive/?tag=%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"
                     title="版本控制"
                     rel="3">版本控制</a>
         
-                <a data-sort="0172" 
+                <a data-sort="0179" 
                     href="/archive/?tag=View"
                     title="View"
                     rel="3">View</a>
         
-                <a data-sort="0173" 
+                <a data-sort="0180" 
                     href="/archive/?tag=C%2B%2B"
                     title="C++"
                     rel="2">C++</a>
         
-                <a data-sort="0173" 
+                <a data-sort="0180" 
                     href="/archive/?tag=Java"
                     title="Java"
                     rel="2">Java</a>
         
-                <a data-sort="0173" 
+                <a data-sort="0180" 
                     href="/archive/?tag=Kotlin"
                     title="Kotlin"
                     rel="2">Kotlin</a>
         
-                <a data-sort="0173" 
+                <a data-sort="0180" 
                     href="/archive/?tag=Linux"
                     title="Linux"
                     rel="2">Linux</a>
@@ -847,7 +861,7 @@ A. 图像压缩四叉树
 </ul>
 
                 <p class="copyright text-muted">
-                    Copyright &copy; Dawn-K's Blog 2021
+                    Copyright &copy; Dawn-K's Blog 2022
                     <br>
                     Powered by <a href="http://huangxuan.me">Hux Blog</a> |
                     <iframe style="margin-left: 2px; margin-bottom:-5px;" frameborder="0" scrolling="0" width="100px"
