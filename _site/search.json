@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "「CodeNote」 kickstart2022D",
+      "subtitle" : "",
+      "tags"     : "CodeNote",
+      "url"      : "/codenote/2022/07/10/kickstart2022D/",
+      "date"     : "2022-07-10 00:00:00 +0800"
+    } ,
+  
+    {
       "title"    : "「Linux」 X11 转发",
       "subtitle" : "",
       "tags"     : "Linux",
