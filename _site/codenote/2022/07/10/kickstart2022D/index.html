@@ -320,11 +320,15 @@
 
 <h2 id="范围">范围</h2>
 
-<p>$1≤T≤100$
-$1≤N≤1e4.$
-$1≤M≤1e4.$
-$1≤M≤N.$
-$1≤Ai≤1e5$</p>
+<p><code class="language-plaintext highlighter-rouge">1≤T≤100</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">1≤N≤1e4.</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">1≤M≤1e4.</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">1≤M≤N.</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">1≤Ai≤1e5</code></p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -360,12 +364,9 @@ Case #2: 5.0
 
 <h2 id="思路">思路</h2>
 
-<p>通过样例可以观察出。如果对于 $n-1 == m$的情况（也就是原题中小测试点的情况），最优解必然是让最小的两个放在一起，然后其他的各自占一个类别。</p>
+<p>通过样例可以观察出。如果对于 <code class="language-plaintext highlighter-rouge">n-1 == m</code>的情况（也就是原题中小测试点的情况），最优解必然是让最小的两个放在一起，然后其他的各自占一个类别。</p>
 
 <p>由这个思路扩展，可以得到： 从大到小排序，然后顺序先放置m-1个任务，它们每个都单独占据一个类别。其余的全都放在一个类别中。</p>
-
-<p>but why?
-可以粗略证明一下：</p>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -452,11 +453,15 @@ Case #2: 5.0
 <p>给你两个任务A，B。 每个任务是一个数组，长度分别为n, m。数组每个元素是一个整数，表示子任务的值。做子任务的时候只能选择任意任务中最左侧或者最右侧的未完成的子任务。
 你总共能选择K个子任务。求能做的子任务值的和的最大值。</p>
 
-<p>$1≤T≤100.$
-$1≤N≤6000.$
-$1≤M≤6000.$
-$1≤Ai, Bi≤1e9$
-$1≤K≤N+M.$</p>
+<p><code class="language-plaintext highlighter-rouge">1≤T≤100</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">1≤N≤6000</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">1≤M≤6000</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">1≤Ai, Bi≤1e9</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">1≤K≤N+M</code></p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -510,15 +515,17 @@ Case #2: 148
 
 <p>在AB两个任务中总共选K个，可见，两个任务之间是没有影响，也没有顺序关系的。不妨就认为先选A，剩下的选B中的任务。</p>
 
-<p>定义问题为
-$dpa[i]$ 表示在A中选择i个子任务所得的最大值
-$dpb[i]$ 同理，表示在B中。</p>
+<p>定义问题为</p>
+
+<p><code class="language-plaintext highlighter-rouge">dpa[i]</code> 表示在A中选择i个子任务所得的最大值</p>
+
+<p><code class="language-plaintext highlighter-rouge">dpb[i]</code> 同理，表示在B中。</p>
 
 <p>这样我们只需要遍历K个子任务的分配（分成两部分就是K+1种分配方式）</p>
 
-<p>对于 $dpa[i]$来说, 从左右取的顺序是无关的，可以看做先连续取左边，再连续取右边。因此问题可以进一步分解成，$left<a href="j&lt;=i">j</a>$，也就是我们枚举从左侧连续选j个，从右侧连续选i-j个。这样求解dpa的时间复杂度就是$O(n^2)$.</p>
+<p>对于 <code class="language-plaintext highlighter-rouge">dpa[i]</code> 来说, 从左右取的顺序是无关的，可以看做先连续取左边，再连续取右边。因此问题可以进一步分解成， <code class="language-plaintext highlighter-rouge">left[j](j&lt;=i)</code> ，也就是我们枚举从左侧连续选j个，从右侧连续选i-j个。这样求解dpa的时间复杂度就是 <code class="language-plaintext highlighter-rouge">O(n^2)</code> .</p>
 
-<p>求解dpb同理，复杂度$O(m^2)$.</p>
+<p>求解dpb同理，复杂度 <code class="language-plaintext highlighter-rouge">O(m^2)</code> .</p>
 
 <p>然后遍历一下 K 的拆分就可以了。</p>
 
@@ -670,23 +677,19 @@ $dpb[i]$ 同理，表示在B中。</p>
 
 <p>打字遵循如下规则：打字不需要花时间，只有移动才花时间。开始的第一个字符是不需要时间的（就是可以瞬间移动到要打的第一个字符上）</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>然后移动的时间是两个字符之间的距离$</td>
-      <td>j-i</td>
-      <td>$。求打S所需的最小移动时间。</td>
-    </tr>
-  </tbody>
-</table>
+<p>然后移动的时间是两个字符之间的距离 <code class="language-plaintext highlighter-rouge">|j-i|</code> 。求打S所需的最小移动时间。</p>
 
 <h2 id="范围-1">范围</h2>
 
-<p>$1≤T≤100.$
-$1≤Ki≤2500.$
-$1≤Si≤2500.$
-$1≤N≤2500.$
-$1≤M≤2500.$</p>
+<p><code class="language-plaintext highlighter-rouge">1≤T≤100.</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">1≤Ki≤2500.</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">1≤Si≤2500.</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">1≤N≤2500.</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">1≤M≤2500.</code></p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -992,13 +995,19 @@ Case #2: 0
 
 <h2 id="范围-2">范围</h2>
 
-<p>$1≤T≤100.$
-$2≤N≤105.$
-$1≤M≤105.$
-$1≤Ai≤N$
-$1≤Bi≤N$
-$Ai≠Bi$
-$(Ai, Bi)≠(Aj, Bj)$</p>
+<p><code class="language-plaintext highlighter-rouge">1≤T≤100.</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">2≤N≤105.</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">1≤M≤105.</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">1≤Ai≤N</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">1≤Bi≤N</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">Ai≠Bi</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">(Ai, Bi)≠(Aj, Bj)</code></p>
 
 <p>小数据 K =  1
 大数据 K &lt;= 20</p>

@@ -5,8 +5,8 @@
     <description>From ashes to the empire</description>
     <link>http://dawnk.gitee.io//</link>
     <atom:link href="http://dawnk.gitee.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 10 Jul 2022 21:28:01 +0800</pubDate>
-    <lastBuildDate>Sun, 10 Jul 2022 21:28:01 +0800</lastBuildDate>
+    <pubDate>Sun, 10 Jul 2022 21:38:19 +0800</pubDate>
+    <lastBuildDate>Sun, 10 Jul 2022 21:38:19 +0800</lastBuildDate>
     <generator>Jekyll v4.2.0</generator>
     
       <item>
@@ -25,11 +25,15 @@
 
 &lt;h2 id=&quot;范围&quot;&gt;范围&lt;/h2&gt;
 
-&lt;p&gt;$1≤T≤100$
-$1≤N≤1e4.$
-$1≤M≤1e4.$
-$1≤M≤N.$
-$1≤Ai≤1e5$&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1≤T≤100&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1≤N≤1e4.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1≤M≤1e4.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1≤M≤N.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1≤Ai≤1e5&lt;/code&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
 2
@@ -65,12 +69,9 @@ Case #2: 5.0
 
 &lt;h2 id=&quot;思路&quot;&gt;思路&lt;/h2&gt;
 
-&lt;p&gt;通过样例可以观察出。如果对于 $n-1 == m$的情况（也就是原题中小测试点的情况），最优解必然是让最小的两个放在一起，然后其他的各自占一个类别。&lt;/p&gt;
+&lt;p&gt;通过样例可以观察出。如果对于 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;n-1 == m&lt;/code&gt;的情况（也就是原题中小测试点的情况），最优解必然是让最小的两个放在一起，然后其他的各自占一个类别。&lt;/p&gt;
 
 &lt;p&gt;由这个思路扩展，可以得到： 从大到小排序，然后顺序先放置m-1个任务，它们每个都单独占据一个类别。其余的全都放在一个类别中。&lt;/p&gt;
-
-&lt;p&gt;but why?
-可以粗略证明一下：&lt;/p&gt;
 
 &lt;div class=&quot;language-cpp highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
 2
@@ -157,11 +158,15 @@ Case #2: 5.0
 &lt;p&gt;给你两个任务A，B。 每个任务是一个数组，长度分别为n, m。数组每个元素是一个整数，表示子任务的值。做子任务的时候只能选择任意任务中最左侧或者最右侧的未完成的子任务。
 你总共能选择K个子任务。求能做的子任务值的和的最大值。&lt;/p&gt;
 
-&lt;p&gt;$1≤T≤100.$
-$1≤N≤6000.$
-$1≤M≤6000.$
-$1≤Ai, Bi≤1e9$
-$1≤K≤N+M.$&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1≤T≤100&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1≤N≤6000&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1≤M≤6000&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1≤Ai, Bi≤1e9&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1≤K≤N+M&lt;/code&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
 2
@@ -215,15 +220,17 @@ Case #2: 148
 
 &lt;p&gt;在AB两个任务中总共选K个，可见，两个任务之间是没有影响，也没有顺序关系的。不妨就认为先选A，剩下的选B中的任务。&lt;/p&gt;
 
-&lt;p&gt;定义问题为
-$dpa[i]$ 表示在A中选择i个子任务所得的最大值
-$dpb[i]$ 同理，表示在B中。&lt;/p&gt;
+&lt;p&gt;定义问题为&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dpa[i]&lt;/code&gt; 表示在A中选择i个子任务所得的最大值&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dpb[i]&lt;/code&gt; 同理，表示在B中。&lt;/p&gt;
 
 &lt;p&gt;这样我们只需要遍历K个子任务的分配（分成两部分就是K+1种分配方式）&lt;/p&gt;
 
-&lt;p&gt;对于 $dpa[i]$来说, 从左右取的顺序是无关的，可以看做先连续取左边，再连续取右边。因此问题可以进一步分解成，$left&lt;a href=&quot;j&amp;lt;=i&quot;&gt;j&lt;/a&gt;$，也就是我们枚举从左侧连续选j个，从右侧连续选i-j个。这样求解dpa的时间复杂度就是$O(n^2)$.&lt;/p&gt;
+&lt;p&gt;对于 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dpa[i]&lt;/code&gt; 来说, 从左右取的顺序是无关的，可以看做先连续取左边，再连续取右边。因此问题可以进一步分解成， &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;left[j](j&amp;lt;=i)&lt;/code&gt; ，也就是我们枚举从左侧连续选j个，从右侧连续选i-j个。这样求解dpa的时间复杂度就是 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;O(n^2)&lt;/code&gt; .&lt;/p&gt;
 
-&lt;p&gt;求解dpb同理，复杂度$O(m^2)$.&lt;/p&gt;
+&lt;p&gt;求解dpb同理，复杂度 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;O(m^2)&lt;/code&gt; .&lt;/p&gt;
 
 &lt;p&gt;然后遍历一下 K 的拆分就可以了。&lt;/p&gt;
 
@@ -375,23 +382,19 @@ $dpb[i]$ 同理，表示在B中。&lt;/p&gt;
 
 &lt;p&gt;打字遵循如下规则：打字不需要花时间，只有移动才花时间。开始的第一个字符是不需要时间的（就是可以瞬间移动到要打的第一个字符上）&lt;/p&gt;
 
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;然后移动的时间是两个字符之间的距离$&lt;/td&gt;
-      &lt;td&gt;j-i&lt;/td&gt;
-      &lt;td&gt;$。求打S所需的最小移动时间。&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
+&lt;p&gt;然后移动的时间是两个字符之间的距离 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;|j-i|&lt;/code&gt; 。求打S所需的最小移动时间。&lt;/p&gt;
 
 &lt;h2 id=&quot;范围-1&quot;&gt;范围&lt;/h2&gt;
 
-&lt;p&gt;$1≤T≤100.$
-$1≤Ki≤2500.$
-$1≤Si≤2500.$
-$1≤N≤2500.$
-$1≤M≤2500.$&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1≤T≤100.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1≤Ki≤2500.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1≤Si≤2500.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1≤N≤2500.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1≤M≤2500.&lt;/code&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;table class=&quot;rouge-table&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;rouge-gutter gl&quot;&gt;&lt;pre class=&quot;lineno&quot;&gt;1
 2
@@ -697,13 +700,19 @@ Case #2: 0
 
 &lt;h2 id=&quot;范围-2&quot;&gt;范围&lt;/h2&gt;
 
-&lt;p&gt;$1≤T≤100.$
-$2≤N≤105.$
-$1≤M≤105.$
-$1≤Ai≤N$
-$1≤Bi≤N$
-$Ai≠Bi$
-$(Ai, Bi)≠(Aj, Bj)$&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1≤T≤100.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;2≤N≤105.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1≤M≤105.&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1≤Ai≤N&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1≤Bi≤N&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Ai≠Bi&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;(Ai, Bi)≠(Aj, Bj)&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;小数据 K =  1
 大数据 K &amp;lt;= 20&lt;/p&gt;
