@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "「软件工程」 metaprogramming",
+      "subtitle" : "",
+      "tags"     : "软件工程, Missing-Semester",
+      "url"      : "/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/2022/09/28/metaprogramming/",
+      "date"     : "2022-09-28 00:00:00 +0800"
+    } ,
+  
+    {
       "title"    : "「CodeNote」 kickstart2022D",
       "subtitle" : "",
       "tags"     : "CodeNote",
@@ -227,7 +235,7 @@
     {
       "title"    : "「Linux」 Shell",
       "subtitle" : "",
-      "tags"     : "Linux",
+      "tags"     : "Linux, Missing-Semester",
       "url"      : "/linux/2021/02/08/Shell/",
       "date"     : "2021-02-08 00:00:00 +0800"
     } ,

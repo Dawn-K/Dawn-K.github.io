@@ -5,9 +5,68 @@
     <description>From ashes to the empire</description>
     <link>http://dawnk.gitee.io//</link>
     <atom:link href="http://dawnk.gitee.io//feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Sun, 10 Jul 2022 21:38:19 +0800</pubDate>
-    <lastBuildDate>Sun, 10 Jul 2022 21:38:19 +0800</lastBuildDate>
+    <pubDate>Wed, 28 Sep 2022 21:03:53 +0800</pubDate>
+    <lastBuildDate>Wed, 28 Sep 2022 21:03:53 +0800</lastBuildDate>
     <generator>Jekyll v4.2.0</generator>
+    
+      <item>
+        <title>「软件工程」 metaprogramming</title>
+        <description>&lt;h1 id=&quot;概述&quot;&gt;概述&lt;/h1&gt;
+
+&lt;p&gt;The Missing semester 的 metadataprograming 这节课不是讲某个特定的技术, 也并不是讲编程语言中的元编程, 而是讲软件工程中的一些工具.&lt;/p&gt;
+
+&lt;h2 id=&quot;构建工具&quot;&gt;构建工具&lt;/h2&gt;
+
+&lt;p&gt;大型复杂的软件通常构建起来也很复杂. 有很多的步骤, 而且步骤之间还有依赖关系. 构建工具就能帮助我们自动化的进行构建过程, 并且在每次构建时都会分析出最少需要新构建的内容. 以 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;make&lt;/code&gt; 为例.&lt;/p&gt;
+
+&lt;p&gt;关于 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;make&lt;/code&gt; , 已经在 &lt;a href=&quot;./makefile.md&quot;&gt;makefile&lt;/a&gt;中学习过了, 不再赘述。&lt;/p&gt;
+
+&lt;h2 id=&quot;依赖管理&quot;&gt;依赖管理&lt;/h2&gt;
+
+&lt;p&gt;大型的, 维护周期长的软件和库往往具有多个版本, 并且被大量依赖. 因此我们对版本命名有要求:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;major version&amp;gt;.&amp;lt;minor number&amp;gt;.&amp;lt;patch version&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;对于API没有任何外界可感知的修改, 比如修复了bug, 则只增加 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;patch version&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;对于API有功能的添加, 并且后向兼容, 那么就增加&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;minor number&lt;/code&gt;, 并且将&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;patch version&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;不兼容的更改, 就增加&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;major version&lt;/code&gt;, 并且将后两个清零&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;此外还有 lock file 这个概念, 是说一个文件, 列出了自己所需要的依赖的确切版本, 通常需要自己手动才能升级到更新的版本. 这种往往是出于安全和稳定的角度考虑.&lt;/p&gt;
+
+&lt;h2 id=&quot;持续集成&quot;&gt;持续集成&lt;/h2&gt;
+
+&lt;p&gt;持续集成(Continuous Integration, CI) 可以理解为在代码发生变更时自动执行的脚本. 比如在有commit时, 有pull request时自动执行单元测试, 代码审查, 自动构建等等。或者是来自外界的, 比如项目有个依赖更新了, 这个更新是兼容的, 可以让github bots自动生成新的依赖配置文件, 然后自动发起pull request.&lt;/p&gt;
+
+&lt;h2 id=&quot;测试&quot;&gt;测试&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;单元测试(Unit test). 只测试特定功能.&lt;/li&gt;
+  &lt;li&gt;集成测试(Integration test). 测试多个组件的配合.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;回归测试(Regress test). 将之前出现的错误也写个测试, 防止之后的修改再触发之前的错误.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;测试套件(Test suite). 所有测试的总称.&lt;/li&gt;
+  &lt;li&gt;模拟(Mock). 以虚假的实现替代外部依赖.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;参考资料&quot;&gt;参考资料&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://missing.csail.mit.edu/2020/metaprogramming/&quot;&gt;The-missing-semester/metaprogramming&lt;/a&gt;&lt;/p&gt;
+</description>
+        <pubDate>Wed, 28 Sep 2022 00:00:00 +0800</pubDate>
+        <link>http://dawnk.gitee.io//%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/2022/09/28/metaprogramming/</link>
+        <guid isPermaLink="true">http://dawnk.gitee.io//%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/2022/09/28/metaprogramming/</guid>
+        
+        <category>软件工程</category>
+        
+        <category>Missing-Semester</category>
+        
+        
+        <category>软件工程</category>
+        
+      </item>
     
       <item>
         <title>「CodeNote」 kickstart2022D</title>
@@ -2833,60 +2892,6 @@ Subsystem       sftp    /usr/lib/ssh/sftp-server
         
         
         <category>垃圾回收的算法和实现</category>
-        
-      </item>
-    
-      <item>
-        <title>「编程之外」 给 PDF 增加目录</title>
-        <description>&lt;h1 id=&quot;给-pdf-增加目录&quot;&gt;给 PDF 增加目录&lt;/h1&gt;
-
-&lt;h2 id=&quot;背景&quot;&gt;背景&lt;/h2&gt;
-
-&lt;p&gt;很多 pdf 电子书没有目录，在翻阅时非常不便。事实上在 windows 平台有个很好的解决方案，就是使用 FreePic2Pdf 工具进行对目录的修改。&lt;/p&gt;
-
-&lt;h2 id=&quot;步骤&quot;&gt;步骤&lt;/h2&gt;
-
-&lt;h3 id=&quot;提取目录&quot;&gt;提取目录&lt;/h3&gt;
-
-&lt;p&gt;首先下载 FreePic2Pdf . 打开后在程序的右下角选择”更改 PDF”. 然后在弹出框中选择”从 pdf 中取文件”, 设置好 pdf 路径，文件夹输出路径用默认即可。
-然后点击开始，发现在 pdf 同层，多了个文件夹。文件夹中有两个文件，一个是 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FreePic2Pdf_bkmk.txt&lt;/code&gt; , 一个是 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FreePic2Pdf.itf&lt;/code&gt; . 我们主要对前者进行修改。&lt;/p&gt;
-&lt;h3 id=&quot;修改文件&quot;&gt;修改文件&lt;/h3&gt;
-
-&lt;p&gt;txt 的格式要求是这样的：&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;以缩进来表示层级，每一级缩进使用一个 tab&lt;/li&gt;
-  &lt;li&gt;每一行代表一个目录项，对于每一个目录项，目录名和页码之间以一个 tab 隔开&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;举例：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;language-BASH&quot;&gt;0x00 基本算法	1
-	0x01 位运算	1
-	0x02 递推和递归	11
-	0x03 前缀和与差分	21
-	0x04 二分	25
-	0x05 排序	32
-	0x06 倍增	39
-	0x07 贪心	42
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;这一步如果使用一些强大的编辑工具，比如 vim 或者正则替换工具，可以在很短的时间内完成。&lt;/p&gt;
-
-&lt;p&gt;在修改完 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FreePic2Pdf_bkmk.txt&lt;/code&gt; 后，我们还要对偏移量做一个修正，也就是目录中的 1 在真正 pdf 中的值是多少。比如我举例的这本书的页码的第一页对应 pdf 的第 11 页。所以打开 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FreePic2Pdf.itf&lt;/code&gt; ，将里面的对应项修改，也就是 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BasePage=11&lt;/code&gt; 。&lt;/p&gt;
-
-&lt;p&gt;最后回到 FreePic2Pdf , 打开”往 pdf 挂文件”, 然后选中 pdf 和文件夹，点击开始即可。&lt;/p&gt;
-
-&lt;h2 id=&quot;参考资料&quot;&gt;参考资料&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://juejin.cn/post/6844903545498517517&quot;&gt;PDF 没有书签目录？自己动手五分钟生成！&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Tue, 27 Jul 2021 00:00:00 +0800</pubDate>
-        <link>http://dawnk.gitee.io//%E7%BC%96%E7%A8%8B%E4%B9%8B%E5%A4%96/2021/07/27/%E7%BB%99PDF%E5%A2%9E%E5%8A%A0%E7%9B%AE%E5%BD%95/</link>
-        <guid isPermaLink="true">http://dawnk.gitee.io//%E7%BC%96%E7%A8%8B%E4%B9%8B%E5%A4%96/2021/07/27/%E7%BB%99PDF%E5%A2%9E%E5%8A%A0%E7%9B%AE%E5%BD%95/</guid>
-        
-        <category>编程之外</category>
-        
-        
-        <category>编程之外</category>
         
       </item>
     
