@@ -279,6 +279,101 @@
             ">
     			
 <div class="post-preview">
+    <a href="/java/2021/01/16/%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" target="_blank">
+        <h2 class="post-title">
+            「Java」 基础语法
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            基础语法
+
+关键字
+
+final
+
+final 类似cpp中的const, 表示常量.
+
+
+  final修饰类, 表示此类不可被继承
+  final修饰方法, 表示此方法在重载中不可被覆盖(覆盖和重写有什么区别), 且不能修饰构造函数.
+  final修饰成员或者局部变量, 表示此成员是常量, 只能在声明时赋值, 一旦赋值就不可修改.
+
+
+static
+
+static 表示静态, 相当于 ...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on January
+        16, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/android/2021/01/05/%E6%A6%82%E8%A7%88/" target="_blank">
+        <h2 class="post-title">
+            「android」 概览
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            [toc]
+@import “./环境配置.md” 
+@import “./新建活动.md” 
+@import “./内容提供器.md” 
+@import “./多媒体.md”
+
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on January
+        5, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/android/2021/01/04/%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" target="_blank">
+        <h2 class="post-title">
+            「android」 环境配置
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            环境配置
+
+[toc]
+
+JDK
+
+先安装好1.8及以上的jdk.
+
+关闭hyper-V
+
+bcdedit /set hypervisorlaunchtype off
+
+
+Android Studio 安装
+
+可通过  jetbrain tools 一键安装. 安装时选择custom, 然后选择存放sdk的位置, 以及已有的jdk的位置, 然后预先安装的包全部勾选. 进行安装.
+
+Hello...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on January
+        4, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/android/2021/01/04/%E6%96%B0%E5%BB%BA%E6%B4%BB%E5%8A%A8/" target="_blank">
         <h2 class="post-title">
             「android」 新建活动
@@ -536,121 +631,6 @@ unity MassSpring -资源商店
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/unity/2020/10/19/obj%E6%A8%A1%E5%9E%8B%E7%AE%80%E5%8C%96/" target="_blank">
-        <h2 class="post-title">
-            「Unity」 obj模型简化
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            obj模型简化
-
-SimpleLOD
-
-Unity3D关于模型合并，模型简化
-
-SIMPLELOD使用方法
-
-在unity asset store 安装插件
-
-(收费插件,但是有破解版)
-
-  1.合并模型(若顶点数超过unity单个Mesh 65535个顶点限制的话，会自动生成多个子物体)
-
-
-
-  2.模型简化
-
-
-
-  3.烘焙Atlas
-
-
-Unity使用Mesh Simplify ...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on October
-        19, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/unity/2020/10/01/ezy-slice%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_blank">
-        <h2 class="post-title">
-            「Unity」 ezy-slice学习笔记
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            ezy-slice 使用笔记
-
-[toc]
-
-下载
-
-ezy-slice
-
-ezyslice-examples-scenes（可选）
-
-学习资料
-
-参考资料
-
-【简明游戏教程】引起舒适的切割插件——Ezy-Slice
-
-第一个教程基本正确,但是有一些跳跃,和下面的b站的视频教程结合起来就相对好理解一些,可以设置物体的材质以及下文的”旋转”.
-
-代码
-
-参考资料里面的代码少了关键的两行,导致平...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on October
-        1, 2020
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/web%E5%BC%80%E5%8F%91-springboot-dao/2020/07/13/%E9%93%BE%E6%8E%A5%E6%9F%A5%E8%AF%A2/" target="_blank">
-        <h2 class="post-title">
-            「SpringBoot-DAO」 链接查询
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            链接查询
-
-join
-
-链接语句, 将很多条语句合并成一个语句, (相比于双重循环)大大减少了通过网络传输的次数.
-
-1
-2
-3
-4
-5
-6
-select account ,user.name as username , role.name as rolename 
-from auth_user user 
-INNER JOIN auth_user_role ur
-on ur.user_id...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on July
-        13, 2020
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -690,112 +670,112 @@ on ur.user_id...
         
         
         
-                <a data-sort="0093" 
+                <a data-sort="0096" 
                     href="/archive/?tag=CodeNote"
                     title="CodeNote"
                     rel="93">CodeNote</a>
         
-                <a data-sort="0159" 
+                <a data-sort="0162" 
                     href="/archive/?tag=Web%E5%BC%80%E5%8F%91"
                     title="Web开发"
                     rel="27">Web开发</a>
         
-                <a data-sort="0172" 
+                <a data-sort="0175" 
                     href="/archive/?tag=%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B"
                     title="软件工程"
                     rel="14">软件工程</a>
         
-                <a data-sort="0173" 
+                <a data-sort="0176" 
                     href="/archive/?tag=SpringBoot"
                     title="SpringBoot"
                     rel="13">SpringBoot</a>
         
-                <a data-sort="0177" 
+                <a data-sort="0180" 
                     href="/archive/?tag=%E4%BA%92%E8%81%94%E7%BD%91%E6%9E%B6%E6%9E%84"
                     title="互联网架构"
                     rel="9">互联网架构</a>
         
-                <a data-sort="0179" 
+                <a data-sort="0182" 
                     href="/archive/?tag=%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E7%AE%97%E6%B3%95%E5%92%8C%E5%AE%9E%E7%8E%B0"
                     title="垃圾回收的算法和实现"
                     rel="7">垃圾回收的算法和实现</a>
         
-                <a data-sort="0179" 
+                <a data-sort="0182" 
                     href="/archive/?tag=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"
                     title="设计模式"
                     rel="7">设计模式</a>
         
-                <a data-sort="0179" 
+                <a data-sort="0182" 
                     href="/archive/?tag=android"
                     title="android"
                     rel="7">android</a>
         
-                <a data-sort="0180" 
+                <a data-sort="0183" 
                     href="/archive/?tag=DAO"
                     title="DAO"
                     rel="6">DAO</a>
         
-                <a data-sort="0181" 
+                <a data-sort="0184" 
                     href="/archive/?tag=%E6%95%B0%E6%8D%AE%E5%BA%93"
                     title="数据库"
                     rel="5">数据库</a>
         
-                <a data-sort="0181" 
+                <a data-sort="0184" 
                     href="/archive/?tag=Python"
                     title="Python"
                     rel="5">Python</a>
         
-                <a data-sort="0181" 
+                <a data-sort="0184" 
                     href="/archive/?tag=Vue"
                     title="Vue"
                     rel="5">Vue</a>
         
-                <a data-sort="0182" 
+                <a data-sort="0185" 
+                    href="/archive/?tag=Linux"
+                    title="Linux"
+                    rel="4">Linux</a>
+        
+                <a data-sort="0185" 
                     href="/archive/?tag=Unity"
                     title="Unity"
                     rel="4">Unity</a>
         
-                <a data-sort="0182" 
+                <a data-sort="0185" 
                     href="/archive/?tag=VSCode%E5%AD%A6%E4%B9%A0"
                     title="VSCode学习"
                     rel="4">VSCode学习</a>
         
-                <a data-sort="0183" 
+                <a data-sort="0186" 
+                    href="/archive/?tag=%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"
+                    title="操作系统"
+                    rel="3">操作系统</a>
+        
+                <a data-sort="0186" 
                     href="/archive/?tag=%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"
                     title="版本控制"
                     rel="3">版本控制</a>
         
-                <a data-sort="0183" 
-                    href="/archive/?tag=Linux"
-                    title="Linux"
-                    rel="3">Linux</a>
+                <a data-sort="0186" 
+                    href="/archive/?tag=C%2B%2B"
+                    title="C++"
+                    rel="3">C++</a>
         
-                <a data-sort="0183" 
+                <a data-sort="0186" 
                     href="/archive/?tag=View"
                     title="View"
                     rel="3">View</a>
         
-                <a data-sort="0184" 
-                    href="/archive/?tag=%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"
-                    title="操作系统"
-                    rel="2">操作系统</a>
-        
-                <a data-sort="0184" 
-                    href="/archive/?tag=C%2B%2B"
-                    title="C++"
-                    rel="2">C++</a>
-        
-                <a data-sort="0184" 
+                <a data-sort="0187" 
                     href="/archive/?tag=Java"
                     title="Java"
                     rel="2">Java</a>
         
-                <a data-sort="0184" 
+                <a data-sort="0187" 
                     href="/archive/?tag=Kotlin"
                     title="Kotlin"
                     rel="2">Kotlin</a>
         
-                <a data-sort="0184" 
+                <a data-sort="0187" 
                     href="/archive/?tag=Missing-Semester"
                     title="Missing-Semester"
                     rel="2">Missing-Semester</a>

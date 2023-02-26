@@ -279,6 +279,111 @@
             ">
     			
 <div class="post-preview">
+    <a href="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/2021/03/04/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" target="_blank">
+        <h2 class="post-title">
+            「软件工程」 软件工程基础知识
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            软件工程基础知识
+
+软件开发模型
+
+边做边改模型
+
+没有规划一边做一边改. 容易陷入修改困难甚至无法修改的境地.
+
+瀑布模型
+
+将软件生命周期划分为制定计划、需求分析、软件设计、程序编写、软件测试和运行维护等六个基本活动.
+在瀑布模型中, 软件开发的各项活动严格按照线性方式进行.
+
+缺点: 文档太多, 开发风险大, 用户只能在完全结束后才能看到. 早期的错误需要等到后期才能发现.
+
+快速原型...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on March
+        4, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/2021/03/04/makefile/" target="_blank">
+        <h2 class="post-title">
+            「软件工程」 makefile
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            Makefile
+
+概述
+
+Makefile 主要是为了解决构建问题。将编译，链接，清理自动化。
+
+配置
+
+make 在 Windows 上体验不太好。
+主要是 Windows 的 Powershell 和 cmd 的命令并不兼容，而且相比 Linux, 功能还是弱了一些。
+而且一定要注意，命令前面的分隔符是 tab 而不是空格
+
+提前准备了若干文件，将这几个文件和 Makefile 放在同...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on March
+        4, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/%E6%95%B0%E6%8D%AE%E5%BA%93/2021/03/04/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" target="_blank">
+        <h2 class="post-title">
+            「数据库」 数据库基础知识
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            数据库
+
+基本概念
+
+实体
+
+主键
+
+主键应当是唯一的，并且几乎不会变动
+码：所有属性都依赖于码属性。
+
+
+
+码 : 能够唯一标识一条记录的属性或属性集。
+候选码 : 能够唯一标识一条记录的最小属性集
+主键 : 人为从候选码中挑的一个码。
+主属性 : 包含在任一候选码中的属性称主属性
+非主属性 : 不包含在候选码中的属性称为非主属性
+
+数据库范式
+
+范式是一种规范，能够减少数据冗余。但是范式...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on March
+        4, 2021
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/2021/03/04/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" target="_blank">
         <h2 class="post-title">
             「操作系统」 操作系统基础知识
@@ -535,112 +640,6 @@ public abs...
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/22/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" target="_blank">
-        <h2 class="post-title">
-            「软件工程-设计模式」 单例模式
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            单例模式
-
-概述
-
-单例模式是说处于某种原因, 我们只能初始化一个对象, 然后在程序中都是引用这对象, 而不能创建新对象.
-
-实现
-
-线程不安全的懒汉式
-
-首要的条件是将构造函数设置为私有, 然后当且仅当 getInstance 被调用且还未曾初始化过对象的时候, 才创建一个对象. 这个实现方法简单, 但是线程不安全, 也就是如果有两个线程紧跟着调用了if那一句的话, 就会产生两个对象.
-
-...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on February
-        22, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/21/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/" target="_blank">
-        <h2 class="post-title">
-            「软件工程-设计模式」 建造者模式
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            建造者模式
-
-知乎参考资料
-
-概述
-
-当一个类特别复杂时(比如构造函数有很多参数且有一些可选参数), 考虑建造者模式.
-
-建造者模式的一种简单实现是使用建造者类通过一系列set的链式调用来构建一个复杂的对象.
-
-比如电脑, 其有多个必选属性, 也有一些可选属性. 由于Java本身不支持默认参数, 导致构建很复杂(可以使用重叠构造器, 但是也不够优雅).
-
-实现方法
-
-我们将 Computer...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on February
-        21, 2021
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2021/02/21/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" target="_blank">
-        <h2 class="post-title">
-            「软件工程-设计模式」 工厂模式
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            工厂模式
-
-[toc]
-
-简单工厂模式
-
-假设我们要制造小米和苹果的笔记本, 我们声明一个 Computer 抽象类, 然后派生 MiComputer 和 MacComputer 两个子类. 但是直接用new的话, 就无法将装配工作统一接口. 维护起来就会很麻烦.
-
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-public abstract class Compu...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on February
-        21, 2021
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -680,112 +679,112 @@ public abstract class Compu...
         
         
         
-                <a data-sort="0093" 
+                <a data-sort="0096" 
                     href="/archive/?tag=CodeNote"
                     title="CodeNote"
                     rel="93">CodeNote</a>
         
-                <a data-sort="0159" 
+                <a data-sort="0162" 
                     href="/archive/?tag=Web%E5%BC%80%E5%8F%91"
                     title="Web开发"
                     rel="27">Web开发</a>
         
-                <a data-sort="0172" 
+                <a data-sort="0175" 
                     href="/archive/?tag=%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B"
                     title="软件工程"
                     rel="14">软件工程</a>
         
-                <a data-sort="0173" 
+                <a data-sort="0176" 
                     href="/archive/?tag=SpringBoot"
                     title="SpringBoot"
                     rel="13">SpringBoot</a>
         
-                <a data-sort="0177" 
+                <a data-sort="0180" 
                     href="/archive/?tag=%E4%BA%92%E8%81%94%E7%BD%91%E6%9E%B6%E6%9E%84"
                     title="互联网架构"
                     rel="9">互联网架构</a>
         
-                <a data-sort="0179" 
+                <a data-sort="0182" 
                     href="/archive/?tag=%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E7%AE%97%E6%B3%95%E5%92%8C%E5%AE%9E%E7%8E%B0"
                     title="垃圾回收的算法和实现"
                     rel="7">垃圾回收的算法和实现</a>
         
-                <a data-sort="0179" 
+                <a data-sort="0182" 
                     href="/archive/?tag=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"
                     title="设计模式"
                     rel="7">设计模式</a>
         
-                <a data-sort="0179" 
+                <a data-sort="0182" 
                     href="/archive/?tag=android"
                     title="android"
                     rel="7">android</a>
         
-                <a data-sort="0180" 
+                <a data-sort="0183" 
                     href="/archive/?tag=DAO"
                     title="DAO"
                     rel="6">DAO</a>
         
-                <a data-sort="0181" 
+                <a data-sort="0184" 
                     href="/archive/?tag=%E6%95%B0%E6%8D%AE%E5%BA%93"
                     title="数据库"
                     rel="5">数据库</a>
         
-                <a data-sort="0181" 
+                <a data-sort="0184" 
                     href="/archive/?tag=Python"
                     title="Python"
                     rel="5">Python</a>
         
-                <a data-sort="0181" 
+                <a data-sort="0184" 
                     href="/archive/?tag=Vue"
                     title="Vue"
                     rel="5">Vue</a>
         
-                <a data-sort="0182" 
+                <a data-sort="0185" 
+                    href="/archive/?tag=Linux"
+                    title="Linux"
+                    rel="4">Linux</a>
+        
+                <a data-sort="0185" 
                     href="/archive/?tag=Unity"
                     title="Unity"
                     rel="4">Unity</a>
         
-                <a data-sort="0182" 
+                <a data-sort="0185" 
                     href="/archive/?tag=VSCode%E5%AD%A6%E4%B9%A0"
                     title="VSCode学习"
                     rel="4">VSCode学习</a>
         
-                <a data-sort="0183" 
+                <a data-sort="0186" 
+                    href="/archive/?tag=%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"
+                    title="操作系统"
+                    rel="3">操作系统</a>
+        
+                <a data-sort="0186" 
                     href="/archive/?tag=%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"
                     title="版本控制"
                     rel="3">版本控制</a>
         
-                <a data-sort="0183" 
-                    href="/archive/?tag=Linux"
-                    title="Linux"
-                    rel="3">Linux</a>
+                <a data-sort="0186" 
+                    href="/archive/?tag=C%2B%2B"
+                    title="C++"
+                    rel="3">C++</a>
         
-                <a data-sort="0183" 
+                <a data-sort="0186" 
                     href="/archive/?tag=View"
                     title="View"
                     rel="3">View</a>
         
-                <a data-sort="0184" 
-                    href="/archive/?tag=%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"
-                    title="操作系统"
-                    rel="2">操作系统</a>
-        
-                <a data-sort="0184" 
-                    href="/archive/?tag=C%2B%2B"
-                    title="C++"
-                    rel="2">C++</a>
-        
-                <a data-sort="0184" 
+                <a data-sort="0187" 
                     href="/archive/?tag=Java"
                     title="Java"
                     rel="2">Java</a>
         
-                <a data-sort="0184" 
+                <a data-sort="0187" 
                     href="/archive/?tag=Kotlin"
                     title="Kotlin"
                     rel="2">Kotlin</a>
         
-                <a data-sort="0184" 
+                <a data-sort="0187" 
                     href="/archive/?tag=Missing-Semester"
                     title="Missing-Semester"
                     rel="2">Missing-Semester</a>

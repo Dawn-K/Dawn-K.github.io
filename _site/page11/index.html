@@ -279,6 +279,123 @@
             ">
     			
 <div class="post-preview">
+    <a href="/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/2020/05/03/UML%E7%B1%BB%E5%9B%BE/" target="_blank">
+        <h2 class="post-title">
+            「软件工程」 UML类图
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            UML 类图
+
+[toc]
+
+类
+
+分为三部分
+
+
+  类名
+  属性(可以没有属性)
+  操作
+
+
+其中属性和操作都有public(+), private(-),protect(#)三种访问限定标志
+
+举个例子:
+
+
+  
+    
+      Student
+    
+  
+  
+    
+      - num : int
+    
+    
+      + Study() : voi...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on May
+        3, 2020
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/codenote/2020/04/25/ACW224(%E4%BA%8C%E5%88%86+%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84)/" target="_blank">
+        <h2 class="post-title">
+            「CodeNote」 ACW224(二分+树状数组)
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            谜一样的牛
+
+题意
+有n头奶牛，已知它们的身高为 1~n 且各不相同，但不知道每头奶牛的具体身高。
+
+现在这n头奶牛站成一列，已知第i头牛前面有Ai头牛比它低，求每头奶牛的身高。
+
+输入格式
+第1行：输入整数n。
+
+第2..n行：每行输入一个整数Ai,第i行表示第i头牛前面有Ai头牛比它低。
+（注意：因为第1头牛前面没有牛，所以并没有将它列出）
+
+输出格式
+输出包含n行，每行输出一个整数表示...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on April
+        25, 2020
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
+    <a href="/codenote/2020/04/23/%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85%E8%AE%A1%E6%95%B0/" target="_blank">
+        <h2 class="post-title">
+            「CodeNote」 完全背包计数
+        </h2>
+        
+        <div class="post-content-preview">
+            
+            面试题 08.11. 硬币
+
+lc518
+
+题意
+
+
+  给定数量不限的硬币，币值为25分、10分、5分和1分，编写代码计算n分有几种表示法。(结果可能会很大，你需要将结果模上1000000007)
+
+
+输入:
+0 &lt;= n (总金额) &lt;= 1000000
+
+思路
+
+经典背包方案数问题
+
+硬币数量不限,是完全背包问题,但是这个题是方案数,如果直接按照背包问题的思路进行计算,会导...
+            
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by Dawn-K's Blog on April
+        23, 2020
+    </p>
+</div>
+<hr>
+
+<div class="post-preview">
     <a href="/codenote/2020/04/23/n%E7%9A%84m%E5%88%92%E5%88%86/" target="_blank">
         <h2 class="post-title">
             「CodeNote」 n的m划分
@@ -515,109 +632,6 @@ ctrl+N 创建新场景
 </div>
 <hr>
 
-<div class="post-preview">
-    <a href="/codenote/2019/11/10/CF1165E(%E8%B4%A1%E7%8C%AE)/" target="_blank">
-        <h2 class="post-title">
-            「CodeNote」 CF1165E(贡献)
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            CF1165E
-
-题意
-
-
-  给一个n,然后给出两个长度为n的数组a,b 我们定义$f(l,r)=\sum_{l&lt;=i&lt;=r}a_i*b_i$
-
-  你可以任意改变b数组的顺序,使得$\sum_{1&lt;=l&lt;=r&lt;=n}f(l,r) $(以下称作②)最小,输出最小值mod  998244353
-
-
-思路
-
-很明显求贡献的题.
-
-我们可以这样考虑,我们定义c_i=...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on November
-        10, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/codenote/2019/11/10/CF1165D(%E7%BA%A6%E6%95%B0)/" target="_blank">
-        <h2 class="post-title">
-            「CodeNote」 CF1165D(约数)
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            CF1165D
-
-题意
-
-
-  多组输入t
-
-  对于每个输入,给你一个n,给你一个长度为n的序列a.问是否存在一个数,他的所有约数(除了1和它本身),都在这个序列中.
-
-  如果有,输出满足条件的最小的数,如果没有,则输出-1
-
-
-$1&lt;=n&lt;=300$
-
-$2&lt;=a_i&lt;=1e6$
-
-思路
-
-思路很简单,对a数组排序,则约数x如果存在就是a[0]*a[n-1]
-
-...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on November
-        10, 2019
-    </p>
-</div>
-<hr>
-
-<div class="post-preview">
-    <a href="/codenote/2019/11/07/%E5%8F%8D%E5%90%91%E6%8B%93%E6%89%91/" target="_blank">
-        <h2 class="post-title">
-            「CodeNote」 反向拓扑
-        </h2>
-        
-        <div class="post-content-preview">
-            
-            反向拓扑
-
-介绍
-
-反向拓扑是一个很常见的算法.解决的问题也很模板,是这样的一个问题:
-
-
-  有N个人，M个优先级a，b表示a优先于b。要求 ：编号最小的节点要尽量排在前面；在满足上一个条件的基础上，编号第二小的节点要尽量排在前面；在满足前两个条件的基础上，编号第三小的节点要尽量排在前面……依此类推。（注意，这和字典序是两回事，不能够混淆。
-
-
-思路
-
-这个思路初见还是真不好想.需要逆向思...
-            
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by Dawn-K's Blog on November
-        7, 2019
-    </p>
-</div>
-<hr>
-
 
 <!-- Pager -->
 
@@ -657,112 +671,112 @@ $2&lt;=a_i&lt;=1e6$
         
         
         
-                <a data-sort="0093" 
+                <a data-sort="0096" 
                     href="/archive/?tag=CodeNote"
                     title="CodeNote"
                     rel="93">CodeNote</a>
         
-                <a data-sort="0159" 
+                <a data-sort="0162" 
                     href="/archive/?tag=Web%E5%BC%80%E5%8F%91"
                     title="Web开发"
                     rel="27">Web开发</a>
         
-                <a data-sort="0172" 
+                <a data-sort="0175" 
                     href="/archive/?tag=%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B"
                     title="软件工程"
                     rel="14">软件工程</a>
         
-                <a data-sort="0173" 
+                <a data-sort="0176" 
                     href="/archive/?tag=SpringBoot"
                     title="SpringBoot"
                     rel="13">SpringBoot</a>
         
-                <a data-sort="0177" 
+                <a data-sort="0180" 
                     href="/archive/?tag=%E4%BA%92%E8%81%94%E7%BD%91%E6%9E%B6%E6%9E%84"
                     title="互联网架构"
                     rel="9">互联网架构</a>
         
-                <a data-sort="0179" 
+                <a data-sort="0182" 
                     href="/archive/?tag=%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E7%AE%97%E6%B3%95%E5%92%8C%E5%AE%9E%E7%8E%B0"
                     title="垃圾回收的算法和实现"
                     rel="7">垃圾回收的算法和实现</a>
         
-                <a data-sort="0179" 
+                <a data-sort="0182" 
                     href="/archive/?tag=%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"
                     title="设计模式"
                     rel="7">设计模式</a>
         
-                <a data-sort="0179" 
+                <a data-sort="0182" 
                     href="/archive/?tag=android"
                     title="android"
                     rel="7">android</a>
         
-                <a data-sort="0180" 
+                <a data-sort="0183" 
                     href="/archive/?tag=DAO"
                     title="DAO"
                     rel="6">DAO</a>
         
-                <a data-sort="0181" 
+                <a data-sort="0184" 
                     href="/archive/?tag=%E6%95%B0%E6%8D%AE%E5%BA%93"
                     title="数据库"
                     rel="5">数据库</a>
         
-                <a data-sort="0181" 
+                <a data-sort="0184" 
                     href="/archive/?tag=Python"
                     title="Python"
                     rel="5">Python</a>
         
-                <a data-sort="0181" 
+                <a data-sort="0184" 
                     href="/archive/?tag=Vue"
                     title="Vue"
                     rel="5">Vue</a>
         
-                <a data-sort="0182" 
+                <a data-sort="0185" 
+                    href="/archive/?tag=Linux"
+                    title="Linux"
+                    rel="4">Linux</a>
+        
+                <a data-sort="0185" 
                     href="/archive/?tag=Unity"
                     title="Unity"
                     rel="4">Unity</a>
         
-                <a data-sort="0182" 
+                <a data-sort="0185" 
                     href="/archive/?tag=VSCode%E5%AD%A6%E4%B9%A0"
                     title="VSCode学习"
                     rel="4">VSCode学习</a>
         
-                <a data-sort="0183" 
+                <a data-sort="0186" 
+                    href="/archive/?tag=%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"
+                    title="操作系统"
+                    rel="3">操作系统</a>
+        
+                <a data-sort="0186" 
                     href="/archive/?tag=%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"
                     title="版本控制"
                     rel="3">版本控制</a>
         
-                <a data-sort="0183" 
-                    href="/archive/?tag=Linux"
-                    title="Linux"
-                    rel="3">Linux</a>
+                <a data-sort="0186" 
+                    href="/archive/?tag=C%2B%2B"
+                    title="C++"
+                    rel="3">C++</a>
         
-                <a data-sort="0183" 
+                <a data-sort="0186" 
                     href="/archive/?tag=View"
                     title="View"
                     rel="3">View</a>
         
-                <a data-sort="0184" 
-                    href="/archive/?tag=%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"
-                    title="操作系统"
-                    rel="2">操作系统</a>
-        
-                <a data-sort="0184" 
-                    href="/archive/?tag=C%2B%2B"
-                    title="C++"
-                    rel="2">C++</a>
-        
-                <a data-sort="0184" 
+                <a data-sort="0187" 
                     href="/archive/?tag=Java"
                     title="Java"
                     rel="2">Java</a>
         
-                <a data-sort="0184" 
+                <a data-sort="0187" 
                     href="/archive/?tag=Kotlin"
                     title="Kotlin"
                     rel="2">Kotlin</a>
         
-                <a data-sort="0184" 
+                <a data-sort="0187" 
                     href="/archive/?tag=Missing-Semester"
                     title="Missing-Semester"
                     rel="2">Missing-Semester</a>
